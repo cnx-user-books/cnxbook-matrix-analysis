@@ -1,0 +1,525 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml"> 
+
+  <title>The Backward-Euler Method</title> 
+  
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>8f7886a2-2584-4042-affd-deff21f6608c</md:uuid>
+</metadata>
+
+  <content>
+    <para id="p1">
+      Where in the <link document="m10170" strength="2">Inverse Laplace
+	Transform</link> module we tackled the derivative in
+
+      <equation id="gode">
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:apply><m:diff/>
+	      <m:ci type="vector">x</m:ci>
+	    </m:apply>
+	    <m:apply><m:plus/>
+	      <m:apply><m:times/>
+		<m:ci type="matrix">B</m:ci>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	      <m:ci type="vector">g</m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <m:mtext>,</m:mtext>
+	  <!-- x' = Bx + g -->
+	</m:math>
+      </equation>
+
+      via an integral transform we pursue in this section a much
+      simpler strategy, namely, replace the derivative with a finite
+      difference quotient. That is, one chooses a small
+
+      <m:math display="inline">
+	<m:mrow>
+	  <m:mi>d</m:mi>
+	  <m:mi>t</m:mi>
+	</m:mrow>
+      </m:math>
+      <!-- dt -->
+      and 'replaces' <link target-id="gode" strength="2"/> with
+      
+      <equation id="eqn6_14">
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:apply><m:divide/>
+	      <m:apply><m:minus/>
+		<m:apply>
+		  <m:ci type="fn"><m:mover>
+		      <m:mi>x</m:mi>
+		      <m:mo>˜</m:mo>
+		    </m:mover></m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn"><m:mover>
+		      <m:mi>x</m:mi>
+		      <m:mo>˜</m:mo>
+		    </m:mover></m:ci> 
+		  <m:apply><m:minus/>
+		    <m:ci>t</m:ci>
+		    <m:ci><m:mrow>
+			<m:mi>d</m:mi>
+			<m:mi>t</m:mi>
+		      </m:mrow></m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:ci><m:mrow>
+		  <m:mi>d</m:mi>
+		  <m:mi>t</m:mi>
+		</m:mrow></m:ci>
+	    </m:apply>
+	    <m:apply><m:plus/>
+	      <m:apply><m:times/>
+		<m:ci type="matrix">B</m:ci>
+		<m:apply>
+		  <m:ci type="fn"><m:mover>
+		      <m:mi>x</m:mi>
+		      <m:mo>˜</m:mo>
+		    </m:mover></m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn">g</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	  <m:mtext>.</m:mtext>
+	  <!-- ( x(t) - x(t - dt) ) / dt = Bx(t) + g(t) -->
+	</m:math>
+      </equation>
+
+      The utility of <link target-id="eqn6_14" strength="2"/> is that it
+      gives a means of solving for
+
+      <m:math display="inline">
+	<m:ci type="fn"><m:mover>
+	    <m:mi>x</m:mi>
+	    <m:mo>˜</m:mo>
+	  </m:mover></m:ci>
+	<!-- x~ -->
+      </m:math>
+
+      at the present time, <m:math><m:ci>t</m:ci></m:math>, from the
+      knowledge of
+      
+      <m:math display="inline">
+	<m:ci type="fn"><m:mover>
+	    <m:mi>x</m:mi>
+	    <m:mo>˜</m:mo>
+	  </m:mover></m:ci>
+	<!-- x~ -->
+      </m:math>
+      
+      in the immediate past,
+
+      <m:math display="inline">
+	<m:apply><m:minus/>
+	  <m:ci>t</m:ci>
+	  <m:ci><m:mrow>
+	      <m:mi>d</m:mi>
+	      <m:mi>t</m:mi>
+	    </m:mrow></m:ci>
+	</m:apply>
+	<!-- t - dt -->
+      </m:math>. 
+
+      For example, as 
+
+      <m:math display="inline">
+	<m:apply><m:eq/>
+	  <m:apply>
+	    <m:ci type="fn"><m:mover>
+		<m:mi>x</m:mi>
+		<m:mo>˜</m:mo>
+	      </m:mover></m:ci>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	  <m:apply>
+	    <m:ci type="fn">x</m:ci>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:apply>
+	<!-- x~(0) = x(0) -->
+      </m:math>
+
+      is supposed known we write <link target-id="eqn6_14" strength="2"/>
+      as
+
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:apply><m:times/>
+	    <m:apply><m:minus/>
+	      <m:apply><m:divide/>
+		<m:ci type="matrix">I</m:ci>
+		<m:ci><m:mrow>
+		    <m:mi>d</m:mi>
+		    <m:mi>t</m:mi>
+		  </m:mrow></m:ci>
+	      </m:apply>
+	      <m:ci type="matrix">B</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci type="fn"><m:mover>
+		  <m:mi>x</m:mi>
+		  <m:mo>˜</m:mo>
+		</m:mover></m:ci>
+	      <m:ci><m:mrow><m:mi>d</m:mi><m:mi>t</m:mi></m:mrow></m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply><m:plus/>
+	    <m:apply><m:divide/>
+	      <m:apply>
+		<m:ci type="fn">x</m:ci>
+		<m:cn>0</m:cn>
+	      </m:apply>
+	      <m:ci><m:mrow><m:mi>d</m:mi><m:mi>t</m:mi></m:mrow></m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci type="fn">g</m:ci>
+	      <m:ci><m:mrow><m:mi>d</m:mi><m:mi>t</m:mi></m:mrow></m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+	<m:mtext>.</m:mtext>
+	<!-- ( I/dt - B ) * x~(dt) = x(0)/dt + g(dt) -->
+      </m:math>
+
+      Solving this for 
+
+      <m:math display="inline">
+	<m:apply>
+	  <m:ci type="fn"><m:mover>
+	      <m:mi>x</m:mi>
+	      <m:mo>˜</m:mo>
+	    </m:mover></m:ci>
+	  <m:ci><m:mrow><m:mi>d</m:mi><m:mi>t</m:mi></m:mrow></m:ci>
+	</m:apply>
+	<!-- x~(dt) -->
+      </m:math>
+
+      we return to <link target-id="eqn6_14" strength="2"/> and find
+
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:apply><m:times/>
+	    <m:apply><m:minus/>
+	      <m:apply><m:divide/>
+		<m:ci type="matrix">I</m:ci>
+		<m:ci><m:mrow><m:mi>d</m:mi><m:mi>t</m:mi></m:mrow></m:ci>
+	      </m:apply>
+	      <m:ci type="matrix">B</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci type="fn"><m:mover>
+		  <m:mi>x</m:mi>
+		  <m:mo>˜</m:mo>
+		</m:mover></m:ci>
+	      <m:apply><m:times/>
+		<m:cn>2</m:cn>
+		<m:ci><m:mrow><m:mi>d</m:mi><m:mi>t</m:mi></m:mrow></m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply><m:plus/>
+	    <m:apply><m:divide/>
+	      <m:apply>
+		<m:ci type="fn">x</m:ci>
+		<m:ci><m:mrow><m:mi>d</m:mi><m:mi>t</m:mi></m:mrow></m:ci>
+	      </m:apply>
+	      <m:ci><m:mrow><m:mi>d</m:mi><m:mi>t</m:mi></m:mrow></m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci type="fn">g</m:ci>
+	      <m:apply><m:times/>
+		<m:cn>2</m:cn>
+		<m:ci><m:mrow><m:mi>d</m:mi><m:mi>t</m:mi></m:mrow></m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+	<m:mtext>.</m:mtext>
+	<!-- ( I/dt - B ) * x~(2dt) = x(dt)/dt + g(2dt) -->
+      </m:math>
+      
+      and solve for 
+
+      <m:math display="inline">
+	<m:apply>
+	  <m:ci type="fn"><m:mover>
+	      <m:mi>x</m:mi>
+	      <m:mo>˜</m:mo>
+	    </m:mover></m:ci>
+	  <m:apply><m:times/>
+	    <m:cn>2</m:cn>
+	    <m:ci><m:mrow><m:mi>d</m:mi><m:mi>t</m:mi></m:mrow></m:ci>
+	  </m:apply>
+	</m:apply>
+	<!-- x~(2dt) -->
+      </m:math>.
+
+      The general step from past to present,
+
+      <equation id="eqn6_15">
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:apply>
+	      <m:ci type="fn"><m:mover>
+		  <m:mi>x</m:mi>
+		  <m:mo>˜</m:mo>
+		</m:mover></m:ci>
+	      <m:apply><m:times/>
+		<m:ci>j</m:ci>
+		<m:ci><m:mrow><m:mi>d</m:mi><m:mi>t</m:mi></m:mrow></m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply><m:times/>
+	      <m:apply><m:inverse/>
+		<m:apply><m:minus/>
+		  <m:apply><m:divide/>
+		    <m:ci type="matrix">I</m:ci>
+		    <m:ci><m:mrow><m:mi>d</m:mi><m:mi>t</m:mi></m:mrow></m:ci>
+		  </m:apply>
+		  <m:ci type="matrix">B</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply><m:plus/>
+		<m:apply><m:divide/>
+		  <m:apply>
+		    <m:ci type="fn"><m:mover>
+			<m:mi>x</m:mi>
+			<m:mo>˜</m:mo>
+		      </m:mover></m:ci>
+		    <m:apply><m:times/>
+		      <m:apply><m:minus/>
+			<m:ci>j</m:ci>
+			<m:cn>1</m:cn>
+		      </m:apply>
+		      <m:ci><m:mrow>
+			  <m:mi>d</m:mi>
+			  <m:mi>t</m:mi>
+			</m:mrow></m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:ci><m:mrow>
+		      <m:mi>d</m:mi>
+		      <m:mi>t</m:mi>
+		    </m:mrow></m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">g</m:ci>
+		  <m:apply><m:times/>
+		    <m:ci>j</m:ci>
+		    <m:ci><m:mrow><m:mi>d</m:mi><m:mi>t</m:mi></m:mrow></m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	  <!-- x~(jdt) = ( I/dt - B )^(-1) * ( x~( j - 1 )dt  / dt + g( jdt ) ) -->
+	</m:math>
+      </equation>
+      
+      is repeated until some desired final time, 
+
+      <m:math display="inline">
+	<m:apply><m:times/>
+	  <m:ci>T</m:ci>
+	  <m:ci><m:mrow><m:mi>d</m:mi><m:mi>t</m:mi></m:mrow></m:ci>
+	</m:apply>
+	<!-- Tdt -->
+      </m:math>,
+
+      is reached.  This equation has been implemented in 
+      <link url="http://www.caam.rice.edu/~caam335/cox/lectures/fib3.m">fib3.m</link>
+      with 
+
+      <m:math display="inline">
+	<m:apply><m:eq/>
+	  <m:ci><m:mrow><m:mi>d</m:mi><m:mi>t</m:mi></m:mrow></m:ci>
+	  <m:cn>1</m:cn>
+	</m:apply>
+      </m:math>
+      and <m:math display="inline"><m:ci type="matrix">B</m:ci></m:math> and <m:math display="inline"><m:ci>g</m:ci></m:math> as in <link document="m10168" target-id="eqn6_4" strength="2">the dynamic Strang
+      module</link>.  The resulting
+      
+      <m:math display="inline">
+	<m:ci type="fn"><m:mover>
+	    <m:mi>x</m:mi>
+	    <m:mo>˜</m:mo>
+	  </m:mover></m:ci>
+	<!-- x~ -->
+      </m:math>
+
+      ( run <link url="http://www.caam.rice.edu/~caam335/cox/lectures/fib3.m">fib3.m</link>
+      yourself!) is indistinguishable from the <link document="m10170" target-id="three_potentials" strength="3">plot we
+      obtained</link> in the Inverse Laplace module.
+    </para>
+
+    <para id="p2">
+      Comparing the two representations, <link document="m10170" target-id="eqn6_12" strength="3">this equation</link> and <link target-id="eqn6_15" strength="3"/>, we see that they both produce
+      the solution to the general linear system of ordinary equations,
+      <link document="m10168" target-id="eqn6_3" strength="3">see this
+      eqn</link>, by simply inverting a shifted copy of <m:math display="inline"><m:ci type="matrix">B</m:ci></m:math>.  The
+      former representation is hard but exact while the latter is easy
+      but approximate.  Of course we should expect the approximate
+      solution,
+      <m:math display="inline">
+	<m:ci type="fn"><m:mover>
+	    <m:mi>x</m:mi>
+	    <m:mo>˜</m:mo>
+	  </m:mover></m:ci>
+	<!-- x~ -->
+      </m:math>
+      , to approach the exact solution,
+      <m:math><m:ci>x</m:ci></m:math>, as the time step,
+      <m:math display="inline">
+	<m:ci><m:mrow><m:mi>d</m:mi><m:mi>t</m:mi></m:mrow></m:ci>
+      </m:math>
+      , approaches zero.  To see this let us return to <link target-id="eqn6_15" strength="3"/> and assume, for now, that
+      <m:math>
+	<m:apply>
+	  <m:equivalent/>
+	  <m:ci>g</m:ci>
+	  <m:cn>0</m:cn>
+	</m:apply>
+      </m:math>
+      .  In this case, one can reverse the above steps and arrive at
+      the representation
+      <equation id="eqn6_16">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn"><m:mover>
+		  <m:mi>x</m:mi>
+		  <m:mo>˜</m:mo>
+		</m:mover></m:ci>
+	      <m:apply><m:times/>
+		<m:ci>j</m:ci>
+		<m:ci><m:mrow><m:mi>d</m:mi><m:mi>t</m:mi></m:mrow></m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply><m:times/>
+	      <m:apply>
+		<m:power/>
+		<m:apply><m:inverse/>
+		  <m:apply><m:minus/>
+		    <m:ci type="matrix">I</m:ci>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci><m:mrow>
+			  <m:mi>d</m:mi><m:mi>t</m:mi>
+			</m:mrow></m:ci>
+		      <m:ci type="matrix">B</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:ci>j</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn">x</m:ci>
+		<m:cn>0</m:cn>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+      Now, for a fixed time <m:math><m:ci>t</m:ci></m:math> we suppose
+      that <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:ci><m:mrow>
+	      <m:mi>d</m:mi><m:mi>t</m:mi>
+	    </m:mrow></m:ci>
+	  <m:apply>
+	    <m:divide/>
+	    <m:ci>t</m:ci>
+	    <m:ci>j</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      and ask whether
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:ci type="fn">x</m:ci>
+	    <m:ci>t</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:limit/>
+	    <m:bvar>
+	      <m:ci>j</m:ci>
+	    </m:bvar>
+	    <m:lowlimit>
+	      <m:infinity/>
+	    </m:lowlimit>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:power/>
+		<m:apply><m:inverse/>
+		  <m:apply><m:minus/>
+		    <m:ci type="matrix">I</m:ci>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:divide/>
+			<m:ci>t</m:ci>
+			<m:ci>j</m:ci>
+		      </m:apply>
+		      <m:ci type="matrix">B</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:ci>j</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn">x</m:ci>
+		<m:cn>0</m:cn>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      This limit, at least when <m:math display="inline"><m:ci type="matrix">B</m:ci></m:math> is one-by-one, yields the
+      exponential
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:ci type="fn">x</m:ci>
+	    <m:ci>t</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:exp/>
+	      <m:apply>
+		<m:times/>
+		<m:ci type="matrix">B</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci type="fn">x</m:ci>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      clearly the correct solution to <link document="m10168" target-id="eqn6_3" strength="3">this equation</link>.  A careful
+      explication of the <term>matrix exponential</term> and its
+      relationship to <link document="m10170" target-id="eqn6_12" strength="3">this equation</link> will have to wait until we
+      have mastered the inverse laplace transform.
+    </para>
+
+  </content>
+</document>

@@ -1,0 +1,268 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  
+  <title>Exercises: Matrix Methods for Dynamical Systems</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>a2c016d5-6c01-4a0b-96ad-7dfc058cdb87</md:uuid>
+</metadata>
+
+  <content>
+    <para id="exercises">
+      <list id="ex" list-type="enumerated">
+	<item>Compute, <emphasis>without</emphasis> the aid of a
+	  machine, the Laplace transforms of
+	  <m:math>
+	    <m:apply>
+	      <m:exp/>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:math>
+	  and
+	  <m:math>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>t</m:ci>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>.  Show <emphasis>ALL</emphasis> of your work.</item>
+	<item>Extract from <code>fib3.m</code> analytical
+	expressions for 
+	  <m:math>
+	    <m:ci><m:msub>
+		<m:mi>x</m:mi>
+		<m:mn>2</m:mn>
+	      </m:msub></m:ci>
+	  </m:math>
+	  and
+	  <m:math>
+	    <m:ci><m:msub>
+		<m:mi>x</m:mi>
+		<m:mn>3</m:mn>
+	      </m:msub></m:ci>
+	  </m:math>.
+	</item>
+	<item>
+    Use <code>eig</code> to compute the eigenvalues of
+  <m:math><m:ci>B</m:ci></m:math> as given in <link document="m10169" target-id="eqn6_9" strength="3">this equation</link>.  Use
+  <code>det</code> to compute the characteristic polynomial of
+  <m:math><m:ci>B</m:ci></m:math>.  Use <code>roots</code> to compute
+  the roots of this characteristic polynomial.  Compare these to the
+  results of <code>eig</code>. How does Matlab compute the roots of a
+  polynomial? (type <code>help roots</code> for the answer).</item>
+  <item>Adapt the Backward Euler portion of <code>fib3.m</code> so
+  that one may specify an arbitrary number of compartments, as in
+  <code>fib1.m</code>.  Submit your well documented M-file along with
+  a plot of
+	  <m:math>
+	    <m:ci><m:msub>
+		<m:mi>x</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	  </m:math>
+	  and
+	   <m:math>
+	    <m:ci><m:msub>
+		<m:mi>x</m:mi>
+		<m:mn>10</m:mn>
+	      </m:msub></m:ci>
+	  </m:math>
+	  <emphasis>versus</emphasis> time (on the same well labeled
+    graph) for a nine compartment fiber of length
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>l</m:ci>
+	      <m:cn>1</m:cn>
+	    </m:apply>
+	    <m:mtext>cm</m:mtext>
+	  </m:math>.</item>
+	<item>Derive <link document="m10171" target-id="eqn6_16" strength="3">this
+	  equation</link> from <link document="m10171" target-id="eqn6_15" strength="3">a previous equation</link> by working backwards
+	  toward
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn">x</m:ci>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	  </m:math>.  Along the way you should explain why
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:divide/>
+		<m:apply>
+		  <m:inverse/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:apply>
+		      <m:divide/>
+		      <m:ci type="matrix">I</m:ci>
+		      <m:apply>
+			<m:ci><m:mo>ⅆ</m:mo></m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:ci type="matrix">B</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:ci><m:mo>ⅆ</m:mo></m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:inverse/>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci type="matrix">I</m:ci>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:ci><m:mo>ⅆ</m:mo></m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		    <m:ci type="matrix">B</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>.
+	</item>
+	<item>Show, for scalar <m:math><m:ci>B</m:ci></m:math>, that
+	  <m:math>
+	    <m:apply>
+	      <m:tendsto/>
+	      <m:apply>
+		<m:power/>
+		<m:apply>
+		  <m:inverse/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:cn>1</m:cn>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:divide/>
+			<m:ci>t</m:ci>
+			<m:ci>j</m:ci>
+		      </m:apply>
+		      <m:ci>B</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:ci>j</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>B</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math> as
+	  <m:math>
+	    <m:apply>
+	      <m:tendsto/>
+	      <m:ci>j</m:ci>
+	      <m:infinity/>
+	    </m:apply>
+	  </m:math>.  Hint:  By definition
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:power/>
+		<m:apply>
+		  <m:inverse/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:cn>1</m:cn>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:divide/>
+			<m:ci>t</m:ci>
+			<m:ci>j</m:ci>
+		      </m:apply>
+		      <m:ci>B</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:ci>j</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>j</m:ci>
+		  <m:apply>
+		    <m:log/>
+		    <m:apply>
+		      <m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:apply>
+			<m:minus/>
+			<m:cn>1</m:cn>
+			<m:apply>
+			  <m:times/>
+			  <m:apply>
+			    <m:divide/>
+			    <m:ci>t</m:ci>
+			    <m:ci>j</m:ci>
+			  </m:apply>
+			  <m:ci>B</m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	  now use L'Hopital's rule to show that 
+	  <m:math>
+	    <m:apply>
+	      <m:tendsto/>
+	      <m:apply>
+		<m:times/>
+		<m:ci>j</m:ci>
+		<m:apply>
+		  <m:log/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:apply>
+		      <m:minus/>
+		      <m:cn>1</m:cn>
+		      <m:apply>
+			<m:times/>
+			<m:apply>
+			  <m:divide/>
+			  <m:ci>t</m:ci>
+			  <m:ci>j</m:ci>
+			</m:apply>
+			<m:ci>B</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:ci>B</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>.</item>
+      </list>
+		      
+    </para>   
+  </content>
+  
+</document>

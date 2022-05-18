@@ -1,0 +1,325 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>The Matrix Exponential via The Laplace Transform</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>00fc0c8f-b8a7-4fe4-8235-ea00e13cd93c</md:uuid>
+</metadata>
+
+  <content>
+    
+    <para id="p8">
+      You may recall from <link document="m10731" strength="3">the
+      Laplace Transform module</link> that may achieve 
+      <m:math>
+	<m:apply>
+	  <m:exp/>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci>a</m:ci>
+	    <m:ci>t</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math> via 
+
+      <equation id="eq1">
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:exp/>
+	      <m:apply>
+		<m:times/>
+		<m:ci>a</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:apply>
+		<m:inverse/>
+		<m:ci><m:mo>ℒ</m:mo></m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>s</m:ci>
+		  <m:ci>a</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+
+      The natural matrix definition is therefore 
+
+       <equation id="eq2">
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:exp/>
+	      <m:apply>
+		<m:times/>
+		<m:ci>A</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:apply>
+		<m:inverse/>
+		<m:ci><m:mo>ℒ</m:mo></m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:inverse/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>s</m:ci>
+		    <m:ci>I</m:ci>
+		  </m:apply>
+		  <m:ci>A</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+      
+      where <m:math><m:ci>I</m:ci></m:math> is the n-by-n identity
+      matrix.
+    </para>
+      
+
+    <example id="ex1">
+      <para id="para11">
+	The easiest case is the diagonal case, <foreign>e.g.</foreign>, 
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>A</m:ci>
+	    <m:matrix>
+	      <m:matrixrow>
+		<m:cn>1</m:cn>
+		<m:cn>0</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>0</m:cn>
+		<m:cn>2</m:cn>
+	      </m:matrixrow>
+	    </m:matrix>
+	  </m:apply>
+	</m:math>
+
+	for then 
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:inverse/>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>s</m:ci>
+		  <m:ci>I</m:ci>
+		</m:apply>
+		<m:ci>A</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:matrix>
+	      <m:matrixrow>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>s</m:ci>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+		</m:apply>
+		<m:cn>0</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>0</m:cn>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>s</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:matrixrow>
+	    </m:matrix>
+	  </m:apply>
+	</m:math>
+
+	and so (recalling <link target-id="eq1" strength="3"/> above)
+	
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:exp/>
+	      <m:apply>
+		<m:times/>
+		<m:ci>A</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:matrix>
+	      <m:matrixrow>
+		<m:apply>
+		  <m:apply>
+		    <m:inverse/>
+		    <m:ci><m:mo>ℒ</m:mo></m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>s</m:ci>
+		      <m:cn>1</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:cn>0</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>0</m:cn>
+		<m:apply>
+		  <m:apply>
+		    <m:inverse/>
+		    <m:ci><m:mo>ℒ</m:mo></m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>s</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:matrixrow>
+	    </m:matrix>
+	    <m:matrix>
+	      <m:matrixrow>
+		<m:apply>
+		  <m:exp/>
+		  <m:ci>t</m:ci>
+		  <m:cn>0</m:cn>
+		</m:apply>
+		<m:cn>0</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>0</m:cn>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:times/>
+		      <m:cn>2</m:cn>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:matrixrow>
+	    </m:matrix>
+	  </m:apply>
+	</m:math>
+      </para>
+    </example>
+
+      
+    <example id="ex2">
+      <para id="p12">
+	As a second example let us suppose 
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>A</m:ci>
+	    <m:matrix>
+	      <m:matrixrow>
+		<m:cn>0</m:cn>
+		<m:cn>1</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>-1</m:cn>
+		<m:cn>0</m:cn>
+	      </m:matrixrow>
+	    </m:matrix>
+	  </m:apply> 
+	</m:math>
+	
+	and compute, in matlab,</para>
+      
+      
+      <code display="block" id="cb1">
+	
+	
+	&gt;&gt; inv(s*eye(2)-A)  
+	
+	   ans = [ s/(s^2+1),  1/(s^2+1)]
+	         [-1/(s^2+1),  s/(s^2+1)]
+
+	&gt;&gt; ilaplace(ans)
+
+	   ans = [ cos(t),  sin(t)]
+	         [-sin(t),  cos(t)]
+	       
+	
+      </code>
+
+    </example>
+
+
+    <example id="ex3">
+      <para id="p31">
+	If 
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>A</m:ci>
+	    <m:matrix>
+	      <m:matrixrow>
+		<m:cn>0</m:cn>
+		<m:cn>1</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>0</m:cn>
+		<m:cn>0</m:cn>
+	      </m:matrixrow>
+	    </m:matrix>
+	  </m:apply>
+	</m:math>
+	
+	then 
+	</para>
+
+
+       <code display="block" id="cb2">
+	
+	
+	&gt;&gt; inv(s*eye(2)-A)  
+	
+	   ans = [ 1/s,  1/s^2]
+	         [   0,    1/s]
+
+	&gt;&gt; ilaplace(ans)
+
+	   ans = [ 1,  t]
+	         [ 0,  1]
+	       
+	
+      </code>
+	
+    </example>
+  </content>
+</document>

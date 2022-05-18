@@ -1,0 +1,821 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml"> 
+  
+  <title>Null Space</title> 
+  
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>7f3dd882-8fbf-43b2-bb78-4e92a7cd3a53</md:uuid>
+</metadata>
+
+  <content>
+    
+    <section id="nullspc">
+      <title>Null Space</title>
+      <definition id="defn1">
+	<term>Null Space</term>
+	<meaning id="idm3119152">The null space of an m-by-n matrix 
+	  <m:math>
+	    <m:ci>A</m:ci>
+	  </m:math> is the collection of those vectors in
+	  <m:math>
+	    <m:ci>
+	      <m:msup> 
+		<m:mi>ℝ</m:mi>
+		<m:mi>n</m:mi>
+	      </m:msup></m:ci>
+	  </m:math>
+
+	  that 
+
+	  <m:math>
+	    <m:ci>A</m:ci>
+	  </m:math> maps to the zero vector in
+	  <m:math>
+	    <m:ci>
+	      <m:msup>
+		<m:mi>ℝ</m:mi>
+		<m:mi>m</m:mi>
+	      </m:msup></m:ci>
+	  </m:math>. More precisely,
+
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci type="fn">𝒩</m:ci>
+		<m:ci type="matrix">A</m:ci>
+	      </m:apply>
+	      <m:set>
+		<m:condition>
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci>A</m:ci>
+		      <m:ci>x</m:ci>
+		    </m:apply>
+		    <m:cn>0</m:cn>
+		  </m:apply>
+		</m:condition>
+		<m:bvar>
+		  <m:apply>
+		    <m:in/>
+		    <m:ci>x</m:ci>
+		    <m:ci>
+		      <m:msup>
+			<m:mi>ℝ</m:mi>
+			<m:mi>n</m:mi>
+		      </m:msup></m:ci>
+		  </m:apply>
+		</m:bvar>
+	      </m:set>
+	    </m:apply>
+	  </m:math>
+	</meaning>
+      </definition>
+    </section>
+    
+    
+    <section id="ex">
+      <title>Null Space Example</title>
+
+      <para id="p2">
+	As an example, we examine the matrix 
+	<m:math>
+	  <m:ci type="matrix">A</m:ci>
+	</m:math>:
+	
+
+	<equation id="eq2">
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci type="matrix">A</m:ci>
+	      <m:matrix>
+		<m:matrixrow><m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn></m:matrixrow>
+		<m:matrixrow><m:cn>-1</m:cn><m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn></m:matrixrow>
+		<m:matrixrow><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>1</m:cn></m:matrixrow>
+	      </m:matrix>
+	    </m:apply>
+	  </m:math>
+	</equation>
+      </para>
+
+      
+      <para id="p3">
+	It is fairly easy to see that the null space of this matrix is:
+	
+	<equation id="eq3">
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply>
+		<m:ci type="fn">𝒩</m:ci>
+		<m:ci type="matrix">A</m:ci>
+	      </m:apply> 
+	      <m:set>
+		<m:condition>
+		  <m:apply>
+		    <m:in/>
+		    <m:ci>t</m:ci>
+		    <m:reals/>
+		  </m:apply>
+		</m:condition>
+		<m:bvar>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>t</m:ci>
+		    <m:matrix>
+		      <m:matrixrow><m:cn>1</m:cn></m:matrixrow>
+		      <m:matrixrow><m:cn>0</m:cn></m:matrixrow>
+		      <m:matrixrow><m:cn>1</m:cn></m:matrixrow>
+		      <m:matrixrow><m:cn>0</m:cn></m:matrixrow>
+		    </m:matrix>
+		  </m:apply>
+		</m:bvar>
+	      </m:set>
+	    </m:apply>
+	  </m:math>
+	</equation>
+      </para>
+
+
+      <para id="p4">
+	This is a line in
+	<m:math>
+	  <m:ci>
+	    <m:msup>
+	      <m:mi>ℝ</m:mi>
+	      <m:mn>4</m:mn>
+	    </m:msup></m:ci>
+	</m:math>.
+      </para>
+
+      <para id="p5">
+	The null space answers the question of uniqueness of solutions to
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply><m:times/>
+	      <m:ci type="matrix">S</m:ci>
+	      <m:ci type="vector">x</m:ci>
+	    </m:apply>
+	    <m:ci type="vector">f</m:ci>
+	  </m:apply>
+	</m:math>.  
+	For, if 
+	<m:math>
+	  <m:apply><m:eq/>
+	    <m:apply><m:times/>
+	      <m:ci type="matrix">S</m:ci>
+	      <m:ci type="vector">x</m:ci>
+	    </m:apply>
+	    <m:ci type="vector">f</m:ci>
+	  </m:apply>
+	</m:math> and 
+	<m:math>
+	  <m:apply><m:eq/>
+	    <m:apply><m:times/>
+	      <m:ci type="matrix">S</m:ci>
+	      <m:ci type="vector">y</m:ci>
+	    </m:apply>
+	    <m:ci type="vector">f</m:ci>
+	  </m:apply>
+	</m:math> then
+	<m:math>
+	  <m:apply><m:eq/>
+	    <m:apply><m:times/>
+	      <m:ci type="matrix">S</m:ci>
+	      <m:apply><m:minus/>
+	        <m:ci type="vector">x</m:ci>
+		<m:ci type="vector">y</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply><m:minus/>
+	      <m:apply><m:times/>
+		<m:ci type="matrix">S</m:ci>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	      <m:apply><m:times/>
+		<m:ci type="matrix">S</m:ci>
+		<m:ci type="vector">y</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply><m:minus/>
+	      <m:ci type="vector">f</m:ci>
+	      <m:ci type="vector">f</m:ci>
+	    </m:apply>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math> 
+	and so
+	<m:math>
+	  <m:apply><m:in/>
+	    <m:apply><m:minus/>
+	      <m:ci type="vector">x</m:ci>
+	      <m:ci type="vector">y</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci type="fn">𝒩</m:ci>
+	      <m:ci type="matrix">S</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>. Hence, a solution to 
+	
+	<m:math>
+	  <m:apply><m:eq/>
+	    <m:apply><m:times/>
+	      <m:ci type="matrix">S</m:ci>
+	      <m:ci type="vector">x</m:ci>
+	    </m:apply>
+	    <m:ci type="vector">f</m:ci>
+	  </m:apply>
+	</m:math> will be unique if, and only if, 
+	
+	<m:math>
+	  <m:apply><m:eq/> 
+	    <m:apply>
+	      <m:ci type="fn">𝒩</m:ci>
+	      <m:ci type="matrix">S</m:ci>
+	    </m:apply>
+	    <m:set><m:cn>0</m:cn></m:set>
+	  </m:apply>
+	</m:math>.
+      </para>
+    </section>
+
+    <section id="process">
+      <title>Method for Finding the Basis</title>
+      
+      <para id="p6">
+	Let us now exhibit a basis for the null space of an arbitrary matrix 
+	<m:math>
+	  <m:ci type="matrix">A</m:ci>
+	</m:math>.
+
+      	We note that to solve
+	<m:math>
+	  <m:apply><m:eq/>
+	    <m:apply><m:times/>
+	      <m:ci type="matrix">A</m:ci>
+	      <m:ci type="vector">x</m:ci>
+	    </m:apply>
+	    <m:cn>0</m:cn>
+          </m:apply>
+	</m:math> is to solve
+	<m:math>
+	  <m:apply><m:eq/>
+	    <m:apply><m:times/>
+	      <m:ci><m:msub>
+		  <m:mi>A</m:mi>
+		  <m:mi>red</m:mi>
+		</m:msub></m:ci>
+	      <m:ci type="vector">x</m:ci>
+	    </m:apply>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>.
+	
+	With respect to the latter, we suppose that
+
+	<equation id="eqins1">
+	  <m:math display="block">
+	    <m:set>
+	      <m:condition>
+		<m:apply>
+		  <m:eq/>
+		  <m:ci>j</m:ci>
+		  <m:set>
+		    <m:cn>1</m:cn>
+		    <m:ci>…</m:ci>
+		    <m:ci>r</m:ci>
+		  </m:set>
+		</m:apply>
+	      </m:condition>
+	      <m:bvar><m:ci>
+		  <m:msub>
+		    <m:mi>c</m:mi>
+		    <m:mi>j</m:mi>
+		  </m:msub>
+		</m:ci></m:bvar>
+	    </m:set>
+	  </m:math>
+	</equation>
+	
+	are the indices of the pivot columns and that
+
+	<equation id="eqins2">
+	  <m:math display="block">
+	    <m:set>
+	      <m:condition>
+		<m:apply>
+		  <m:eq/>
+		  <m:ci>j</m:ci>
+		  <m:set>
+		    <m:apply>
+		      <m:plus/>
+		      <m:ci>r</m:ci>
+		      <m:cn>1</m:cn>
+		    </m:apply>
+		    <m:ci>…</m:ci>
+		    <m:ci>n</m:ci>
+		  </m:set>
+		</m:apply>
+	      </m:condition>
+	      <m:bvar><m:ci>
+		  <m:msub>
+		    <m:mi>c</m:mi>
+		    <m:mi>j</m:mi>
+		  </m:msub>
+		</m:ci>
+	      </m:bvar>
+	    </m:set>
+	  </m:math>
+	</equation>
+	
+	are the indices of the nonpivot columns. We accordingly define the 
+
+	<m:math><m:ci>r</m:ci></m:math>
+	
+	pivot variables
+
+	<!-- We need to first place the given matrix into 
+      <cnxn document="reduced" strength="8">row reduced form</cnxn>, i.e. 
+      <m:math display="inline">
+      <m:ci type="matrix"><m:msub>
+      <m:mi>A</m:mi>
+      <m:mi>red</m:mi>
+      </m:msub></m:ci>
+      </m:math>. We exploit the fact that
+      <m:math>
+      <m:apply><m:eq/>
+      <m:ci type="matrix">A</m:ci>
+      <m:ci type="matrix"><m:msub>
+      <m:mi>A</m:mi>
+      <m:mi>red</m:mi>
+      </m:msub></m:ci>
+      </m:apply>
+      </m:math>. We partition 
+      <m:math>
+      <m:ci type="matrix"><m:msub>
+      <m:mi>A</m:mi>
+      <m:mi>red</m:mi>
+      </m:msub></m:ci>
+      </m:math>'s elements of x into so called pivot variables
+	-->
+	
+	<equation id="eq4">
+	  <m:math display="block">
+	    <m:set>
+	      <m:condition>
+		<m:apply><m:eq/>
+		  <m:ci>j</m:ci>
+		  <m:set>
+		    <m:cn>1</m:cn>
+		    <m:ci>…</m:ci>
+		    <m:ci>r</m:ci>
+		  </m:set>
+		</m:apply>
+	      </m:condition>
+	      <m:bvar>
+		<m:ci>
+		  <m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mrow>
+		      <m:msub>
+			<m:mi>c</m:mi>
+			<m:mi>j</m:mi>
+		      </m:msub>
+		    </m:mrow>
+		  </m:msub>
+		</m:ci>
+	      </m:bvar>
+	    </m:set>
+	  </m:math>
+	</equation>
+	
+	and the 
+	
+	<m:math>
+	  <m:apply>
+	    <m:minus/>
+	    <m:ci>n</m:ci>
+	    <m:ci>r</m:ci>
+	  </m:apply>
+        </m:math> free variables
+
+
+	<equation id="eq6">
+	  <m:math display="block">
+	    <m:set>
+	      <m:condition>
+		<m:apply>
+		  <m:eq/>
+		  <m:ci>j</m:ci>
+		  <m:set>
+		    <m:apply>
+		      <m:plus/>
+		      <m:ci>r</m:ci>
+		      <m:cn>1</m:cn>
+		    </m:apply>
+		    <m:ci>…</m:ci>
+		    <m:ci>n</m:ci>
+		  </m:set>
+		</m:apply>
+	      </m:condition>
+	      <m:bvar>
+		<m:ci>
+		  <m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mrow>
+		      <m:msub>
+			<m:mi>c</m:mi>
+			<m:mi>j</m:mi>
+		      </m:msub>
+		    </m:mrow>
+		  </m:msub>
+		</m:ci>
+	      </m:bvar>
+	    </m:set>
+	  </m:math>
+	</equation>
+      </para>
+      
+      
+      <para id="p7">
+	One solves
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci type="matrix">
+		<m:msub>
+		  <m:mi>A</m:mi>
+		  <m:mi>red</m:mi>
+		</m:msub></m:ci>
+	      <m:ci type="vector">x</m:ci>
+	    </m:apply>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math> by expressing each of the pivot variables in terms of the
+	nonpivot, or free, variables. In the example above,
+	<m:math>
+	  <m:ci>
+	    <m:msub>
+	      <m:mi>x</m:mi>
+	      <m:mn>1</m:mn>
+	    </m:msub>
+	  </m:ci>
+	</m:math>,
+	<m:math>
+	  <m:ci>
+	    <m:msub>
+	      <m:mi>x</m:mi>
+	      <m:mn>2</m:mn>
+	    </m:msub>
+	  </m:ci>
+	</m:math>, and 
+	<m:math>
+	  <m:ci>
+	    <m:msub>
+	      <m:mi>x</m:mi>
+	      <m:mn>4</m:mn>
+	    </m:msub>
+	  </m:ci>
+	</m:math> are pivot while 
+	<m:math>
+	  <m:ci>
+	    <m:msub>
+	      <m:mi>x</m:mi>
+	      <m:mn>3</m:mn>
+	    </m:msub>
+	  </m:ci>
+	</m:math> is free. Solving for the pivot in terms of the free, we find
+	
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>x</m:mi>
+		<m:mn>4</m:mn>
+	      </m:msub>
+	    </m:ci>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>,
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>x</m:mi>
+		<m:mn>3</m:mn>
+	      </m:msub>
+	    </m:ci>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>x</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub>
+	    </m:ci>
+	  </m:apply>
+	</m:math>, 
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>x</m:mi>
+		<m:mn>2</m:mn>
+	      </m:msub>
+	    </m:ci>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>,
+	or, written as a vector,
+	
+
+	<equation id="eq7">
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci type="vector">x</m:ci>
+	      <m:apply>
+		<m:times/>
+		<m:ci>
+		  <m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>3</m:mn>
+		  </m:msub>
+		</m:ci>
+		<m:vector>
+		  <m:cn>1</m:cn><m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn>
+		</m:vector>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	where
+	<m:math>
+	  <m:ci>
+	    <m:msub>
+	      <m:mi>x</m:mi>
+	      <m:mn>3</m:mn>
+	    </m:msub>
+	  </m:ci>
+	</m:math> is free. As 
+	<m:math>
+	  <m:ci>
+	    <m:msub>
+	      <m:mi>x</m:mi>
+	      <m:mn>3</m:mn>
+	    </m:msub>
+	  </m:ci>
+	</m:math> ranges over all real numbers the x above traces out a line in
+	<m:math>
+	  <m:ci>
+	    <m:msup>
+	      <m:mi>ℝ</m:mi>
+	      <m:mn>4</m:mn>
+	    </m:msup>
+	  </m:ci>
+	</m:math>. This line is precisely the null space of
+	
+	<m:math><m:ci type="matrix">A</m:ci></m:math>.  
+	Abstracting these calculations we arrive at:
+      </para>
+
+
+      <para id="p8">
+	<definition id="insdefn1"><term>A Basis for the Null Space</term>
+	  <meaning id="idp422720">Suppose that
+	    <m:math>
+	      <m:ci type="matrix">A</m:ci>
+	    </m:math> is m-by-n with pivot indices
+	    
+	    <m:math>
+	      <m:set>
+		<m:condition>
+		  <m:apply>
+		    <m:eq/>
+		    <m:ci>j</m:ci>
+		    <m:set>
+		      <m:cn>1</m:cn>
+		      <m:ci>…</m:ci>
+		      <m:ci>r</m:ci>
+		    </m:set>
+		  </m:apply>
+		</m:condition>
+		<m:bvar>
+		  <m:ci>
+		    <m:msub>
+		      <m:mi>c</m:mi>
+		      <m:mi>j</m:mi>
+		    </m:msub>
+		  </m:ci>
+		</m:bvar>
+	      </m:set>
+	    </m:math>
+	    
+	    and free indices
+	    
+	    <m:math>
+	      <m:set>
+		<m:condition>
+		  <m:apply>
+		    <m:eq/>
+		    <m:ci>j</m:ci>
+		    <m:set>
+		      <m:apply>
+			<m:plus/>
+			<m:ci>r</m:ci>
+			<m:cn>1</m:cn>
+		      </m:apply>
+		      <m:ci>…</m:ci>
+		      <m:ci>n</m:ci>
+		    </m:set>
+		  </m:apply>
+		</m:condition>
+		<m:bvar>
+		  <m:ci>
+		    <m:msub>
+		      <m:mi>c</m:mi>
+		      <m:mi>j</m:mi>
+		    </m:msub>
+		  </m:ci></m:bvar>
+	      </m:set>
+	    </m:math>.
+	    A basis for
+	    <m:math>
+	      <m:apply>
+		<m:ci type="fn">𝒩</m:ci>
+		<m:ci type="matrix">A</m:ci>
+	      </m:apply>
+	    </m:math> may be constructed of 
+	    
+	    <m:math>
+	      <m:apply><m:minus/>
+		<m:ci>n</m:ci>
+		<m:ci>r</m:ci>
+	      </m:apply>
+	    </m:math> vectors
+	    
+	    <m:math>
+	      <m:set>
+		<m:ci><m:msup>
+		    <m:mi>z</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msup></m:ci>
+		<m:ci><m:msup>
+		    <m:mi>z</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msup></m:ci>
+		<m:ci>…</m:ci>
+		<m:ci><m:msup>
+		    <m:mi>z</m:mi>
+		    <m:mrow>
+		      <m:mi>n</m:mi>
+		      <m:mo>-</m:mo>
+		      <m:mi>r</m:mi>
+		    </m:mrow>
+		  </m:msup></m:ci>
+	      </m:set>
+	    </m:math> 
+	    
+	    where
+	    <m:math>   
+	      <m:ci><m:msup>
+		  <m:mi>z</m:mi>
+		  <m:mi>k</m:mi>
+		</m:msup></m:ci>
+	    </m:math>, 
+	    and only
+	    
+	    <m:math>
+	      <m:ci><m:msup>
+		  <m:mi>z</m:mi>
+		  <m:mi>k</m:mi>
+		</m:msup></m:ci>
+	    </m:math>,
+	    possesses a nonzero in its
+	    <m:math>
+	      <m:ci><m:msub>
+		  <m:mi>c</m:mi>
+		  <m:mrow>
+		    <m:mi>r</m:mi>
+		    <m:mo>+</m:mo>
+		    <m:mi>k</m:mi>
+		  </m:mrow>
+		</m:msub></m:ci>
+	    </m:math>
+	    component.
+	  </meaning>
+	</definition>
+      </para>
+    </section>
+
+
+    <section id="fin">
+      <title>A MATLAB Observation</title>
+      <para id="p9">
+	As usual, MATLAB has a way to make our lives simpler. If you
+	have defined a matrix A and want to find a basis for its null
+	space, simply call the function <code>null(A)</code>. One
+	small note about this function: if one adds an extra flag,
+	<code>'r'</code>, as in <code>null(A, 'r')</code>, then the
+	basis is displayed "rationally" as opposed to purely
+	mathematically.  The MATLAB help pages define the difference
+	between the two modes as the rational mode being useful
+	pedagogically and the mathematical mode of more value
+	<emphasis>(gasp!)</emphasis> mathematically.
+      </para>
+    </section>
+
+
+    <section id="nullfin">
+      <title>Final thoughts on null spaces</title>
+      <para id="nullfinp1">
+	There is a great deal more to finding null spaces; enough, in
+	fact, to warrant <link document="findingnull" strength="2">another module</link>. One important
+	aspect and use of null spaces is their ability to inform us
+	about the uniqueness of solutions. If we use the <link document="columnspace" strength="2">column space</link> to
+	determine the <link document="columnspace" target-id="colspcfin" strength="2">existence</link> of a solution
+	<m:math><m:ci type="vector">x</m:ci></m:math> to the equation
+	<m:math>
+	  <m:apply><m:eq/>
+	    <m:apply><m:times/>
+	      <m:ci type="matrix">A</m:ci>
+	      <m:ci type="vector">x</m:ci>
+	    </m:apply>
+	    <m:ci>b</m:ci>
+	  </m:apply>
+	</m:math>.  Once we know that a solution exists it is a
+	perfectly reasonable question to want to know whether or not
+	this solution is the <emphasis>only</emphasis> solution to
+	this problem. The hard and fast rule is that a solution
+	<m:math><m:ci type="vector">x</m:ci></m:math> is unique if and
+	only if the null space of <m:math><m:ci type="matrix">A</m:ci></m:math> is empty. One way to think
+	about this is to consider that if
+	
+	<m:math>
+	  <m:apply><m:eq/>
+	    <m:apply><m:times/>
+	      <m:ci type="matrix">A</m:ci>
+	      <m:ci type="vector">x</m:ci>
+	    </m:apply>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>
+	does not have a unique solution then, by linearity, neither
+	does 
+	<m:math>
+	  <m:apply><m:eq/>
+	    <m:apply><m:times/>
+	      <m:ci type="matrix">A</m:ci>
+	      <m:ci type="vector">x</m:ci>
+	    </m:apply>
+	    <m:ci>b</m:ci>
+	  </m:apply>
+	</m:math>.
+
+	Conversely, if
+
+	<m:math>
+	  <m:apply><m:and/>
+	    <m:apply><m:eq/>
+	      <m:apply><m:times/>
+		<m:ci type="matrix">A</m:ci>
+		<m:ci>z</m:ci>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	    <m:apply><m:neq/>
+	      <m:ci>z</m:ci>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	    <m:apply><m:eq/>
+	      <m:apply><m:times/>
+		<m:ci type="matrix">A</m:ci>
+		<m:ci type="vector">y</m:ci>
+	      </m:apply>
+	      <m:cn>b</m:cn>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	then
+	<m:math>
+	  <m:apply><m:eq/>
+	    <m:apply><m:times/>
+	      <m:ci type="matrix">A</m:ci>
+	      <m:apply><m:plus/>
+		<m:ci>z</m:ci>
+		<m:ci type="vector">y</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:ci>b</m:ci>
+	  </m:apply>
+	</m:math>
+	as well.
+      </para>
+    </section>
+  </content>
+</document>

@@ -1,0 +1,1495 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml"> 
+
+  <title>Nerve Fibers and the Dynamic Strang Quartet</title> 
+  
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>4ca550f5-f73b-481b-80b6-701cc60e7db3</md:uuid>
+</metadata>
+
+  <content>
+    <section id="introduction">
+      <title>Introduction</title>
+
+      <para id="p1">
+	Up to this point we have largely been concerned with
+
+	<list id="concerns" list-type="enumerated">
+	  <item>Deriving linear systems of algebraic equations (from 
+	    considerations of static equilibrium) and </item>
+	  <item>The solution of such systems via Gaussian elimination.</item>
+	</list>
+      </para>
+    
+      <para id="p2">
+	In this module we hope to begin to persuade the reader that
+	our tools extend in a natural fashion to the class of dynamic
+	processes. More precisely, we shall argue that
+
+	<list id="arguments" list-type="enumerated">
+	  <item>Matrix Algebra plays a central role in the derivation of 
+	    mathematical models of dynamical systems and that, </item>
+	  <item>With the aid of the Laplace transform in an analytical setting 
+	    or the Backward Euler method in the numerical setting, Gaussian 
+	    elimination indeed produces the solution. </item>
+	</list>
+      </para>
+    </section>
+
+    <section id="nerve_fibers">
+      <title>Nerve Fibers and the Dynamic Strang Quartet</title>
+
+      <section id="gathering_info">
+	<title>Gathering Information</title>
+	
+	<para id="p3">
+	  A nerve fiber's natural electrical stimulus is not direct current but
+	  rather a short burst of current, the so-called 
+	  <term>nervous impulse</term>. In such a dynamic environment the 
+	  cell's membrane behaves not only like a leaky conductor but also 
+	  like a charge separator, or <term>capacitor</term>.
+	</para>
+
+	<figure id="RC_model_fig">
+	  <title>An RC model of a nerve fiber</title>
+	  <media id="idp1109040" alt=""><image src="../../media/cell4-ae96.png" mime-type="image/png"/></media>
+	</figure>
+
+	<para id="p4">
+	  The typical value of a cell's membrane capacitance is
+
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:ci>c</m:ci>
+	      <m:apply>
+		<m:times/>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:divide/>
+		  <m:ci>μF</m:ci>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>cm</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <!-- c = 1 (mu * F / cm^2 ) -->
+	  </m:math>
+	  
+	  where
+	  <m:math display="inline">
+		  <m:ci>μF</m:ci>
+	    <!-- mu F -->
+	  </m:math>
+
+	  denotes micro-Farad.  Recalling
+	  <link document="m10145" target-id="section1" strength="3">our variable 
+	    conventions</link>, the capacitance of a single compartment is
+	  
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:ci><m:msub>
+		  <m:mi>C</m:mi>
+		  <m:mi>m</m:mi>
+		</m:msub></m:ci>
+	      <m:apply><m:times/>
+		<m:cn>2</m:cn>
+		<m:pi/>
+		<m:ci>a</m:ci>
+		<m:apply><m:divide/>
+		  <m:ci>l</m:ci>
+		  <m:ci>N</m:ci>
+		</m:apply>
+		<m:ci>c</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <!-- C_m = 2 * pi * a * ( l / N ) * c -->
+	  </m:math>
+
+	  and runs parallel to each 
+	  <m:math display="inline">
+	    <m:ci><m:msub>
+		<m:mi>R</m:mi>
+		<m:mi>m</m:mi>
+	      </m:msub></m:ci>
+	    <!-- R_m -->
+	  </m:math>,
+
+	  see <link target-id="RC_model_fig" strength="3"/>.  This figure also
+	  differs from 
+	  <link document="m10145" target-id="fully_dressed_circuit" strength="2">
+	    the simpler circuit</link> from the introductory electrical 
+	  modeling module in that it possesses two edges to the left of the 
+	  stimuli.  These edges serve to mimic that portion of the stimulus 
+	  current that is shunted by the cell body.  If
+
+	  <m:math display="inline">
+	    <m:ci><m:msub>
+		<m:mi>A</m:mi>
+		<m:mtext>cb</m:mtext>
+	      </m:msub></m:ci>
+	    <!-- A_cb -->
+	  </m:math>
+
+	  denotes the surface area of the cell body, then it has
+
+	  <definition id="cell_cap">
+	    <term>capacitance of cell body</term>
+	    <meaning id="idp2166816">
+	      <m:math display="inline">
+		<m:apply><m:eq/>
+		  <m:ci><m:msub>
+		      <m:mi>C</m:mi>
+		      <m:mtext>cb</m:mtext>
+		    </m:msub></m:ci>
+		  <m:apply><m:times/>
+		    <m:ci><m:msub>
+			<m:mi>A</m:mi>
+			<m:mtext>cb</m:mtext>
+		      </m:msub></m:ci>
+		    <m:ci>c</m:ci>
+		  </m:apply>
+		</m:apply>
+		<!-- C_cb = A_cb * c -->
+	      </m:math>
+	    </meaning>
+	  </definition>
+
+	  <definition id="cell_resist">
+	    <term>resistance of cell body</term>
+	    <meaning id="idp2852976">
+	      <m:math display="inline">
+		<m:apply><m:eq/>
+		  <m:ci><m:msub>
+		      <m:mi>R</m:mi>
+		      <m:mtext>cb</m:mtext>
+		    </m:msub></m:ci>
+		  <m:apply><m:times/>
+		    <m:ci><m:msub>
+			<m:mi>A</m:mi>
+			<m:mtext>cb</m:mtext>
+		      </m:msub></m:ci>
+		    <m:ci><m:msub>
+		      <m:mi>ρ</m:mi>
+			<m:mi>m</m:mi>
+		      </m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+		<!-- R_cb = A_cb * rho_m -->
+	      </m:math>.
+	    </meaning>
+	  </definition>
+	</para>
+      </section>
+
+      <section id="strang_ver2">
+	<title>Updating the Strang Quartet</title>
+	<para id="p5">
+	  We ask now how the 
+	  <link document="m10145" target-id="strang_quartet" strength="3">
+	    static Strang Quartet</link> of the introductory electrical module 
+	  should be augmented. 
+	</para>
+
+	<section id="strang_s1">
+	  <title>Updating (S1')</title>
+	  <para id="p6">
+	    Regarding <link document="m10145" target-id="voltage_drop_ver2" strength="3">
+	      (S1')</link> we proceed as before. The voltage drops are
+
+	    <m:math display="block">
+	      <m:apply><m:eq/>
+		<m:ci><m:msub>
+		    <m:mi>e</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <!-- e_1 = x_1 -->
+	    </m:math>
+
+	     <m:math display="block">
+	      <m:apply><m:eq/>
+		<m:ci><m:msub>
+		    <m:mi>e</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+		<m:apply><m:minus/>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>E</m:mi>
+		      <m:mi>m</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	      <!-- e_2 = x_1 - E_m -->
+	    </m:math>
+
+	    <m:math display="block">
+	      <m:apply><m:eq/>
+		<m:ci><m:msub>
+		    <m:mi>e</m:mi>
+		    <m:mn>3</m:mn>
+		  </m:msub></m:ci>
+		<m:apply><m:minus/>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	      <!-- e_3 = x_1 - x_2 -->
+	    </m:math>
+
+	    <m:math display="block">
+	      <m:apply><m:eq/>
+		<m:ci><m:msub>
+		    <m:mi>e</m:mi>
+		    <m:mn>4</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <!-- e_4 = x_2 -->
+	    </m:math>
+
+	    <m:math display="block">
+	      <m:apply><m:eq/>
+		<m:ci><m:msub>
+		    <m:mi>e</m:mi>
+		    <m:mn>5</m:mn>
+		  </m:msub></m:ci>
+		<m:apply><m:minus/>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>E</m:mi>
+		      <m:mi>m</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	      <!-- e_5 = x_2 - E_m -->
+	    </m:math>
+
+	    <m:math display="block">
+	      <m:apply><m:eq/>
+		<m:ci><m:msub>
+		    <m:mi>e</m:mi>
+		    <m:mn>6</m:mn>
+		  </m:msub></m:ci>
+		<m:apply><m:minus/>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>3</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	      <!-- e_6 = x_2 - x_3 -->
+	    </m:math>
+	      
+	    <m:math display="block">
+	      <m:apply><m:eq/>
+		<m:ci><m:msub>
+		    <m:mi>e</m:mi>
+		    <m:mn>7</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>3</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <!-- e_7 = x_3 -->
+	    </m:math>
+
+	    <m:math display="block">
+	      <m:apply><m:eq/>
+		<m:ci><m:msub>
+		    <m:mi>e</m:mi>
+		    <m:mn>8</m:mn>
+		  </m:msub></m:ci>
+		<m:apply><m:minus/>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>3</m:mn>
+		  </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>E</m:mi>
+		      <m:mi>m</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	      <!-- e_8 = x_3 - E_m -->
+	    </m:math>
+
+	    and so
+	    <m:math display="block">
+	      <m:apply><m:eq/>
+		<m:ci type="vector">e</m:ci>
+		<m:apply><m:minus/>
+		  <m:ci type="vector">b</m:ci>
+		  <m:apply><m:times/>
+		    <m:ci type="matrix">A</m:ci>
+		    <m:ci type="vector">x</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <!-- e = b - Ax -->
+	      
+	      <m:mrow>
+		<m:mi> </m:mi><m:mi> </m:mi>
+		<m:mi> </m:mi><m:mi> </m:mi>
+		<m:mtext>where</m:mtext>
+		<m:mi> </m:mi><m:mi> </m:mi>
+		<m:mi> </m:mi><m:mi> </m:mi>
+	      </m:mrow>
+
+	      <m:apply><m:eq/>
+		<m:ci type="vector">b</m:ci>
+		<m:apply><m:times/>
+		  <m:apply><m:minus/>
+		    <m:ci><m:msub>
+			<m:mi>E</m:mi>
+			<m:mi>m</m:mi>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:vector>
+		    <m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>1</m:cn>
+		  </m:vector>
+		</m:apply>
+	      </m:apply>
+	      <!-- b = -E_m * [ 0; 1; 0; 0; 1; 0; 0; 1 ] -->
+
+	      <m:mrow>
+		<m:mi> </m:mi><m:mi> </m:mi>
+		<m:mi> </m:mi><m:mi> </m:mi>
+		<m:mtext>and</m:mtext>
+		<m:mi> </m:mi><m:mi> </m:mi>
+		<m:mi> </m:mi><m:mi> </m:mi>
+	      </m:mrow>
+
+	      <m:apply><m:eq/>
+		<m:ci type="matrix">A</m:ci>
+		<m:matrix>
+		  <m:matrixrow><m:cn>-1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn></m:matrixrow>
+		  <m:matrixrow><m:cn>-1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn></m:matrixrow>
+		  <m:matrixrow><m:cn>-1</m:cn><m:cn>1</m:cn><m:cn>0</m:cn></m:matrixrow>
+		  <m:matrixrow><m:cn>0</m:cn><m:cn>-1</m:cn><m:cn>0</m:cn></m:matrixrow>
+		  <m:matrixrow><m:cn>0</m:cn><m:cn>-1</m:cn><m:cn>0</m:cn></m:matrixrow>
+		  <m:matrixrow><m:cn>0</m:cn><m:cn>-1</m:cn><m:cn>1</m:cn></m:matrixrow>
+		  <m:matrixrow><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>-1</m:cn></m:matrixrow>
+		  <m:matrixrow><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>-1</m:cn></m:matrixrow>
+		</m:matrix>
+	      </m:apply>
+	     
+	    </m:math>
+	  </para>
+	</section>
+
+	<section id="strang_s2">
+	  <title>Updating (S2)</title>
+	  <para id="p7">
+	    To update <link document="m10145" target-id="step2" strength="2">(S2)</link> 
+	    we must now augment Ohm's law with
+
+	    <definition id="voltage_current_cap">
+	      <term>Voltage-current law obeyed by a capacitor</term>
+	      <meaning id="idm5121408">The current through a capacitor is proportional
+	      to the time rate of change of the potential across
+	      it.</meaning>
+	    </definition>
+	    
+	    This yields, (denoting derivative by '),
+
+	    <m:math display="block">
+	      <m:apply><m:eq/>
+		<m:ci><m:msub>
+		    <m:mi>y</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:apply><m:times/>
+		  <m:ci type="matrix"><m:msub>
+		      <m:mi>C</m:mi>
+		      <m:mtext>cb</m:mtext>
+		    </m:msub></m:ci>
+		  <m:apply><m:diff/>
+		    <m:ci><m:msub>
+			<m:mi>e</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <!-- y_1 = C_cb * e'_1 -->
+	    </m:math>
+
+	    <m:math display="block">
+	      <m:apply><m:eq/>
+		<m:ci><m:msub>
+		    <m:mi>y</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+		<m:apply><m:divide/>
+		  <m:ci><m:msub>
+		      <m:mi>e</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>R</m:mi>
+		      <m:mtext>cb</m:mtext>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	      <!-- y_2 = e_2 / R_cb -->
+	    </m:math>
+
+	    <m:math display="block">
+	      <m:apply><m:eq/>
+		<m:ci><m:msub>
+		    <m:mi>y</m:mi>
+		    <m:mn>3</m:mn>
+		  </m:msub></m:ci>
+		<m:apply><m:divide/>
+		  <m:ci><m:msub>
+		      <m:mi>e</m:mi>
+		      <m:mn>3</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>R</m:mi>
+		      <m:mi>i</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	      <!-- y_3 = e_3 / R_i -->
+	    </m:math>
+	    
+	    <m:math display="block">
+	      <m:apply><m:eq/>
+		<m:ci><m:msub>
+		    <m:mi>y</m:mi>
+		    <m:mn>4</m:mn>
+		  </m:msub></m:ci>
+		<m:apply><m:times/>
+		  <m:ci type="matrix"><m:msub>
+		      <m:mi>C</m:mi>
+		      <m:mi>m</m:mi>
+		    </m:msub></m:ci>
+		  <m:apply><m:diff/>
+		    <m:ci><m:msub>
+			<m:mi>e</m:mi>
+			<m:mn>4</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <!-- y_4 = C_m * e'_4 -->
+	    </m:math>
+
+	    <m:math display="block">
+	      <m:apply><m:eq/>
+		<m:ci><m:msub>
+		    <m:mi>y</m:mi>
+		    <m:mn>5</m:mn>
+		  </m:msub></m:ci>
+		<m:apply><m:divide/>
+		  <m:ci><m:msub>
+		      <m:mi>e</m:mi>
+		      <m:mn>5</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>R</m:mi>
+		      <m:mi>m</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	      <!-- y_5 = e_5 / R_m -->
+	    </m:math>
+
+	    <m:math display="block">
+	      <m:apply><m:eq/>
+		<m:ci><m:msub>
+		    <m:mi>y</m:mi>
+		    <m:mn>6</m:mn>
+		  </m:msub></m:ci>
+		<m:apply><m:divide/>
+		  <m:ci><m:msub>
+		      <m:mi>e</m:mi>
+		      <m:mn>6</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>R</m:mi>
+		      <m:mi>i</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	      <!-- y_6 = e_6 / R_i -->
+	    </m:math> 
+
+	    <m:math display="block">
+	      <m:apply><m:eq/>
+		<m:ci><m:msub>
+		    <m:mi>y</m:mi>
+		    <m:mn>7</m:mn>
+		  </m:msub></m:ci>
+		<m:apply><m:times/>
+		  <m:ci type="matrix"><m:msub>
+		      <m:mi>C</m:mi>
+		      <m:mi>m</m:mi>
+		    </m:msub></m:ci>
+		  <m:apply><m:diff/>
+		    <m:ci><m:msub>
+			<m:mi>e</m:mi>
+			<m:mn>7</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <!-- y_7 = C_m * e'_7 -->
+	    </m:math>
+
+	    <m:math display="block">
+	      <m:apply><m:eq/>
+		<m:ci><m:msub>
+		    <m:mi>y</m:mi>
+		    <m:mn>8</m:mn>
+		  </m:msub></m:ci>
+		<m:apply><m:divide/>
+		  <m:ci><m:msub>
+		      <m:mi>e</m:mi>
+		      <m:mn>8</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>R</m:mi>
+		      <m:mi>m</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	      <!-- y_8 = e_8 / R_m -->
+	    </m:math>
+
+	    or, in matrix terms,
+	    <m:math display="block">
+	      <m:apply><m:eq/>
+		<m:ci type="vector">y</m:ci>
+		<m:apply><m:plus/>
+		  <m:apply><m:times/>
+		    <m:ci type="matrix">G</m:ci>
+		    <m:ci type="vector">e</m:ci>
+		  </m:apply>
+		   <m:apply><m:times/>
+		    <m:ci type="matrix">C</m:ci>
+		    <m:apply><m:diff/>
+		      <m:ci type="vector">e</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <!-- y = Ge + Ce' -->
+	    </m:math>
+
+	    where
+	    <m:math display="block">
+	      <m:apply><m:eq/>
+		<m:ci type="matrix">G</m:ci>
+		<m:matrix>
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn></m:matrixrow>
+		  <m:matrixrow><m:cn>0</m:cn>
+		    <m:apply><m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:ci><m:msub>
+			  <m:mi>R</m:mi>
+			  <m:mtext>cb</m:mtext>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn></m:matrixrow>
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:apply><m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:ci><m:msub>
+			  <m:mi>R</m:mi>
+			  <m:mi>i</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn></m:matrixrow>
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn></m:matrixrow>
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:apply><m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:ci><m:msub>
+			  <m:mi>R</m:mi>
+			  <m:mi>m</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn></m:matrixrow>
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:apply><m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:ci><m:msub>
+			  <m:mi>R</m:mi>
+			  <m:mi>i</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:cn>0</m:cn><m:cn>0</m:cn></m:matrixrow>
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn></m:matrixrow>
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:apply><m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:ci><m:msub>
+			  <m:mi>R</m:mi>
+			  <m:mi>m</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>  
+		  </m:matrixrow>
+		</m:matrix>
+	      </m:apply>
+	    </m:math>
+
+	    and
+	    <m:math display="block">
+	      <m:apply><m:eq/>
+		<m:ci type="matrix">C</m:ci>
+		<m:matrix>
+		  <m:matrixrow>
+		    <m:ci><m:msub>
+			<m:mi>C</m:mi>
+			<m:mtext>cb</m:mtext>
+		      </m:msub></m:ci>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn></m:matrixrow>
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn></m:matrixrow>
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn></m:matrixrow>
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:ci><m:msub>
+			<m:mi>C</m:mi>
+			<m:mi>m</m:mi>
+		      </m:msub></m:ci>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn></m:matrixrow>
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn></m:matrixrow>
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn></m:matrixrow>
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:ci><m:msub>
+			<m:mi>C</m:mi>
+			<m:mi>m</m:mi>
+		      </m:msub></m:ci>
+		    <m:cn>0</m:cn></m:matrixrow>
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn></m:matrixrow>
+		</m:matrix>
+	      </m:apply>
+	    </m:math>
+
+	    are the conductance and capacitance matrices.
+	  </para>
+	</section>
+
+	<section id="strang_s3">
+	  <title>Updating (S3)</title>
+	  <para id="p8">
+	    As Kirchhoff's Current law is insensitive to the type of
+	    device occupying an edge, step (S3) proceeds exactly as
+	    <link document="m10145" target-id="step3" strength="2">before</link>.
+	    
+	    <m:math display="block">
+	      <m:apply><m:eq/>
+		<m:apply><m:minus/>
+		  <m:apply><m:minus/>
+		    <m:apply><m:minus/>
+		      <m:ci><m:msub>
+			  <m:mi>i</m:mi>
+			  <m:mn>0</m:mn>
+			</m:msub></m:ci>
+		      <m:ci><m:msub>
+			  <m:mi>y</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:ci><m:msub>
+			<m:mi>y</m:mi>
+			<m:mn>2</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:ci><m:msub>
+		      <m:mi>y</m:mi>
+		      <m:mn>3</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:cn>0</m:cn>
+	      </m:apply>
+	      <!-- i_0 - y_1 - y_2 - y_3 = 0 -->
+	    </m:math>
+
+	    <m:math display="block">
+	      <m:apply><m:eq/>
+		<m:apply><m:minus/>
+		  <m:apply><m:minus/>
+		    <m:apply><m:minus/>
+		      <m:ci><m:msub>
+			  <m:mi>y</m:mi>
+			  <m:mn>3</m:mn>
+			</m:msub></m:ci>
+		      <m:ci><m:msub>
+			  <m:mi>y</m:mi>
+			  <m:mn>4</m:mn>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:ci><m:msub>
+			<m:mi>y</m:mi>
+			<m:mn>5</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:ci><m:msub>
+		      <m:mi>y</m:mi>
+		      <m:mn>6</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:cn>0</m:cn>
+	      </m:apply>
+	      <!-- y_3 - y_4 - y_5 - y_6 = 0 -->
+	    </m:math>
+	    
+	    <m:math display="block">
+	      <m:apply><m:eq/>
+		<m:apply><m:minus/>
+		  <m:apply><m:minus/>
+		    <m:ci><m:msub>
+			<m:mi>y</m:mi>
+			<m:mn>6</m:mn>
+		      </m:msub></m:ci>
+		    <m:ci><m:msub>
+			<m:mi>y</m:mi>
+			<m:mn>7</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:ci><m:msub>
+		      <m:mi>y</m:mi>
+		      <m:mn>8</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:cn>0</m:cn>
+	      </m:apply>
+	      <!-- y_6 - y_7 - y_8 = 0 -->
+	    </m:math>
+	    
+	    or, in matrix terms,
+
+	    <m:math display="block">
+	      <m:apply><m:eq/>
+		<m:apply><m:times/>
+		  <m:apply><m:transpose/>
+		    <m:ci type="matrix">A</m:ci>
+		  </m:apply>
+		  <m:ci type="vector">y</m:ci>
+		</m:apply>
+		<m:apply><m:minus/>
+		  <m:ci type="vector">f</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <!-- A'y = -f -->
+
+	      <m:mrow>
+		<m:mi> </m:mi><m:mi> </m:mi>
+		<m:mi> </m:mi><m:mi> </m:mi>
+		<m:mtext>where</m:mtext>
+		<m:mi> </m:mi><m:mi> </m:mi>
+		<m:mi> </m:mi><m:mi> </m:mi>
+	      </m:mrow>
+
+	      <m:apply><m:eq/>
+		<m:ci type="vector">f</m:ci>
+		<m:apply>
+		  <m:transpose/>
+		  <m:vector>
+		    <m:ci><m:msub>
+			<m:mi>i</m:mi>
+			<m:mn>0</m:mn>
+		      </m:msub></m:ci>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:vector>
+		</m:apply>
+	      </m:apply>
+	      <!-- f = [ i_0; 0; 0 ] -->
+	    </m:math>
+	  </para>
+	</section>
+
+	<section id="strang_s4">
+	  <title>Step (S4): Assembling</title>
+	  <para id="p9">
+	    Step (S4) remains one of assembling,
+
+	    <m:math display="block">
+	      <m:apply><m:implies/>
+		<m:apply><m:implies/>
+		  <m:apply><m:eq/>
+		    <m:apply><m:times/>
+		      <m:apply><m:transpose/>
+			<m:ci type="matrix">A</m:ci>
+		      </m:apply>
+		      <m:ci type="vector">y</m:ci>
+		    </m:apply>
+		    <m:apply><m:minus/>
+		      <m:ci type="vector">f</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply><m:eq/>
+		    <m:apply><m:times/>
+		      <m:apply><m:transpose/>
+			<m:ci type="matrix">A</m:ci>
+		      </m:apply>
+		      <m:apply><m:plus/>
+			<m:apply><m:times/>
+			  <m:ci type="matrix">G</m:ci>
+			  <m:ci type="vector">e</m:ci>
+			</m:apply>
+			<m:apply><m:times/>
+			  <m:ci type="matrix">C</m:ci>
+			  <m:apply><m:diff/>
+			    <m:ci type="vector">e</m:ci>
+			  </m:apply>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply><m:minus/>
+		      <m:ci type="vector">f</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply><m:eq/>
+		  <m:apply><m:times/>
+		    <m:apply><m:transpose/>
+		      <m:ci type="matrix">A</m:ci>
+		    </m:apply>
+		    <m:apply><m:plus/>
+		      <m:apply><m:times/>
+			<m:ci type="matrix">G</m:ci>
+			<m:apply><m:minus/>
+			  <m:ci type="vector">b</m:ci>
+			  <m:apply><m:times/>
+			    <m:ci type="matrix">A</m:ci>
+			    <m:ci type="vector">x</m:ci>
+			  </m:apply>
+			</m:apply>
+		      </m:apply>
+		      <m:apply><m:times/>
+			<m:ci type="matrix">C</m:ci>
+			<m:apply><m:minus/>
+			  <m:apply><m:diff/>
+			    <m:ci type="vector">b</m:ci>
+			  </m:apply>
+			  <m:apply><m:times/>
+			    <m:ci type="vector">A</m:ci>
+			    <m:apply><m:diff/>
+			      <m:ci type="vector">x</m:ci>
+			    </m:apply>
+			  </m:apply>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply><m:minus/>
+		    <m:ci type="vector">f</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <!-- A'y = -f implies A' * (Ge + Ce') = -f implies
+                   A' * (G * (b - Ax) ) + C * (b' - Ax') ) = -f -->
+	    </m:math>
+	    
+	    becomes
+
+	    <equation id="eqn6_1">
+	      <m:math display="block">
+		<m:apply><m:eq/>
+		  <m:apply><m:plus/>
+		    <m:apply><m:times/>
+		      <m:apply><m:transpose/>
+			<m:ci type="matrix">A</m:ci>
+		      </m:apply>
+		      <m:ci type="matrix">C</m:ci>
+		      <m:ci type="matrix">A</m:ci>
+		      <m:apply><m:diff/>
+			<m:ci type="vector">x</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply><m:times/>
+		      <m:apply><m:transpose/>
+			<m:ci type="matrix">A</m:ci>
+		      </m:apply>
+		      <m:ci type="matrix">G</m:ci>
+		      <m:ci type="matrix">A</m:ci>
+		      <m:ci type="vector">x</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply><m:plus/>
+		    <m:apply><m:times/>
+		      <m:apply><m:transpose/>
+			<m:ci type="matrix">A</m:ci>
+		      </m:apply>
+		      <m:ci type="matrix">G</m:ci>
+		      <m:ci type="vector">b</m:ci>
+		    </m:apply>
+		    <m:ci type="vector">f</m:ci>
+		    <m:apply><m:times/>
+		      <m:apply><m:transpose/>
+			<m:ci type="matrix">A</m:ci>
+		      </m:apply>
+		      <m:ci type="matrix">C</m:ci>
+		      <m:apply><m:diff/>
+			<m:ci type="vector">b</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:mtext>.</m:mtext>
+		<!-- A^(T)CAx' + A^(T)GAx = A^(T)Gb + f + A^(T)Cb' -->
+	      </m:math>
+	    </equation>
+	  </para>
+	</section>
+
+	<para id="p10">
+	  This is the general form of the potential equations for an
+	  RC circuit.  It presumes of the user knowledge of the
+	  initial value of each of the potentials,
+
+	  <equation id="eqn6_2">
+	    <m:math display="block">
+	      <m:apply><m:eq/>
+		<m:apply><m:ci type="vector">x</m:ci>
+		  <m:cn>0</m:cn>
+		</m:apply>
+		<m:ci>X</m:ci>
+	      </m:apply>
+	      <!-- x(0) = X -->
+	    </m:math>
+	  </equation>
+	  
+	  Regarding the circuit of <link target-id="RC_model_fig" strength="3"/>, and letting
+
+	  <m:math display="inline">
+	    <m:apply><m:eq/>
+	      <m:ci>G</m:ci>
+	      <m:apply><m:divide/>
+		<m:cn>1</m:cn>
+		<m:ci>R</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <!-- G = 1 / R -->
+	  </m:math>, we find
+
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply><m:times/>
+		<m:apply><m:transpose/>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>
+		<m:ci type="matrix">C</m:ci>
+		<m:ci type="matrix">A</m:ci>
+	      </m:apply>
+	      <m:matrix>
+		<m:matrixrow>
+		  <m:ci type="matrix"><m:msub>
+		      <m:mi>C</m:mi>
+		      <m:mtext>cb</m:mtext>
+		    </m:msub></m:ci>
+		  <m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<m:matrixrow><m:cn>0</m:cn>
+		  <m:ci type="matrix">C</m:ci>
+		  <m:cn>0</m:cn>
+		</m:matrixrow>
+		<m:matrixrow><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:ci type="matrix">C</m:ci></m:matrixrow>
+	      </m:matrix>
+	    </m:apply>
+	    <!-- A^(T)CA = [ C_cb  0  0 
+                              0    C  0
+                              0    0  C  ]  -->
+	    
+	    <m:mrow>
+	      <m:mtext>,</m:mtext>
+	      <m:mi> </m:mi><m:mi> </m:mi>
+	      <m:mi> </m:mi><m:mi> </m:mi>
+	    </m:mrow>
+	    
+	    <m:apply><m:eq/>
+	      <m:apply><m:times/>
+		<m:apply><m:transpose/>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>
+		<m:ci type="matrix">G</m:ci>
+		<m:ci type="matrix">A</m:ci>
+	      </m:apply>
+	      <m:matrix>
+		<m:matrixrow>
+		  <m:apply><m:plus/>
+		    <m:ci type="matrix"><m:msub>
+			<m:mi>G</m:mi>
+			<m:mtext>cb</m:mtext>
+		      </m:msub></m:ci>
+		    <m:ci type="matrix"><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci> 
+		  </m:apply>
+		  <m:apply><m:minus/>
+		    <m:ci type="matrix"><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:cn>0</m:cn>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <m:apply><m:minus/>
+		    <m:ci type="matrix"><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:apply><m:plus/>
+		    <m:apply><m:times/>
+		      <m:cn>2</m:cn>
+		      <m:ci type="matrix"><m:msub>
+			  <m:mi>G</m:mi>
+			  <m:mi>i</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:ci type="matrix"><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>m</m:mi>
+		      </m:msub></m:ci> 
+		  </m:apply> 
+		  <m:apply><m:minus/>
+		    <m:ci type="matrix"><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci>
+		  </m:apply>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <m:cn>0</m:cn>
+		  <m:apply><m:minus/>
+		    <m:ci type="matrix"><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:apply><m:plus/>
+		    <m:ci type="matrix"><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci>
+		    <m:ci type="matrix"><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>m</m:mi>
+		      </m:msub></m:ci>
+		  </m:apply>
+		</m:matrixrow>
+	      </m:matrix>
+	    </m:apply>
+	    <!-- A^(T)GA = [ G_cb + G_i   -G_i      0
+                                -G_i  2G_i + G_m  -G_i
+                                  0       -G_i  G_i + G_m  ]  -->
+	  </m:math>
+
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply><m:times/>
+		<m:apply><m:transpose/>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>
+		<m:ci type="matrix">G</m:ci>
+		<m:ci type="vector">b</m:ci>
+	      </m:apply>
+	      <m:apply><m:times/>
+		<m:ci><m:msub>
+		    <m:mi>E</m:mi>
+		    <m:mi>m</m:mi>
+		  </m:msub></m:ci>
+		<m:vector>
+		  <m:ci><m:msub>
+		      <m:mi>G</m:mi>
+		      <m:mtext>cb</m:mtext>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>G</m:mi>
+		      <m:mi>m</m:mi>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>G</m:mi>
+		      <m:mi>m</m:mi>
+		    </m:msub></m:ci>
+		</m:vector>
+	      </m:apply>
+	    </m:apply>
+	    
+	    <m:mrow>
+	      <m:mi> </m:mi><m:mi> </m:mi>
+	      <m:mi> </m:mi><m:mi> </m:mi>
+	      <m:mtext>and</m:mtext>
+	      <m:mi> </m:mi><m:mi> </m:mi>
+	      <m:mi> </m:mi><m:mi> </m:mi>
+	    </m:mrow>
+
+	    <m:apply><m:eq/>
+	      <m:apply><m:times/>
+		<m:apply><m:transpose/>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>
+		<m:ci type="matrix">C</m:ci>
+		<m:apply><m:diff/>
+		  <m:ci type="vector">b</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:vector>
+		<m:cn>0</m:cn>
+		<m:cn>0</m:cn>
+		<m:cn>0</m:cn>
+	      </m:vector>
+	    </m:apply>
+	    <!-- A^(T)Cb' = [ 0; 0; 0 ] -->
+	  </m:math>
+	  
+	  and an initial (rest) potential of
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply><m:ci type="fn">x</m:ci>
+		<m:cn>0</m:cn>
+	      </m:apply>
+	      <m:apply><m:times/>
+		<m:ci><m:msub>
+		    <m:mi>E</m:mi>
+		    <m:mi>m</m:mi>
+		  </m:msub></m:ci>
+		<m:apply>
+		  <m:transpose/>
+		  <m:vector>
+		    <m:cn>1</m:cn><m:cn>1</m:cn><m:cn>1</m:cn>
+		  </m:vector>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <!-- x(0) = E_m * [1; 1; 1] -->
+	  </m:math>
+	</para>
+      </section>
+
+      <section id="modes_of_attack">
+	<title>Modes of Attack</title>
+	<para id="p11">
+	  We shall now outline two modes of attack on such
+	  problems. The <link document="m10169" strength="3">Laplace
+	  Transform</link> is an analytical tool that produces exact,
+	  closed-form solutions for small tractable systems and
+	  therefore offers insight into how larger systems 'should'
+	  behave. The <link document="m10171" strength="3">Backward-Euler method</link> is a technique for
+	  solving a discretized (and therefore approximate) version of
+	  <link target-id="eqn6_1" strength="2"/>.  It is highly
+	  flexible, easy to code, and works on problems of great
+	  size. Both the Backward-Euler and Laplace Transform methods
+	  require, at their core, the algebraic solution of a linear
+	  system of equations. In deriving these methods we shall find
+	  it more convenient to proceed from the generic system
+
+	  <equation id="eqn6_3">
+	    <m:math display="block">
+	      <m:apply><m:eq/>
+		<m:apply><m:diff/>
+		  <m:ci type="vector">x</m:ci>
+		</m:apply>
+		<m:apply><m:plus/>
+		  <m:apply><m:times/>
+		    <m:ci type="matrix">B</m:ci>
+		    <m:ci type="vector">x</m:ci>
+		  </m:apply>
+		  <m:ci type="vector">g</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <!-- x' = Bx + g -->
+	    </m:math>
+	  </equation>
+	  
+	  With respect to our fiber problem
+	  
+	  <equation id="eqn6_4">
+	    <m:math display="block">
+	      <m:apply><m:eq/>
+		<m:ci type="matrix">B</m:ci>
+		<m:apply><m:times/>
+		  <m:apply><m:minus/>
+		    <m:apply><m:inverse/>
+		      <m:apply><m:times/>
+			<m:apply><m:transpose/>
+			  <m:ci type="matrix">A</m:ci>
+			</m:apply>
+			<m:ci type="matrix">C</m:ci>
+			<m:ci type="matrix">A</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply><m:transpose/>
+		    <m:ci type="matrix">A</m:ci>
+		  </m:apply>
+		  <m:ci type="matrix">G</m:ci>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>
+		<m:matrix>
+		  <m:matrixrow>
+		    <m:apply><m:divide/>
+		      <m:apply><m:minus/>
+			<m:apply><m:plus/>
+			  <m:ci><m:msub>
+			      <m:mi>G</m:mi>
+			      <m:mtext>cb</m:mtext>
+			    </m:msub></m:ci>
+			  <m:ci><m:msub>
+			      <m:mi>G</m:mi>
+			      <m:mi>i</m:mi>
+			    </m:msub></m:ci>
+			</m:apply>
+		      </m:apply>
+		      <m:ci><m:msub>
+			  <m:mi>C</m:mi>
+			  <m:mtext>cb</m:mtext>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:apply><m:divide/>
+		      <m:ci><m:msub>
+			  <m:mi>G</m:mi>
+			  <m:mi>i</m:mi>
+			</m:msub></m:ci>
+		      <m:ci><m:msub>
+			  <m:mi>C</m:mi>
+			  <m:mtext>cb</m:mtext>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <m:matrixrow>
+		    <m:apply><m:divide/>
+		      <m:ci><m:msub>
+			  <m:mi>G</m:mi>
+			  <m:mi>i</m:mi>
+			</m:msub></m:ci>
+		      <m:ci><m:msub>
+			  <m:mi>C</m:mi>
+			  <m:mi>m</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:apply><m:divide/>
+		      <m:apply><m:minus/>
+			<m:apply><m:plus/>
+			  <m:apply><m:times/>
+			    <m:cn>2</m:cn>
+			    <m:ci><m:msub>
+				<m:mi>G</m:mi>
+				<m:mi>i</m:mi>
+			      </m:msub></m:ci>
+			  </m:apply>
+			  <m:ci><m:msub>
+			      <m:mi>G</m:mi>
+			      <m:mi>m</m:mi>
+			    </m:msub></m:ci>
+			</m:apply>
+		      </m:apply>
+		      <m:ci><m:msub>
+			  <m:mi>C</m:mi>
+			  <m:mi>m</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:apply><m:divide/>
+		      <m:ci><m:msub>
+			  <m:mi>G</m:mi>
+			  <m:mi>i</m:mi>
+			</m:msub></m:ci>
+		      <m:ci><m:msub>
+			  <m:mi>C</m:mi>
+			  <m:mi>m</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		  </m:matrixrow>
+		  <m:matrixrow>
+		    <m:cn>0</m:cn>
+		    <m:apply><m:divide/>
+		       <m:ci><m:msub>
+			  <m:mi>G</m:mi>
+			  <m:mi>i</m:mi>
+			</m:msub></m:ci>
+		      <m:ci><m:msub>
+			  <m:mi>C</m:mi>
+			  <m:mi>m</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:apply><m:divide/>
+		      <m:apply><m:minus/>
+			<m:apply><m:plus/>
+			  <m:ci><m:msub>
+			      <m:mi>G</m:mi>
+			      <m:mi>i</m:mi>
+			    </m:msub></m:ci>
+			  <m:ci><m:msub>
+			      <m:mi>G</m:mi>
+			      <m:mi>m</m:mi>
+			    </m:msub></m:ci>
+			</m:apply>
+		      </m:apply>
+		      <m:ci><m:msub>
+			  <m:mi>C</m:mi>
+			  <m:mi>m</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		  </m:matrixrow>
+		</m:matrix>
+	      </m:apply>
+	      <!-- B = - ( A^(T) * C * A ) ^ (-1) * A^(T) * G * A 
+                     = [ -(G_cb + G_i) -->
+	    </m:math>
+	  </equation>
+
+	  and
+
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:ci type="vector">g</m:ci>
+	      <m:apply><m:times/>
+		<m:apply><m:inverse/>
+		  <m:apply><m:times/>
+		    <m:apply><m:transpose/>
+		      <m:ci type="matrix">A</m:ci>
+		    </m:apply>
+		    <m:ci type="matrix">C</m:ci>
+		    <m:ci type="matrix">A</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply><m:plus/>
+		  <m:apply><m:times/>
+		    <m:apply><m:transpose/>
+		      <m:ci type="matrix">A</m:ci>
+		    </m:apply>
+		    <m:ci type="matrix">G</m:ci>
+		    <m:ci type="vector">b</m:ci>
+		  </m:apply>
+		  <m:ci type="vector">f</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:vector>
+		<m:apply><m:divide/>
+		  <m:apply><m:plus/>
+		    <m:apply><m:times/>
+		      <m:ci><m:msub>
+			  <m:mi>G</m:mi>
+			  <m:mtext>cb</m:mtext>
+			</m:msub></m:ci>
+		      <m:ci><m:msub>
+			  <m:mi>E</m:mi>
+			  <m:mi>m</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:ci><m:msub> 
+			<m:mi>i</m:mi>
+			<m:mn>0</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		   <m:ci><m:msub>
+		      <m:mi>C</m:mi>
+		      <m:mtext>cb</m:mtext>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:apply><m:divide/>
+		  <m:apply><m:times/>
+		    <m:ci><m:msub>
+			<m:mi>E</m:mi>
+			<m:mi>m</m:mi>
+		      </m:msub></m:ci>
+		    <m:ci><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>m</m:mi>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:ci><m:msub>
+		      <m:mi>C</m:mi>
+		      <m:mi>m</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:apply><m:divide/>
+		  <m:apply><m:times/>
+		    <m:ci><m:msub>
+			<m:mi>E</m:mi>
+			<m:mi>m</m:mi>
+		      </m:msub></m:ci>
+		    <m:ci><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>m</m:mi>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:ci><m:msub>
+		      <m:mi>C</m:mi>
+		      <m:mi>m</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:vector>
+	    </m:apply>
+	  </m:math>
+	</para>
+      </section>
+    </section>
+  </content>
+</document>

@@ -1,0 +1,452 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml"> 
+
+  <title>The Inverse Laplace Transform</title> 
+  
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>8ef8a414-4576-4e5c-aa8b-adf7732abea9</md:uuid>
+</metadata>
+
+  <content>
+    <section id="prelude">
+      <title>To Come</title>
+      <para id="p1">
+	In <link document="m10490" strength="3">The Transfer
+	Function</link> we shall establish that the inverse Laplace
+	transform of a function <m:math display="inline"><m:ci type="fn">h</m:ci></m:math> is
+
+	<equation id="eqn6_11">
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply>
+		<m:apply>
+		  <m:apply><m:inverse/>
+		    <m:ci><m:mo>ℒ</m:mo></m:ci>
+		  </m:apply>
+		  <m:ci type="fn">h</m:ci>
+		</m:apply>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	      <m:apply><m:times/>
+		<m:apply><m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:apply><m:times/>
+		    <m:cn>2</m:cn>
+		    <m:pi/>
+		  </m:apply>
+		</m:apply>
+		<m:apply><m:int/>
+		  <m:bvar><m:ci>y</m:ci></m:bvar>
+		  <m:lowlimit><m:apply><m:minus/>
+		      <m:infinity/>
+		    </m:apply>
+		  </m:lowlimit>
+		  <m:uplimit><m:infinity/></m:uplimit>
+		  <m:apply><m:times/>
+		    <m:apply><m:exp/>
+		      <m:apply>
+			<m:times/>
+			<m:apply>
+			  <m:plus/>
+			  <m:ci>c</m:ci>
+			  <m:apply>
+			    <m:times/>
+			    <m:ci>y</m:ci>
+			    <m:imaginaryi/>
+			  </m:apply>
+			</m:apply>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:ci type="fn">h</m:ci>
+		      <m:apply>
+			<m:times/>
+			<m:apply>
+			  <m:plus/>
+			  <m:ci>c</m:ci>
+			  <m:apply>
+			    <m:times/>
+			    <m:ci>y</m:ci>
+			    <m:imaginaryi/>
+			  </m:apply>
+			</m:apply>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <!-- (L^(-1)h)(t) = 1 / (2 * pi ) * int_-inf_to_inf ( e^((c+iy*t)*h) *
+	    h(c + iy)dy ) -->
+	  </m:math>
+	</equation>
+
+	where
+	<m:math display="inline">
+	  <m:apply><m:equivalent/>
+	    <m:imaginaryi/>
+	    <m:apply><m:root/>
+	      <m:degree><m:cn>2</m:cn></m:degree>
+	      <m:cn>-1</m:cn>
+	    </m:apply>
+	  </m:apply>
+	  <!-- i == sqrt(-1) -->
+	</m:math>
+
+	and the real number <m:math><m:ci>c</m:ci></m:math> is chosen
+	so that all of the <term>singularities</term> of <m:math><m:ci type="fn">h</m:ci></m:math> lie to the left of the line of
+	integration.
+      </para>
+    </section>
+
+    <section id="proceeding">
+      <title>Proceeding with the Inverse Laplace Transform</title>
+      <para id="p2">
+	With the inverse Laplace transform one may express the
+	solution of
+
+	<m:math display="inline">
+	  <m:apply><m:eq/>
+	    <m:apply><m:diff/>
+	      <m:ci type="vector">x</m:ci>
+	    </m:apply>
+	    <m:apply><m:plus/>
+	      <m:apply><m:times/>
+		<m:ci type="matrix">B</m:ci>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	      <m:ci type="vector">g</m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <!-- x' = Bx + g -->
+	</m:math>
+	, as
+
+	<equation id="eqn6_12">
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply>
+		<m:ci type="fn">x</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	      <m:apply><m:times/>
+		<m:apply>
+		  <m:apply><m:inverse/>
+		    <m:ci><m:mo>ℒ</m:mo></m:ci>
+		  </m:apply>
+		  <m:apply><m:inverse/>
+		    <m:apply><m:minus/>
+		      <m:apply><m:times/>
+			<m:ci>s</m:ci>
+			<m:ci type="matrix">I</m:ci>
+		      </m:apply>
+		      <m:ci type="matrix">B</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply><m:plus/>
+		  <m:apply>
+		    <m:ci><m:mo>ℒ</m:mo></m:ci>
+		    <m:ci type="vector">g</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn">x</m:ci>
+		    <m:cn>0</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <!-- x(t) = L^(-1) * ( sI - B )^(-1) * ( Lg + x(0) ) -->
+	  </m:math>
+	</equation>
+
+	As an example, let us take the first component of 
+
+	<m:math display="inline">
+	  <m:apply>
+	    <m:ci><m:mo>ℒ</m:mo></m:ci>
+	    <m:ci>x</m:ci>
+	  </m:apply>
+	  <!-- Lx -->
+	</m:math>, namely
+
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:apply>
+	      <m:ci type="fn"><m:msub>
+		  <m:mo>ℒ</m:mo>
+		  <m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub>
+		</m:msub></m:ci>
+	      <m:ci>s</m:ci>
+	    </m:apply>
+	    <m:apply><m:divide/>
+	      <m:apply><m:times/>
+		<m:cn>0.19</m:cn>
+		<m:apply><m:plus/>
+		  <m:apply><m:power/>
+		    <m:ci>s</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:apply><m:times/>
+		    <m:cn>1.5</m:cn>
+		    <m:ci>s</m:ci>
+		  </m:apply>
+		  <m:cn>0.27</m:cn>
+		</m:apply>
+	      </m:apply>
+	      <m:apply><m:times/>
+		<m:apply><m:power/>
+		  <m:apply><m:plus/>
+		    <m:ci>s</m:ci>
+		    <m:apply><m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:cn>6</m:cn>
+		    </m:apply>
+		  </m:apply>
+		  <m:cn>4</m:cn>
+		</m:apply>
+		<m:apply><m:plus/>
+		  <m:apply><m:power/>
+		    <m:ci>s</m:ci>
+		    <m:cn>3</m:cn>
+		  </m:apply>
+		  <m:apply><m:times/>
+		    <m:cn>1.655</m:cn>
+		    <m:apply><m:power/>
+		      <m:ci>s</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply><m:times/>
+		    <m:cn>0.4078</m:cn>
+		    <m:ci>s</m:ci>
+		  </m:apply>
+		  <m:cn>0.0039</m:cn>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	  <m:mtext>.</m:mtext>
+	  <!-- L_(x_1)(s) = 0.19 * ( s^2 + 1.5s + 0.27) / 
+	  ( ( s + 1/6 )^4 * ( s^3 + 1.655s^2 + 0.4078s + 0.0039 ) ) -->
+	</m:math>
+	
+	We define:
+	<definition id="poles">
+	  <term>poles</term>
+	  <meaning id="idm1865888">Also called singularities, these are the points 
+	    <m:math display="inline"><m:ci>s</m:ci></m:math> at which 
+	    
+	    <m:math display="inline">
+	      <m:apply>
+		<m:ci type="fn"><m:msub>
+		    <m:mo>ℒ</m:mo>
+		    <m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub>
+		  </m:msub></m:ci>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	      <!-- L-(x_1)(s) -->
+	    </m:math>
+	    blows up. 
+	  </meaning>
+	</definition>
+	
+	These are clearly the roots of its denominator, namely
+
+	<equation id="eqn6_13">
+	  <m:math display="block">
+	    <m:cn type="rational">-1 <m:sep/>100</m:cn>
+	    <m:mtext>,</m:mtext>
+	    <m:mi> </m:mi><m:mi> </m:mi>
+	    <m:apply>
+	      <m:ci><m:mo>±</m:mo></m:ci>
+	      <m:cn type="rational">-329 <m:sep/>400</m:cn>
+	      <m:apply><m:divide/>
+		<m:apply><m:root/>
+		  <m:degree><m:cn>2</m:cn></m:degree>
+		  <m:cn>73</m:cn>
+		</m:apply>
+		<m:cn>16</m:cn>
+	      </m:apply>
+	    </m:apply>
+	    
+	    <m:mtext>,</m:mtext>
+	    <m:mi> </m:mi><m:mi> </m:mi>
+	    <m:mtext>and</m:mtext>
+	    <m:mi> </m:mi><m:mi> </m:mi>
+
+	    <m:cn type="rational">-1<m:sep/>6</m:cn>
+	    <m:mtext>.</m:mtext>
+	    <!-- -1/100, -329/400 +/- sqrt(73) / 16, and -1/6 -->
+	  </m:math>
+	</equation>
+
+	All four being negative, it suffices to take 
+	
+	<m:math display="inline">
+	  <m:apply><m:eq/>
+	    <m:ci>c</m:ci>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	  <!-- c = 0 -->
+	</m:math>
+
+	and so the integration in <link target-id="eqn6_11" strength="3"/> proceeds up the imaginary axis.  We don't
+	suppose the reader to have already encountered integration in
+	the complex plane but hope that this example might provide the
+	motivation necessary for a brief overview of such.  Before
+	that however we note that MATLAB has digested the calculus we
+	wish to develop.  Referring again to <link url="http://www.caam.rice.edu/~caam335/cox/lectures/fib3.m">fib3.m</link>
+	for details we note that the <code>ilaplace</code>
+	command produces
+
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:apply>
+	      <m:ci type="fn"><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	    <m:apply><m:plus/>
+	      <m:apply><m:minus/>
+		<m:apply><m:times/>
+		  <m:cn>211.35</m:cn>
+		  <m:apply><m:exp/>
+		    <m:apply><m:divide/>
+		      <m:apply><m:minus/>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		      <m:cn>100</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply><m:times/>
+		  <m:apply><m:plus/>
+		    <m:apply><m:times/>
+		      <m:cn>0.0554</m:cn>
+		      <m:apply><m:power/>
+			<m:ci>t</m:ci>
+			<m:cn>3</m:cn>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply><m:times/>
+		      <m:cn>4.5464</m:cn>
+		      <m:apply><m:power/>
+			<m:ci>t</m:ci>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		    </m:apply>  
+		    <m:apply><m:times/>
+		      <m:cn>1.085</m:cn>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		    <m:cn>474.19</m:cn>
+		  </m:apply>
+		  <m:apply><m:exp/>
+		    <m:apply><m:divide/>
+		      <m:apply><m:minus/>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		      <m:cn>6</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply><m:times/>
+		<m:apply><m:exp/>
+		  <m:apply><m:divide/>
+		    <m:apply><m:minus/>
+		      <m:apply><m:times/>
+			<m:cn>329</m:cn>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:cn>400</m:cn>
+		  </m:apply>
+		</m:apply>
+		<m:apply><m:times/>
+		  <m:cn>262.842</m:cn>
+		  <m:apply><m:cosh/>
+		    <m:apply><m:divide/>
+		      <m:apply><m:times/>
+			<m:apply><m:root/>
+			  <m:degree><m:cn>2</m:cn></m:degree>
+			  <m:cn>73</m:cn>
+			</m:apply>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		      <m:cn>16</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply><m:times/>
+		<m:cn>262.836</m:cn>
+		<m:apply><m:sinh/>
+		  <m:apply><m:divide/>
+		    <m:apply><m:times/>
+		      <m:apply><m:root/>
+			<m:degree><m:cn>2</m:cn></m:degree>
+			<m:cn>73</m:cn>
+		      </m:apply>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		    <m:cn>16</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	  <!-- x_1(t) = 211.35 * exp(-t/100) - (0.554t^3 + 4.5464t^2 + 1.085t + 474.19)*
+	  exp(-t/6) + exp(-329t/400)*(262.842cosh(sqrt(73)*t/16)) +
+	  262.836sinh(sqrt(73)*t/16) -->
+	</m:math>
+      </para>
+
+      <figure id="three_potentials">
+	<media id="idm2518736" alt=""><image src="../../media/fib3_fig1.png" mime-type="image/png"/></media>
+	<caption>
+	  The 3 potentials associated with <link document="m10168" target-id="RC_model_fig" strength="3">the RC circuit model
+	  figure</link>.
+	</caption>
+      </figure>
+
+      <para id="p3">
+	The other potentials, see the figure above, possess similar
+	expressions.  Please note that each of the poles of
+
+	<m:math display="inline">
+	  <m:apply>
+	    <m:ci><m:mo>ℒ</m:mo></m:ci>
+	    <m:ci><m:msub>
+		<m:mi>x</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	  </m:apply>
+	  <!-- Lx_1 -->
+	</m:math>
+
+	appear as exponents in
+	
+	<m:math display="inline">
+	  <m:ci><m:msub>
+	      <m:mi>x</m:mi>
+	      <m:mn>1</m:mn>
+	    </m:msub></m:ci>
+	</m:math>
+
+	and that the coefficients of the exponentials are polynomials
+	whose degrees is determined by the <term>order</term> of the
+	respective pole.
+      </para>
+    </section>
+  </content>
+</document>

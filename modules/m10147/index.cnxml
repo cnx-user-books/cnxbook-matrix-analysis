@@ -1,0 +1,1646 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml"> 
+
+  <title>Matrix Methods for Mechanical Systems:  A Small Planar Truss</title> 
+
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>1b2b80d5-75d1-4b2c-b16d-401439c7e64e</md:uuid>
+</metadata>
+
+  <content>
+    <para id="p1">
+      We return once again to the biaxial testing problem, introduced
+      in the <link document="m10146" target-id="intro" strength="3">uniaxial truss module</link>. It turns out that
+      singular matrices are typical in the biaxial testing problem. As
+      our initial step into the world of such planar structures let us
+      consider the simple truss in the figure of <link target-id="simple_swing">a simple swing</link>.
+    </para>
+
+    <figure id="simple_swing">
+      <title>A simple swing</title>
+      <media id="idp190640" alt=""><image src="../../media/lec2fig2.png" mime-type="image/png"/></media>
+    </figure>
+
+    <para id="p2">
+      We denote by
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>x</m:mi>
+	    <m:mn>1</m:mn>
+	  </m:msub></m:ci>
+      </m:math>
+      <!-- x_1 -->
+
+      and
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>x</m:mi>
+	    <m:mn>2</m:mn>
+	  </m:msub></m:ci>
+      </m:math>
+      <!-- x_2 -->
+
+      the respective horizontal and vertical displacements of
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>m</m:mi>
+	    <m:mn>1</m:mn>
+	  </m:msub></m:ci>
+      </m:math>
+      <!-- m_1 -->
+
+      (positive is right and down). Similarly, 
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>f</m:mi>
+	    <m:mn>1</m:mn>
+	  </m:msub></m:ci>
+      </m:math>
+      <!-- f_1 -->
+
+      and
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>f</m:mi>
+	    <m:mn>2</m:mn>
+	  </m:msub></m:ci>
+      </m:math>
+      <!-- f_2 -->
+
+      will denote the associated components of force. The corresponding 
+      displacements and forces at
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>m</m:mi>
+	    <m:mn>2</m:mn>
+	  </m:msub></m:ci>
+      </m:math>
+      <!-- m_2 -->
+
+      will be denoted by 
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>x</m:mi>
+	    <m:mn>3</m:mn>
+	  </m:msub></m:ci>
+      </m:math>,
+      <!-- x_3 -->
+
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>x</m:mi>
+	    <m:mn>4</m:mn>
+	  </m:msub></m:ci>
+      </m:math>
+      <!-- x_4 -->
+
+      and
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>f</m:mi>
+	    <m:mn>3</m:mn>
+	  </m:msub></m:ci>
+      </m:math>,
+      <!-- f_3 -->
+
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>f</m:mi>
+	    <m:mn>4</m:mn>
+	  </m:msub></m:ci>
+      </m:math>.
+      <!-- f_4 -->
+
+      In computing the elongations of the three springs we shall make
+      reference to their unstretched lengths,
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>L</m:mi>
+	    <m:mn>1</m:mn>
+	  </m:msub></m:ci>
+      </m:math>,
+      <!-- L_1 -->
+
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>L</m:mi>
+	    <m:mn>2</m:mn>
+	  </m:msub></m:ci>
+      </m:math>,
+      <!-- L_2 -->
+
+      and
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>L</m:mi>
+	    <m:mn>3</m:mn>
+	  </m:msub></m:ci>
+      </m:math>.
+      <!-- L_3 -->
+    </para>
+
+    <para id="p3">
+      Now, if spring 1 connects
+
+      <m:math display="inline">
+	<m:set>
+	  <m:cn>0</m:cn>
+	  <m:apply><m:minus/>
+	    <m:ci><m:msub>
+		<m:mi>L</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	  </m:apply>
+	</m:set>
+      </m:math> 
+      <!-- ( 0 , - L_1 ) -->
+
+      to 
+      <m:math display="inline">
+	<m:set>
+	  <m:cn>0</m:cn>
+	  <m:cn>1</m:cn>
+	</m:set>
+      </m:math> when at rest and
+
+      <m:math display="inline">
+	<m:set>
+	  <m:cn>0</m:cn>
+	  <m:apply><m:minus/>
+	    <m:ci><m:msub>
+		<m:mi>L</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	  </m:apply>
+	</m:set>
+      </m:math>
+      <!-- ( 0 , - L_1 ) --> 
+
+      to
+      <m:math display="inline">
+	<m:set>
+	  <m:ci><m:msub>
+	      <m:mi>x</m:mi>
+	      <m:mn>1</m:mn>
+	    </m:msub></m:ci>
+	  <m:ci><m:msub>
+	      <m:mi>x</m:mi>
+	      <m:mn>2</m:mn>
+	    </m:msub></m:ci>
+	</m:set>
+      </m:math>
+      <!-- ( x_1 , x_2 ) -->
+
+      when stretched then its elongation is simply
+      <equation id="eqn2_6">
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>e</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	    <m:apply><m:minus/>
+	      <m:apply><m:root/>
+		<m:degree><m:cn>2</m:cn></m:degree>
+		<m:apply><m:plus/>
+		  <m:apply><m:power/>
+		    <m:ci><m:msub>
+			<m:mi>x</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:apply><m:power/>
+		    <m:apply><m:plus/>
+		      <m:ci><m:msub>
+			  <m:mi>x</m:mi>
+			  <m:mn>2</m:mn>
+			</m:msub></m:ci>
+		      <m:ci><m:msub>
+			  <m:mi>L</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:ci><m:msub>
+		  <m:mi>L</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+      <!-- e_1 = sqrt( (x_1)^2 + ( x_2 + L_1 )^2 ) - L_1 -->
+    </para>
+
+    <para id="p4">
+      The price one pays for moving to higher dimensions is that lengths
+      are now expressed in terms of square roots. The upshot is that the
+      elongations are not linear combinations of the end displacements
+      as they were in <link document="m10146" target-id="uniaxial_truss" strength="2">the uniaxial case</link>. If we presume, however,
+      that the loads and stiffnesses are matched in the sense that the
+      displacements are small compared with the original lengths, then
+      we may effectively ignore the nonlinear contribution in <link target-id="eqn2_6" strength="3"/>.  In order to make this precise we
+      need only recall the
+      
+      <rule id="taylor" type="rule">
+	<title>Taylor development of the square root of (1 + t) </title>
+	
+	<statement id="idm7149488">
+	  <para id="state_p1">
+	    The Taylor development of
+	    <m:math display="inline">
+	      <m:apply><m:root/>
+		<m:degree><m:cn>2</m:cn></m:degree>
+		<m:apply><m:plus/>
+		  <m:cn>1</m:cn>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <!-- sqrt( 1 + t ) -->
+	    </m:math>
+	    
+	    about 
+	    <m:math display="inline">
+	      <m:apply><m:eq/>
+		<m:ci>t</m:ci>
+		<m:cn>0</m:cn>
+	      </m:apply>
+	      <!-- t = 0 -->
+	    </m:math>
+	    
+	    is
+	    <m:math display="block">
+	      <m:apply><m:eq/>
+		<m:apply><m:root/>
+		  <m:degree><m:cn>2</m:cn></m:degree>
+		  <m:apply><m:plus/>
+		    <m:cn>1</m:cn>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply><m:plus/>
+		  <m:cn>1</m:cn>
+		  <m:apply><m:divide/>
+		    <m:ci>t</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn">O</m:ci>
+		    <m:apply><m:power/>
+		      <m:ci>t</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	    <!-- sqrt( 1 + t ) = 1 + t/2 + O(t^2) -->
+
+	    where the latter term signifies the remainder.
+	  </para>
+	</statement>
+      </rule>
+
+      With regard to
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>e</m:mi>
+	    <m:mn>1</m:mn>
+	  </m:msub></m:ci>
+      </m:math>
+
+      this allows
+      <equation id="eqna1">
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>e</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	    <m:apply><m:minus/>
+	      <m:apply><m:root/>
+		<m:degree><m:cn>2</m:cn></m:degree>
+		<m:apply><m:plus/>
+		  <m:apply><m:power/>
+		    <m:ci><m:msub>
+			<m:mi>x</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:apply><m:power/>
+		    <m:ci><m:msub>
+			<m:mi>x</m:mi>
+			<m:mn>2</m:mn>
+		      </m:msub></m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:apply><m:times/>
+		    <m:cn>2</m:cn>
+		    <m:ci><m:msub>
+			<m:mi>x</m:mi>
+			<m:mn>2</m:mn>
+		      </m:msub></m:ci>
+		    <m:ci><m:msub>
+			<m:mi>L</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:apply><m:power/>
+		    <m:ci><m:msub>
+			<m:mi>L</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:ci><m:msub>
+		  <m:mi>L</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	    
+	    <!-- e_1 = sqrt( (x_1)^2 + (x_2)^2 + 2(x_2)(L_1) + (L_1)^2 ) - L_1 -->
+	    <m:apply><m:minus/>
+	      <m:apply><m:times/>
+		<m:ci><m:msub>
+		    <m:mi>L</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:apply><m:root/>
+		  <m:degree><m:cn>2</m:cn></m:degree>
+		  <m:apply><m:plus/>
+		    <m:cn>1</m:cn>
+		    <m:apply><m:divide/>
+		      <m:apply><m:plus/>
+			<m:apply><m:power/>
+			  <m:ci><m:msub>
+			      <m:mi>x</m:mi>
+			      <m:mn>1</m:mn>
+			    </m:msub></m:ci>
+			  <m:cn>2</m:cn>
+			</m:apply>
+			<m:apply><m:power/>
+			  <m:ci><m:msub>
+			      <m:mi>x</m:mi>
+			      <m:mn>2</m:mn>
+			    </m:msub></m:ci>
+			  <m:cn>2</m:cn>
+			</m:apply> 
+		      </m:apply>
+		      <m:apply><m:power/>
+			<m:ci><m:msub>
+			    <m:mi>L</m:mi>
+			    <m:mn>1</m:mn>
+			  </m:msub></m:ci>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply><m:divide/>
+		      <m:apply><m:times/>
+			<m:cn>2</m:cn>
+			<m:ci><m:msub>
+			    <m:mi>x</m:mi>
+			    <m:mn>2</m:mn>
+			  </m:msub></m:ci>
+		      </m:apply>
+		      <m:ci><m:msub>
+			  <m:mi>L</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub></m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:ci><m:msub>
+		  <m:mi>L</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	    <!-- = L_1 * sqrt[ 1 + ( (x_1)^2 + (x_2)^2 ) / (L_1)^2 + 2x_2 / L_1 ] 
+	    - L_1  -->
+	  </m:apply>
+	</m:math>
+      </equation>
+
+      <equation id="eqna2">
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>e</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	    <m:apply><m:minus/>
+	      <m:apply><m:plus/>
+		<m:ci><m:msub>
+		    <m:mi>L</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:apply><m:divide/>
+		  <m:apply><m:plus/>
+		    <m:apply><m:power/>
+		      <m:ci><m:msub>
+			  <m:mi>x</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub></m:ci>
+		     <m:cn>2</m:cn>
+		    </m:apply>
+		    <m:apply><m:power/>
+		      <m:ci><m:msub>
+			  <m:mi>x</m:mi>
+			  <m:mn>2</m:mn>
+			</m:msub></m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply> 
+		  </m:apply>
+		  <m:apply><m:times/>
+		    <m:cn>2</m:cn>
+		    <m:ci><m:msub>
+			<m:mi>L</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+		<m:apply><m:times/>
+		  <m:ci><m:msub>
+		      <m:mi>L</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		  <m:apply>
+		    <m:ci type="fn">O</m:ci>
+		    <m:apply><m:power/>
+		      <m:apply><m:plus/>
+			<m:apply><m:divide/>
+			  <m:apply><m:plus/>
+			    <m:apply><m:power/>
+			      <m:ci><m:msub>
+				  <m:mi>x</m:mi>
+				  <m:mn>1</m:mn>
+				</m:msub></m:ci>
+			      <m:cn>2</m:cn>
+			    </m:apply>
+			    <m:apply><m:power/>
+			      <m:ci><m:msub>
+				  <m:mi>x</m:mi>
+				  <m:mn>2</m:mn>
+				</m:msub></m:ci>
+			      <m:cn>2</m:cn>
+			    </m:apply> 
+			  </m:apply>
+			  <m:apply><m:power/>
+			    <m:ci><m:msub>
+				<m:mi>L</m:mi>
+				<m:mn>1</m:mn>
+			      </m:msub></m:ci>
+			    <m:cn>2</m:cn>
+			  </m:apply>
+			</m:apply>
+			<m:apply><m:divide/>
+			  <m:apply><m:times/>
+			    <m:cn>2</m:cn>
+			    <m:ci><m:msub>
+				<m:mi>x</m:mi>
+				<m:mn>2</m:mn>
+			      </m:msub></m:ci>
+			  </m:apply>
+			  <m:ci><m:msub>
+			      <m:mi>L</m:mi>
+			      <m:mn>1</m:mn>
+			    </m:msub></m:ci>
+			</m:apply>
+		      </m:apply>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:ci><m:msub>
+		  <m:mi>L</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	    <!-- = L_1 + ( (x_1)^2 + (x_2)^2 ) / (2L_1) + x_2 + L_1 *
+	    O( ( ( (x_1)^2 + (x_2)^2 ) / (L_1)^2 + 2x_2 / L_1 )^2 ) - L_1 -->
+	    
+	    <m:apply><m:plus/>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>2</m:mn>
+		</m:msub></m:ci>
+	      <m:apply><m:divide/>
+		<m:apply><m:plus/>
+		  <m:apply><m:power/>
+		    <m:ci><m:msub>
+			<m:mi>x</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:apply><m:power/>
+		    <m:ci><m:msub>
+			<m:mi>x</m:mi>
+			<m:mn>2</m:mn>
+		      </m:msub></m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply> 
+		</m:apply>
+		<m:apply><m:times/>
+		  <m:cn>2</m:cn>
+		  <m:ci><m:msub>
+		      <m:mi>L</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply><m:times/>
+		<m:ci><m:msub>
+		    <m:mi>L</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:apply>
+		  <m:ci type="fn">O</m:ci>
+		  <m:apply><m:power/>
+		    <m:apply><m:plus/>
+		      <m:apply><m:divide/>
+			<m:apply><m:plus/>
+			  <m:apply><m:power/>
+			    <m:ci><m:msub>
+				<m:mi>x</m:mi>
+				<m:mn>1</m:mn>
+			      </m:msub></m:ci>
+			    <m:cn>2</m:cn>
+			  </m:apply>
+			  <m:apply><m:power/>
+			    <m:ci><m:msub>
+				<m:mi>x</m:mi>
+				<m:mn>2</m:mn>
+			      </m:msub></m:ci>
+			    <m:cn>2</m:cn>
+			  </m:apply> 
+			</m:apply>
+			<m:apply><m:power/>
+			  <m:ci><m:msub>
+			      <m:mi>L</m:mi>
+			      <m:mn>1</m:mn>
+			    </m:msub></m:ci>
+			  <m:cn>2</m:cn>
+			</m:apply>
+		      </m:apply>
+		      <m:apply><m:divide/>
+			<m:apply><m:times/>
+			  <m:cn>2</m:cn>
+			  <m:ci><m:msub>
+			      <m:mi>x</m:mi>
+			      <m:mn>2</m:mn>
+			    </m:msub></m:ci>
+			</m:apply>
+			<m:ci><m:msub>
+			    <m:mi>L</m:mi>
+			    <m:mn>1</m:mn>
+			  </m:msub></m:ci>
+		      </m:apply>
+		    </m:apply>
+		   <m:cn>2</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	  <!-- = ( x_2 + (x_1)^2 + (x_2)^2 ) / (2L_1) + 
+	  L_1 * O( ( ( (x_1)^2 + (x_2)^2 ) / (L_1)^2 + 2x_2 / L_1 )^2 ) -->
+	</m:math>
+      </equation>
+    </para>
+
+    <para id="p5">
+      If we now assume that
+      <equation id="eqn2_7">
+	<m:math display="block">
+	  <m:apply><m:divide/>
+	    <m:apply><m:plus/>
+	      <m:apply><m:power/>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	      <m:apply><m:power/>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+		<m:cn>2</m:cn>
+	      </m:apply> 
+	    </m:apply>
+	    <m:apply><m:times/>
+	      <m:cn>2</m:cn>
+	      <m:ci><m:msub>
+		  <m:mi>L</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <!-- ( (x_1)^2 + (x_2)^2 ) / (2L_1) -->
+	  
+	  <m:mrow><m:mi> </m:mi>
+	    <m:mtext>is small compared to</m:mtext>
+	    <m:mi> </m:mi></m:mrow>
+	  
+	  <m:ci><m:msub>
+	      <m:mi>x</m:mi>
+	      <m:mn>2</m:mn>
+	    </m:msub></m:ci>
+	  <!-- x_2 -->
+	</m:math>
+      </equation>
+
+      then, as the <m:math><m:ci>O</m:ci></m:math> term is even
+      smaller, we may neglect all but the first terms in the above and
+      so arrive at
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:ci><m:msub>
+	      <m:mi>e</m:mi>
+	      <m:mn>1</m:mn>
+	    </m:msub></m:ci>
+	  <m:ci><m:msub>
+	      <m:mi>x</m:mi>
+	      <m:mn>2</m:mn>
+	    </m:msub></m:ci> 
+	</m:apply>
+	<!-- e_1 = x_2 -->
+      </m:math>
+
+      To take a concrete example, if 
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>L</m:mi>
+	    <m:mn>1</m:mn>
+	  </m:msub></m:ci>
+      </m:math>
+      <!-- L_1 -->
+
+      is one meter and
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>x</m:mi>
+	    <m:mn>1</m:mn>
+	  </m:msub></m:ci>
+      </m:math>
+      
+      and
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>x</m:mi>
+	    <m:mn>2</m:mn>
+	  </m:msub></m:ci>
+      </m:math>
+      <!-- x_2 -->
+
+      are each one centimeter, then
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>x</m:mi>
+	    <m:mn>2</m:mn>
+	  </m:msub></m:ci>
+      </m:math>
+      <!-- x_2 -->
+
+      is one hundred times
+      <m:math display="inline">
+	<m:apply><m:divide/>
+	  <m:apply><m:plus/>
+	    <m:apply><m:power/>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	    <m:apply><m:power/>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>2</m:mn>
+		</m:msub></m:ci>
+	      <m:cn>2</m:cn>
+	    </m:apply> 
+	  </m:apply>
+	  <m:apply><m:times/>
+	    <m:cn>2</m:cn>
+	    <m:ci><m:msub>
+		<m:mi>L</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>.
+      <!-- ( (x_1)^2 + (x_2)^2 ) / (2L_1) -->
+    </para>
+
+    <para id="p6">
+      With regard to the second spring, arguing as above, its elongation is
+      (approximately) its stretch along its initial direction. As its initial
+      direction is horizontal, its elongation is just the difference of the
+      respective horizontal end displacements, namely,
+      
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:ci><m:msub>
+	      <m:mi>e</m:mi>
+	      <m:mn>2</m:mn>
+	    </m:msub></m:ci>
+	  <m:apply><m:minus/>
+	    <m:ci><m:msub>
+		<m:mi>x</m:mi>
+		<m:mn>3</m:mn>
+	      </m:msub></m:ci>
+	    <m:ci><m:msub>
+		<m:mi>x</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	  </m:apply>
+	</m:apply>
+	<!-- e_2 = x_3 - x_1 -->
+      </m:math>
+
+      Finally, the elongation of the third spring is (approximately)
+      the difference of its respective vertical end displacements,
+      <foreign>i.e.</foreign>,
+
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:ci><m:msub>
+	      <m:mi>e</m:mi>
+	      <m:mn>3</m:mn>
+	    </m:msub></m:ci>
+	  <m:ci><m:msub>
+	      <m:mi>x</m:mi>
+	      <m:mn>4</m:mn>
+	    </m:msub></m:ci> 
+	</m:apply>
+	<!-- e_3 = x_4 -->
+      </m:math>
+
+      We encode these three elongations in
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:ci type="vector">e</m:ci>
+	  <m:apply><m:times/>
+	    <m:ci type="matrix">A</m:ci>
+	    <m:ci type="vector">x</m:ci>
+	  </m:apply>
+	</m:apply>
+	<!-- e = Ax -->
+
+	<m:mrow>
+	  <m:mi> </m:mi><m:mi> </m:mi>
+	  <m:mi> </m:mi><m:mi> </m:mi>
+	  <m:mtext>where</m:mtext>
+	  <m:mi> </m:mi><m:mi> </m:mi>
+	  <m:mi> </m:mi><m:mi> </m:mi>
+	</m:mrow>
+
+	<m:apply><m:eq/>
+	  <m:ci type="matrix">A</m:ci>
+	  <m:matrix>
+	    <m:matrixrow><m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+	    </m:matrixrow>
+	    <m:matrixrow><m:cn>-1</m:cn><m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn>
+	    </m:matrixrow>
+	    <m:matrixrow><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>1</m:cn>
+	    </m:matrixrow>
+	  </m:matrix>
+	</m:apply>
+	<!-- A = [  0  1  0  0 
+	-1  0  1  0
+	0  0  0  1  ] -->
+      </m:math>
+
+      <link document="m10146" target-id="hookes_law" strength="2">Hooke's
+      law </link> is an elemental piece of physics and is not
+      perturbed by our leap from uniaxial to biaxial structures. The
+      upshot is that the restoring force in each spring is still
+      proportional to its elongation, <foreign>i.e.</foreign>,
+
+      <m:math display="inline">
+	<m:apply><m:eq/>
+	  <m:ci><m:msub>
+	      <m:mi>y</m:mi>
+	      <m:mi>j</m:mi>
+	    </m:msub></m:ci>
+	  <m:apply><m:times/>
+	    <m:ci><m:msub>
+		<m:mi>k</m:mi>
+		<m:mi>j</m:mi>
+	      </m:msub></m:ci>
+	    <m:ci><m:msub>
+		<m:mi>e</m:mi>
+		<m:mi>j</m:mi>
+	      </m:msub></m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      <!-- y_j = k_j * e_j -->
+      
+      where 
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>k</m:mi>
+	    <m:mi>j</m:mi>
+	  </m:msub></m:ci>
+      </m:math>
+      <!-- k_j -->
+
+      is the stiffness of the <m:math display="inline"><m:ci>j</m:ci></m:math>th spring. In matrix
+      terms,
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:ci type="vector">y</m:ci>
+	  <m:apply><m:times/>
+	    <m:ci type="matrix">K</m:ci>
+	    <m:ci type="vector">e</m:ci>
+	  </m:apply>
+	</m:apply>
+	<!-- y = Ke -->
+	
+	<m:mrow>
+	  <m:mi> </m:mi><m:mi> </m:mi>
+	  <m:mi> </m:mi><m:mi> </m:mi>
+	  <m:mtext>where</m:mtext>
+	  <m:mi> </m:mi><m:mi> </m:mi>
+	  <m:mi> </m:mi><m:mi> </m:mi>
+	</m:mrow>
+	
+	<m:apply><m:eq/>
+	  <m:ci type="matrix">K</m:ci>
+	  <m:matrix>
+	    <m:matrixrow>
+	      <m:ci><m:msub>
+		  <m:mi>k</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	      <m:cn>0</m:cn><m:cn>0</m:cn>
+	    </m:matrixrow>
+	    <m:matrixrow><m:cn>0</m:cn>
+	      <m:ci><m:msub>
+		  <m:mi>k</m:mi>
+		  <m:mn>2</m:mn>
+		</m:msub></m:ci>
+	      <m:cn>0</m:cn>
+	    </m:matrixrow>
+	    <m:matrixrow><m:cn>0</m:cn><m:cn>0</m:cn>
+	      <m:ci><m:msub>
+		  <m:mi>k</m:mi>
+		  <m:mn>3</m:mn>
+		</m:msub></m:ci>
+	    </m:matrixrow>
+	  </m:matrix>
+	</m:apply>
+	<!-- K = [ k_1  0  0 
+	0  k_2 0
+	0   0 k_3 ] -->
+      </m:math>
+
+      Balancing horizontal and vertical forces at
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>m</m:mi>
+	    <m:mn>1</m:mn>
+	  </m:msub></m:ci>
+      </m:math>
+      <!-- m_1 -->
+
+      brings
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:apply><m:minus/>
+	    <m:apply><m:minus/>
+	      <m:ci><m:msub>
+		  <m:mi>y</m:mi>
+		  <m:mn>2</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	    <m:ci><m:msub>
+		<m:mi>f</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	  </m:apply>
+	  <m:cn>0</m:cn>
+	</m:apply>
+      </m:math>
+      <!-- -y_2 - f_1 = 0 -->
+      and
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:apply><m:minus/>
+	    <m:ci><m:msub>
+		<m:mi>y</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	    <m:ci><m:msub>
+		<m:mi>f</m:mi>
+		<m:mn>2</m:mn>
+	      </m:msub></m:ci>
+	  </m:apply>
+	  <m:cn>0</m:cn>
+	</m:apply>
+	<!-- y_1 - f_2 = 0 -->
+      </m:math>
+
+      while balancing horizontal and vertical forces at 
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>m</m:mi>
+	    <m:mn>2</m:mn>
+	  </m:msub></m:ci>
+      </m:math>
+      <!-- m_2 -->
+
+      brings
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:apply><m:minus/>
+	    <m:ci><m:msub>
+		<m:mi>y</m:mi>
+		<m:mn>2</m:mn>
+	      </m:msub></m:ci>
+	    <m:ci><m:msub>
+		<m:mi>f</m:mi>
+		<m:mn>3</m:mn>
+	      </m:msub></m:ci>
+	  </m:apply>
+	  <m:cn>0</m:cn>
+	</m:apply>
+	<!-- y_2 - f_3 = 0 -->
+      </m:math> and
+
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:apply><m:minus/>
+	    <m:ci><m:msub>
+		<m:mi>y</m:mi>
+		<m:mn>3</m:mn>
+	      </m:msub></m:ci>
+	    <m:ci><m:msub>
+		<m:mi>f</m:mi>
+		<m:mn>4</m:mn>
+	      </m:msub></m:ci>
+	  </m:apply>
+	  <m:cn>0</m:cn>
+	</m:apply>
+	<!-- y_3 - f_4 = 0 -->
+      </m:math>
+
+      We assemble these into 
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:apply><m:times/>
+	    <m:ci type="matrix">B</m:ci>
+	    <m:ci type="vector">y</m:ci>
+	  </m:apply>
+	  <m:ci type="vector">f</m:ci>
+	</m:apply>
+	<!-- By = f -->
+	
+	<m:mrow>
+	  <m:mi> </m:mi><m:mi> </m:mi>
+	  <m:mi> </m:mi><m:mi> </m:mi>
+	  <m:mtext>where</m:mtext>
+	  <m:mi> </m:mi><m:mi> </m:mi>
+	  <m:mi> </m:mi><m:mi> </m:mi>
+	</m:mrow>
+
+	<m:apply><m:eq/>
+	  <m:ci type="matrix">B</m:ci>
+	  <m:matrix>
+	    <m:matrixrow><m:cn>0</m:cn><m:cn>-1</m:cn><m:cn>0</m:cn></m:matrixrow>
+	    <m:matrixrow><m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn></m:matrixrow>
+	    <m:matrixrow><m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn></m:matrixrow>
+	    <m:matrixrow><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>1</m:cn></m:matrixrow>
+	  </m:matrix>
+	</m:apply>
+	<m:mtext>,</m:mtext>
+	<!-- B = [  0 -1  0 
+	1  0  0
+	0  1  0
+	0  0  1  ]  -->
+      </m:math>
+
+      and recognize, as expected, that <m:math><m:ci type="matrix">B</m:ci></m:math> is nothing more than
+
+      <m:math display="inline">
+	<m:apply><m:transpose/>
+	  <m:ci type="matrix">A</m:ci>
+	</m:apply>
+      </m:math>.  Putting the pieces together, we find that
+      <m:math><m:ci type="vector">x</m:ci></m:math> must satisfy
+
+      <m:math display="inline">
+	<m:apply><m:eq/>
+	  <m:apply><m:times/>
+	    <m:ci type="matrix">S</m:ci>
+	    <m:ci type="vector">x</m:ci>
+	  </m:apply>
+	  <m:ci type="vector">f</m:ci>
+	</m:apply>
+	<!-- Sx = f -->
+      </m:math>
+
+      where 
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:ci type="matrix">S</m:ci>
+	  <m:apply><m:times/>
+	    <m:apply><m:transpose/>
+	      <m:ci type="matrix">A</m:ci>
+	    </m:apply>
+	    <m:ci type="matrix">K</m:ci>
+	    <m:ci type="matrix">A</m:ci>
+	  </m:apply>
+	  <m:matrix>
+	    <m:matrixrow>
+	      <m:ci><m:msub>
+		  <m:mi>k</m:mi>
+		  <m:mn>2</m:mn>
+		</m:msub></m:ci>
+	      <m:cn>0</m:cn>
+	      <m:apply><m:minus/>
+		<m:ci><m:msub>
+		    <m:mi>k</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	    </m:matrixrow>
+	    <m:matrixrow>
+	      <m:cn>0</m:cn>
+	      <m:ci><m:msub>
+		  <m:mi>k</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	      <m:cn>0</m:cn><m:cn>0</m:cn>
+	    </m:matrixrow>
+	    <m:matrixrow>
+	      <m:apply><m:minus/>
+		<m:ci><m:msub>
+		    <m:mi>k</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	      <m:ci><m:msub>
+		  <m:mi>k</m:mi>
+		  <m:mn>2</m:mn>
+		</m:msub></m:ci>
+	      <m:cn>0</m:cn>
+	    </m:matrixrow>
+	    <m:matrixrow>
+	      <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+	      <m:ci><m:msub>
+		  <m:mi>k</m:mi>
+		  <m:mn>3</m:mn>
+		</m:msub></m:ci>
+	    </m:matrixrow>
+	  </m:matrix>
+	</m:apply>
+      </m:math>
+      <!-- S = A'KA = [  k_2  0  -k_2  0  
+      0  k_1   0   0
+      -k_2  0   k_2  0
+      0   0    0  k_3 ]  -->
+    </para>
+
+    <para id="p7">
+      Applying one step of <link document="m10146" target-id="gaussian_elimination" strength="2">Gaussian Elimination
+      </link> brings
+      
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:apply><m:times/>
+	    <m:matrix>
+	      <m:matrixrow>
+		<m:ci><m:msub>
+		    <m:mi>k</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+		<m:cn>0</m:cn>
+		<m:apply><m:minus/>
+		  <m:ci><m:msub>
+		      <m:mi>k</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:cn>0</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>0</m:cn>
+		<m:ci><m:msub>
+		    <m:mi>k</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:cn>0</m:cn><m:cn>0</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		<m:ci><m:msub>
+		    <m:mi>k</m:mi>
+		    <m:mn>3</m:mn>
+		  </m:msub></m:ci>
+	      </m:matrixrow>
+	    </m:matrix>
+	    <m:vector>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>2</m:mn>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>3</m:mn>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>4</m:mn>
+		</m:msub></m:ci>
+	    </m:vector>
+	  </m:apply>
+	  <m:vector>
+	    <m:ci><m:msub>
+		<m:mi>f</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	    <m:ci><m:msub>
+		<m:mi>f</m:mi>
+		<m:mn>2</m:mn>
+	      </m:msub></m:ci>
+	    <m:apply><m:plus/>
+	      <m:ci><m:msub>
+		  <m:mi>f</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>f</m:mi>
+		  <m:mn>3</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	    <m:ci><m:msub>
+		<m:mi>f</m:mi>
+		<m:mn>4</m:mn>
+	      </m:msub></m:ci>
+	  </m:vector>
+	</m:apply>
+	<!-- [  k_2  0 -k_2  0  
+	0  k_1  0   0
+	0   0   0   0
+	0   0   0  k_3  ] * [ x_1; x_2; x_3; x_4 ] 
+	= [ f_1; f_2; f_1 + f_3; f_4 ]   -->
+      </m:math>
+
+      and back substitution delivers
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:ci><m:msub>
+	      <m:mi>x</m:mi>
+	      <m:mn>4</m:mn>
+	    </m:msub></m:ci> 
+	  <m:apply><m:divide/>
+	    <m:ci><m:msub>
+		<m:mi>f</m:mi>
+		<m:mn>4</m:mn>
+	      </m:msub></m:ci>
+	    <m:ci><m:msub>
+		<m:mi>k</m:mi>
+		<m:mn>3</m:mn>
+	      </m:msub></m:ci>
+	  </m:apply>
+	</m:apply>
+	<!-- x_4 = f_4 / k_3 -->
+      </m:math>
+
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:cn>0</m:cn>
+	  <m:apply><m:plus/>
+	    <m:ci><m:msub>
+		<m:mi>f</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	    <m:ci><m:msub>
+		<m:mi>f</m:mi>
+		<m:mn>3</m:mn>
+	      </m:msub></m:ci>
+	  </m:apply>
+	</m:apply>
+	<!-- 0 = f_1 + f_3 -->
+      </m:math>
+
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:ci><m:msub>
+	      <m:mi>x</m:mi>
+	      <m:mn>2</m:mn>
+	    </m:msub></m:ci> 
+	  <m:apply><m:divide/>
+	    <m:ci><m:msub>
+		<m:mi>f</m:mi>
+		<m:mn>2</m:mn>
+	      </m:msub></m:ci> 
+	    <m:ci><m:msub>
+		<m:mi>k</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci> 
+	  </m:apply>
+	</m:apply>
+	<!-- x_2 = f_2 / k_1 -->
+      </m:math>
+      
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:apply><m:minus/>
+	    <m:ci><m:msub>
+		<m:mi>x</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci> 
+	    <m:ci><m:msub>
+		<m:mi>x</m:mi>
+		<m:mn>3</m:mn>
+	      </m:msub></m:ci>
+	  </m:apply>
+	  <m:apply><m:divide/>
+	    <m:ci><m:msub>
+		<m:mi>f</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci> 
+	    <m:ci><m:msub>
+		<m:mi>k</m:mi>
+		<m:mn>2</m:mn>
+	      </m:msub></m:ci>
+	  </m:apply>
+	</m:apply>
+	<!-- x_1 - x_3 = f_1 / k_2 -->
+      </m:math>
+    </para>
+
+    <para id="p8">
+      The second of these is remarkable in that it contains no
+      components of <m:math><m:ci type="vector">x</m:ci></m:math>.
+      Instead, it provides a condition on <m:math><m:ci type="vector">f</m:ci></m:math>.  In mechanical terms, it states
+      that there can be no equilibrium unless the horizontal forces on
+      the two masses are equal and opposite. Of course one could have
+      observed this directly from the layout of the truss. In modern,
+      three--dimensional structures with thousands of members meant to
+      shelter or convey humans one should not however be satisfied
+      with the `visual' integrity of the structure.  In particular,
+      one desires a detailed description of all loads that can, and,
+      especially, all loads that can not, be equilibrated by the
+      proposed truss. In algebraic terms, given a matrix <m:math display="inline"><m:ci type="matrix">S</m:ci></m:math>, one
+      desires a characterization of
+
+      <list id="matrix_desires" list-type="enumerated">
+	<item>
+	  all those <m:math><m:ci type="vector">f</m:ci></m:math> for
+	  which
+
+	  <m:math display="inline">
+	    <m:apply><m:eq/>
+	      <m:apply><m:times/>
+		<m:ci type="matrix">S</m:ci>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	      <m:ci type="vector">f</m:ci>
+	    </m:apply>
+	    <!-- Sx = f -->
+	  </m:math>
+	  
+	  <emphasis>possesses</emphasis> a solution
+	</item>
+
+	<item>
+	  all those <m:math><m:ci type="vector">f</m:ci></m:math> for
+	  which
+
+	  <m:math display="inline">
+	    <m:apply><m:eq/>
+	      <m:apply><m:times/>
+		<m:ci type="matrix">S</m:ci>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	      <m:ci type="vector">f</m:ci>
+	    </m:apply>
+	    <!-- Sx = f -->
+	  </m:math>
+	  
+	  <emphasis>does not</emphasis> possess a solution
+	</item>
+      </list>
+
+      We will eventually provide such a characterization in our later
+      discussion of the <link document="m10266" strength="2">column
+      space </link> of a matrix.
+    </para>
+
+    <para id="p9">
+      Supposing now that 
+    <m:math display="inline">
+      <m:apply><m:eq/>
+	<m:apply><m:plus/>
+	  <m:ci><m:msub>
+	      <m:mi>f</m:mi>
+	      <m:mn>1</m:mn>
+	    </m:msub></m:ci> 
+	  <m:ci><m:msub>
+	      <m:mi>f</m:mi>
+	      <m:mn>3</m:mn>
+	    </m:msub></m:ci>
+	</m:apply>
+	<m:cn>0</m:cn>
+      </m:apply>
+    </m:math>
+    <!-- f_1 + f_3 = 0 -->
+
+      we note that although the system above is consistent it still
+      fails to uniquely determine the four components of <m:math display="inline"><m:ci type="vector">x</m:ci></m:math>.  In
+      particular, it specifies only the difference between
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>x</m:mi>
+	    <m:mn>1</m:mn>
+	  </m:msub></m:ci> 
+      </m:math>
+      <!-- x_1 -->
+
+      and
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>x</m:mi>
+	    <m:mn>3</m:mn>
+	  </m:msub></m:ci> 
+      </m:math>.
+      <!-- x_3 -->
+
+      As a result both 
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:ci type="vector">x</m:ci>
+	  <m:vector>
+	    <m:apply><m:divide/>
+	      <m:ci><m:msub>
+		  <m:mi>f</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci> 
+	      <m:ci><m:msub>
+		  <m:mi>k</m:mi>
+		  <m:mn>2</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	    <m:apply><m:divide/>
+	      <m:ci><m:msub>
+		  <m:mi>f</m:mi>
+		  <m:mn>2</m:mn>
+		</m:msub></m:ci> 
+	      <m:ci><m:msub>
+		  <m:mi>k</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	    <m:cn>0</m:cn>
+	    <m:apply><m:divide/>
+	      <m:ci><m:msub>
+		  <m:mi>f</m:mi>
+		  <m:mn>4</m:mn>
+		</m:msub></m:ci> 
+	      <m:ci><m:msub>
+		  <m:mi>k</m:mi>
+		  <m:mn>3</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	  </m:vector>
+	</m:apply>
+	<!-- x = [ f_1 / k_2; f_2 / k_1 ; 0 ; f_4 / k_3 ] -->
+
+	<m:mtext>  and  </m:mtext>
+
+	<m:apply><m:eq/>
+	  <m:ci type="vector">x</m:ci>
+	  <m:vector>
+	    <m:cn>0</m:cn>
+	    <m:apply><m:divide/>
+	      <m:ci><m:msub>
+		  <m:mi>f</m:mi>
+		  <m:mn>2</m:mn>
+		</m:msub></m:ci> 
+	      <m:ci><m:msub>
+		  <m:mi>k</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	    <m:apply><m:minus/>
+	      <m:apply><m:divide/>
+		<m:ci><m:msub>
+		    <m:mi>f</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci> 
+		<m:ci><m:msub>
+		    <m:mi>k</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply><m:divide/>
+	      <m:ci><m:msub>
+		  <m:mi>f</m:mi>
+		  <m:mn>4</m:mn>
+		</m:msub></m:ci> 
+	      <m:ci><m:msub>
+		  <m:mi>k</m:mi>
+		  <m:mn>3</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	  </m:vector>
+	</m:apply>
+	<!-- x = [ 0; f_2 / k_1; -f_1 / k_2; f_4 / k_3 ] -->
+      </m:math>
+
+      satisfy 
+      <m:math display="inline">
+	<m:apply><m:eq/>
+	  <m:apply><m:times/>
+	    <m:ci type="matrix">S</m:ci>
+	    <m:ci type="vector">x</m:ci>
+	  </m:apply>
+	  <m:ci type="vector">f</m:ci>
+	</m:apply>
+	<!-- Sx = f -->
+      </m:math>.
+
+      In fact, one may add to either an arbitrary multiple of
+      <equation id="eqn2_8">
+	<m:math display="block">
+	  <m:apply><m:equivalent/>
+	    <m:ci type="vector">z</m:ci>
+	    <m:vector>
+	      <m:cn>1</m:cn><m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn>
+	    </m:vector>
+	  </m:apply>
+	</m:math>
+      </equation>
+      <!-- z == [1; 0; 1; 0] -->
+
+      and still have a solution of 
+      <m:math display="inline">
+	<m:apply><m:eq/>
+	  <m:apply><m:times/>
+	    <m:ci type="matrix">S</m:ci>
+	    <m:ci type="vector">x</m:ci>
+	  </m:apply>
+	  <m:ci type="vector">f</m:ci>
+	</m:apply>
+	<!-- Sx = f -->
+      </m:math>.
+
+      Searching for the source of this lack of uniqueness we observe
+      some redundancies in the columns of <m:math><m:ci type="matrix">S</m:ci></m:math>. In particular, the third is
+      simply the opposite of the first. As <m:math display="inline"><m:ci type="matrix">S</m:ci></m:math> is simply
+
+      <m:math display="inline">
+	<m:apply><m:times/>
+	  <m:apply><m:transpose/>
+	    <m:ci type="matrix">A</m:ci>
+	  </m:apply>
+	  <m:ci type="matrix">K</m:ci>
+	  <m:ci type="matrix">A</m:ci>
+	</m:apply>
+      </m:math>
+      <!-- A'KA -->
+
+      we recognize that the original fault lies with <m:math><m:ci type="matrix">A</m:ci></m:math>, where again, the first and
+      third columns are opposites. These redundancies are encoded in
+      <m:math><m:ci type="vector">z</m:ci></m:math> in the sense that
+
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:apply><m:times/>
+	    <m:ci type="matrix">A</m:ci>
+	    <m:ci type="vector">z</m:ci>
+	  </m:apply>
+	  <m:ci type="vector">0</m:ci>
+	</m:apply>
+      </m:math>
+      <!-- Az = 0 -->
+
+      Interpreting this in mechanical terms, we view <m:math><m:ci type="vector">z</m:ci></m:math> as a displacement and
+
+      <m:math display="inline">
+	<m:apply><m:times/>
+	  <m:ci type="matrix">A</m:ci>
+	  <m:ci type="vector">z</m:ci>
+	</m:apply>
+      </m:math>
+      <!-- Az -->
+      as the resulting elongation. In 
+
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:apply><m:times/>
+	    <m:ci type="matrix">A</m:ci>
+	    <m:ci type="vector">z</m:ci>
+	  </m:apply>
+	  <m:ci type="vector">0</m:ci>
+	</m:apply>
+      </m:math>
+      <!-- Az = 0 -->
+      
+      we see a nonzero displacement producing zero elongation. One
+      says in this case that the truss deforms without doing any work
+      and speaks of <m:math><m:ci type="vector">z</m:ci></m:math> as
+      an <term>unstable mode</term>.  Again, this mode could have been
+      observed by a simple glance at <link target-id="simple_swing" strength="3"/>.  Such is not the case for more complex
+      structures and so the engineer seeks a systematic means by which
+      <emphasis>all</emphasis> unstable modes may be identified. We
+      shall see later that all these modes are captured by the <link document="m10293" strength="2">null space</link> of <m:math display="inline"><m:ci type="matrix">A</m:ci></m:math>.
+    </para>
+
+    <para id="p10">
+      From
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:apply><m:times/>
+	    <m:ci type="matrix">S</m:ci>
+	    <m:ci type="vector">z</m:ci>
+	  </m:apply>
+	  <m:ci type="vector">0</m:ci>
+	</m:apply>
+      </m:math>
+      <!-- Sz = 0 -->
+
+      one easily deduces that <m:math display="inline"><m:ci type="matrix">S</m:ci></m:math> is <link document="m10146" target-id="singular" strength="2">singular</link>.  More precisely,
+      if
+
+      <m:math display="inline">
+	<m:apply><m:inverse/>
+	  <m:ci type="matrix">S</m:ci>
+	</m:apply>
+      </m:math>
+      <!-- S^(-1) -->
+
+      were to exist then
+      <m:math display="inline">
+	<m:apply><m:times/>
+	  <m:apply><m:inverse/>
+	    <m:ci type="matrix">S</m:ci>
+	  </m:apply>
+	  <m:ci type="matrix">S</m:ci>
+	  <m:ci type="vector">z</m:ci>
+	</m:apply>
+      </m:math>
+      <!-- S^(-1) * S * z -->
+
+      would equal
+      <m:math display="inline">
+	<m:apply><m:times/>
+	  <m:apply><m:inverse/>
+	    <m:ci type="matrix">S</m:ci>
+	  </m:apply>
+	  <m:ci type="vector">0</m:ci>
+	</m:apply>
+      </m:math>, <foreign>i.e.</foreign>,
+
+      <m:math display="inline">
+	<m:apply><m:eq/>
+	  <m:ci type="vector">z</m:ci>
+	  <m:ci type="vector">0</m:ci>
+	</m:apply>
+      </m:math>, contrary to <link target-id="eqn2_8" strength="3"/>. As
+      a result, Matlab will fail to solve
+
+      <m:math display="inline">
+	<m:apply><m:eq/>
+	  <m:apply><m:times/>
+	    <m:ci type="matrix">S</m:ci>
+	    <m:ci type="vector">x</m:ci>
+	  </m:apply>
+	  <m:ci type="vector">f</m:ci>
+	</m:apply>
+	<!-- Sx = f -->
+      </m:math>
+      
+      even when <m:math display="inline"><m:ci type="vector">f</m:ci></m:math> is a force that the truss can
+      equilibrate.  One way out is to use the
+      <term>pseudo-inverse</term>, as we shall see in the <link document="m10148" strength="3">General Planar Truss</link> module.
+    </para>
+  </content>
+</document>

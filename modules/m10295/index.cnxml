@@ -1,0 +1,230 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml"> 
+
+  <title>Row Reduced Form</title> 
+  
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>3f36276a-8260-4ab7-92f7-fc411a0df262</md:uuid>
+</metadata>
+  
+
+  <content>
+
+    <section id="manipulation">
+      <title>Row Reduction</title>
+
+      <para id="p1">
+	A central goal of science and engineering is to reduce the
+	complexity of a model without sacrificing its
+	integrity. Applied to matrices, this goal suggests that we
+	attempt to eliminate nonzero elements and so 'uncouple' the
+	rows. In order to retain its integrity the elimination must
+	obey two simple rules.
+	
+	<definition id="defn1"><term>Elementary Row Operations</term>
+	  <meaning id="idm9056688">You may swap any two rows.</meaning>
+	  <meaning id="idm8332416">You may add to a row a constant multiple of another row.</meaning>
+	</definition>
+	
+	With these two elementary operations one can systematically eliminate
+	all nonzeros below the diagonal. For example, given
+	
+	<equation id="eq1">
+	  <m:math display="block">
+	    <m:matrix>
+	      <m:matrixrow><m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn></m:matrixrow>
+	      <m:matrixrow><m:cn>-1</m:cn><m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn></m:matrixrow>
+	      <m:matrixrow><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>1</m:cn></m:matrixrow>
+	      <m:matrixrow><m:cn>1</m:cn><m:cn>2</m:cn><m:cn>3</m:cn><m:cn>4</m:cn></m:matrixrow>
+	    </m:matrix>
+	  </m:math>
+	</equation>
+	
+	it seems wise to swap the first and fourth rows and so arrive at
+	
+	<equation id="eq2">
+	  <m:math display="block">
+	    <m:matrix>
+	      <m:matrixrow><m:cn>1</m:cn><m:cn>2</m:cn><m:cn>3</m:cn><m:cn>4</m:cn></m:matrixrow>
+	      <m:matrixrow><m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn></m:matrixrow>
+	      <m:matrixrow><m:cn>-1</m:cn><m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn></m:matrixrow>
+	      <m:matrixrow><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>1</m:cn></m:matrixrow>
+	    </m:matrix>
+	  </m:math>
+	</equation>
+	
+	adding the first row to the third now produces
+	
+
+	<equation id="eq3">
+	  <m:math display="block">
+	    <m:matrix>
+	      <m:matrixrow><m:cn>1</m:cn><m:cn>2</m:cn><m:cn>3</m:cn><m:cn>4</m:cn></m:matrixrow>
+	      <m:matrixrow><m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn></m:matrixrow>
+	      <m:matrixrow><m:cn>0</m:cn><m:cn>2</m:cn><m:cn>4</m:cn><m:cn>4</m:cn></m:matrixrow>
+	      <m:matrixrow><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>1</m:cn></m:matrixrow>
+	    </m:matrix>
+	  </m:math>
+	</equation>
+	
+	subtracting twice the second row from the third yields
+	
+
+	<equation id="eq4">
+	  <m:math display="block">
+	    <m:matrix>
+	      <m:matrixrow><m:cn>1</m:cn><m:cn>2</m:cn><m:cn>3</m:cn><m:cn>4</m:cn></m:matrixrow>
+	      <m:matrixrow><m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn></m:matrixrow>
+	      <m:matrixrow><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>4</m:cn><m:cn>4</m:cn></m:matrixrow>
+	      <m:matrixrow><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>1</m:cn></m:matrixrow>
+	    </m:matrix>
+	  </m:math>
+	</equation>
+	
+	a matrix with zeros below its diagonal. This procedure is not
+	restricted to square matrices. For example, given
+	
+
+	<equation id="eq5">
+	  <m:math display="block">
+	    <m:matrix>
+	      <m:matrixrow><m:cn>1</m:cn><m:cn>1</m:cn><m:cn>1</m:cn><m:cn>1</m:cn></m:matrixrow>
+	      <m:matrixrow><m:cn>2</m:cn><m:cn>4</m:cn><m:cn>4</m:cn><m:cn>2</m:cn></m:matrixrow>
+	      <m:matrixrow><m:cn>3</m:cn><m:cn>5</m:cn><m:cn>5</m:cn><m:cn>3</m:cn></m:matrixrow>
+	    </m:matrix>
+	  </m:math>
+	</equation>
+	
+	we start at the bottom left then move up and right. Namely, we subtract
+	3 times the first row from the third and arrive at
+	
+	
+	<equation id="eq6">
+	  <m:math display="block">
+	    <m:matrix>
+	      <m:matrixrow><m:cn>1</m:cn><m:cn>1</m:cn><m:cn>1</m:cn><m:cn>1</m:cn></m:matrixrow>
+	      <m:matrixrow><m:cn>2</m:cn><m:cn>4</m:cn><m:cn>4</m:cn><m:cn>2</m:cn></m:matrixrow>
+	      <m:matrixrow><m:cn>0</m:cn><m:cn>2</m:cn><m:cn>2</m:cn><m:cn>0</m:cn></m:matrixrow>
+	    </m:matrix>
+	  </m:math>
+	</equation>
+	
+	and then subtract twice the first row from the second,
+	
+
+	<equation id="eq7">
+	  <m:math display="block">
+	    <m:matrix>
+	      <m:matrixrow><m:cn>1</m:cn><m:cn>1</m:cn><m:cn>1</m:cn><m:cn>1</m:cn></m:matrixrow>
+	      <m:matrixrow><m:cn>0</m:cn><m:cn>2</m:cn><m:cn>2</m:cn><m:cn>0</m:cn></m:matrixrow>
+	      <m:matrixrow><m:cn>0</m:cn><m:cn>2</m:cn><m:cn>2</m:cn><m:cn>0</m:cn></m:matrixrow>
+	    </m:matrix>
+	  </m:math>
+	</equation>
+	
+	and finally subtract the second row from the third,
+	
+
+	<equation id="eq8">
+	  <m:math display="block">
+	    <m:matrix>
+	      <m:matrixrow><m:cn>1</m:cn><m:cn>1</m:cn><m:cn>1</m:cn><m:cn>1</m:cn></m:matrixrow>
+	      <m:matrixrow><m:cn>0</m:cn><m:cn>2</m:cn><m:cn>2</m:cn><m:cn>0</m:cn></m:matrixrow>
+	      <m:matrixrow><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn></m:matrixrow>
+          </m:matrix>
+	  </m:math>
+	</equation>
+	
+	It helps to label the before and after matrices.
+	
+	<definition id="defn13">
+	  <term>The Row Reduced Form</term>
+	  <meaning id="idm2063392">Given the matrix 
+	
+	    <m:math display="inline"><m:ci type="matrix">A</m:ci></m:math> we apply elementary row
+	    operations until each nonzero below the diagonal is
+	    eliminated. We refer to the resulting matrix as
+	    
+	    <m:math display="inline">
+	      <m:ci type="matrix"><m:msub>
+		  <m:mi>A</m:mi>
+		  <m:mi>red</m:mi>
+		</m:msub></m:ci>
+	    </m:math>.
+	  </meaning>
+	</definition>
+      </para>
+    </section>
+    
+    
+    <section id="unique">
+      <title>Uniqueness and Pivots</title>
+    
+      <para id="p2">
+	As there is a certain amount of flexibility in how one carries
+	out the reduction it must be admitted that the reduced form is
+	not unique.  That is, two people may begin with the same
+	matrix yet arrive at different reduced forms. The differences
+	however are minor, for both will have the same number of
+	nonzero rows and the nonzeros along the diagonal will follow
+	the same pattern. We capture this pattern with the following
+	suite of definitions,
+	
+	<definition id="defn3">
+	  <term>Pivot Row</term>
+	  <meaning id="idm1703280">Each nonzero row of
+	    
+	    <m:math display="inline">
+	      <m:ci type="matrix"><m:msub>
+		  <m:mi>A</m:mi>
+		  <m:mi>red</m:mi>
+		</m:msub></m:ci>
+	    </m:math> is called a pivot row.</meaning>
+	</definition>
+	
+	<definition id="defn4">
+	  <term>Pivot</term>
+	  <meaning id="idm2934896">The first nonzero term in each row of 
+	
+	    <m:math display="inline">
+	      <m:ci type="matrix"><m:msub>
+		  <m:mi>A</m:mi>
+		  <m:mi>red</m:mi>
+		</m:msub></m:ci>
+	    </m:math>
+	    is called a pivot.</meaning>
+	</definition>
+	
+	<definition id="defn5">
+	  <term>Pivot Column</term>
+	  <meaning id="idm1370720">Each column of 
+	    <m:math display="inline">
+	      <m:ci type="matrix"><m:msub>
+		  <m:mi>A</m:mi>
+		  <m:mi>red</m:mi>
+		</m:msub></m:ci>
+	    </m:math>
+	    that contains a pivot is called a pivot column.</meaning>
+	</definition>
+
+	<definition id="defn6">
+	  <term>Rank</term>
+	  <meaning id="idm1674464">The number of pivots in a matrix is called
+	    the rank of that matrix.</meaning>
+	</definition>
+	Regarding our example matrices, the <link target-id="eq1" strength="2">first</link> has rank 4 and the <link target-id="eq5" strength="2">second</link> has rank 2.
+      </para>
+    </section>
+
+    
+    <section id="matlab">
+      <title>Row Reduction in MATLAB</title>
+    
+      <para id="p8">
+	MATLAB's <code>rref</code> command goes full-tilt and attempts
+	to eliminate ALL off diagonal terms and to leave nothing but
+	ones on the diagonal. I recommend you try it on our two
+	examples. You can watch its individual decisions by using
+	<code>rrefmovie</code> instead.
+      </para>
+    </section>      
+  </content>
+</document>

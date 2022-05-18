@@ -1,0 +1,311 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml"> 
+  
+  <title>Row Space</title> 
+  
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>7ba4d2ff-94d5-4779-bcbf-6173467b1626</md:uuid>
+</metadata>
+
+  <content>
+    
+    <section id="row">
+      <title>The Row Space</title>
+    
+      <para id="p1">
+	As the columns of
+	<m:math display="inline">
+	  <m:apply><m:transpose/>
+	    <m:ci type="matrix">A</m:ci>
+	  </m:apply>
+	</m:math>
+	are simply the rows of
+	
+	<m:math display="inline"><m:ci type="matrix">A</m:ci></m:math>
+	
+	we call
+	
+	<m:math display="inline">
+	  <m:apply>
+	    <m:ci>Ra</m:ci>
+	    <m:apply><m:transpose/>
+	      <m:ci type="matrix">A</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	the row space of 
+	
+	<m:math display="inline">
+	  <m:apply><m:transpose/>
+	    <m:ci type="matrix">A</m:ci>
+	  </m:apply>
+	</m:math>
+	. More precisely
+
+	<definition id="defn1">
+	  <term>Row Space</term>
+	  <meaning id="idm6966944">The row space of the m-by-n matrix
+	    <m:math display="inline">
+	      <m:ci>A</m:ci>
+	    </m:math> is simply the span of
+	    its rows, <foreign>i.e.</foreign>,
+	    <m:math display="block">
+	      <m:apply><m:equivalent/>
+		<m:apply>
+		  <m:ci>Ra</m:ci>
+		  <m:apply><m:transpose/>
+		    <m:ci type="matrix">A</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:set>
+		    <m:bvar>
+		      <m:apply><m:times/>
+			<m:apply><m:transpose/>
+			  <m:ci type="matrix">A</m:ci>
+			</m:apply>
+			<m:ci type="vector">y</m:ci>
+		      </m:apply>
+		    </m:bvar>
+		    <m:condition>
+		      <m:apply>
+			<m:in/>
+			<m:ci type="vector">y</m:ci>
+			<m:ci>
+			  <m:msup>  
+			    <m:mi>ℝ</m:mi>
+			    <m:mi>m</m:mi>
+			  </m:msup>
+			</m:ci>
+		      </m:apply>
+		    </m:condition>
+		  </m:set>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	  </meaning>
+	</definition>
+	
+	This is a subspace of
+	<m:math display="inline">
+	  <m:ci><m:msup>
+	      <m:mi>ℝ</m:mi>
+	      <m:mi>n</m:mi>
+	    </m:msup></m:ci>
+	</m:math>.
+      </para>
+    </section>
+    
+    <section id="ex">
+      <title>Example</title>
+    
+      <para id="p2">
+	Let us examine the matrix:
+	
+	<equation id="eq2">
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:ci type="matrix">A</m:ci>
+	      <m:matrix>
+		<m:matrixrow><m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn></m:matrixrow>
+		<m:matrixrow><m:cn>-1</m:cn><m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn></m:matrixrow>
+		<m:matrixrow><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>1</m:cn></m:matrixrow>
+	      </m:matrix>
+	    </m:apply>
+	  </m:math>
+	</equation> 
+	
+	The row space of this matrix is:
+	
+	<equation id="eq3">
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply>
+		<m:ci><m:mi mathvariant="script">Ra</m:mi></m:ci>
+		<m:apply><m:transpose/>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:set>
+		<m:condition>
+		  <m:apply><m:in/>
+		    <m:ci type="vector">y</m:ci>
+		    <m:ci>
+		      <m:msup>
+			<m:mi>ℝ</m:mi>
+			<m:mn>3</m:mn>
+		      </m:msup>
+		    </m:ci>
+		  </m:apply>
+		</m:condition>
+		<m:bvar><m:apply><m:plus/>
+		    <m:apply><m:times/>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>y</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub>
+		      </m:ci>
+		      <m:vector>
+			<m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		      </m:vector>
+		    </m:apply>
+		    <m:apply><m:times/>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>y</m:mi>
+			  <m:mn>2</m:mn>
+			</m:msub>
+		      </m:ci>  
+		      <m:vector>
+			<m:cn>-1</m:cn><m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn>
+		      </m:vector>
+		    </m:apply>
+		    <m:apply><m:times/>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>y</m:mi>
+			  <m:mn>3</m:mn>
+			</m:msub>
+		      </m:ci>
+		      <m:vector>
+			<m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>1</m:cn>
+		      </m:vector>
+		    </m:apply>
+		  </m:apply></m:bvar>
+	      </m:set>	    
+	    </m:apply>	
+	  </m:math>
+	</equation>
+      </para>
+      
+      
+      <para id="ins1">
+	As these three rows are <link document="m10297" target-id="defn3" strength="2">linearly independent</link> we may go no
+	further. We "recognize" then
+	<m:math display="inline">
+	  <m:apply>
+	    <m:ci><m:mi mathvariant="script">Ra</m:mi></m:ci>
+	    <m:apply><m:transpose/>
+	      <m:ci type="matrix">A</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	as a three dimensional
+	<link document="m10297" strength="2">subspace</link>
+	of
+	<m:math display="inline">
+	  <m:ci>
+	    <m:msup>
+	      <m:mi>ℝ</m:mi>
+	      <m:mn>4</m:mn>
+	    </m:msup>
+	  </m:ci>
+	</m:math>.
+      </para>
+    </section>
+
+    <section id="method">
+      <title>Method for Finding the Basis of the Row Space</title>
+      <para id="p3">
+	Regarding a basis for 
+	<m:math display="inline">
+	  <m:apply>
+	    <m:ci><m:mi mathvariant="script">Ra</m:mi></m:ci>
+	    <m:apply><m:transpose/>
+	      <m:ci type="matrix">A</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math> we recall that the rows of  
+	<m:math display="inline">
+	  <m:ci type="matrix"><m:msub>
+	      <m:mi>A</m:mi>
+	      <m:mi>red</m:mi>
+	    </m:msub></m:ci>
+	</m:math>, the
+	<link document="m10295" strength="2">row reduced form</link>
+	of the matrix 
+	<m:math display="inline">
+	  <m:ci type="matrix">A</m:ci>
+	</m:math>,
+	are merely linear combinations of the rows of 
+	<m:math display="inline">
+	  <m:ci type="matrix">A</m:ci>
+	</m:math> and hence
+	<equation id="eq4">
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply>
+		<m:ci><m:mi mathvariant="script">Ra</m:mi></m:ci>
+		<m:apply><m:transpose/>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:ci><m:mi mathvariant="script">Ra</m:mi></m:ci>
+		<m:ci type="matrix"><m:msub>
+		    <m:mi>A</m:mi>
+		    <m:mi>red</m:mi>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	This leads immediately to:
+      </para>
+
+      <para id="p4">
+	<definition id="defn2">
+	  <term>A Basis for the Row Space</term>
+	  <meaning id="idm6763920">Suppose 
+	    <m:math display="inline">
+	      <m:ci type="matrix">A</m:ci>
+	    </m:math> is m-by-n. The pivot rows of 
+	    <m:math display="inline">
+	      <m:ci type="matrix"><m:msub>
+		  <m:mi>A</m:mi>
+		  <m:mi>red</m:mi>
+		</m:msub></m:ci>
+	    </m:math> constitute a basis for
+	    <m:math display="inline">
+	      <m:apply>
+		<m:ci><m:mi mathvariant="script">Ra</m:mi></m:ci>
+		<m:apply><m:transpose/>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:math>.
+	  </meaning>
+	</definition>
+      </para>
+
+      <para id="realfin">
+	With respect to our example,
+	
+	<equation id="eqins1">
+	  <m:math display="block">
+	    <m:set>
+	      <m:vector>
+		<m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+	      </m:vector>
+	      <m:vector>
+		<m:cn>-1</m:cn><m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn>
+	      </m:vector>
+	      <m:vector>
+		<m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>1</m:cn>
+	      </m:vector>
+	    </m:set>
+	  </m:math>
+	</equation>
+	comprises a basis for
+	<m:math display="inline"> 
+	  <m:apply>
+	    <m:ci><m:mi mathvariant="script">Ra</m:mi></m:ci>
+	    <m:apply><m:transpose/>
+	      <m:ci type="matrix">A</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>.
+      </para>
+    </section>
+  </content>
+</document>

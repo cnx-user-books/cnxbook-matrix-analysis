@@ -1,0 +1,829 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml"> 
+
+  <title>The Old Laplace Transform</title> 
+  
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>3c311d4b-4364-4204-8e3c-810753939322</md:uuid>
+</metadata>
+
+  <content>
+    <para id="p1">
+      The Laplace Transform is typically credited with taking
+      dynamical problems into static problems.  Recall that the
+      Laplace Transform of the function <m:math display="inline"><m:ci type="fn">h</m:ci></m:math> is
+
+      <m:math display="block">
+	<m:apply>
+	  <m:equivalent/>
+	  <m:apply>
+	    <m:ci><m:mo>ℒ</m:mo></m:ci>
+	    <m:apply>
+	      <m:ci type="fn">h</m:ci>
+	      <m:ci>s</m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply><m:int/>
+	    <m:bvar><m:ci>t</m:ci></m:bvar>
+	    <m:interval>
+	      <m:cn>0</m:cn>
+	      <m:infinity/>
+	    </m:interval>
+	    <m:apply><m:times/>
+	      <m:apply><m:exp/>
+		<m:apply><m:minus/>
+		  <m:apply><m:times/>
+		    <m:ci>s</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn">h</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+	<m:mtext>.</m:mtext>
+      </m:math>
+
+      MATLAB is very adept at such things.  For example:
+    </para>
+
+    <example id="example1">
+      <title>The Laplace Transform in MATLAB</title>
+      <code display="block" id="idm6762752">
+	&gt;&gt; syms t
+
+	&gt;&gt; laplace(exp(t))
+
+	ans = 1/(s-1)
+
+	&gt;&gt; laplace(t*(exp(-t))
+
+	ans = 1/(s+1)^2
+      </code>
+    </example>
+
+    <para id="p2">
+      The Laplace Transform of a matrix of functions is simply the
+      matrix of Laplace transforms of the individual elements.
+    </para>
+
+    <example id="example2">
+      <title>Laplace Transform of a matrix of functions</title>
+      <para id="example_p1">
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:apply>
+	      <m:ci><m:mo>ℒ</m:mo></m:ci>
+	      <m:vector>
+		<m:apply><m:exp/>
+		  <m:ci>t</m:ci>
+		</m:apply>
+		<m:apply><m:times/>
+		  <m:ci>t</m:ci>
+		  <m:apply><m:exp/>
+		    <m:apply><m:minus/>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:vector>
+	    </m:apply>
+	    <m:vector>
+	      <m:apply><m:divide/>
+		<m:cn>1</m:cn>
+		<m:apply><m:minus/>
+		  <m:ci>s</m:ci>
+		  <m:cn>1</m:cn>
+		</m:apply>
+	      </m:apply>
+	      <m:apply><m:divide/>
+		<m:cn>1</m:cn>
+		<m:apply><m:power/>
+		  <m:apply><m:plus/>
+		    <m:ci>s</m:ci>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:apply>
+	    </m:vector>
+	  </m:apply> 
+	</m:math>
+      </para>
+    </example>
+
+    <para id="p3">
+      Now, in preparing to apply the Laplace transform to <link document="m10168" target-id="eqn6_3" strength="3"> our equation from
+      the dynamic strang quartet module</link>:
+      
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:apply><m:diff/>
+	    <m:ci type="vector">x</m:ci>
+	  </m:apply>
+	  <m:apply><m:plus/>
+	    <m:apply><m:times/>
+	      <m:ci type="matrix">B</m:ci>
+	      <m:ci type="vector">x</m:ci>
+	    </m:apply>
+	    <m:ci type="vector">g</m:ci>
+	  </m:apply>
+	</m:apply>
+	<m:mtext>,</m:mtext>
+      </m:math>
+
+      we write it as
+
+      <equation id="eqn6_5">
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:apply>
+	      <m:ci><m:mo>ℒ</m:mo></m:ci>
+	      <m:apply><m:diff/>
+		<m:bvar><m:ci>t</m:ci></m:bvar>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci><m:mo>ℒ</m:mo></m:ci>
+	      <m:apply><m:plus/>
+		<m:apply><m:times/>
+		  <m:ci type="matrix">B</m:ci>
+		  <m:ci type="vector">x</m:ci>
+		</m:apply>
+		<m:ci type="vector">g</m:ci>
+	      </m:apply> 
+	    </m:apply>
+	  </m:apply>
+	  <!-- Lx' = L * ( Bx + g ) -->
+	</m:math>
+      </equation>
+
+      and so must determine how
+      <m:math><m:mo>ℒ</m:mo></m:math> acts on derivatives
+      and sums.  With respect to the latter it follows directly from
+      the definition that
+
+      <equation id="eqn6_6">
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:apply>
+	      <m:ci><m:mo>ℒ</m:mo></m:ci>
+	      <m:apply><m:plus/>
+		<m:apply><m:times/>
+		  <m:ci type="matrix">B</m:ci>
+		  <m:ci type="vector">x</m:ci>
+		</m:apply>
+		<m:ci type="vector">g</m:ci>
+	      </m:apply> 
+	    </m:apply>
+	    <m:apply><m:plus/>
+	      <m:apply>
+		<m:ci><m:mo>ℒ</m:mo></m:ci>
+		<m:apply>
+		  <m:times/>
+		  <m:ci type="matrix">B</m:ci>
+		  <m:ci type="vector">x</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:ci><m:mo>ℒ</m:mo></m:ci>
+		<m:ci type="vector">g</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply><m:plus/>
+	      <m:apply><m:times/>
+		<m:ci type="matrix">B</m:ci>
+		<m:apply>
+		  <m:ci><m:mo>ℒ</m:mo></m:ci>
+		  <m:ci type="vector">x</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:ci><m:mo>ℒ</m:mo></m:ci>
+		<m:ci type="vector">g</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	  <m:mtext>.</m:mtext>
+	  <!-- L * ( Bx + g ) = LBx + Lg = BLx + Lg -->
+	</m:math>
+      </equation>
+
+      Regarding its effect on the derivative we find, on integrating
+      by parts, that
+
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:apply>
+	    <m:ci><m:mo>ℒ</m:mo></m:ci>
+	    <m:apply><m:diff/>
+	      <m:bvar><m:ci>t</m:ci></m:bvar>
+	      <m:ci type="vector">x</m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply><m:int/>
+	    <m:bvar><m:ci>t</m:ci></m:bvar>
+	    <m:interval>
+	      <m:cn>0</m:cn>
+	      <m:infinity/>
+	    </m:interval>
+	    <m:apply><m:times/>
+	      <m:apply><m:exp/>
+		<m:apply><m:minus/>
+		  <m:apply><m:times/>
+		    <m:ci>s</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply><m:diff/>
+		<m:bvar><m:ci>t</m:ci></m:bvar>
+		<m:apply>
+		  <m:ci type="vector">x</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply><m:plus/>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#evaluateat"/>
+	      <m:interval>
+		<m:cn>0</m:cn>
+		<m:infinity/>
+	      </m:interval>
+	      <m:apply><m:times/>
+		<m:apply>
+		  <m:ci type="vector">x</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+		<m:apply><m:exp/>
+		  <m:apply><m:minus/>
+		    <m:apply><m:times/>
+		      <m:ci>s</m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply><m:times/>
+	      <m:ci>s</m:ci>
+	      <m:apply><m:int/>
+		<m:bvar><m:ci>t</m:ci></m:bvar>
+		<m:interval>
+		  <m:cn>0</m:cn>
+		  <m:infinity/>
+		</m:interval>
+		<m:apply><m:times/>
+		  <m:apply><m:exp/>
+		    <m:apply><m:minus/>
+		      <m:apply><m:times/>
+			<m:ci>s</m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="vector">x</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+	<m:mtext>.</m:mtext>
+	<!-- Lx' = int_0_to_infin( e^-(st) * x'(t)dt )
+	= x(t) * e^-(st)  |_0_to_infin + 
+	s * int_0_to_infin( e^(-st) * x(t) dt ) -->
+      </m:math>
+      
+      Supposing that
+      <m:math><m:ci type="fn">x</m:ci></m:math> and
+      <m:math><m:ci>s</m:ci></m:math> are such that
+
+      <m:math display="inline">
+	<m:apply>
+	  <m:tendsto/>
+	  <m:apply><m:times/>
+	    <m:apply>
+	      <m:ci type="fn">x</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	    <m:apply><m:exp/>
+	      <m:apply><m:minus/>
+		<m:apply><m:times/>
+		<m:ci>s</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	  <m:cn>0</m:cn>
+	</m:apply>
+	<!-- x(t) * e^-(st) approaches 0 -->
+      </m:math>
+
+      as
+      <m:math display="inline">
+	<m:apply>
+	  <m:tendsto/>
+	  <m:ci>t</m:ci>
+	  <m:infinity/>
+	</m:apply>
+	<!-- t approaches infinity -->
+      </m:math>
+
+      we arrive at
+      <equation id="eqn6_7">
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:apply>
+	      <m:ci><m:mo>ℒ</m:mo></m:ci>
+	      <m:apply><m:diff/>
+		<m:bvar><m:ci>t</m:ci></m:bvar>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply><m:minus/>
+	      <m:apply><m:times/>
+		<m:ci>s</m:ci>
+		<m:apply>
+		  <m:ci><m:mo>ℒ</m:mo></m:ci>
+		  <m:ci type="vector">x</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn">x</m:ci>
+		<m:cn>0</m:cn>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	  <m:mtext>.</m:mtext>
+	  <!-- L * x' = s * L * x - x(0) -->
+	</m:math>
+      </equation>
+      
+      Now, upon substituting <link target-id="eqn6_6" strength="3"/> and
+      <link target-id="eqn6_7" strength="3"/> into <link target-id="eqn6_5" strength="3"/> we find
+
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:apply><m:minus/>
+	    <m:apply><m:times/>
+	      <m:ci>s</m:ci>
+	      <m:apply>
+		<m:ci><m:mo>ℒ</m:mo></m:ci>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci type="vector">x</m:ci>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply><m:plus/>
+	    <m:apply><m:times/>
+	      <m:ci type="matrix">B</m:ci>
+	      <m:apply>
+		<m:ci><m:mo>ℒ</m:mo></m:ci>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci><m:mo>ℒ</m:mo></m:ci>   
+	      <m:ci type="vector">g</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+	<m:mtext>,</m:mtext>
+	<!-- sLx - x(0) = BLx + Lg -->
+      </m:math>
+
+      which is easily recognized to be a linear system for
+      
+      <m:math display="inline">
+	<m:apply>
+	  <m:ci><m:mo>ℒ</m:mo></m:ci>
+	  <m:ci type="vector">x</m:ci>
+	</m:apply>
+      </m:math>, namely
+
+      <equation id="eqn6_8">
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:apply><m:times/>
+	      <m:apply><m:minus/>
+		<m:apply><m:times/>
+		  <m:ci type="vector">s</m:ci>
+		  <m:ci type="matrix">I</m:ci>
+		</m:apply>
+		<m:ci type="matrix">B</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:ci><m:mo>ℒ</m:mo></m:ci>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply><m:plus/>
+	      <m:apply>
+		<m:ci><m:mo>ℒ</m:mo></m:ci>  
+		<m:ci type="vector">g</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn">x</m:ci>
+		<m:cn>0</m:cn>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	  <m:mtext>.</m:mtext>
+	  <!-- (sI - B) * Lx = Lg + x(0) -->
+	</m:math>
+      </equation>
+
+      The only thing that distinguishes this system from those
+      encountered since our <link document="m10145" strength="2">first
+      brush</link> with these systems is the presence of the complex
+      variable <m:math display="inline"><m:ci>s</m:ci></m:math>.  This
+      complicates the mechanical steps of Gaussian Elimination or the
+      Gauss-Jordan Method but the methods indeed apply without
+      change. Taking up the latter method, we write
+
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:apply>
+	    <m:ci><m:mo>ℒ</m:mo></m:ci>
+	    <m:ci type="vector">x</m:ci>
+	  </m:apply>
+	  <m:apply><m:times/>
+	    <m:apply><m:inverse/>
+	      <m:apply><m:minus/>
+		<m:apply><m:times/>
+		  <m:ci>s</m:ci>
+		  <m:ci type="matrix">I</m:ci>
+		</m:apply>
+		<m:ci type="matrix">B</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply><m:plus/>
+	      <m:apply>
+		<m:ci><m:mo>ℒ</m:mo></m:ci>
+		<m:ci type="vector">g</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn">x</m:ci>
+		<m:cn>0</m:cn>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+	<!-- Lx = ( sI - B )^(-1) * ( Lg + x(0) ) -->
+	<m:mtext>.</m:mtext>
+      </m:math>
+      
+      The matrix
+
+      <m:math display="inline">
+	<m:apply><m:inverse/>
+	  <m:apply><m:minus/>
+	    <m:apply><m:times/>
+	      <m:ci>s</m:ci>
+	      <m:ci type="matrix">I</m:ci>
+	    </m:apply>
+	    <m:ci type="matrix">B</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      
+      is typically called the <term>transfer function</term> or
+      <term>resolvent</term>, associated with <m:math display="inline"><m:ci type="matrix">B</m:ci></m:math>, at
+      <m:math display="inline"><m:ci>s</m:ci></m:math>.  We turn to
+      MATLAB for its <term>symbolic</term> calculation.  (for more
+      information, see <link url="http://www.mathworks.com/access/helpdesk/help/toolbox/symbolic/symbolic.shtml">the
+      tutorial</link> on MATLAB's symbolic toolbox).  For example,
+    </para>
+
+    <example id="example3">
+      <code display="block" id="idm6249408">
+	&gt;&gt; B = [2 -1; -1 2]
+	
+	&gt;&gt; R = inv(s*eye(2)-B)
+	
+	R =
+	
+	[ (s-2)/(s*s-4*s+3), -1/(s*s-4*s+3)]
+	
+	[ -1/(s*s-4*s+3), (s-2)/(s*s-4*s+3)]
+      </code>
+    </example>
+
+    <para id="p4">
+      We note that 
+
+      <m:math display="inline">
+	<m:apply><m:inverse/>
+	  <m:apply><m:minus/>
+	    <m:apply><m:times/>
+	      <m:ci>s</m:ci>
+	      <m:ci type="matrix">I</m:ci>
+	    </m:apply>
+	    <m:ci type="matrix">B</m:ci>
+	  </m:apply>
+	</m:apply>
+	<!-- ( sI - B )^(-1) -->
+      </m:math>
+      
+      is well defined except at the roots of the quadratic,
+
+      <m:math display="inline">
+	<m:apply><m:plus/>
+	  <m:apply><m:minus/>
+	    <m:apply><m:power/>
+	      <m:ci>s</m:ci>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	    <m:apply><m:times/>
+	      <m:cn>4</m:cn>
+	      <m:ci>s</m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <m:cn>3</m:cn>
+	</m:apply>
+	<!-- s^2 - 4s + 3 -->
+      </m:math>.
+
+      This quadratic is the <term>determinant</term> of 
+      
+      <m:math display="inline">
+	<m:apply><m:minus/>
+	  <m:apply><m:times/>
+	    <m:ci>s</m:ci>
+	    <m:ci type="matrix">I</m:ci>
+	  </m:apply>
+	  <m:ci type="matrix">B</m:ci>
+	</m:apply>
+	<!-- ( sI - B ) -->
+      </m:math> 
+      
+      and is often referred to as the <term>characteristic
+      polynomial</term> of <m:math display="inline"><m:ci type="matrix">B</m:ci></m:math>.  Its roots are called the
+      <term>eigenvalues</term> of <m:math><m:ci type="matrix">B</m:ci></m:math>.
+    </para>
+    
+    <example id="example4">
+      <para id="example4_p1">
+	As a second example let us take the <m:math display="inline"><m:ci type="matrix">B</m:ci></m:math> matrix
+	of <link document="m10168" target-id="eqn6_4" strength="3">the
+	dynamic Strang quartet module</link> with the parameter
+	choices specified in <link url="http://www.caam.rice.edu/~caam335/cox/lectures/fib3.m">fib3.m</link>,
+	namely
+
+	<equation id="eqn6_9">
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:ci type="matrix">B</m:ci>
+	      <m:matrix>
+		<m:matrixrow><m:cn>-0.135</m:cn><m:cn>0.125</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<m:matrixrow><m:cn>0.5</m:cn><m:cn>-1.01</m:cn><m:cn>0.5</m:cn>
+		</m:matrixrow>
+		<m:matrixrow><m:cn>0</m:cn><m:cn>0.5</m:cn><m:cn>-0.51</m:cn>
+		</m:matrixrow>
+	      </m:matrix>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	The associated 
+
+	<m:math display="inline">
+	  <m:apply><m:inverse/>
+	    <m:apply><m:minus/>
+	      <m:apply><m:times/>
+		<m:ci>s</m:ci>
+		<m:ci type="matrix">I</m:ci>
+	      </m:apply>
+	      <m:ci type="matrix">B</m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <!-- ( sI - B )^(-1) -->
+	</m:math>
+	
+	is a bit bulky (please run <link url="http://www.caam.rice.edu/~caam335/cox/lectures/fib3.m">fib3.m</link>)
+	so we display here only the denominator of each term,
+	<foreign>i.e.</foreign>,
+
+	<equation id="eqn6_10">
+	  <m:math display="block">
+	    <m:apply><m:plus/>
+	      <m:apply><m:power/>
+		<m:ci>s</m:ci>
+		<m:cn>3</m:cn>
+	      </m:apply>
+	      <m:apply><m:times/>
+		<m:cn>1.655</m:cn>
+		<m:apply><m:power/>
+		  <m:ci>s</m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:apply>
+	      <m:apply><m:times/>
+		<m:cn>0.4078</m:cn>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	      <m:cn>0.0039</m:cn>
+	    </m:apply>
+	    <m:mtext>.</m:mtext>
+	    <!-- s^3 + 1.655s^2 + 0.4078s + 0.0039 -->
+	  </m:math>
+	</equation>
+
+	Assuming a current stimulus of the form
+
+	<m:math display="inline">
+	  <m:apply><m:eq/>
+	    <m:apply>
+	      <m:ci type="fn"><m:msub>
+		  <m:mi>i</m:mi>
+		  <m:mn>0</m:mn>
+		</m:msub></m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	    <m:apply><m:divide/>
+	      <m:apply><m:times/>
+		<m:apply><m:power/>
+		  <m:ci>t</m:ci>
+		  <m:cn>3</m:cn>
+		</m:apply>
+		<m:apply><m:exp/>
+		  <m:apply><m:minus/>
+		    <m:apply><m:divide/>
+		      <m:ci>t</m:ci>
+		      <m:cn>6</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:cn>10000</m:cn>
+	    </m:apply>
+	  </m:apply>
+	  <!-- i_0(t) = t^3 * exp( - t / 6 ) / 10000 -->
+	</m:math> and
+
+	<m:math display="inline">
+	  <m:apply><m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>E</m:mi>
+		<m:mi>m</m:mi>
+	      </m:msub></m:ci>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	  <!-- E_m = 0 -->
+	</m:math>
+
+	brings
+
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:apply>
+	      <m:apply>
+		<m:ci><m:mo>ℒ</m:mo></m:ci>
+		<m:ci type="vector">g</m:ci>
+	      </m:apply>
+	      <m:ci>s</m:ci>
+	    </m:apply>
+	    <m:vector>
+	      <m:apply><m:divide/>
+		<m:cn>0.191</m:cn>
+		<m:apply><m:power/>
+		  <m:apply><m:plus/>
+		    <m:ci>s</m:ci>
+		    <m:apply><m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:cn>6</m:cn>
+		    </m:apply>
+		  </m:apply>
+		  <m:cn>4</m:cn>
+		</m:apply>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	      <m:cn>0</m:cn>
+	    </m:vector>
+	  </m:apply>
+	  <!-- (Lg)(s) = [ 0.191 / ( s + 1/6 )^4 ; 0 ; 0 ] -->
+	</m:math>
+
+	and so <link target-id="eqn6_10" strength="2"/> persists in
+
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:apply>
+	      <m:ci><m:mo>ℒ</m:mo></m:ci>
+	      <m:ci type="vector">x</m:ci>
+	    </m:apply>
+	    <m:apply><m:times/>
+	      <m:apply><m:inverse/>
+		<m:apply><m:minus/>
+		  <m:apply><m:times/>
+		    <m:ci>s</m:ci>
+		    <m:ci type="matrix">I</m:ci>
+		  </m:apply>
+		  <m:ci type="matrix">B</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:ci><m:mo>ℒ</m:mo></m:ci>
+		<m:ci type="vector">g</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply><m:times/>
+	      <m:apply><m:divide/>
+		<m:cn>0.191</m:cn>
+		<m:apply><m:times/>
+		  <m:apply><m:power/>
+		    <m:apply><m:plus/>
+		      <m:ci>s</m:ci>
+		      <m:apply><m:divide/>
+			<m:cn>1</m:cn>
+			<m:cn>6</m:cn>
+		      </m:apply>
+		    </m:apply>
+		    <m:cn>4</m:cn>
+		  </m:apply>
+		  <m:apply><m:plus/>
+		    <m:apply><m:power/>
+		      <m:ci>s</m:ci>
+		      <m:cn>3</m:cn>
+		    </m:apply>
+		    <m:apply><m:times/>
+		      <m:cn>1.655</m:cn>
+		      <m:apply><m:power/>
+			<m:ci>s</m:ci>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply><m:times/>
+		      <m:cn>0.4078</m:cn>
+		      <m:ci>s</m:ci>
+		    </m:apply>
+		    <m:cn>0.0039</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:vector>
+		<m:apply><m:plus/>
+		  <m:apply><m:power/>
+		    <m:ci>s</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:apply><m:times/>
+		    <m:cn>1.5</m:cn>
+		    <m:ci>s</m:ci>
+		  </m:apply>
+		  <m:cn>0.27</m:cn>
+		</m:apply>
+		<m:apply><m:plus/>
+		  <m:apply><m:times/>
+		    <m:cn>0.5</m:cn>
+		    <m:ci>s</m:ci>
+		  </m:apply>
+		  <m:cn>0.26</m:cn>
+		</m:apply>
+		<m:cn>0.2497</m:cn>
+	      </m:vector>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </para>
+    </example>
+
+    <para id="p5">
+      Now comes the rub.  A simple linear solve (or inversion) has
+      left us with the Laplace transform of <m:math display="inline"><m:ci type="vector">x</m:ci></m:math>.  The
+      accursed
+
+      <rule id="nofreelunch_ha_ha" type="theorem">
+	<title>No Free Lunch Theorem</title>
+	<statement id="idm7432624">
+	  <para id="rulepara1">
+	    We shall have to do some work in order to recover
+	    <m:math display="inline"><m:ci type="vector">x</m:ci></m:math> from
+	    
+	    <m:math display="inline">
+	      <m:apply>
+		<m:ci><m:mo>ℒ</m:mo></m:ci>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	      <!-- Lx -->
+	    </m:math>.
+	  </para>
+	</statement>
+      </rule>
+      confronts us.  We shall face it down in the <link document="m10170" strength="3">Inverse Laplace module</link>.
+    </para>
+  </content>
+</document>

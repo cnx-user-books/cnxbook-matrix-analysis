@@ -1,0 +1,1066 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  
+  <title>Complex Numbers, Vectors and Matrices</title>
+  
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>c49b8a0c-381a-4dc9-ac3c-5d19d7236780</md:uuid>
+</metadata>
+
+  <content>
+
+    <section id="sec1">
+      <title>Complex Numbers</title>
+
+      <para id="sec1para1">
+	A complex number is simply a pair of real numbers. In order to
+	stress however that the two arithmetics differ we separate the
+	two real pieces by the symbol
+
+	<m:math>
+	  <m:apply>
+	    <m:plus/>
+	    <m:imaginaryi/>
+	  </m:apply>
+	</m:math>.
+	
+	More precisely, each complex number,
+	<m:math><m:ci>z</m:ci></m:math>, may be uniquely expressed by
+	the combination
+
+	<m:math>
+	  <m:apply>
+	    <m:plus/>
+	    <m:ci>x</m:ci>
+	    <m:apply>
+	      <m:times/>
+	      <m:imaginaryi/>
+	      <m:ci>y</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>, 
+
+	where <m:math><m:ci>x</m:ci></m:math> and
+	<m:math><m:ci>y</m:ci></m:math> are real and
+	<m:math><m:imaginaryi/></m:math> denotes
+
+	<m:math>
+	  <m:apply>
+	    <m:root/>
+	    <m:cn>-1</m:cn>
+	  </m:apply>	
+	</m:math>.
+
+	We call <m:math><m:ci>x</m:ci></m:math> the real part and
+	<m:math><m:ci>y</m:ci></m:math> the imaginary part of
+	<m:math><m:ci>z</m:ci></m:math>.  We now summarize the main
+	rules of complex arithmetic.
+      </para>
+
+
+      <para id="sec1para2">
+	If
+
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci><m:msub><m:mi>z</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+	    <m:apply>
+	      <m:plus/>
+	      <m:ci><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+	      <m:apply>
+		<m:times/>
+                <m:imaginaryi/>
+                <m:ci><m:msub><m:mi>y</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+
+	and
+
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci><m:msub><m:mi>z</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+	    <m:apply>
+	      <m:plus/>
+	      <m:ci><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+	      <m:apply>
+		<m:times/>
+                <m:imaginaryi/>
+                <m:ci><m:msub><m:mi>y</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+
+	then
+      </para>
+
+
+      <definition id="defn1">
+	<term>Complex Addition</term>
+
+	<meaning id="idp1290288">
+	  <m:math>
+	    <m:apply>
+	      <m:equivalent/>
+	      <m:apply>
+		<m:plus/>
+		<m:ci><m:msub><m:mi>z</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		<m:ci><m:msub><m:mi>z</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:plus/>
+		  <m:ci><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		  <m:ci><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:imaginaryi/>
+		  <m:apply>
+		    <m:plus/>
+                    <m:ci><m:msub><m:mi>y</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+                    <m:ci><m:msub><m:mi>y</m:mi><m:mn>2</m:mn></m:msub></m:ci>  
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</meaning>
+      </definition>
+
+
+      <definition id="defn2">
+	<term>Complex Multiplication</term>
+
+	<meaning id="idp1553408">
+	  <m:math>
+	    <m:apply>
+	      <m:equivalent/>
+	      <m:apply>
+		<m:times/>
+		<m:ci><m:msub><m:mi>z</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		<m:ci><m:msub><m:mi>z</m:mi><m:mn>2</m:mn></m:msub></m:ci>	  
+	      </m:apply>
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:plus/>
+                    <m:ci><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+                    <m:apply>
+                      <m:times/>
+		      <m:imaginaryi/>
+		      <m:ci><m:msub><m:mi>y</m:mi><m:mn>1</m:mn></m:msub></m:ci>		    
+                    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:plus/>
+                    <m:ci><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+                    <m:apply>
+                      <m:times/>
+		      <m:imaginaryi/>
+		      <m:ci><m:msub><m:mi>y</m:mi><m:mn>2</m:mn></m:msub></m:ci>		    
+                    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:plus/>
+		  <m:apply>
+		    <m:minus/>
+                    <m:apply>
+                      <m:times/>
+		      <m:ci><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		      <m:ci><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+                    </m:apply>
+                    <m:apply>
+                      <m:times/>
+		      <m:ci><m:msub><m:mi>y</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		      <m:ci><m:msub><m:mi>y</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+                    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+                    <m:imaginaryi/>
+                    <m:apply>
+                      <m:plus/>
+		      <m:apply>
+			<m:times/>
+			<m:ci><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+			<m:ci><m:msub><m:mi>y</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:times/>
+			<m:ci><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+			<m:ci><m:msub><m:mi>y</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		      </m:apply>
+                    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</meaning>
+      </definition>
+
+
+      <definition id="defn3">
+	<term>Complex Conjugation</term>
+
+	<meaning id="idm5648688">
+	  <m:math>
+	    <m:apply>
+	      <m:equivalent/>
+	      <m:apply>
+		<m:conjugate/>
+		<m:ci><m:msub><m:mi>z</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:minus/>
+		<m:ci><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		<m:apply>
+		  <m:times/>
+		  <m:imaginaryi/>
+		  <m:ci><m:msub><m:mi>y</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</meaning>
+      </definition>
+
+
+      <definition id="defn4">
+	<term>Complex Division</term>
+
+	<meaning id="idm6969216">
+	  <m:math>
+	    <m:apply>
+	      <m:equivalent/>
+	      <m:apply>
+		<m:divide/>
+		<m:ci><m:msub><m:mi>z</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		<m:ci><m:msub><m:mi>z</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:divide/>
+                    <m:ci><m:msub><m:mi>z</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+                    <m:ci><m:msub><m:mi>z</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:divide/>
+                    <m:apply>
+                      <m:conjugate/>
+		      <m:ci><m:msub><m:mi>z</m:mi><m:mn>2</m:mn></m:msub></m:ci>	
+                    </m:apply>
+                    <m:apply>
+                      <m:conjugate/>
+		      <m:ci><m:msub><m:mi>z</m:mi><m:mn>2</m:mn></m:msub></m:ci>	
+                    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:divide/>
+		  <m:apply>
+		    <m:plus/>
+                    <m:apply>
+                      <m:times/>
+		      <m:ci><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		      <m:ci><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+                    </m:apply>
+                    <m:apply>
+                      <m:times/>
+		      <m:ci><m:msub><m:mi>y</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		      <m:ci><m:msub><m:mi>y</m:mi><m:mn>2</m:mn></m:msub></m:ci> 
+                    </m:apply>
+                    <m:apply>
+                      <m:times/>
+		      <m:imaginaryi/>
+		      <m:apply>
+			<m:minus/>
+			<m:apply>
+			  <m:times/>
+			  <m:ci><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+			  <m:ci><m:msub><m:mi>y</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+			</m:apply>
+			<m:apply>
+			  <m:times/>
+			  <m:ci><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+			  <m:ci><m:msub><m:mi>y</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+			</m:apply>
+		      </m:apply>
+                    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:plus/>
+                    <m:apply>
+                      <m:power/>
+		      <m:ci><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+		      <m:cn>2</m:cn>
+                    </m:apply>
+                    <m:apply>
+                      <m:power/>
+		      <m:ci><m:msub><m:mi>y</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+		      <m:cn>2</m:cn>
+                    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</meaning>
+      </definition>
+      
+
+      <definition id="defn5">
+	<term>Magnitude of a Complex Number</term>
+
+	<meaning id="idp2655248">
+	  <m:math>
+	    <m:apply>
+	      <m:equivalent/>
+	      <m:apply>
+		<m:abs/>
+		<m:ci><m:msub><m:mi>z</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:root/>
+		  <m:apply>
+		    <m:times/>
+                    <m:ci><m:msub><m:mi>z</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+                    <m:apply>
+                      <m:conjugate/>
+		      <m:ci><m:msub><m:mi>z</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+                    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:root/>
+		  <m:apply>
+		    <m:plus/>
+                    <m:apply>
+                      <m:power/>
+		      <m:ci><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		      <m:cn>2</m:cn>
+                    </m:apply>
+                    <m:apply>
+                      <m:power/>
+		      <m:ci><m:msub><m:mi>y</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		      <m:cn>2</m:cn>
+                    </m:apply>	
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</meaning>
+      </definition>
+
+    </section>
+
+
+    <section id="sec2">
+      <title>Polar Representation</title>
+
+      <para id="sec2para1">
+	In addition to the Cartesian representation
+	
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>z</m:ci>
+	    <m:apply>
+	      <m:plus/>
+	      <m:ci>x</m:ci>
+	      <m:apply>
+		<m:times/>
+                <m:imaginaryi/>
+                <m:ci>y</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math> 
+
+	one also has the polar form
+
+	<equation id="eq01">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>z</m:ci>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:abs/>
+                  <m:ci>z</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:plus/>
+                  <m:apply>
+                    <m:cos/>
+		    <m:ci>θ</m:ci>
+                  </m:apply>
+                  <m:apply>
+                    <m:times/>
+		    <m:imaginaryi/>
+		    <m:apply>
+		      <m:sin/>
+		      <m:ci>θ</m:ci>
+		    </m:apply>
+                  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	where
+
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>θ</m:ci>
+	    <m:apply>
+	      <m:arctan/>
+	      <m:apply>
+		<m:divide/>
+		<m:ci>y</m:ci>
+		<m:ci>x</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>.
+      </para>
+
+
+      <para id="sec2para2">
+	This form is especially convenient with regards to
+	multiplication.  More precisely,
+
+	<equation id="eq02">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:times/>
+		<m:ci><m:msub><m:mi>z</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		<m:ci><m:msub><m:mi>z</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:abs/>
+                  <m:ci><m:msub><m:mi>z</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:abs/>
+                  <m:ci><m:msub><m:mi>z</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:plus/>
+                  <m:apply>
+                    <m:minus/>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:cos/>
+			<m:ci><m:msub><m:mi>θ</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:cos/>
+			<m:ci><m:msub><m:mi>θ</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:sin/>
+			<m:ci><m:msub><m:mi>θ</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:sin/>
+			<m:ci><m:msub><m:mi>θ</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+		      </m:apply>
+		    </m:apply>
+                  </m:apply>
+                  <m:apply>
+                    <m:times/>
+		    <m:imaginaryi/>
+		    <m:apply>
+		      <m:plus/>
+		      <m:apply>
+			<m:times/>
+			<m:apply>
+			  <m:cos/>
+			  <m:ci><m:msub><m:mi>θ</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+			</m:apply>
+			<m:apply>
+			  <m:sin/>
+			  <m:ci><m:msub><m:mi>θ</m:mi><m:mn>2</m:mn></m:msub></m:ci> 
+			</m:apply>
+		      </m:apply>
+		      <m:apply>
+			<m:times/>
+			<m:apply>
+			  <m:sin/>
+			  <m:ci><m:msub><m:mi>θ</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+			</m:apply>
+			<m:apply>
+			  <m:cos/>
+			  <m:ci><m:msub><m:mi>θ</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+                  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:abs/>
+                  <m:ci><m:msub><m:mi>z</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:abs/>
+                  <m:ci><m:msub><m:mi>z</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:plus/>
+                  <m:apply>
+                    <m:cos/>
+		    <m:apply>
+		      <m:plus/>
+		      <m:ci><m:msub><m:mi>θ</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		      <m:ci><m:msub><m:mi>θ</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+		    </m:apply>
+                  </m:apply>
+                  <m:apply>
+                    <m:times/>
+		    <m:imaginaryi/>
+		    <m:apply>
+		      <m:sin/>
+		      <m:apply>
+			<m:plus/>
+			<m:ci><m:msub><m:mi>θ</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+			<m:ci><m:msub><m:mi>θ</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+		      </m:apply>
+		    </m:apply>
+                  </m:apply>
+		</m:apply>
+	      </m:apply>    
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	As a result:
+
+	<equation id="eq03">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:power/>
+		<m:ci>z</m:ci>
+		<m:ci>n</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:power/>
+                  <m:apply>
+                    <m:abs/>
+		    <m:ci>z</m:ci>
+                  </m:apply>
+                  <m:ci>n</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:plus/>
+                  <m:apply>
+                    <m:cos/>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci>n</m:ci>
+		      <m:ci>θ</m:ci>
+		    </m:apply>
+                  </m:apply>
+                  <m:apply>
+                    <m:times/>
+		    <m:imaginaryi/>
+		    <m:apply>
+		      <m:sin/>
+		      <m:apply>
+			<m:times/>
+			<m:ci>n</m:ci>
+			<m:ci>θ</m:ci>
+		      </m:apply>
+		    </m:apply>
+                  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+      </para>
+    </section>
+
+
+    <section id="sec3">
+      <title>Complex Vectors and Matrices</title>
+
+      <para id="sec3para1">
+	A complex vector (matrix) is simply a vector (matrix) of
+	complex numbers. Vector and matrix addition proceed, as in the
+	real case, from elementwise addition. The dot or inner product
+	of two complex vectors requires, however, a little
+	modification. This is evident when we try to use the old
+	notion to define the length of a complex vector. To wit, note
+	that if:
+
+	
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>z</m:ci>
+	    <m:matrix>
+	      <m:matrixrow>
+		<m:apply>
+		  <m:plus/>
+                  <m:cn>1</m:cn>
+                  <m:imaginaryi/>
+		</m:apply>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:apply>
+		  <m:minus/>
+                  <m:cn>1</m:cn>
+                  <m:imaginaryi/>
+		</m:apply>
+	      </m:matrixrow>
+	    </m:matrix>
+	  </m:apply>
+	</m:math>
+
+	then
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:times/>
+              <m:apply>
+                <m:transpose/>
+		<m:ci>z</m:ci>
+              </m:apply>
+              <m:ci>z</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:plus/>
+              <m:apply>
+                <m:power/>
+		<m:apply>
+		  <m:plus/>
+		  <m:cn>1</m:cn>
+                  <m:imaginaryi/>
+		</m:apply>
+		<m:cn>2</m:cn>
+              </m:apply>
+              <m:apply>
+                <m:power/>
+		<m:apply>
+		  <m:minus/>
+		  <m:cn>1</m:cn>
+                  <m:imaginaryi/>
+		</m:apply>
+		<m:cn>2</m:cn>
+              </m:apply>	      
+	    </m:apply>
+	    <m:apply>
+	      <m:plus/>
+              <m:cn>1</m:cn>
+              <m:apply>
+                <m:minus/>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>2</m:cn>
+		  <m:imaginaryi/>
+		</m:apply>
+		<m:cn>1</m:cn>
+              </m:apply>
+              <m:apply>
+                <m:minus/>
+		<m:apply>
+		  <m:minus/>
+		  <m:cn>1</m:cn>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>2</m:cn>
+		    <m:imaginaryi/>
+		  </m:apply>
+		</m:apply>
+		<m:cn>1</m:cn>
+              </m:apply>
+	    </m:apply>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>
+	
+
+	Now length <emphasis>should</emphasis> measure the distance
+	from a point to the origin and should only be zero for the
+	zero vector.  The fix, as you have probably guessed, is to sum
+	the squares of the <emphasis>magnitudes</emphasis> of the
+	components of <m:math><m:ci>z</m:ci></m:math>. This is
+	accomplished by simply <link document="complexnums" target-id="defn3" strength="2">conjugating</link> one
+	of the vectors. Namely, we define the length of a complex
+	vector via:
+
+	<equation id="eq04">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/openmath/cd/cnxmath.ocd#norm"/>
+		<m:ci>z</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:root/>
+		<m:apply>
+		  <m:times/>
+                  <m:apply>
+                    <m:transpose/>
+		    <m:apply>
+		      <m:conjugate/>
+		      <m:ci>z</m:ci>
+		    </m:apply>
+                  </m:apply>
+                  <m:ci>z</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	In the example above this produces
+	
+	
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:root/>
+              <m:apply>
+                <m:plus/>
+		<m:apply>
+		  <m:power/>
+		  <m:apply>
+		    <m:abs/>
+		    <m:apply>
+		      <m:plus/>
+		      <m:cn>1</m:cn>
+		      <m:imaginaryi/>
+		    </m:apply>
+		  </m:apply>
+		  <m:cn>2</m:cn>
+		</m:apply>
+		<m:apply>
+		  <m:power/>
+		  <m:apply>
+		    <m:abs/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:cn>1</m:cn>
+		      <m:imaginaryi/>
+		    </m:apply>
+		  </m:apply>
+		  <m:cn>2</m:cn>
+		</m:apply>		
+              </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:root/>
+              <m:cn>4</m:cn>
+	    </m:apply>
+	    <m:cn>2</m:cn>
+	  </m:apply>
+	</m:math>
+
+	As each real number is the conjugate of itself, this new
+	definition subsumes its real counterpart.
+      </para>
+
+
+      <para id="sec3para2">
+	The notion of magnitude also gives us a way to define limits
+	and hence will permit us to introduce complex calculus. We say
+	that the sequence of complex numbers,
+
+	<m:math>
+	  <m:set>
+	    <m:condition>
+	      <m:apply>
+		<m:eq/>
+		<m:ci>n</m:ci>
+		<m:vector>
+		  <m:cn>1</m:cn>
+		  <m:cn>2</m:cn>
+		  <m:ci>…</m:ci>
+		</m:vector>
+	      </m:apply>
+	    </m:condition>
+	    <m:bvar>
+	      <m:ci><m:msub><m:mi>z</m:mi><m:mi>n</m:mi></m:msub></m:ci>
+	    </m:bvar>
+	  </m:set>
+	</m:math>, 
+
+	converges to the complex number
+	<m:math><m:ci><m:msub><m:mi>z</m:mi><m:mn>0</m:mn></m:msub></m:ci></m:math>
+	and write
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:tendsto/>
+	    <m:ci><m:msub><m:mi>z</m:mi><m:mi>n</m:mi></m:msub></m:ci>
+	    <m:ci><m:msub><m:mi>z</m:mi><m:mn>0</m:mn></m:msub></m:ci>	  
+	  </m:apply>
+	</m:math> 
+
+	or
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci><m:msub><m:mi>z</m:mi><m:mn>0</m:mn></m:msub></m:ci>
+	    <m:apply>
+	      <m:limit/>
+	      <m:bvar><m:ci>n</m:ci></m:bvar>
+	      <m:lowlimit><m:infinity/></m:lowlimit>
+	      <m:ci><m:msub><m:mi>z</m:mi><m:mi>n</m:mi></m:msub></m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+
+	when, presented with any
+
+	<m:math>
+	  <m:apply>
+	    <m:gt/>
+	    <m:ci>ε</m:ci>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math> 
+
+	one can produce an integer <m:math><m:ci>N</m:ci></m:math> for which
+
+	<m:math>
+	  <m:apply>
+	    <m:lt/>
+	    <m:apply>
+	      <m:abs/>
+	      <m:apply>
+		<m:minus/>
+                <m:ci><m:msub><m:mi>z</m:mi><m:mi>n</m:mi></m:msub></m:ci>
+                <m:ci><m:msub><m:mi>z</m:mi><m:mn>0</m:mn></m:msub></m:ci>	      
+	      </m:apply>
+	    </m:apply>
+	    <m:ci>ε</m:ci>
+	  </m:apply>
+	</m:math>
+
+	when
+
+	<m:math>
+	  <m:apply>
+	    <m:geq/>
+	    <m:ci>n</m:ci>
+	    <m:ci>N</m:ci>
+	  </m:apply>
+	</m:math>.
+
+	As an example, we note that
+
+	<m:math>
+	  <m:apply>
+	    <m:tendsto/>
+	    <m:apply>
+	      <m:power/>
+	      <m:apply>
+		<m:divide/>
+                <m:imaginaryi/>
+                <m:cn>2</m:cn>
+	      </m:apply>
+	      <m:cn>n</m:cn>
+	    </m:apply>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>.
+      </para>
+    </section>
+
+    <section id="sec4">
+      <title>Examples</title>
+
+      <example id="ex1">
+	<para id="ex1para1">
+	  As an example both of a complex matrix and some of the rules
+	  of <link document="complexnums" strength="2">complex
+	  arithmetic</link>, let us examine the following matrix:
+	</para>
+
+	<equation id="eq05">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>F</m:ci>
+	      <m:matrix>
+		<m:matrixrow>
+		  <m:cn>1</m:cn>
+		  <m:cn>1</m:cn>
+		  <m:cn>1</m:cn>
+		  <m:cn>1</m:cn>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <m:cn>1</m:cn>
+		  <m:imaginaryi/>
+		  <m:cn>-1</m:cn>
+		  <m:apply>
+		    <m:minus/>
+		    <m:imaginaryi/>
+		  </m:apply>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <m:cn>1</m:cn>
+		  <m:cn>-1</m:cn>
+		  <m:cn>1</m:cn>
+		  <m:cn>-1</m:cn>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <m:cn>1</m:cn>
+		  <m:apply>
+		    <m:minus/>
+		    <m:imaginaryi/>
+		  </m:apply>
+		  <m:cn>-1</m:cn>
+		  <m:imaginaryi/>
+		</m:matrixrow>
+	      </m:matrix>	      
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	<para id="ex1para2">
+	  Let us attempt to find
+
+	  <m:math>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>F</m:ci>
+	      <m:apply>
+		<m:conjugate/>
+		<m:ci>F</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>.
+
+	  One option is simply to multiply the two matrices by brute
+	  force, but this particular matrix has some remarkable
+	  qualities that make the job significantly
+	  easier. Specifically, we can note that every element not on
+	  the diagonal of the resultant matrix is equal to
+	  0. Furthermore, each element <emphasis>on</emphasis> the
+	  diagonal is 4. Hence, we quickly arrive at the matrix
+
+	  <equation id="eq06">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>F</m:ci>
+		  <m:apply>
+		    <m:conjugate/>
+		    <m:ci>F</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:matrix>
+		  <m:matrixrow>
+		    <m:cn>4</m:cn>
+		    <m:cn>0</m:cn>
+		    <m:cn>0</m:cn>
+		    <m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <m:matrixrow>
+		    <m:cn>0</m:cn>
+		    <m:cn>4</m:cn>
+		    <m:cn>0</m:cn>
+		    <m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <m:matrixrow>
+		    <m:cn>0</m:cn>
+		    <m:cn>0</m:cn>
+		    <m:cn>4</m:cn>
+		    <m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <m:matrixrow>
+		    <m:cn>0</m:cn>
+		    <m:cn>0</m:cn>
+		    <m:cn>0</m:cn>
+		    <m:cn>4</m:cn>
+		  </m:matrixrow>
+		</m:matrix>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>4</m:cn>
+		  <m:imaginaryi/>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+
+	  This final observation, that this matrix multiplied by its
+	  transpose yields a constant times the identity matrix, is
+	  indeed remarkable. This particular matrix is an example of a
+	  Fourier matrix, and enjoys a number of interesting
+	  properties. The property outlined above can be generalized
+	  for any
+	  <m:math><m:ci><m:msub><m:mi>F</m:mi><m:mi>n</m:mi></m:msub></m:ci></m:math>,
+	  where <m:math><m:ci>F</m:ci></m:math> refers to a Fourier
+	  matrix with <m:math><m:ci>n</m:ci></m:math> rows and
+	  columns:
+
+	  <equation id="eq07">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci><m:msub><m:mi>F</m:mi><m:mi>n</m:mi></m:msub></m:ci>
+		  <m:apply>
+		    <m:conjugate/>
+		    <m:ci><m:msub><m:mi>F</m:mi><m:mi>n</m:mi></m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>n</m:ci>
+		  <m:ci type="matrix">I</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+	</para>
+
+      </example>
+    </section>
+
+  </content>
+</document>

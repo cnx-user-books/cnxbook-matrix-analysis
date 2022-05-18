@@ -1,0 +1,228 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml"> 
+
+  <title>Exercises:  Columns and Null Spaces</title> 
+  
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>855e43e9-aa1d-404e-90b8-597a444f6037</md:uuid>
+</metadata>
+
+  <content>
+    <list id="ch3exercises" list-type="enumerated">
+      <title>Exercises</title>
+      <item>I encourage you to use <code>rref</code> and
+      <code>null</code> for the following.
+	<list id="prob1" list-type="bulleted">
+	  <item>(i) Add a diagonal crossbar between nodes 3 and 2 in
+	    <link document="m10368" target-id="ladder" strength="3">the
+	    unstable ladder figure</link> and compute bases for the
+	    column and null spaces of the new adjacency matrix.  As
+	    this crossbar fails to stabilize the ladder, we shall add
+	    one more bar.  </item>
+
+	  <item>(ii) To the 9 bar ladder of (i) add a diagonal cross
+	    bar between nodes 1 and the left end of bar 6.  Compute
+	    bases for the column and null spaces of the new adjacency
+	    matrix.  </item>
+	</list>
+      </item>
+
+      <item> We wish to show that 
+	<m:math display="inline">
+	  <m:apply><m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">N</m:ci>
+	      <m:ci type="matrix">A</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci type="fn">N</m:ci>
+	      <m:apply><m:times/>
+		<m:apply><m:transpose/>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>
+		<m:ci type="matrix">A</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math> 
+	<!-- N(A) = N(A^(trans) * A) -->
+	regardless of
+	<m:math display="inline"><m:ci type="matrix">A</m:ci></m:math>.
+	
+	<list id="prob2" list-type="bulleted">
+	  <item>(i) We first take a concrete example.  Report the findings of
+	    <code>null</code> when applied to 
+	    <m:math display="inline"><m:ci type="matrix">A</m:ci></m:math> and
+
+	    <m:math display="inline">
+	      <m:apply><m:times/>
+		<m:apply><m:transpose/>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>
+		<m:ci type="matrix">A</m:ci>
+	      </m:apply>
+	    </m:math>
+	    <!-- A^(trans) * A -->
+
+	    for the <m:math display="inline"><m:ci type="matrix">A</m:ci></m:math> matrix associated with
+	    <link document="m10368" target-id="ladder" strength="3">the
+	    unstable ladder figure</link>.
+	  </item>
+	  
+	  <item>(ii) Show that 
+
+	    <m:math display="inline">
+	      <m:apply><m:subset/>
+		<m:apply>
+		  <m:ci type="fn">N</m:ci>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">N</m:ci>
+		  <m:apply><m:times/>
+		    <m:apply><m:transpose/>
+		      <m:ci type="matrix">A</m:ci>
+		    </m:apply>
+		    <m:ci type="matrix">A</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:math>,
+	    <!-- N(A) a proper subset of N(A^(trans) * A) -->
+
+	    <foreign>i.e.</foreign> that if 
+
+	    <m:math display="inline">
+	      <m:apply><m:eq/>
+		<m:apply><m:times/>
+		  <m:ci type="matrix">A</m:ci>
+		  <m:ci type="vector">x</m:ci>
+		</m:apply>
+		<m:ci type="vector">0</m:ci>
+	      </m:apply>
+	    </m:math>
+	    <!-- Ax = 0 -->
+
+	    then
+	    <m:math display="inline">
+	      <m:apply><m:eq/>
+		<m:apply><m:times/>
+		  <m:apply><m:transpose/>
+		    <m:ci type="matrix">A</m:ci>
+		  </m:apply>
+		  <m:ci type="matrix">A</m:ci>
+		  <m:ci type="vector">x</m:ci>
+		</m:apply>
+		<m:ci type="vector">0</m:ci>
+	      </m:apply>
+	    </m:math>.
+	    <!-- A^(trans)*A*x = 0 -->
+	  </item>
+
+	  <item>(iii) Show that 
+
+	    <m:math display="inline">
+	      <m:apply><m:subset/>
+		<m:apply>
+		  <m:ci type="fn">N</m:ci>
+		  <m:apply><m:times/>
+		    <m:apply><m:transpose/>
+		      <m:ci type="matrix">A</m:ci>
+		    </m:apply>
+		    <m:ci type="matrix">A</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">N</m:ci>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:math>,
+	    <!-- N(A^(trans) * A) a proper subset of  N(A) -->
+
+	    <foreign>i.e.</foreign>, that if 
+
+	    <m:math display="inline">
+	      <m:apply><m:eq/>
+		<m:apply><m:times/>
+		  <m:apply><m:transpose/>
+		    <m:ci type="matrix">A</m:ci>
+		  </m:apply>
+		  <m:ci type="matrix">A</m:ci>
+		  <m:ci type="vector">x</m:ci>
+		</m:apply>
+		<m:ci type="vector">0</m:ci>
+	      </m:apply>
+	    </m:math>
+	    <!-- A^(trans)*A*x = 0 -->
+
+	    then
+	    <m:math display="inline">
+	      <m:apply><m:eq/>
+		<m:apply><m:times/>
+		  <m:ci type="matrix">A</m:ci>
+		  <m:ci type="vector">x</m:ci>
+		</m:apply>
+		<m:ci type="vector">0</m:ci>
+	      </m:apply>
+	    </m:math>.
+	    <!-- Ax = 0 -->
+
+	    (Hint: if 
+	    <m:math display="inline">
+	      <m:apply><m:eq/>
+		<m:apply><m:times/>
+		  <m:apply><m:transpose/>
+		    <m:ci type="matrix">A</m:ci>
+		  </m:apply>
+		  <m:ci type="matrix">A</m:ci>
+		  <m:ci type="vector">x</m:ci>
+		</m:apply>
+		<m:ci type="vector">0</m:ci>
+	      </m:apply>
+	    </m:math>
+	    <!-- A^(trans)*A*x = 0 -->
+
+	    then
+	    <m:math display="inline">
+	      <m:apply><m:eq/>
+		<m:apply><m:times/>
+		  <m:apply><m:transpose/>
+		    <m:ci type="vector">x</m:ci>
+		  </m:apply>
+		  <m:apply><m:transpose/>
+		    <m:ci type="matrix">A</m:ci>
+		  </m:apply>
+		  <m:ci type="matrix">A</m:ci>
+		  <m:ci type="vector">x</m:ci>
+		</m:apply>
+		<m:ci type="vector">0</m:ci>
+	      </m:apply>
+	    </m:math>.)
+	    <!-- x^(trans) * A^(trans) * A * x = 0 -->
+	  </item>
+	</list>
+      </item>
+
+      <item id="prob3"> Suppose that
+	<m:math display="inline"><m:ci type="matrix">A</m:ci></m:math>  
+	is m-by-n and that
+
+	<m:math display="inline">
+	  <m:apply><m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">N</m:ci>
+	      <m:ci type="matrix">A</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:power/>
+	      <m:reals/>
+	      <m:ci>n</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>.
+	<!-- N(A) = R^n -->
+
+	Argue that <m:math display="inline"><m:ci type="matrix">A</m:ci></m:math> must be the zero matrix.
+      </item>
+    </list>
+  </content>
+</document>

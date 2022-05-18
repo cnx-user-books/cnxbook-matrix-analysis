@@ -1,0 +1,334 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml"> 
+  
+  <title>Subspaces</title> 
+  
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>34253b9c-e934-427e-8635-cd0a642bf96d</md:uuid>
+</metadata>
+
+  <content>
+    <section id="definition">
+      <title>Subspace</title>
+    
+      <para id="p1">
+	A subspace is a subset of a <link document="m10298" strength="2">vector space</link> that is itself a vector
+	space. The simplest example is a line through the origin in
+	the plane.  For the line is definitely a subset and if we add
+	any two vectors on the line we remain on the line and if we
+	multiply any vector on the line by a scalar we remain on the
+	line. The same could be said for a line or plane through the
+	origin in 3 space. As we shall be travelling in spaces with
+	many many dimensions it pays to have a general definition.
+	
+	<definition id="defn1">
+	  <term>A subset <m:math><m:ci>S</m:ci></m:math> of a vector
+	  space <m:math><m:ci>V</m:ci></m:math> is a subspace of
+	  <m:math><m:ci>V</m:ci></m:math> when</term> <meaning id="idm8156544">if
+	  <m:math><m:ci>x</m:ci></m:math> and
+	  <m:math><m:ci>y</m:ci></m:math> belong to
+	  <m:math><m:ci>S</m:ci></m:math> then so does 
+
+	      <m:math>
+		<m:apply>
+		  <m:plus/>
+		  <m:ci>x</m:ci>
+		  <m:ci>y</m:ci>
+		</m:apply>
+	      </m:math>.</meaning>
+	    <meaning id="idm9781984">if <m:math><m:ci>x</m:ci></m:math> belongs
+	  to <m:math><m:ci>S</m:ci></m:math> and
+	  <m:math><m:ci>t</m:ci></m:math> is real then
+	      <m:math>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>t</m:ci>
+		  <m:ci>x</m:ci>
+		</m:apply>
+	      </m:math> belong to
+	  <m:math><m:ci>S</m:ci></m:math>.</meaning>
+	</definition>
+	
+	As these are oftentimes unwieldy objects it pays to look for a
+	handful of vectors from which the entire subset may be generated.
+	For example, the set of <m:math><m:ci>x</m:ci></m:math> for which 
+	<m:math display="inline">
+	  <m:apply><m:eq/>
+	    <m:apply><m:plus/>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>2</m:mn>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>3</m:mn>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>4</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>
+	constitutes a subspace of
+	<m:math display="inline">
+	  <m:ci><m:msup>
+	      <m:mi>ℝ</m:mi>
+	      <m:mn>4</m:mn>
+	    </m:msup></m:ci>
+	</m:math>.    
+	Can you 'see' this set? Do you 'see' that
+	<m:math display="block">
+	  <m:vector>
+	    <m:cn>-1</m:cn><m:cn>-1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+	  </m:vector>
+	</m:math>
+	and
+	<m:math display="block">
+	  <m:vector>
+	    <m:cn>-1</m:cn><m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn>
+	  </m:vector>
+	</m:math>
+	and
+	<m:math display="block">
+	  <m:vector>
+	    <m:cn>-1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>1</m:cn>
+	  </m:vector>
+	</m:math> not only belong to a set but in fact generate all
+	possible elements?  More precisely, we say that these vectors
+	<term>span</term> the subspace of all possible solutions.
+	
+	<definition id="defn2">
+	  <term>Span</term>
+	  <meaning id="idp1224992">A finite collection
+	    <m:math display="inline">
+	      <m:set>
+		<m:ci><m:msub>
+		    <m:mi>s</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>s</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+		<m:ci>…</m:ci>
+		<m:ci><m:msub>
+		    <m:mi>s</m:mi>
+		    <m:mi>n</m:mi>
+		  </m:msub></m:ci>
+	      </m:set>
+	    </m:math>
+	    <!-- {s_1,s_2,...,s_n}--> of vectors in the subspace
+	    <m:math display="inline"><m:ci>S</m:ci></m:math> is said
+	    to span <m:math display="inline"><m:ci>S</m:ci></m:math>
+	    if each element of <m:math display="inline"><m:ci>S</m:ci></m:math> can be written as
+	    a linear combination of these vectors. That is, if for
+	    each
+	    <m:math display="inline">
+	      <m:apply><m:in/>
+		<m:ci>s</m:ci>
+		<m:ci>S</m:ci>
+	      </m:apply>
+	    </m:math> there exist
+	    <m:math display="inline"><m:ci>n</m:ci></m:math> reals 
+	    <m:math display="inline">
+	      <m:set>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+		<m:ci>…</m:ci>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mi>n</m:mi>
+		  </m:msub></m:ci>
+	      </m:set>
+	    </m:math>
+	    <!--x_1,x_2,...,x_n--> 
+	    
+	    such that 
+	    <m:math display="inline">
+	      <m:apply><m:eq/>
+		<m:ci>s</m:ci>
+		<m:apply><m:plus/>
+		  <m:apply><m:times/>
+		    <m:ci><m:msub>
+			<m:mi>x</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		    <m:ci><m:msub>
+			<m:mi>s</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:apply><m:times/>
+		    <m:ci><m:msub>
+			<m:mi>x</m:mi>
+			<m:mn>2</m:mn>
+		      </m:msub></m:ci>
+		    <m:ci><m:msub>
+			<m:mi>s</m:mi>
+			<m:mn>2</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:ci>…</m:ci>
+		  <m:apply><m:times/>
+		    <m:ci><m:msub>
+			<m:mi>x</m:mi>
+			<m:mi>n</m:mi>
+		      </m:msub></m:ci>
+		    <m:ci><m:msub>
+			<m:mi>s</m:mi>
+			<m:mi>n</m:mi>
+		      </m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:math>.
+	    <!--s = x_1s_1 + x_2s_2 + ... x_ns_n-->
+	  </meaning>
+	</definition>
+	
+	When attempting to generate a subspace as the span of a
+	handful of vectors it is natural to ask what is the fewest
+	number possible. The notion of linear independence helps us
+	clarify this issue.
+	
+	<definition id="defn3">
+	  <term>Linear Independence</term>
+	  <meaning id="idm8807280">A finite collection
+	    <m:math display="inline">
+	      <m:set>
+		<m:ci><m:msub>
+		    <m:mi>s</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>s</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+		<m:ci>…</m:ci>
+		<m:ci><m:msub>
+		    <m:mi>s</m:mi>
+		    <m:mi>n</m:mi>
+		  </m:msub></m:ci>
+	      </m:set>
+	    </m:math> <!--{s_1,s_2,...,s_n}--> of vectors is said to
+	    be linearly independent when the only reals,
+	    <m:math display="inline">
+	      <m:set>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+		<m:ci>…</m:ci>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mi>n</m:mi>
+		  </m:msub></m:ci>
+	      </m:set>
+	    </m:math>
+	    <!--x_1,x_2,...,x_n--> for which 
+	    <m:math display="inline">
+	      <m:apply><m:eq/>
+		<m:apply><m:plus/>
+		  <m:apply><m:times/>
+		    <m:ci><m:msub>
+			<m:mi>x</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:apply><m:times/>
+		    <m:ci><m:msub>
+			<m:mi>x</m:mi>
+			<m:mn>2</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:ci>…</m:ci>
+		  <m:apply><m:times/>
+		    <m:ci><m:msub>
+			<m:mi>x</m:mi>
+			<m:mi>n</m:mi>
+		      </m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:cn>0</m:cn>
+	      </m:apply>
+	    </m:math><!--x_1s_1 + x_2s_2 + ... x_ns_n =0-->
+	    are 
+	    <m:math display="inline">
+	      <m:apply><m:eq/>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+		<m:ci>…</m:ci>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mi>n</m:mi>
+		  </m:msub></m:ci>
+		<m:cn>0</m:cn>
+	      </m:apply>
+	    </m:math>.
+	    <!--x_1=x_2=...=x_n=0--> In other words, when the
+	    <link document="m10293" strength="2">null space</link> 
+	    of the matrix whose columns are
+	    <m:math display="inline">
+	      <m:set>
+		<m:ci><m:msub>
+		    <m:mi>s</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>s</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+		<m:ci>…</m:ci>
+		<m:ci><m:msub>
+		    <m:mi>s</m:mi>
+		    <m:mi>n</m:mi>
+		  </m:msub></m:ci>
+	      </m:set>
+	    </m:math> <!--s_1,s_2,...,s_n--> contains only the zero vector.
+	  </meaning>
+	</definition>
+	
+	Combining these definitions, we arrive at the precise notion of a
+	'generating set.'
+
+	<definition id="defn4">
+	  <term>Basis</term>
+	  <meaning id="idp447984">Any linearly independent spanning set of a subspace 
+	    <m:math display="inline"><m:ci>S</m:ci></m:math> is called
+	    a basis of 
+	    <m:math display="inline"><m:ci>S</m:ci></m:math>.
+	  </meaning>
+	</definition>
+
+	Though a subspace may have many bases they all have one thing
+	in common:
+	
+	<definition id="defn5">
+	  <term>Dimension</term> <meaning id="idp9024">The dimension of a subspace
+	  is the number of elements in its basis.
+	  </meaning>
+	</definition>
+      </para>
+    </section>
+  </content>
+</document>

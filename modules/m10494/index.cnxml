@@ -1,0 +1,155 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  
+  <title>The Eigenvalue Problem:  Exercises</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>c8f65a3e-a563-4d02-b5e6-9ca382834cb1</md:uuid>
+</metadata>
+
+  <content>
+    <section id="exercises">
+      <title>Exercises</title>
+    <para id="problems">
+	<list id="probs" list-type="enumerated">
+	  <item>Argue as in <link document="m10491" target-id="prop1" strength="3">
+	Proposition 1</link> in the discussion of the partial fraction
+	expansion of the transfer function that if <m:math>
+	      <m:apply>
+		<m:neq/>
+		<m:ci>j</m:ci>
+		<m:ci>k</m:ci>
+	      </m:apply>
+	    </m:math> then
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci><m:msub>
+		      <m:mi>D</m:mi><m:mi>j</m:mi>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>P</m:mi><m:mi>k</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:ci><m:msub>
+		      <m:mi>P</m:mi><m:mi>j</m:mi>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>D</m:mi><m:mi>k</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:cn>0</m:cn>
+	      </m:apply>
+	    </m:math>.</item>
+
+	  <item>Argue from <link document="m10492" target-id="eq9.17" strength="3">this equation</link> from the
+	  discussion of the Spectral Representation that
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci><m:msub>
+		      <m:mi>D</m:mi><m:mi>j</m:mi>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>P</m:mi><m:mi>j</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:ci><m:msub>
+		      <m:mi>P</m:mi><m:mi>j</m:mi>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>D</m:mi><m:mi>j</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:ci><m:msub>
+		    <m:mi>D</m:mi><m:mi>j</m:mi>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:math>.</item>
+
+	  <item>The two previous exercises come in very handy when
+	computing powers of matrices. For example, suppose
+	<m:math><m:ci>B</m:ci></m:math> is 4-by-4, that
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:ci>h</m:ci>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	    </m:math> and
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:ci><m:msub>
+		    <m:mi>m</m:mi><m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>m</m:mi><m:mn>2</m:mn>
+		  </m:msub></m:ci>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	    </m:math>. Use the spectral representation of
+	<m:math><m:ci>B</m:ci></m:math> together with the first two
+	exercises to arrive at simple formulas for
+	    <m:math>
+	      <m:apply>
+		<m:power/>
+		<m:ci>B</m:ci>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	    </m:math> and
+	    <m:math>
+	     <m:apply>
+		<m:power/>
+		<m:ci>B</m:ci>
+		<m:cn>3</m:cn>
+	      </m:apply>
+	    </m:math>.</item>
+
+	  <item>Compute the spectral representation of the circulant
+	matrix 
+	    <m:math display="block">
+	      <m:apply>
+		<m:eq/>
+		<m:ci>B</m:ci>
+		<m:matrix>
+		  <m:matrixrow>
+		    <m:cn>2</m:cn> 
+		    <m:cn>8</m:cn>
+		    <m:cn>6</m:cn> 
+		    <m:cn>4</m:cn> 
+		  </m:matrixrow>
+		  <m:matrixrow>
+		    <m:cn>4</m:cn> 
+		    <m:cn>2</m:cn> 
+		    <m:cn>8</m:cn> 
+		    <m:cn>6</m:cn>
+		  </m:matrixrow>
+		  <m:matrixrow> 
+		    <m:cn>6</m:cn> 
+		    <m:cn>4</m:cn>
+		    <m:cn>2</m:cn> 
+		    <m:cn>8</m:cn> 
+		  </m:matrixrow>
+		  <m:matrixrow>
+		    <m:cn>8</m:cn> 
+		    <m:cn>6</m:cn> 
+		    <m:cn>4</m:cn> 
+		    <m:cn>2</m:cn>
+		  </m:matrixrow>
+		</m:matrix>
+	      </m:apply></m:math>  Carefully label all
+	    eigenvalues, eigenprojections and eigenvectors.
+
+	  </item>
+	</list>
+      </para>
+    </section>
+  </content>
+  
+</document>

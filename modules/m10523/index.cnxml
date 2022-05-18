@@ -1,0 +1,508 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  
+  <title>The Inverse Laplace Transform: Complex Integration</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>899147b6-97a3-4e38-aabb-101e8e2017fc</md:uuid>
+</metadata>
+
+  <content>
+    <section id="laplace">
+      <title>The Inverse Laplace Transform</title>
+    <para id="laplacepara">
+	If <m:math><m:ci>q</m:ci></m:math> is a rational function with
+	poles <m:math>
+	  <m:set>
+	    <m:bvar>
+	      <m:ci><m:msub>
+		  <m:mi>λ</m:mi>
+		  <m:mi>j</m:mi>
+		</m:msub></m:ci>
+	    </m:bvar>
+	    <m:condition>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>j</m:ci>
+	      <m:set>
+		<m:cn>1</m:cn>
+		<m:ci>…</m:ci>
+		<m:ci>h</m:ci>
+	      </m:set>
+	    </m:apply>
+	    </m:condition>
+	  </m:set>
+	</m:math>
+	then the inverse Laplace transform of
+	<m:math><m:ci>q</m:ci></m:math> is 
+	<equation id="eq13">
+	  <m:math>
+	    <m:apply>
+	      <m:equivalent/>
+	      <m:apply>
+		<m:apply>
+		  <m:apply>
+		    <m:inverse/>
+		    <m:ci><m:mo>ℒ</m:mo></m:ci>
+		  </m:apply>
+		  <m:ci type="fn">q</m:ci>
+		</m:apply>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>2</m:cn>
+		    <m:pi/>
+		    <m:imaginaryi/>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:int/>
+		  <m:bvar>
+		    <m:ci>z</m:ci>
+		  </m:bvar>
+		  <m:domainofapplication>
+		    <m:ci>C</m:ci>
+		  </m:domainofapplication>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:ci type="fn">q</m:ci>
+		      <m:ci>z</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:exp/>
+		      <m:apply>
+			<m:times/>
+			<m:ci>z</m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	where <m:math><m:ci>C</m:ci></m:math> is a curve that encloses
+	each of the poles of <m:math><m:ci>q</m:ci></m:math>.  As a
+	result 
+	<equation id="eq14">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:apply>
+		  <m:apply>
+		    <m:inverse/>
+		    <m:ci><m:mo>ℒ</m:mo></m:ci>
+		  </m:apply>
+		  <m:ci type="fn">q</m:ci>
+		</m:apply>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:sum/>
+		<m:bvar>
+		  <m:ci>j</m:ci>
+		</m:bvar>
+		<m:lowlimit>
+		  <m:cn>1</m:cn>
+		</m:lowlimit>
+		<m:uplimit>
+		  <m:ci>h</m:ci>
+		</m:uplimit>
+		<m:apply>
+		  <m:ci type="fn">res</m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>λ</m:mi>
+		      <m:mi>j</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	Let us put this lovely formula to the test.  We take our
+	examples from discussion of <link document="m10169" strength="3">the Laplace Transform</link> and <link document="m10170" strength="3">the inverse Laplace
+	Transform</link>.  Let us first compute the inverse Laplace
+	Transform of
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">q</m:ci>
+	      <m:ci>z</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:divide/>
+	      <m:cn>1</m:cn>
+	      <m:apply>
+		<m:power/>
+		<m:apply>
+		  <m:plus/>
+		  <m:ci>z</m:ci>
+		  <m:cn>1</m:cn>
+		</m:apply>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	According to <link target-id="eq14" strength="3"/> it is simply
+	the residue of <m:math>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:ci type="fn">q</m:ci>
+	      <m:ci>z</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:exp/>
+	      <m:apply>
+		<m:times/>
+		<m:ci>z</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math> 
+	at <m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>z</m:ci>
+	    <m:cn>-1</m:cn>
+	  </m:apply>
+	</m:math>, <foreign>i.e.</foreign>,
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">res</m:ci>
+	      <m:cn>-1</m:cn>
+	    </m:apply>
+	    <m:apply>
+	      <m:limit/>
+	      <m:bvar>
+		<m:ci>z</m:ci>
+	      </m:bvar>
+	      <m:lowlimit>
+		<m:cn>-1</m:cn>
+	      </m:lowlimit>
+	      <m:apply>
+		<m:diff/>
+		<m:bvar>
+		  <m:ci>z</m:ci>
+		</m:bvar>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>z</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>t</m:ci>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	This closes the circle on the example begun in the discussion
+	of <link document="m10169" strength="3">the Laplace
+	Transform</link> and continued in exercise one for chapter 6.
+      </para>
+      <para id="laplacepara2">
+	For our next example we recall
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci><m:mo>ℒ</m:mo></m:ci>
+	      <m:apply>
+		<m:ci type="fn"><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:divide/>
+	      <m:apply>
+		<m:times/>
+		<m:cn>0.19</m:cn>
+		<m:apply>
+		  <m:plus/>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>s</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>1.5</m:cn>
+		    <m:ci>s</m:ci>
+		  </m:apply>
+		  <m:cn>0.27</m:cn>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:power/>
+		  <m:apply>
+		    <m:plus/>
+		    <m:ci>s</m:ci>
+		    <m:cn type="rational">1<m:sep/>6</m:cn>
+		  </m:apply>
+		  <m:cn>4</m:cn>
+		</m:apply>
+		<m:apply>
+		  <m:plus/>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>s</m:ci>
+		    <m:cn>3</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>1.655</m:cn>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>s</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>0.4978</m:cn>
+		    <m:ci>s</m:ci>
+		  </m:apply>
+		  <m:cn>0.0039</m:cn>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	from <link document="m10170" strength="3">the Inverse Laplace
+	  Transform</link>.  Using <code>numde</code>,
+	  <code>sym2poly</code> and
+	  <code>residue</code>, see
+	  <code>fib4.m</code> for details, returns
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>r</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	    <m:matrix>
+	      <m:matrixrow>
+		<m:cn>0.0029</m:cn>
+	      </m:matrixrow>
+	       <m:matrixrow>
+		<m:cn>262.8394</m:cn>
+	      </m:matrixrow>
+	       <m:matrixrow>
+		<m:cn>-474.1929</m:cn>
+	      </m:matrixrow>
+	       <m:matrixrow>
+		<m:cn>-1.0857</m:cn>
+	      </m:matrixrow>
+	       <m:matrixrow>
+		<m:cn>-9.0930</m:cn>
+	      </m:matrixrow>
+	       <m:matrixrow>
+		<m:cn>-0.3326</m:cn>
+	      </m:matrixrow>
+	       <m:matrixrow>
+		<m:cn>211.3507</m:cn>
+	      </m:matrixrow>
+	    </m:matrix>
+	  </m:apply>
+	</m:math>
+	and
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>p</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	    <m:matrix>
+	      <m:matrixrow>
+		<m:cn>-1.3565</m:cn>
+	      </m:matrixrow>
+	       <m:matrixrow>
+		<m:cn>-0.2885</m:cn>
+	      </m:matrixrow>
+	       <m:matrixrow>
+		<m:cn>-0.1667</m:cn>
+	      </m:matrixrow>
+	       <m:matrixrow>
+		<m:cn>-0.1667</m:cn>
+	      </m:matrixrow>
+	       <m:matrixrow>
+		<m:cn>-0.1667</m:cn>
+	      </m:matrixrow>
+	       <m:matrixrow>
+		<m:cn>-0.1667</m:cn>
+	      </m:matrixrow>
+	       <m:matrixrow>
+		<m:cn>-0.0100</m:cn>
+	      </m:matrixrow>
+	    </m:matrix>
+	  </m:apply>
+	</m:math>
+	You will be asked in the exercises to show that this indeed
+	jibes with the
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn"><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:minus/>
+	      <m:apply>
+		<m:times/>
+		<m:cn>211.35</m:cn>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		    <m:cn>100</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:plus/>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>0.0554</m:cn>
+		      <m:apply>
+			<m:power/>
+		  <m:ci>t</m:ci>
+			<m:cn>3</m:cn>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>4.5464</m:cn>
+		      <m:apply>
+			<m:power/>
+			<m:ci>t</m:ci>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>1.085</m:cn>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		    <m:cn>474.19</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:exp/>
+		    <m:apply>
+		      <m:divide/>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		      <m:cn>6</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:exp/>
+		    <m:apply>
+		      <m:divide/>
+		      <m:apply>
+			<m:times/>
+			<m:cn>-329</m:cn>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		      <m:cn>400</m:cn>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:plus/>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>262.842</m:cn>
+		      <m:apply>
+			<m:cosh/>
+			<m:apply>
+			  <m:divide/>
+			  <m:apply>
+			    <m:times/>
+			    <m:apply>
+			      <m:root/>
+			      <m:cn>73</m:cn>
+			    </m:apply>
+			    <m:ci>t</m:ci>
+			  </m:apply>
+			  <m:cn>16</m:cn>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>262.836</m:cn>
+		      <m:apply>
+			<m:sinh/>
+			<m:apply>
+			  <m:divide/>
+			  <m:apply>
+			    <m:times/>
+			    <m:apply>
+			      <m:root/>
+			      <m:cn>73</m:cn>
+			    </m:apply>
+			    <m:ci>t</m:ci>
+			  </m:apply>
+			  <m:cn>16</m:cn>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	achieved in <link document="m10169" strength="3">the Laplace
+	Transform</link> via <code>ilaplace</code>.
+    </para>
+    </section>
+  </content>
+  
+</document>

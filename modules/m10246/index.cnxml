@@ -1,0 +1,2050 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+
+  <title>Cauchy's Integral Formula</title>
+  
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>d833a3c5-9883-4830-9ff5-d578e2f54378</md:uuid>
+</metadata>
+
+  <content>
+    <section id="lemma">
+      <title>The Residue Theorem</title>
+      <para id="p1">
+	After <link document="m10264" target-id="eq6" strength="3">Cauchy's
+	  Theorem eqn6</link> and <link document="m10264" target-id="eq7" strength="3">Cauchy's Theorem eqn7</link> perhaps the most
+	  useful consequence of <link document="m10264" target-id="cauchy" strength="2">Cauchy's
+	  Theorem</link> is the
+	
+	<rule id="curverepllemma" type="lemma">
+	  <title>The Curve Replacement Lemma</title>
+	  <statement id="idm356352">
+	    <para id="lemmastatep1">Suppose that
+	      <m:math>
+		<m:ci><m:msub>
+		    <m:mi>C</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+	      </m:math>
+	      is a closed curve that lies inside the region encircled by
+	      the closed curve
+	      <m:math>
+		<m:ci>
+		  <m:msub>
+		    <m:mi>C</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub>
+		</m:ci>
+	      </m:math>. If f 
+	      is differentiable in the annular region outside
+	      <m:math>
+		<m:ci>
+		  <m:msub>
+		    <m:mi>C</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub>
+		</m:ci>
+	      </m:math>
+	      and inside
+	      <m:math>
+		<m:ci>
+		  <m:msub>
+		    <m:mi>C</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub>
+		</m:ci>
+	      </m:math>
+	      then
+	      
+	      <m:math display="block">
+		<m:apply><m:eq/>
+		  <m:apply><m:int/>
+		    <m:bvar><m:ci>z</m:ci></m:bvar>
+		    <m:domainofapplication>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>C</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub>
+		      </m:ci>
+		    </m:domainofapplication>
+		    <m:apply>
+		      <m:ci type="fn">f</m:ci>
+		      <m:ci>z</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply><m:int/>
+		    <m:bvar><m:ci>z</m:ci></m:bvar>
+		    <m:domainofapplication>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>C</m:mi>
+			  <m:mn>2</m:mn>
+			</m:msub>
+		      </m:ci>
+		    </m:domainofapplication>
+		    <m:apply>
+		      <m:ci type="fn">f</m:ci>
+		      <m:ci>z</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:math>.
+	    </para>
+	  </statement>
+	  
+	  <proof id="idm7786592">
+	    <para id="lemmaproofp1">
+	      With reference to <link target-id="below" strength="2"/> we
+	      introduce two vertical segments and define the closed
+	      curves
+	  
+	      <m:math>
+		<m:apply><m:eq/>
+		  <m:ci>
+		    <m:msub>
+		      <m:mi>C</m:mi>
+		      <m:mn>3</m:mn>
+		    </m:msub>
+		  </m:ci> 
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>a</m:ci>
+		    <m:ci>b</m:ci>
+		    <m:ci>c</m:ci>
+		    <m:ci>d</m:ci>
+		    <m:ci>a</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	      (where the 
+	      <m:math display="inline">
+		<m:ci>bc</m:ci>	      
+	      </m:math> arc is clockwise and the
+	      <m:math display="inline">
+		<m:ci>da</m:ci> </m:math> arc is counter-clockwise)
+	      and
+	     
+	      <m:math>
+		<m:apply><m:eq/>
+		  <m:ci>
+		    <m:msub>
+		      <m:mi>C</m:mi>
+		      <m:mn>4</m:mn>
+		    </m:msub>
+		  </m:ci>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>a</m:ci>
+		    <m:ci>d</m:ci>
+		    <m:ci>c</m:ci>
+		    <m:ci>b</m:ci>
+		    <m:ci>a</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	      
+	      (where the 
+	      <m:math display="inline">
+		<m:ci>ad</m:ci>	      
+	      </m:math>
+	      arc is counter-clockwise and the
+	      <m:math display="inline">
+		<m:ci>cb</m:ci>	      
+	      </m:math>
+	      arc is clockwise). By merely following the arrows we learn that
+	      
+	      <m:math display="block">
+		<m:apply><m:eq/>
+		  <m:apply><m:int/>
+		    <m:bvar><m:ci>z</m:ci></m:bvar>
+		    <m:domainofapplication><m:ci>
+			<m:msub>
+			  <m:mi>C</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub>
+		      </m:ci></m:domainofapplication>
+		    <m:apply>
+		      <m:ci type="fn">f</m:ci>
+		      <m:ci>z</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply><m:plus/>
+		    <m:apply><m:int/>
+		      <m:bvar><m:ci>z</m:ci></m:bvar>
+		      <m:domainofapplication><m:ci>
+			  <m:msub>
+			    <m:mi>C</m:mi>
+			    <m:mn>2</m:mn>
+			  </m:msub>
+			</m:ci></m:domainofapplication>
+		      <m:apply>
+			<m:ci type="fn">f</m:ci>
+			<m:ci>z</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply><m:int/>
+		      <m:bvar><m:ci>z</m:ci></m:bvar>
+		      <m:domainofapplication>
+			<m:ci>
+			  <m:msub>
+			    <m:mi>C</m:mi>
+			    <m:mn>3</m:mn>
+			  </m:msub>
+			</m:ci>
+		      </m:domainofapplication>
+		      <m:apply>
+			<m:ci type="fn">f</m:ci>
+			<m:ci>z</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply><m:int/>
+		      <m:bvar><m:ci>z</m:ci></m:bvar>
+		      <m:domainofapplication><m:ci>
+			  <m:msub>
+			    <m:mi>C</m:mi>
+			    <m:mn>4</m:mn>
+			  </m:msub>
+			</m:ci></m:domainofapplication>
+		      <m:apply>
+			<m:ci type="fn">f</m:ci>
+			<m:ci>z</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+
+	      As <link document="m10264" target-id="cauchy" strength="2">Cauchy's Theorem</link> implies that
+	      the integrals over
+	      
+	      <m:math>
+		<m:ci>
+		  <m:msub>
+		    <m:mi>C</m:mi>
+		    <m:mn>3</m:mn>
+		  </m:msub>
+		</m:ci>
+	      </m:math>
+	      
+	      and
+	      
+	      <m:math>
+		<m:ci>
+		  <m:msub>
+		    <m:mi>C</m:mi>
+		    <m:mn>4</m:mn>
+		  </m:msub>
+		</m:ci>
+	      </m:math> each vanish, we have our result.
+	    </para>
+	  </proof>
+	</rule>
+      </para>
+
+      
+      <figure id="below" orient="horizontal">
+	<title>Curve Replacement Figure</title>
+	<media id="idm317040" alt=""><image src="../../media/curvelemma2.png" mime-type="image/png"/></media>
+	<caption>The Curve Replacement Lemma</caption>
+      </figure>
+
+      
+      <para id="p2">
+	This Lemma says that in order to integrate a function it
+	suffices to integrate it over regions where it is singular,
+	<foreign>i.e.</foreign> nondifferentiable.
+      </para>
+
+      
+      <para id="examplep2">
+	Let us apply this reasoning to the integral
+	
+	<m:math display="block">
+	  <m:apply>
+	    <m:int/>
+	    <m:bvar>
+	      <m:ci>z</m:ci>
+	    </m:bvar>
+	    <m:domainofapplication>
+	      <m:ci>C</m:ci>
+	    </m:domainofapplication>
+	    <m:apply>
+	      <m:divide/>
+	      <m:ci>z</m:ci>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>z</m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>λ</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>z</m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>λ</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	
+	where <m:math><m:ci>C</m:ci></m:math> encircles both 
+	
+	<m:math>
+	  <m:ci><m:msub>
+	      <m:mi>λ</m:mi>
+	      <m:mn>1</m:mn>
+	    </m:msub></m:ci>
+	</m:math> and 
+	
+	<m:math>
+	  <m:ci><m:msub>
+	      <m:mi>λ</m:mi>
+	      <m:mn>2</m:mn>
+	    </m:msub></m:ci>
+	</m:math> as depicted in <link target-id="concnpoles" strength="3"/>.  We find that
+	
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:int/>
+	      <m:bvar>
+		<m:ci>z</m:ci>
+	      </m:bvar>
+	      <m:domainofapplication>
+		<m:ci>C</m:ci>
+	      </m:domainofapplication>
+	      <m:apply>
+		<m:divide/>
+		<m:ci>z</m:ci>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>z</m:ci>
+		    <m:ci><m:msub>
+			<m:mi>λ</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>z</m:ci>
+		    <m:ci><m:msub>
+			<m:mi>λ</m:mi>
+			<m:mn>2</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply>
+		<m:int/>
+		<m:bvar>
+		  <m:ci>z</m:ci>
+		</m:bvar>
+		<m:domainofapplication>
+		  <m:ci><m:msub>
+		      <m:mi>C</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		</m:domainofapplication>
+		<m:apply>
+		  <m:divide/>
+		  <m:ci>z</m:ci>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>z</m:ci>
+		      <m:ci><m:msub>
+			  <m:mi>λ</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>z</m:ci>
+		      <m:ci><m:msub>
+			  <m:mi>λ</m:mi>
+			  <m:mn>2</m:mn>
+			</m:msub></m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:int/>
+		<m:bvar>
+		  <m:ci>z</m:ci>
+		</m:bvar>
+		<m:domainofapplication>
+		  <m:ci><m:msub>
+		      <m:mi>C</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		</m:domainofapplication>
+		<m:apply>
+		  <m:divide/>
+		  <m:ci>z</m:ci>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>z</m:ci>
+		      <m:ci><m:msub>
+			  <m:mi>λ</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>z</m:ci>
+		      <m:ci><m:msub>
+			  <m:mi>λ</m:mi>
+			  <m:mn>2</m:mn>
+			</m:msub></m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	Developing the integrand in partial fractions we find
+	
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:int/>
+	      <m:bvar>
+		<m:ci>z</m:ci>
+	      </m:bvar>
+	      <m:domainofapplication>
+		<m:ci><m:msub>
+		    <m:mi>C</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+	      </m:domainofapplication>
+	      <m:apply>
+		<m:divide/>
+		<m:ci>z</m:ci>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>z</m:ci>
+		    <m:ci><m:msub>
+			<m:mi>λ</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>z</m:ci>
+		    <m:ci><m:msub>
+			<m:mi>λ</m:mi>
+			<m:mn>2</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:divide/>
+		  <m:ci><m:msub>
+		      <m:mi>λ</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci><m:msub>
+			<m:mi>λ</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		    <m:ci><m:msub>
+			<m:mi>λ</m:mi>
+			<m:mn>2</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:int/>
+		  <m:bvar>
+		    <m:ci>z</m:ci>
+		  </m:bvar>
+		  <m:domainofapplication>
+		    <m:ci><m:msub>
+			<m:mi>C</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		  </m:domainofapplication>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>z</m:ci>
+		      <m:ci><m:msub>
+			  <m:mi>λ</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub></m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:divide/>
+		  <m:ci><m:msub>
+		      <m:mi>λ</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci><m:msub>
+			<m:mi>λ</m:mi>
+			<m:mn>2</m:mn>
+		      </m:msub></m:ci>
+		    <m:ci><m:msub>
+			<m:mi>λ</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>  
+		  <m:int/>
+		  <m:bvar>
+		    <m:ci>z</m:ci>
+		  </m:bvar>
+		  <m:domainofapplication>
+		    <m:ci><m:msub>
+			<m:mi>C</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		  </m:domainofapplication>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>z</m:ci>
+		      <m:ci><m:msub>
+			  <m:mi>λ</m:mi>
+			  <m:mn>2</m:mn>
+			</m:msub></m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:divide/>
+	      <m:apply>
+		<m:times/>
+		<m:cn>2</m:cn>
+		<m:pi/>
+		<m:imaginaryi/>
+		<m:ci><m:msub>
+		    <m:mi>λ</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:minus/>
+		<m:ci><m:msub>
+		    <m:mi>λ</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>λ</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+
+
+	Similarly,
+	
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:int/>
+	      <m:bvar>
+		<m:ci>z</m:ci>
+	      </m:bvar>
+	      <m:domainofapplication>
+		<m:ci><m:msub>
+		    <m:mi>C</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+	      </m:domainofapplication>
+	      <m:apply>
+		<m:divide/>
+		<m:ci>z</m:ci>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>z</m:ci>
+		    <m:ci><m:msub>
+			<m:mi>λ</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>z</m:ci>
+		    <m:ci><m:msub>
+			<m:mi>λ</m:mi>
+			<m:mn>2</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:divide/>
+	      <m:apply>
+		<m:times/>
+		<m:cn>2</m:cn>
+		<m:pi/>
+		<m:imaginaryi/>
+		<m:ci><m:msub>
+		    <m:mi>λ</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:minus/>
+		<m:ci><m:msub>
+		    <m:mi>λ</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>λ</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	Putting things back together we find
+
+	<equation id="eq8">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:int/>
+		<m:bvar>
+		  <m:ci>z</m:ci>
+		</m:bvar>
+		<m:domainofapplication>
+		  <m:ci>C</m:ci>
+		</m:domainofapplication>
+		<m:apply>
+		  <m:divide/>
+		  <m:ci>z</m:ci>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>z</m:ci>
+		      <m:ci><m:msub>
+			  <m:mi>λ</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>z</m:ci>
+		      <m:ci><m:msub>
+			  <m:mi>λ</m:mi>
+			  <m:mn>2</m:mn>
+			</m:msub></m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:cn>2</m:cn>
+		<m:pi/>
+		<m:imaginaryi/>
+		<m:apply>
+		  <m:plus/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:ci><m:msub>
+			<m:mi>λ</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci><m:msub>
+			  <m:mi>λ</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub></m:ci>
+		      <m:ci><m:msub>
+			  <m:mi>λ</m:mi>
+			  <m:mn>2</m:mn>
+			</m:msub></m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:divide/>
+		    <m:ci><m:msub>
+			<m:mi>λ</m:mi>
+			<m:mn>2</m:mn>
+		      </m:msub></m:ci>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci><m:msub>
+			  <m:mi>λ</m:mi>
+			  <m:mn>2</m:mn>
+			</m:msub></m:ci>
+		      <m:ci><m:msub>
+			  <m:mi>λ</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub></m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:cn>2</m:cn>
+		<m:pi/>
+		<m:imaginaryi/>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+      </para>
+
+      
+      <figure id="concnpoles">
+	<media id="idm43264" alt=""><image src="../../media/notdone.png" mime-type="image/png"/></media>
+	<caption>Concentrating on the poles.</caption>
+      </figure>
+
+      
+      <para id="para2b">
+	We may view <link target-id="eq8" strength="3"/> as a special
+	instance of integrating a rational function around a curve
+	that encircles all of the zeros of its denominator.  In
+	particular, recalling that <link document="m10264" target-id="eq5" strength="3">cauchy's theorem eqn5</link> and <link document="m10264" target-id="eq6" strength="3">Cauchy's theorem
+	eqn6</link>, we find
+	
+	<equation id="eq9">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:int/>
+		<m:bvar>
+		  <m:ci>z</m:ci>
+		</m:bvar>
+		<m:domainofapplication>
+		  <m:ci>C</m:ci>
+		</m:domainofapplication>
+		<m:apply>
+		  <m:ci type="fn">q</m:ci>
+		  <m:ci>z</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:sum/>
+		<m:bvar>
+		  <m:ci>j</m:ci>
+		</m:bvar>
+		<m:lowlimit>
+		  <m:cn>1</m:cn>
+		</m:lowlimit>
+		<m:uplimit>
+		  <m:ci>h</m:ci>
+		</m:uplimit>
+		<m:apply>
+		  <m:sum/>
+		  <m:bvar>
+		    <m:ci>k</m:ci>
+		  </m:bvar>
+		  <m:lowlimit>
+		    <m:cn>1</m:cn>
+		  </m:lowlimit>
+		  <m:uplimit>
+		    <m:ci><m:msub>
+			<m:mi>m</m:mi>
+			<m:mi>j</m:mi>
+		      </m:msub></m:ci>
+		  </m:uplimit>
+		  <m:apply>
+		    <m:int/>
+		    <m:bvar>
+		      <m:ci>z</m:ci>
+		    </m:bvar>
+		    <m:domainofapplication>
+		      <m:ci><m:msub>
+			  <m:mi>C</m:mi>
+			  <m:mi>j</m:mi>
+			</m:msub></m:ci>
+		    </m:domainofapplication>
+		    <m:apply>
+		      <m:divide/>
+		      <m:ci><m:msub>
+			  <m:mi>q</m:mi>
+			  <m:mrow>
+			    <m:mi>j</m:mi>
+			    <m:mo>,</m:mo>
+			    <m:mi>k</m:mi>
+			  </m:mrow>
+			</m:msub></m:ci>
+		      <m:apply>
+			<m:power/>
+			<m:apply>
+			  <m:minus/>
+			  <m:ci>z</m:ci>
+			  <m:ci><m:msub>
+			      <m:mi>λ</m:mi>
+			      <m:mi>j</m:mi>
+			    </m:msub></m:ci>
+			</m:apply>
+			<m:ci>k</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:cn>2</m:cn>
+		<m:pi/>
+		<m:imaginaryi/>
+		<m:apply>
+		  <m:sum/>
+		  <m:bvar>
+		    <m:ci>j</m:ci>
+		  </m:bvar>
+		  <m:lowlimit>
+		    <m:cn>1</m:cn>
+		  </m:lowlimit>
+		  <m:uplimit>
+		    <m:ci>h</m:ci>
+		  </m:uplimit>
+		  <m:ci><m:msub>
+		      <m:mi>q</m:mi>
+		      <m:mrow>
+			<m:mi>j</m:mi>
+			<m:mo>,</m:mo>
+			<m:mn>1</m:mn>
+		      </m:mrow>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+      </para>
+
+      
+      <para id="p3">
+	To take a slightly more complicated example let us integrate
+	
+	<m:math>
+	  <m:apply><m:divide/>
+	    <m:apply>
+	      <m:ci type="fn">f</m:ci>
+	      <m:ci>z</m:ci>
+	    </m:apply>
+	    <m:apply><m:minus/>
+	      <m:ci>z</m:ci>
+	      <m:ci>a</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	
+	over some closed curve <m:math><m:ci>C</m:ci></m:math> inside
+	of which <m:math><m:ci>f</m:ci></m:math> is differentiable and
+	<m:math><m:ci>a</m:ci></m:math> resides. Our Curve Replacement
+	Lemma now permits us to claim that
+	
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:apply><m:int/>
+	      <m:bvar><m:ci>z</m:ci></m:bvar>
+	      <m:domainofapplication><m:ci>C</m:ci></m:domainofapplication>
+	      <m:apply><m:divide/>
+		<m:apply>
+		  <m:ci type="fn">f</m:ci>
+		  <m:ci>z</m:ci>
+		</m:apply>
+		<m:apply><m:minus/>
+		  <m:ci>z</m:ci>
+		  <m:ci>a</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply><m:int/>
+	      <m:bvar><m:ci>z</m:ci></m:bvar>
+	      <m:domainofapplication>
+		<m:apply>
+		  <m:ci type="fn">C</m:ci>
+		  <m:ci>a</m:ci>
+		  <m:ci>r</m:ci>
+		</m:apply>
+	      </m:domainofapplication>
+	      <m:apply><m:divide/>
+		<m:apply>
+		  <m:ci type="fn">f</m:ci>
+		  <m:ci>z</m:ci>
+		</m:apply>
+		<m:apply><m:minus/>
+		  <m:ci>z</m:ci>
+		  <m:ci>a</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+
+	It appears that one can go no further without specifying
+	<m:math><m:ci>f</m:ci></m:math>.  The alert reader however
+	recognizes that in the integral over
+
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">C</m:ci>
+	    <m:ci>a</m:ci>
+	    <m:ci>r</m:ci>
+	  </m:apply>
+	</m:math>
+	is independent of <m:math><m:ci>r</m:ci></m:math> and so
+	proceeds to let
+	
+	<m:math>
+	  <m:apply><m:tendsto/>
+	    <m:ci>r</m:ci>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>, in which case
+	
+	<m:math>
+	  <m:apply><m:tendsto/>
+	    <m:ci>z</m:ci>
+	    <m:ci>a</m:ci>
+	  </m:apply>
+	</m:math>
+	and
+	
+	<m:math>
+	  <m:apply><m:tendsto/>
+	    <m:apply>
+	      <m:ci type="fn">f</m:ci>
+	      <m:ci>z</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci type="fn">f</m:ci>
+	      <m:ci>a</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>.  Computing the integral of
+	
+	<m:math>
+	  <m:apply><m:divide/>
+	    <m:cn>1</m:cn>
+	    <m:apply><m:minus/>
+	      <m:ci>z</m:ci>
+	      <m:ci>a</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	along the way we are led to the hope that
+	
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:apply><m:int/>
+	      <m:bvar><m:ci>z</m:ci></m:bvar>
+	      <m:domainofapplication><m:ci>C</m:ci></m:domainofapplication>
+	      <m:apply><m:divide/>
+		<m:apply>
+		  <m:ci type="fn">f</m:ci>
+		  <m:ci>z</m:ci>
+		</m:apply>
+		<m:apply><m:minus/>
+		  <m:ci>z</m:ci>
+		  <m:ci>a</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply><m:times/>
+	      <m:apply>
+		<m:ci type="fn">f</m:ci>
+		<m:ci>a</m:ci>
+	      </m:apply>
+	      <m:cn>2</m:cn>
+	      <m:pi/>
+	      <m:imaginaryi/>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </para>
+
+      
+      <para id="defn2ex1p1">
+	In support of this conclusion we note that
+	
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:apply><m:int/>
+	      <m:bvar><m:ci>z</m:ci></m:bvar>
+	      <m:domainofapplication>
+		<m:apply>
+		  <m:ci type="fn">C</m:ci>
+		  <m:ci>a</m:ci>
+		  <m:ci>r</m:ci>
+		</m:apply>
+	      </m:domainofapplication>
+	      <m:apply><m:divide/>
+		<m:apply>
+		  <m:ci type="fn">f</m:ci>
+		  <m:ci>z</m:ci>
+		</m:apply>
+		<m:apply><m:minus/>
+		  <m:ci>z</m:ci>
+		  <m:ci>a</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:int/>
+	      <m:bvar><m:ci>z</m:ci></m:bvar>
+	      <m:domainofapplication>
+		<m:apply>
+		  <m:ci type="fn">C</m:ci>
+		  <m:ci>a</m:ci>
+		  <m:ci>r</m:ci>
+		</m:apply>
+	      </m:domainofapplication>
+	      <m:apply><m:minus/>
+		<m:apply><m:plus/>
+		  <m:apply><m:divide/>
+		    <m:apply>
+		      <m:ci type="fn">f</m:ci>
+		      <m:ci>z</m:ci>
+		    </m:apply>
+		    <m:apply><m:minus/>
+		      <m:ci>z</m:ci>
+		      <m:ci>a</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply><m:divide/>
+		    <m:apply>
+		      <m:ci type="fn">f</m:ci>
+		      <m:ci>a</m:ci>
+		    </m:apply>
+		    <m:apply><m:minus/>
+		      <m:ci>z</m:ci>
+		      <m:ci>a</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply><m:divide/>
+		  <m:apply>
+		    <m:ci type="fn">f</m:ci>
+		    <m:ci>a</m:ci>
+		  </m:apply>
+		  <m:apply><m:minus/>
+		    <m:ci>z</m:ci>
+		    <m:ci>a</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply><m:plus/>
+	      <m:apply><m:times/>
+		<m:apply>
+		  <m:ci type="fn">f</m:ci>
+		  <m:ci>a</m:ci>
+		</m:apply>
+		<m:apply><m:int/>
+		  <m:bvar><m:ci>z</m:ci></m:bvar>
+		  <m:domainofapplication><m:apply>
+		      <m:ci type="fn">C</m:ci>
+		      <m:ci>a</m:ci>
+		      <m:ci>r</m:ci>
+		    </m:apply>
+		  </m:domainofapplication>
+		  <m:apply><m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:apply><m:minus/>
+		      <m:ci>z</m:ci>
+		      <m:ci>a</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply><m:int/>
+		<m:bvar><m:ci>z</m:ci></m:bvar>
+		<m:domainofapplication><m:apply>
+		    <m:ci type="fn">C</m:ci>
+		    <m:ci>a</m:ci>
+		    <m:ci>r</m:ci>
+		  </m:apply>
+		</m:domainofapplication>
+		<m:apply><m:divide/>
+		  <m:apply><m:minus/>
+		    <m:apply>
+		      <m:ci type="fn">f</m:ci>
+		      <m:ci>z</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:ci type="fn">f</m:ci>
+		      <m:ci>a</m:ci>
+		    </m:apply> 
+		  </m:apply>
+		  <m:apply><m:minus/>
+		    <m:ci>z</m:ci>
+		    <m:ci>a</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	
+	Now the first term is
+	
+	<m:math>
+	  <m:apply><m:times/>
+	    <m:apply>
+	      <m:ci type="fn">f</m:ci>
+	      <m:ci>a</m:ci>
+	    </m:apply>
+	    <m:cn>2</m:cn>
+	    <m:pi/>
+	    <m:imaginaryi/>
+	  </m:apply>
+	</m:math>
+	
+	regardless of <m:math><m:ci>r</m:ci></m:math> while, as 
+	
+	<m:math>
+	  <m:apply><m:tendsto/>
+	    <m:ci>r</m:ci>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>, the integrand of the second term approaches
+	
+	<m:math>
+	  <m:apply>
+	    <m:diff/>
+	    <m:bvar>
+	      <m:ci>a</m:ci>
+	    </m:bvar>
+	    <m:apply>
+	      <m:ci type="fn">f</m:ci>
+	      <m:ci>a</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	
+	and the region of integration approaches the point
+	<m:math><m:ci>a</m:ci></m:math>.  Regarding this second term,
+	as the integrand remains bounded as the perimeter of
+	
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">C</m:ci>
+	    <m:ci>a</m:ci>
+	    <m:ci>r</m:ci>
+	  </m:apply>
+	</m:math>
+	approaches zero the value of the integral must itself be zero.
+	This result if typically known as
+      </para> 
+
+      
+      <rule id="cauchy" type="formula"><label>Formula</label>
+	<title>Cauchy's Integral Formula</title>
+	<statement id="idm7203232">
+	  <para id="formulastatep1">
+	    If <m:math><m:ci>f</m:ci></m:math> is differentiable on
+	    and in the closed curve <m:math><m:ci>C</m:ci></m:math>
+	    then
+	    
+	    <equation id="eq10">
+	      <m:math display="block">
+		<m:apply><m:eq/>
+		  <m:apply>
+		    <m:ci type="fn">f</m:ci>
+		    <m:ci>a</m:ci>
+		  </m:apply>
+		  <m:apply><m:times/>
+		    <m:apply><m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:apply><m:times/>
+			<m:cn>2</m:cn>
+			<m:pi/>
+			<m:imaginaryi/>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply><m:int/>
+		      <m:bvar><m:ci>z</m:ci></m:bvar>
+		      <m:domainofapplication>
+			<m:ci>C</m:ci>
+		      </m:domainofapplication>
+		      <m:apply><m:divide/>
+			<m:apply>
+			  <m:ci type="fn">f</m:ci>
+			  <m:ci>z</m:ci>
+			</m:apply>
+			<m:apply><m:minus/>
+			  <m:ci>z</m:ci>
+			  <m:ci>a</m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </equation>
+	    
+	    for each a lying inside <m:math><m:ci>C</m:ci></m:math>. 
+	  </para>
+	</statement>
+      </rule>
+
+      
+      <para id="cauchyp2">
+	The consequences of such a formula run far and deep. We shall
+	delve into only one or two.  First, we note that, as a does
+	not lie on <m:math><m:ci>C</m:ci></m:math>, the right hand
+	side is a perfectly smooth function of
+	<m:math><m:ci>a</m:ci></m:math>. Hence, differentiating each
+	side, we find
+	
+	<equation id="eq11">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:diff/>
+		<m:bvar>
+		  <m:ci>a</m:ci>
+		</m:bvar>
+		<m:apply>
+		  <m:ci type="fn">f</m:ci>
+		  <m:ci>a</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply><m:times/>
+		<m:apply><m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:apply><m:times/>
+		    <m:cn>2</m:cn>
+		    <m:pi/>
+		    <m:imaginaryi/>
+		  </m:apply>
+		</m:apply>
+		<m:apply><m:int/>
+		  <m:bvar><m:ci>z</m:ci></m:bvar>
+		  <m:domainofapplication>
+		    <m:ci>C</m:ci>
+		  </m:domainofapplication>
+		  <m:apply><m:divide/>
+		    <m:apply>
+		      <m:ci type="fn">f</m:ci>
+		      <m:ci>z</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:power/>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>z</m:ci>
+			<m:ci>a</m:ci>
+		      </m:apply>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+
+	for each a lying inside <m:math><m:ci>C</m:ci></m:math>.
+	Applying this reasoning <m:math><m:ci>n</m:ci></m:math> times
+	we arrive at a formula for the n-th derivative of
+	<m:math><m:ci>f</m:ci></m:math> at
+	<m:math><m:ci>a</m:ci></m:math>,
+
+
+	<equation id="eq12">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:diff/>
+		<m:bvar>
+		  <m:ci>a</m:ci>
+		  <m:degree>
+		    <m:ci>n</m:ci>
+		  </m:degree>
+		</m:bvar>
+		<m:apply>
+		  <m:ci type="fn">f</m:ci>
+		  <m:ci>a</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:divide/>
+		  <m:apply>
+		    <m:factorial/>
+		    <m:ci>n</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>2</m:cn>
+		    <m:pi/>
+		    <m:imaginaryi/>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:int/>
+		  <m:bvar>
+		    <m:ci>z</m:ci>
+		  </m:bvar>
+		  <m:domainofapplication>
+		    <m:ci>C</m:ci>
+		  </m:domainofapplication>
+		  <m:apply>
+		    <m:divide/>
+		    <m:apply>
+		      <m:ci type="fn">f</m:ci>
+		      <m:ci>z</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:power/>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>z</m:ci>
+			<m:ci>a</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:plus/>
+			<m:cn>1</m:cn>
+			<m:ci>n</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+
+	for each a lying inside <m:math><m:ci>C</m:ci></m:math>. The
+	upshot is that once <m:math><m:ci>f</m:ci></m:math> is shown
+	to be differentiable it must in fact be infinitely
+	differentiable.  As a simple extension let us consider
+	
+	<m:math display="block">
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:divide/>
+	      <m:cn>1</m:cn>
+	      <m:apply>
+		<m:times/>
+		<m:cn>2</m:cn>
+		<m:pi/>
+		<m:imaginaryi/>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:int/>
+	      <m:bvar>
+		<m:ci>z</m:ci>
+	      </m:bvar>
+	      <m:domainofapplication>
+		<m:ci>C</m:ci>
+	      </m:domainofapplication>
+	      <m:apply>
+		<m:divide/>
+		<m:apply>
+		  <m:ci type="fn">f</m:ci>
+		  <m:ci>z</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>z</m:ci>
+		    <m:ci><m:msub>
+			<m:mi>λ</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:power/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>z</m:ci>
+		      <m:ci><m:msub>
+			  <m:mi>λ</m:mi>
+			  <m:mn>2</m:mn>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	
+	where <m:math><m:ci>f</m:ci></m:math> is still assumed
+	differentiable on and in <m:math><m:ci>C</m:ci></m:math> and
+	that <m:math><m:ci>C</m:ci></m:math> encircles both
+	
+	<m:math>
+	  <m:ci><m:msub>
+	      <m:mi>λ</m:mi>
+	      <m:mn>1</m:mn>
+	    </m:msub></m:ci>
+	</m:math> and 
+	<m:math>
+	  <m:ci><m:msub><m:mi>λ</m:mi><m:mn>2</m:mn>
+	    </m:msub></m:ci></m:math>.  By the curve replacement
+	lemma this integral is the sum
+	
+	<m:math display="block">
+	  <m:apply>
+	    <m:plus/>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>2</m:cn>
+		  <m:pi/>
+		  <m:imaginaryi/>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:int/>
+		<m:bvar>
+		  <m:ci>z</m:ci>
+		</m:bvar>
+		<m:domainofapplication>
+		  <m:ci><m:msub>
+		      <m:mi>C</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		</m:domainofapplication>
+		<m:apply>
+		  <m:divide/>
+		  <m:apply>
+		    <m:ci type="fn">f</m:ci>
+		    <m:ci>z</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>z</m:ci>
+		      <m:ci><m:msub>
+			  <m:mi>λ</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:power/>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>z</m:ci>
+			<m:ci><m:msub>
+			    <m:mi>λ</m:mi>
+			    <m:mn>2</m:mn>
+			  </m:msub></m:ci>
+		      </m:apply>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>2</m:cn>
+		  <m:pi/>
+		  <m:imaginaryi/>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:int/>
+		<m:bvar>
+		  <m:ci>z</m:ci>
+		</m:bvar>
+		<m:domainofapplication>
+		  <m:ci><m:msub>
+		      <m:mi>C</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		</m:domainofapplication>
+		<m:apply>
+		  <m:divide/>
+		  <m:apply>
+		    <m:ci type="fn">f</m:ci>
+		    <m:ci>z</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>z</m:ci>
+		      <m:ci><m:msub>
+			  <m:mi>λ</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:power/>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>z</m:ci>
+			<m:ci><m:msub>
+			    <m:mi>λ</m:mi>
+			    <m:mn>2</m:mn>
+			  </m:msub></m:ci>
+		      </m:apply>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	
+	where
+	
+	<m:math>
+	  <m:ci><m:msub>
+	      <m:mi>λ</m:mi>
+	      <m:mi>j</m:mi>
+	    </m:msub></m:ci>
+	</m:math>
+	
+	now lies in only
+	
+	<m:math>
+	  <m:ci><m:msub>
+	      <m:mi>C</m:mi>
+	      <m:mi>j</m:mi>
+	    </m:msub></m:ci>
+	</m:math>.  As
+	
+	<m:math>
+	  <m:apply>
+	    <m:divide/>
+	    <m:apply>
+	      <m:ci type="fn">f</m:ci>
+	      <m:ci>z</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:minus/>
+	      <m:ci>z</m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>λ</m:mi>
+		  <m:mn>2</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	
+	is well behaved in 
+	
+	<m:math>
+	  <m:ci><m:msub>
+	      <m:mi>C</m:mi>
+	      <m:mn>1</m:mn>
+	    </m:msub></m:ci>
+	</m:math> 
+	
+	we may use <link target-id="eq10" strength="3"/> to
+	conclude that
+	
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>2</m:cn>
+		  <m:pi/>
+		  <m:imaginaryi/>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:int/>
+		<m:bvar>
+		  <m:ci>z</m:ci>
+		</m:bvar>
+		<m:domainofapplication>
+		  <m:ci><m:msub>
+		      <m:mi>C</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		</m:domainofapplication>
+		<m:apply>
+		  <m:divide/>
+		  <m:apply>
+		    <m:ci type="fn">f</m:ci>
+		    <m:ci>z</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>z</m:ci>
+		      <m:ci><m:msub>
+			  <m:mi>λ</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:power/>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>z</m:ci>
+			<m:ci><m:msub>
+			    <m:mi>λ</m:mi>
+			    <m:mn>2</m:mn>
+			  </m:msub></m:ci>
+		      </m:apply>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:divide/>
+	      <m:apply>
+		<m:ci type="fn">f</m:ci>
+		<m:ci><m:msub>
+		    <m:mi>λ</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:power/>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci><m:msub>
+		      <m:mi>λ</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>λ</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	
+	Similarly, as 
+	
+	<m:math>
+	  <m:apply>
+	    <m:divide/>
+	    <m:apply>
+	      <m:ci type="fn">f</m:ci>
+	      <m:ci>z</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:minus/>
+	      <m:ci>z</m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>λ</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	
+	is well behaved in 
+	
+	<m:math>
+	  <m:ci><m:msub>
+	      <m:mi>C</m:mi>
+	      <m:mn>2</m:mn>
+	    </m:msub></m:ci>
+	</m:math>
+	
+	we may use <link target-id="eq11" strength="3"/> to conclude that
+	
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>2</m:cn>
+		  <m:pi/>
+		  <m:imaginaryi/>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:int/>
+		<m:bvar>
+		  <m:ci>z</m:ci>
+		</m:bvar>
+		<m:domainofapplication>
+		  <m:ci><m:msub>
+		      <m:mi>C</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		</m:domainofapplication>
+		<m:apply>
+		  <m:divide/>
+		  <m:apply>
+		    <m:ci type="fn">f</m:ci>
+		    <m:ci>z</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>z</m:ci>
+		      <m:ci><m:msub>
+			  <m:mi>λ</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:power/>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>z</m:ci>
+			<m:ci><m:msub>
+			    <m:mi>λ</m:mi>
+			    <m:mn>2</m:mn>
+			  </m:msub></m:ci>
+		      </m:apply>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#evaluateat"/>
+	      <m:bvar>
+		<m:ci>a</m:ci>
+	      </m:bvar>
+	      <m:lowlimit>
+		<m:ci>
+		  <m:msub><m:mi>λ</m:mi><m:mn>2</m:mn></m:msub>
+		</m:ci>
+	      </m:lowlimit>
+	      <m:apply>
+		<m:diff/>
+		<m:bvar>
+		  <m:ci>a</m:ci>
+		</m:bvar>
+		<m:apply>
+		  <m:divide/>
+		  <m:apply>
+		    <m:ci type="fn">f</m:ci>
+		    <m:ci>a</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>a</m:ci>
+		    <m:ci><m:msub>
+			<m:mi>λ</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>  
+	
+	These calculations can be read as a concrete instance of
+      </para>
+
+      
+      <rule id="residue" type="theorem">
+	<title>The Residue Theorem</title>
+	<statement id="idm392672">
+	  <para id="residuestatep1">
+	    If <m:math><m:ci>g</m:ci></m:math> is a polynomial with roots
+	    
+	    <m:math>
+	      <m:set>
+		<m:bvar>
+		  <m:ci><m:msub>
+		      <m:mi>λ</m:mi>
+		      <m:mi>j</m:mi>
+		    </m:msub></m:ci>
+		</m:bvar>
+		<m:condition>
+		  <m:apply>
+		    <m:eq/>
+		    <m:ci>j</m:ci>
+		    <m:set>
+		      <m:cn>1</m:cn>
+		      <m:ci>…</m:ci>
+		      <m:ci>h</m:ci>
+		    </m:set>
+		  </m:apply>
+		</m:condition>
+	      </m:set>
+	    </m:math>
+	    
+	    of degree
+	    
+	    <m:math>
+	      <m:set>
+		<m:bvar>
+		  <m:ci><m:msub>
+		      <m:mi>d</m:mi>
+		      <m:mi>j</m:mi>
+		    </m:msub></m:ci>
+		</m:bvar>
+		<m:condition>
+		  <m:apply>
+		    <m:eq/>
+		    <m:ci>j</m:ci>
+		    <m:set>
+		      <m:cn>1</m:cn>
+		      <m:ci>…</m:ci>
+		      <m:ci>h</m:ci>
+		    </m:set>
+		  </m:apply>
+		</m:condition>
+	      </m:set>
+	    </m:math>
+	    and <m:math><m:ci>C</m:ci></m:math> is a closed curve
+	    encircling each of the
+	    <m:math>
+	      <m:ci><m:msub>
+		  <m:mi>λ</m:mi>
+		  <m:mi>j</m:mi>
+		</m:msub></m:ci>
+	    </m:math>
+	    and <m:math><m:ci>f</m:ci></m:math> is differentiable on
+	    and in <m:math><m:ci>C</m:ci></m:math> then
+
+	    <m:math display="block">
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:int/>
+		  <m:bvar>
+		    <m:ci>z</m:ci>
+		  </m:bvar>
+		  <m:domainofapplication>
+		    <m:ci>C</m:ci>
+		  </m:domainofapplication>
+		  <m:apply>
+		    <m:divide/>
+		    <m:apply>
+		      <m:ci type="fn">f</m:ci>
+		      <m:ci>z</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:ci type="fn">g</m:ci>
+		      <m:ci>z</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>2</m:cn>
+		  <m:pi/>
+		  <m:imaginaryi/>
+		  <m:apply>
+		    <m:sum/>
+		    <m:bvar>
+		      <m:ci>j</m:ci>
+		    </m:bvar>
+		    <m:lowlimit>
+		      <m:cn>1</m:cn>
+		    </m:lowlimit>
+		    <m:uplimit>
+		      <m:ci>h</m:ci>
+		    </m:uplimit>
+		    <m:apply>
+		      <m:ci type="fn">res</m:ci>
+		      <m:ci><m:msub>
+			  <m:mi>λ</m:mi>
+			  <m:mi>j</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	    
+	    where
+	    
+	    <m:math display="block">
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:ci type="fn">res</m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>λ</m:mi>
+		      <m:mi>j</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:limit/>
+		  <m:bvar>
+		    <m:ci>z</m:ci>
+		  </m:bvar>
+		  <m:lowlimit>
+		    <m:ci><m:msub>
+			<m:mi>λ</m:mi>
+			<m:mi>j</m:mi>
+		      </m:msub></m:ci>
+		  </m:lowlimit>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:apply>
+			<m:factorial/>
+			<m:apply>
+			  <m:minus/>
+			  <m:ci><m:msub>
+			      <m:mi>d</m:mi>
+			      <m:mi>j</m:mi>
+			    </m:msub></m:ci>
+			  <m:cn>1</m:cn>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:diff/>
+		      <m:bvar>
+			<m:ci>z</m:ci>
+			<m:degree>
+			  <m:apply>
+			    <m:minus/>
+			    <m:ci><m:msub>
+				<m:mi>d</m:mi>
+				<m:mi>j</m:mi>
+			      </m:msub></m:ci>
+			    <m:cn>1</m:cn>
+			  </m:apply>
+			</m:degree>
+		      </m:bvar>
+		      <m:apply>
+			<m:times/>
+			<m:apply>
+			  <m:power/>
+			  <m:apply>
+			    <m:minus/>
+			    <m:ci>z</m:ci>
+			    <m:ci><m:msub>
+				<m:mi>λ</m:mi>
+				<m:mi>j</m:mi>
+			      </m:msub></m:ci>
+			  </m:apply>
+			  <m:ci><m:msub>
+			      <m:mi>d</m:mi>
+			      <m:mi>j</m:mi>
+			    </m:msub></m:ci>
+			</m:apply>
+			<m:apply>
+			  <m:divide/>
+			    <m:apply>
+			    <m:ci type="fn">f</m:ci>
+			    <m:ci>z</m:ci>
+			  </m:apply>
+			  <m:apply>
+			    <m:ci type="fn">g</m:ci>
+			      <m:ci>z</m:ci>
+			  </m:apply>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	   
+	    is called <emphasis>the residue of 
+	      <m:math>
+		<m:apply>
+		  <m:divide/>
+		  <m:ci>f</m:ci>
+		  <m:ci>g</m:ci>
+		</m:apply>
+	      </m:math> at
+	      
+	      <m:math>
+		<m:ci><m:msub>
+		    <m:mi>λ</m:mi>
+		    <m:mi>j</m:mi>
+		  </m:msub></m:ci>
+	      </m:math></emphasis>.</para>
+	</statement>
+      </rule>
+
+      <para id="residuepara2">
+	One of the most important <emphasis>instances</emphasis> of
+	this theorem is the formula for the Inverse Laplace Transform.
+      </para>
+    </section>
+
+
+  </content>
+</document>

@@ -1,0 +1,493 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml"> 
+ 
+  <title>Vector Space</title> 
+  
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>28be108e-ae2d-47ab-b293-836cc80b3c7b</md:uuid>
+</metadata>
+
+  <content>
+    <section id="intro">
+      <title>Introduction</title>
+    
+      <para id="p1">
+	You have long taken for granted the fact that the set of real
+	numbers, <m:math><m:reals/></m:math>, is closed under addition
+	and multiplication, that each number has a unique additive
+	inverse, and that the commutative, associative, and
+	distributive laws were right as rain. The set,
+	<m:math><m:complexes/></m:math>, of complex numbers also
+	enjoys each of these properties, as do the sets
+	<m:math display="inline">
+	  <m:ci><m:msup>
+	      <m:mi>ℝ</m:mi>
+	      <m:mi>n</m:mi>
+	    </m:msup></m:ci>
+	</m:math> and
+	<m:math display="inline">
+	  <m:ci><m:msup>
+	      <m:mi>ℂ</m:mi>
+	      <m:mi>n</m:mi>
+	    </m:msup></m:ci>
+	</m:math>
+	of columns of
+	<m:math display="inline">
+	  <m:ci>n</m:ci>
+	</m:math>
+	real and complex numbers, respectively.
+      </para>
+      
+      <para id="p2">
+	To be more precise, we write
+	<m:math display="inline"><m:ci type="vector">x</m:ci></m:math>
+	and <m:math display="inline"><m:ci type="vector">y</m:ci></m:math>
+	in 
+	<m:math display="inline">
+	  <m:ci><m:msup>
+	      <m:mi>ℝ</m:mi>
+	      <m:mi>n</m:mi>
+	    </m:msup></m:ci>
+	</m:math> as
+      </para>
+
+      <para id="p3">
+	<m:math display="inline">
+	  <m:apply><m:eq/>
+	    <m:ci type="vector">x</m:ci>
+	    <m:vector>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>2</m:mn>
+		</m:msub></m:ci>
+	      <m:ci>…</m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mi>n</m:mi>
+		</m:msub></m:ci>
+	    </m:vector>
+	  </m:apply>
+	</m:math>
+      </para>
+      
+      <para id="pins1">
+	<m:math display="inline">
+	  <m:apply><m:eq/>
+	    <m:ci type="vector">y</m:ci>
+	    <m:vector>
+	      <m:ci><m:msub>
+		  <m:mi>y</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>y</m:mi>
+		  <m:mn>2</m:mn>
+		</m:msub></m:ci>
+	      <m:ci>…</m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>y</m:mi>
+		  <m:mi>n</m:mi>
+		</m:msub></m:ci>
+	    </m:vector>
+	  </m:apply>
+	</m:math>
+      </para>
+      
+      <para id="p4">
+	and define their vector sum as the elementwise sum
+	<equation id="eq1">
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply><m:plus/>
+		<m:ci type="vector">x</m:ci>
+		<m:ci type="vector">y</m:ci>
+	      </m:apply>
+	      <m:vector>
+		<m:apply><m:plus/>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>y</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:apply><m:plus/>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>y</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:ci>⋮</m:ci>
+		<m:apply><m:plus/>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mi>n</m:mi>
+		    </m:msub></m:ci>
+	      	<m:ci><m:msub>
+		      <m:mi>y</m:mi>
+		      <m:mi>n</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:vector>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	and similarly, the product of a complex scalar,
+
+	<m:math display="inline">
+	  <m:apply><m:in/>
+	    <m:ci type="vector">z</m:ci>
+	    <m:complexes/>
+	  </m:apply>
+	</m:math>
+	with  
+	<m:math display="inline"><m:ci type="vector">x</m:ci></m:math> as:
+	
+
+	<equation id="eq2">
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply><m:times/>
+		<m:ci type="vector">z</m:ci>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	      <m:vector>
+		<m:apply><m:times/>
+		  <m:ci type="vector">z</m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:apply><m:times/>
+		  <m:ci type="vector">z</m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:ci>⋮</m:ci>
+		<m:apply><m:times/>
+		  <m:ci type="vector">z</m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mi>n</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:vector>
+	    </m:apply>
+	  </m:math>
+	</equation>
+      </para>
+    </section>
+    
+
+    <section id="vector">
+      <title>Vector Space</title>
+      <para id="p5">
+	These notions lead naturally to the concept of vector space. A set
+	<m:math display="inline">
+	  <m:ci type="set">V</m:ci>
+	</m:math>
+	is said to be a vector space if
+	
+	<list id="list1" list-type="enumerated">
+	  <item>
+	    <m:math display="inline">
+	      <m:apply><m:eq/>
+		<m:apply><m:plus/>
+		  <m:ci type="vector">x</m:ci>
+		  <m:ci type="vector">y</m:ci>
+		</m:apply>
+		<m:apply><m:plus/>
+		  <m:ci type="vector">y</m:ci>
+		  <m:ci type="vector">x</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:math> for each
+	    <m:math display="inline">
+	      <m:ci type="vector">x</m:ci>
+	    </m:math> and
+	    <m:math display="inline">
+	      <m:ci type="vector">y</m:ci>
+	    </m:math> in 
+	    <m:math display="inline">
+	      <m:ci type="set">V</m:ci>
+	    </m:math>
+	  </item>
+
+<!-- here seems that no parenthess appear around, using the same -->
+<!-- policy as times to do that now -->
+
+	  <item>
+	    <m:math display="inline">
+	      <m:apply>
+		<m:eq/>		
+		<m:apply>
+		  <m:plus/>
+		  <m:ci type="vector">x</m:ci>
+		  <m:apply>
+		    <m:plus/>
+		    <m:ci type="vector">y</m:ci>
+		    <m:ci type="vector">z</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:plus/>
+		  <m:apply>
+		    <m:plus/>
+		    <m:ci type="vector">x</m:ci>
+		    <m:ci type="vector">y</m:ci>
+		  </m:apply>
+		  <m:ci type="vector">z</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	    
+	    for each
+	    <m:math display="inline">
+	      <m:ci type="vector">x</m:ci>
+	    </m:math>,
+	    <m:math display="inline">
+	      <m:ci type="vector">y</m:ci>
+	    </m:math>, and 
+	    <m:math display="inline">
+	      <m:ci type="vector">z</m:ci>
+	    </m:math> in 
+	    <m:math display="inline">
+	      <m:ci type="set">V</m:ci>
+	    </m:math>
+	  </item>
+	  
+	  <item>
+	    There is a unique "zero vector" such that
+	    <m:math display="inline">
+	      <m:apply><m:eq/>
+		<m:apply><m:plus/>
+		  <m:ci type="vector">x</m:ci>
+		  <m:ci type="vector">0</m:ci>
+		</m:apply>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	    </m:math> for each 
+	    <m:math display="inline">
+	      <m:ci type="vector">x</m:ci>
+	    </m:math> in
+	    <m:math display="inline">
+	      <m:ci type="set">V</m:ci>
+	    </m:math>
+	  </item>
+
+	  <item>For each 
+	    <m:math display="inline">
+	      <m:ci type="vector">x</m:ci>
+	    </m:math> in
+	    <m:math display="inline">
+	      <m:ci type="set">V</m:ci>
+	    </m:math> there is a unique vector 
+	    <m:math display="inline">
+	      <m:apply><m:minus/>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	    </m:math>  such that
+	    <m:math display="inline">
+	      <m:apply><m:eq/>
+		<m:apply><m:plus/>
+		  <m:ci type="vector">x</m:ci>
+		  <m:apply><m:minus/>
+		    <m:ci type="vector">x</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:ci type="vector">0</m:ci>
+	      </m:apply>
+	    </m:math>. 
+	  </item>
+	  
+	  <item>
+	    <m:math display="inline">
+	      <m:apply><m:eq/>
+		<m:apply><m:times/>
+		  <m:cn>1</m:cn>
+		  <m:ci type="vector">x</m:ci>
+		</m:apply>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	    </m:math>
+	  </item>
+
+	  <item>
+	    <m:math display="inline">
+	      <m:apply><m:eq/>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>c</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub>
+		    </m:ci>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>c</m:mi>
+			<m:mn>2</m:mn>
+		      </m:msub>
+		    </m:ci>
+		  </m:apply>
+		  <m:ci type="vector">x</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:ci><m:msub>
+		      <m:mi>c</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>c</m:mi>
+			<m:mn>2</m:mn>
+		      </m:msub>
+		    </m:ci>
+		    <m:ci type="vector">x</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:math> for each 
+	    <m:math display="inline">
+	      <m:ci type="vector">x</m:ci>
+	    </m:math> in
+	    <m:math display="inline">
+	      <m:ci type="set">V</m:ci>
+	    </m:math> and
+	    <m:math display="inline">
+	      <m:ci><m:msub>
+		  <m:mi>c</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	    </m:math> and  
+	    <m:math display="inline">
+	      <m:ci><m:msub>
+		  <m:mi>c</m:mi>
+		  <m:mn>2</m:mn>
+		</m:msub></m:ci>
+	    </m:math> in 
+	    <m:math display="inline">
+	      <m:complexes/>
+	    </m:math>.
+	  </item>
+	  
+	  <item>
+	    <m:math display="inline">
+	      <m:apply><m:eq/>
+		<m:apply><m:times/>
+		  <m:ci>c</m:ci>
+		  <m:apply><m:plus/>
+		    <m:ci type="vector">x</m:ci>
+		    <m:ci type="vector">y</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply><m:plus/>
+		  <m:apply><m:times/>
+		    <m:ci>c</m:ci>
+		    <m:ci type="vector">x</m:ci>
+		  </m:apply>
+		  <m:apply><m:times/>
+		    <m:ci>c</m:ci>
+		    <m:ci type="vector">y</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	    for each 
+	    <m:math display="inline">
+	      <m:ci type="vector">x</m:ci>
+	    </m:math> and
+	    <m:math display="inline">
+	      <m:ci type="vector">y</m:ci>
+	    </m:math> in 
+	    <m:math display="inline">
+	      <m:ci type="set">V</m:ci>
+	    </m:math> and
+	    <m:math display="inline">
+	      <m:ci>c</m:ci>
+	    </m:math> in 
+	    <m:math display="inline">
+	      <m:complexes/>
+	    </m:math>.
+	  </item>
+	  
+	  <item>
+	    <m:math display="inline">
+	      <m:apply><m:eq/>
+		<m:apply><m:times/>
+		  <m:apply><m:plus/>
+		    <m:ci><m:msub>
+			<m:mi>c</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		    <m:ci><m:msub>
+			<m:mi>c</m:mi>
+			<m:mn>2</m:mn>
+		      </m:msub></m:ci>		
+		  </m:apply>
+		  <m:ci type="vector">x</m:ci>
+		</m:apply>
+		
+		<m:apply><m:plus/>
+		  <m:apply><m:times/>
+		    <m:ci><m:msub>
+			<m:mi>c</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		    <m:ci type="vector">x</m:ci>
+		  </m:apply>
+		  <m:apply><m:times/>
+		    <m:ci><m:msub>
+			<m:mi>c</m:mi>
+			<m:mn>2</m:mn>
+		      </m:msub></m:ci>
+		    <m:ci type="vector">x</m:ci>
+		  </m:apply>
+		</m:apply>    
+	      </m:apply>
+	    </m:math>
+	    for each  
+	    <m:math display="inline">
+	      <m:ci type="vector">x</m:ci>
+	    </m:math> in
+	    <m:math display="inline">
+	      <m:ci type="set">V</m:ci>
+	    </m:math> and 
+	    <m:math display="inline">
+	      <m:ci><m:msub>
+		  <m:mi>c</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	    </m:math>	and 
+	    <m:math display="inline">
+	      <m:ci><m:msub>
+		  <m:mi>c</m:mi>
+		  <m:mn>2</m:mn>
+		</m:msub></m:ci>
+	    </m:math> in 
+	    <m:math display="inline">
+	      <m:complexes/>
+	    </m:math>.
+	  </item> 
+	</list>
+      </para>
+    </section>
+  </content>
+</document>

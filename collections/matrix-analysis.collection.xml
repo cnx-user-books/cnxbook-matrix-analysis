@@ -1,0 +1,129 @@
+<col:collection xmlns="http://cnx.rice.edu/collxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:col="http://cnx.rice.edu/collxml" xml:lang="en">
+  <metadata xmlns:md="http://cnx.rice.edu/mdml" mdml-version="0.5">
+    <md:content-id>col10048</md:content-id>
+    <md:title>Matrix Analysis</md:title>
+    <md:language>en</md:language>
+    <md:license url="http://creativecommons.org/licenses/by/1.0">Creative Commons Attribution License</md:license>
+    <md:uuid>1444a68e-4d38-4f2f-8ec4-f8826d4de928</md:uuid>
+<md:slug>matrix-analysis</md:slug>
+</metadata>
+  <col:content>
+    <col:subcollection>
+      <md:title>Preface</md:title>
+      <col:content>
+        <col:module document="m10144"/>
+      </col:content>
+    </col:subcollection>
+    <col:subcollection>
+      <md:title>Matrix Methods for Electrical Systems</md:title>
+      <col:content>
+        <col:module document="m10145"/>
+        <col:module document="m10299"/>
+      </col:content>
+    </col:subcollection>
+    <col:subcollection>
+      <md:title>Matrix Methods for Mechanical Systems</md:title>
+      <col:content>
+        <col:module document="m10146"/>
+        <col:module document="m10147"/>
+        <col:module document="m10148"/>
+        <col:module document="m10300"/>
+      </col:content>
+    </col:subcollection>
+    <col:subcollection>
+      <md:title>The Fundamental Subspaces</md:title>
+      <col:content>
+        <col:module document="m10266"/>
+        <col:module document="m10293"/>
+        <col:module document="m10368"/>
+        <col:module document="m10292"/>
+        <col:module document="m10296"/>
+        <col:module document="m10367"/>
+        <col:subcollection>
+          <md:title>Appendices/Supplements</md:title>
+          <col:content>
+            <col:module document="m10298"/>
+            <col:module document="m10297"/>
+            <col:module document="m10295"/>
+          </col:content>
+        </col:subcollection>
+      </col:content>
+    </col:subcollection>
+    <col:subcollection>
+      <md:title>Least Squares</md:title>
+      <col:content>
+        <col:module document="m10371"/>
+      </col:content>
+    </col:subcollection>
+    <col:subcollection>
+      <md:title>Matrix Methods for Dynamical Systems</md:title>
+      <col:content>
+        <col:module document="m10168"/>
+        <col:module document="m10169"/>
+        <col:module document="m10170"/>
+        <col:module document="m10171"/>
+        <col:module document="m10526"/>
+        <col:subcollection>
+          <md:title>Supplemental</md:title>
+          <col:content>
+            <col:module document="m10177"/>
+          </col:content>
+        </col:subcollection>
+      </col:content>
+    </col:subcollection>
+    <col:subcollection>
+      <md:title>Complex Analysis 1</md:title>
+      <col:content>
+        <col:module document="m10504"/>
+        <col:module document="m10505"/>
+        <col:module document="m10276"/>
+        <col:module document="m10506"/>
+      </col:content>
+    </col:subcollection>
+    <col:subcollection>
+      <md:title>Complex Analysis 2</md:title>
+      <col:content>
+        <col:module document="m10264"/>
+        <col:module document="m10246"/>
+        <col:module document="m10523"/>
+        <col:module document="m10524"/>
+      </col:content>
+    </col:subcollection>
+    <col:subcollection>
+      <md:title>The Eigenvalue Problem</md:title>
+      <col:content>
+        <col:module document="m10405"/>
+        <col:module document="m10490"/>
+        <col:module document="m10491"/>
+        <col:module document="m10492"/>
+        <col:module document="m10493"/>
+        <col:module document="m10494"/>
+      </col:content>
+    </col:subcollection>
+    <col:subcollection>
+      <md:title>The Symmetric Eigenvalue Problem</md:title>
+      <col:content>
+        <col:module document="m10382"/>
+        <col:module document="m10509"/>
+        <col:module document="m10558"/>
+      </col:content>
+    </col:subcollection>
+    <col:subcollection>
+      <md:title>The Matrix Exponential</md:title>
+      <col:content>
+        <col:module document="m10677"/>
+        <col:module document="m10683"/>
+        <col:module document="m10678"/>
+        <col:module document="m10679"/>
+        <col:module document="m10680"/>
+        <col:module document="m10691"/>
+      </col:content>
+    </col:subcollection>
+    <col:subcollection>
+      <md:title>Singular Value Decomposition</md:title>
+      <col:content>
+        <col:module document="m10739"/>
+      </col:content>
+    </col:subcollection>
+  </col:content>
+</col:collection>

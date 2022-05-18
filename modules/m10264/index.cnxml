@@ -1,0 +1,1902 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml"> 
+
+  <title>Cauchy's Theorem</title> 
+  
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>3eb0a68f-17d7-4e16-ba04-3c7f2ac1d2d0</md:uuid>
+</metadata>
+
+  <content>
+    <section id="introduction">
+      <title>Introduction</title>
+      
+      <para id="intro">
+	Our main goal is a better understanding of the partial
+	fraction expansion of a given transfer function.  With respect
+	to the example that closed the discussion of complex
+	differentiation, see <link document="m10276" target-id="eq13" strength="3">this equation </link> - In <link document="m10276" target-id="eq17" strength="3">this equation</link>, we found
+	
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:inverse/>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>z</m:ci>
+		  <m:ci>I</m:ci>
+		</m:apply>
+		<m:ci>B</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>z</m:ci>
+		    <m:ci><m:msub>
+			<m:mi>λ</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:ci><m:msub>
+		    <m:mi>P</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:apply>
+		    <m:power/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>z</m:ci>
+		      <m:ci><m:msub>
+			  <m:mi>λ</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:apply>
+		<m:ci><m:msub>
+		    <m:mi>D</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>z</m:ci>
+		    <m:ci><m:msub>
+			<m:mi>λ</m:mi>
+			<m:mn>2</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:ci><m:msub>
+		    <m:mi>P</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+
+	where the <m:math>
+	  <m:ci><m:msub>
+	      <m:mi>P</m:mi>
+	      <m:mi>j</m:mi>
+	    </m:msub></m:ci>
+	</m:math>
+
+	and <m:math>
+	  <m:ci><m:msub>
+	      <m:mi>D</m:mi>
+	      <m:mi>j</m:mi>
+	    </m:msub></m:ci>
+	</m:math> enjoy the amazing properties
+
+	<list id="properties" list-type="enumerated">
+	  <item>
+	    <equation id="eq1">
+	      <m:math>
+		<m:apply>
+		  <m:eq/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>B</m:ci>
+		    <m:ci><m:msub>
+			<m:mi>P</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci><m:msub>
+			<m:mi>P</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		    <m:ci>B</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:plus/>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci><m:msub>
+			  <m:mi>λ</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub></m:ci>
+		      <m:ci><m:msub>
+			  <m:mi>P</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:ci><m:msub>
+			<m:mi>D</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </equation>
+
+	    and 
+
+	    <m:math display="block">
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>B</m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>P</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:ci><m:msub>
+		      <m:mi>P</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci>B</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:ci><m:msub>
+		      <m:mi>λ</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>P</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:math></item>
+	  
+	  <item>
+	    <equation id="eq2">
+	      <m:math>
+		<m:apply>
+		  <m:eq/>
+		  <m:apply>
+		    <m:plus/>
+		    <m:ci><m:msub>
+			<m:mi>P</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		    <m:ci><m:msub>
+			<m:mi>P</m:mi>
+			<m:mn>2</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:ci>I</m:ci>
+		</m:apply>
+	      </m:math>
+	    </equation>
+	  
+	    <m:math display="block">
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:power/>
+		  <m:ci><m:msub>
+		      <m:mi>P</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+		<m:ci><m:msub>
+		    <m:mi>P</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:math>
+	    
+	    <m:math display="block">
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:power/>
+		  <m:ci><m:msub>
+		      <m:mi>P</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+		<m:ci><m:msub>
+		    <m:mi>P</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:math> 
+	    
+	    and
+	    
+	    <m:math display="block">
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:power/>
+		  <m:ci><m:msub>
+		      <m:mi>D</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+		<m:cn>0</m:cn>
+	      </m:apply>
+	    </m:math>
+	  </item>
+
+	  <item>
+	    <equation id="eq3">
+	      <m:math>
+		<m:apply>
+		  <m:eq/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci><m:msub>
+			<m:mi>P</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		    <m:ci><m:msub>
+			<m:mi>D</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci><m:msub>
+			<m:mi>D</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		    <m:ci><m:msub>
+			<m:mi>P</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:ci><m:msub>
+		      <m:mi>D</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:math>
+	    </equation>
+
+	    and
+
+	    <m:math display="block">
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci><m:msub>
+		      <m:mi>P</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>D</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:ci><m:msub>
+		      <m:mi>D</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>P</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:cn>0</m:cn>
+	      </m:apply>
+	    </m:math></item>
+	</list>
+
+	In order to show that this <emphasis>always</emphasis>
+	happens, <foreign>i.e.</foreign>, that it is not a quirk
+	produced by the particular <m:math><m:ci>B</m:ci> </m:math> in
+	<link document="m10276" target-id="eq13" strength="3">this
+	equation</link>, we require a few additional tools from the
+	theory of complex variables.  In particular, we need the fact
+	that partial fraction expansions may be carried out through
+	complex integration.
+      </para>
+    </section>
+
+
+    <section id="cauch">
+      <title>Integration of Complex Functions Over Complex Curves</title>
+      
+      <para id="p1">
+	We shall be integrating complex functions over complex
+	curves. Such a curve is parameterized by one complex valued
+	or, equivalently, two real valued, function(s) of a real
+	parameter (typically denoted by
+
+	<m:math>
+	  <m:ci>t</m:ci>
+	</m:math>). More precisely,
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:equivalent/>
+	    <m:ci>C</m:ci>
+	    <m:set>
+	      <m:bvar>
+		<m:apply>
+		  <m:eq/>
+		  <m:apply>
+		    <m:ci type="fn">z</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:plus/>
+		    <m:apply>
+		      <m:ci type="fn">x</m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:times/>
+		      <m:imaginaryi/>
+		      <m:apply>
+			<m:ci type="fn">y</m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:bvar>
+	      <m:condition>
+		<m:apply><m:leq/>
+		  <m:ci>a</m:ci>
+		  <m:ci>t</m:ci>
+		  <m:ci>b</m:ci>
+		</m:apply>
+	      </m:condition>
+	    </m:set>
+	  </m:apply>
+	</m:math>
+
+	For example, if
+
+	<m:math>
+	  <m:apply><m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">x</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci type="fn">y</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	    <m:ci>t</m:ci>
+	  </m:apply>
+	</m:math>
+
+	while
+
+	<m:math>
+	  <m:apply><m:eq/>
+	    <m:ci>a</m:ci>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math> and
+	<m:math>
+	  <m:apply><m:eq/>
+	    <m:ci>b</m:ci>
+	    <m:cn>1</m:cn>
+	  </m:apply>
+	</m:math>, then
+	<m:math>
+	  <m:ci>C</m:ci>
+	</m:math>
+
+	is the line segment joining
+
+	<m:math>
+	  <m:apply><m:plus/>
+	    <m:cn>0</m:cn>
+	    <m:apply><m:times/>
+	      <m:imaginaryi/>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+
+	to
+
+	<m:math>
+	  <m:apply><m:plus/>
+	    <m:cn>1</m:cn>
+	    <m:imaginaryi/>
+	  </m:apply>
+	</m:math>.
+      </para>
+      
+      <para id="p2">
+
+	We now define
+
+	<m:math display="block">
+	  <m:apply><m:equivalent/>
+	    <m:apply><m:int/>
+	      <m:bvar><m:ci>z</m:ci></m:bvar>
+	      <m:domainofapplication><m:ci>C</m:ci></m:domainofapplication>
+	      <m:apply>
+		<m:ci type="fn">f</m:ci>
+		<m:ci>z</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:int/>
+	      <m:bvar><m:ci>t</m:ci></m:bvar>
+	      <m:lowlimit><m:ci>a</m:ci></m:lowlimit>
+	      <m:uplimit><m:ci>b</m:ci></m:uplimit>
+	      <m:apply><m:times/>
+		<m:apply>
+		  <m:ci type="fn">f</m:ci>
+		  <m:apply>
+		    <m:ci type="fn">z</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:apply>
+		    <m:diff/>
+		    <m:ci type="fn">z</m:ci>
+		  </m:apply>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	
+	For example, if
+	
+	<m:math>
+	  <m:apply><m:eq/>
+	    <m:ci>C</m:ci>
+	    <m:set>
+	      <m:bvar>
+		<m:apply><m:plus/>
+		  <m:ci>t</m:ci>
+		  <m:apply><m:times/>
+		    <m:imaginaryi/>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:bvar>
+	      <m:condition>
+		<m:apply><m:leq/>
+		  <m:cn>0</m:cn>
+		  <m:ci>t</m:ci>
+		  <m:cn>1</m:cn>
+		</m:apply>
+	      </m:condition>
+	    </m:set>
+	  </m:apply>
+	</m:math> as above and
+	
+	<m:math>
+	  <m:apply><m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">f</m:ci>
+	      <m:ci>z</m:ci>
+	    </m:apply>
+	    <m:ci>z</m:ci>
+	  </m:apply>
+	</m:math>
+	
+	then
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:int/>
+	      <m:bvar><m:ci>z</m:ci></m:bvar>
+	      <m:domainofapplication><m:ci>C</m:ci></m:domainofapplication>
+	      <m:ci>z</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:int/>
+	      <m:bvar><m:ci>t</m:ci></m:bvar>
+	      <m:lowlimit><m:cn>0</m:cn></m:lowlimit>
+	      <m:uplimit><m:cn>1</m:cn></m:uplimit>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:plus/>
+		  <m:ci>t</m:ci>
+		  <m:apply>
+		    <m:times/>
+		    <m:imaginaryi/>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:plus/>
+		  <m:cn>1</m:cn>
+		  <m:imaginaryi/>
+		</m:apply> 
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:int/>
+	      <m:bvar><m:ci>t</m:ci></m:bvar>
+	      <m:lowlimit><m:cn>0</m:cn></m:lowlimit>
+	      <m:uplimit><m:cn>1</m:cn></m:uplimit>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>t</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:imaginaryi/>
+		  <m:cn>2</m:cn>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:imaginaryi/>
+	  </m:apply>
+	</m:math>
+	
+	while if
+	
+	<m:math>
+	  <m:ci>C</m:ci>
+	</m:math>
+	
+	is the unit circle
+
+	<m:math>
+	  <m:set>
+	    <m:bvar>
+	      <m:apply><m:exp/>
+		<m:apply><m:times/>
+		  <m:imaginaryi/>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:bvar>
+	    <m:condition>
+	      <m:apply><m:leq/>
+		<m:cn>0</m:cn>
+		<m:ci>t</m:ci>
+		<m:apply><m:times/>
+		  <m:cn>2</m:cn>
+		  <m:pi/>
+		</m:apply>
+	      </m:apply>
+	    </m:condition>
+	  </m:set>
+	</m:math>
+	
+	then
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:int/>
+	      <m:bvar><m:ci>z</m:ci></m:bvar>
+	      <m:domainofapplication><m:ci>C</m:ci></m:domainofapplication>
+	      <m:ci>z</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:int/>
+	      <m:bvar><m:ci>t</m:ci></m:bvar>
+	      <m:lowlimit><m:cn>0</m:cn></m:lowlimit>
+	      <m:uplimit>
+		<m:apply><m:times/>
+		  <m:cn>2</m:cn>
+		  <m:pi/>
+		</m:apply>
+	      </m:uplimit>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply><m:times/>
+		    <m:imaginaryi/>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:imaginaryi/>
+		<m:apply><m:exp/>
+		  <m:apply><m:times/>
+		    <m:imaginaryi/>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:imaginaryi/>
+	      <m:apply>
+		<m:int/>
+		<m:bvar><m:ci>t</m:ci></m:bvar>
+		<m:lowlimit><m:cn>0</m:cn></m:lowlimit>
+		<m:uplimit>
+		  <m:apply><m:times/>
+		    <m:cn>2</m:cn>
+		    <m:pi/>
+		  </m:apply>
+		</m:uplimit>
+		<m:apply><m:exp/>
+		  <m:apply><m:times/>
+		    <m:imaginaryi/>
+		    <m:cn>2</m:cn>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:imaginaryi/>
+	      <m:apply><m:int/>
+		<m:bvar><m:ci>t</m:ci></m:bvar>
+		<m:lowlimit><m:cn>0</m:cn></m:lowlimit>
+		<m:uplimit>
+		  <m:apply><m:times/>
+		    <m:cn>2</m:cn>
+		    <m:pi/>
+		  </m:apply>
+		</m:uplimit>
+		<m:apply><m:plus/>
+		  <m:apply><m:cos/>
+		    <m:apply><m:times/>
+		      <m:cn>2</m:cn>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply><m:times/>
+		    <m:imaginaryi/>
+		    <m:apply><m:sin/>
+		      <m:apply><m:times/>
+			<m:cn>2</m:cn>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>
+      </para>
+      
+
+      <para id="p3">
+	Remaining with the unit circle but now integrating
+
+	<m:math>
+	  <m:apply><m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">f</m:ci>
+	      <m:ci>z</m:ci>
+	    </m:apply>
+	    <m:apply><m:divide/>
+	      <m:cn>1</m:cn>
+	      <m:ci>z</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math> we find
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:int/>
+	      <m:bvar><m:ci>z</m:ci></m:bvar>
+	      <m:domainofapplication><m:ci>C</m:ci></m:domainofapplication>
+	      <m:apply><m:inverse/>
+		<m:ci>z</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:int/>
+	      <m:bvar><m:ci>t</m:ci></m:bvar>
+	      <m:lowlimit><m:cn>0</m:cn></m:lowlimit>
+	      <m:uplimit>
+		<m:apply><m:times/>
+		  <m:cn>2</m:cn>
+		  <m:pi/>
+		</m:apply>
+	      </m:uplimit>
+	      <m:apply><m:times/>
+		<m:apply><m:exp/>
+		  <m:apply><m:minus/>
+		    <m:apply><m:times/>
+		      <m:imaginaryi/>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:imaginaryi/>
+		<m:apply><m:exp/>
+		  <m:apply><m:times/>
+		    <m:imaginaryi/>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply><m:times/>
+	      <m:cn>2</m:cn>
+	      <m:pi/>
+	      <m:imaginaryi/>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </para>
+
+      <para id="p4">
+	We generalize this calculation to arbitrary (integer) powers
+	over arbitrary circles.  More precisely, for integer
+	<m:math>
+	  <m:ci>m</m:ci>
+	</m:math>
+	and fixed complex
+	<m:math>
+	  <m:ci>a</m:ci>
+	</m:math>
+	we integrate
+
+	<m:math>
+	  <m:apply><m:power/>
+	    <m:apply><m:minus/>
+	      <m:ci>z</m:ci>
+	      <m:ci>a</m:ci>
+	    </m:apply>
+	    <m:ci>m</m:ci>
+	  </m:apply>
+	</m:math>
+
+	over
+
+	<m:math display="block">
+	  <m:apply><m:equivalent/>
+	    <m:apply>
+	      <m:ci type="fn">C</m:ci>
+	      <m:ci>a</m:ci>
+	      <m:ci>r</m:ci>
+	    </m:apply>
+	    <m:set>
+	      <m:bvar>
+		<m:apply><m:plus/>
+		  <m:ci>a</m:ci>
+		  <m:apply><m:times/>
+		    <m:ci>r</m:ci>
+		    <m:apply><m:exp/>
+		      <m:apply><m:times/>
+			<m:imaginaryi/>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:bvar>
+	      <m:condition>
+		<m:apply><m:leq/>
+		  <m:cn>0</m:cn>
+		  <m:ci>t</m:ci>
+		  <m:apply><m:times/>
+		    <m:cn>2</m:cn>
+		    <m:pi/>
+		  </m:apply>
+		</m:apply>
+	      </m:condition>
+	    </m:set>
+	  </m:apply>
+	</m:math> the circle of radius
+
+	<m:math>
+	  <m:ci>r</m:ci>
+	</m:math>
+	centered at
+
+	<m:math>
+	  <m:ci>a</m:ci>
+	</m:math>.  We find
+	
+	<equation id="eq4">
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:int/>
+		<m:bvar><m:ci>z</m:ci></m:bvar>
+		<m:domainofapplication>
+		  <m:apply>
+		    <m:ci type="fn">C</m:ci>
+		    <m:ci>a</m:ci>
+		    <m:ci>r</m:ci>
+		  </m:apply>
+		</m:domainofapplication>
+		<m:apply><m:power/>
+		  <m:apply><m:minus/>
+		    <m:ci>z</m:ci>
+		    <m:ci>a</m:ci>
+		  </m:apply>
+		  <m:ci>m</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply><m:int/>
+		<m:bvar><m:ci>t</m:ci></m:bvar>
+		<m:lowlimit><m:cn>0</m:cn></m:lowlimit>
+		<m:uplimit>
+		  <m:apply><m:times/>
+		    <m:cn>2</m:cn>
+		    <m:pi/>
+		  </m:apply>
+		</m:uplimit>
+		<m:apply><m:times/>
+		  <m:apply><m:power/>
+		    <m:apply><m:minus/>
+		      <m:apply><m:plus/>
+			<m:ci>a</m:ci>
+			<m:apply><m:times/>
+			  <m:ci>r</m:ci>
+			  <m:apply><m:exp/>
+			    <m:apply><m:times/>
+			      <m:imaginaryi/>
+			      <m:ci>t</m:ci>
+			    </m:apply>
+			  </m:apply>
+			</m:apply>
+		      </m:apply>
+		      <m:ci>a</m:ci>
+		    </m:apply>
+		    <m:ci>m</m:ci>
+		  </m:apply>
+		  <m:ci>r</m:ci>
+		  <m:imaginaryi/>
+		  <m:apply><m:exp/>
+		    <m:apply><m:times/>
+		      <m:imaginaryi/>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:imaginaryi/>
+		<m:apply>
+		  <m:power/>
+		  <m:ci>r</m:ci>
+		  <m:apply><m:plus/>
+		    <m:ci>m</m:ci>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:int/>
+		  <m:bvar><m:ci>t</m:ci></m:bvar>
+		  <m:lowlimit><m:cn>0</m:cn></m:lowlimit>
+		  <m:uplimit>
+		    <m:apply><m:times/>
+		      <m:cn>2</m:cn>
+		      <m:pi/>
+		    </m:apply>
+		  </m:uplimit>
+		  <m:apply><m:exp/>
+		    <m:apply><m:times/>
+		      <m:imaginaryi/>
+		      <m:apply><m:plus/>
+			<m:ci>m</m:ci>
+			<m:cn>1</m:cn>
+		      </m:apply>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:int/>
+	      <m:bvar><m:ci>z</m:ci></m:bvar>
+	      <m:domainofapplication>
+		<m:apply>
+		  <m:ci type="fn">C</m:ci>
+		  <m:ci>a</m:ci>
+		  <m:ci>r</m:ci>
+		</m:apply>
+	      </m:domainofapplication>
+	      <m:apply><m:power/>
+		<m:apply><m:minus/>
+		  <m:ci>z</m:ci>
+		  <m:ci>a</m:ci>
+		</m:apply>
+		<m:ci>m</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:imaginaryi/>
+	      <m:apply>
+		<m:power/>
+		<m:ci>r</m:ci>
+		<m:apply><m:plus/>
+		  <m:ci>m</m:ci>
+		  <m:cn>1</m:cn>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:int/>
+		<m:bvar><m:ci>t</m:ci></m:bvar>
+		<m:lowlimit><m:cn>0</m:cn></m:lowlimit>
+		<m:uplimit>
+		  <m:apply><m:times/>
+		    <m:cn>2</m:cn>
+		    <m:pi/>
+		  </m:apply>
+		</m:uplimit>
+		<m:apply><m:plus/>
+		  <m:apply><m:cos/>
+		    <m:apply><m:times/>
+		      <m:apply><m:plus/>
+			<m:ci>m</m:ci>
+			<m:cn>1</m:cn>
+		      </m:apply>  
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply><m:times/>
+		    <m:imaginaryi/>
+		    <m:apply><m:sin/>
+		      <m:apply><m:times/>
+			<m:apply><m:plus/>
+			  <m:ci>m</m:ci>
+			  <m:cn>1</m:cn>
+			</m:apply>  
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:piecewise>
+	      <m:piece>
+		<m:apply><m:times/>
+		  <m:cn>2</m:cn>
+		  <m:pi/>
+		  <m:imaginaryi/>
+		</m:apply>
+		<m:apply><m:eq/>
+		  <m:ci>m</m:ci>
+		  <m:cn>-1</m:cn>
+		</m:apply>
+	      </m:piece>
+	      <m:otherwise>
+		<m:cn>0</m:cn>
+	      </m:otherwise>
+	    </m:piecewise>
+	  </m:apply>
+	</m:math>
+
+      </para>
+      
+
+      <para id="p5">
+	When integrating more general functions it is often convenient
+	to express the integral in terms of its real and imaginary
+	parts. More precisely
+	
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:apply><m:int/>
+	      <m:bvar><m:ci>z</m:ci></m:bvar>
+	      <m:domainofapplication><m:ci>C</m:ci></m:domainofapplication>
+	      <m:apply>
+		<m:ci type="fn">f</m:ci>
+		<m:ci>z</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply>
+		<m:int/>
+		<m:bvar><m:ci>x</m:ci></m:bvar>
+		<m:domainofapplication>
+		  <m:ci>C</m:ci>
+		</m:domainofapplication>
+		<m:apply>
+		  <m:plus/>
+		  <m:apply>
+		    <m:ci type="fn">u</m:ci>
+		    <m:ci>x</m:ci>
+		    <m:ci>y</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:imaginaryi/>
+		    <m:apply>
+		      <m:ci type="fn">v</m:ci>
+		      <m:ci>x</m:ci>
+		      <m:ci>y</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:imaginaryi/>
+		<m:apply>
+		  <m:int/>
+		  <m:bvar><m:ci>y</m:ci></m:bvar>
+		  <m:domainofapplication>
+		    <m:ci>C</m:ci>
+		  </m:domainofapplication>
+		  <m:apply>
+		    <m:plus/>
+		    <m:apply>
+		      <m:ci type="fn">u</m:ci>
+		      <m:ci>x</m:ci>
+		      <m:ci>y</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:times/>
+		      <m:imaginaryi/>
+		      <m:apply>
+			<m:ci type="fn">v</m:ci>
+			<m:ci>x</m:ci>
+			<m:ci>y</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:int/>
+	      <m:bvar><m:ci>z</m:ci></m:bvar>
+	      <m:domainofapplication><m:ci>C</m:ci></m:domainofapplication>
+	      <m:apply>
+		<m:ci type="fn">f</m:ci>
+		<m:ci>z</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:int/>
+		  <m:bvar><m:ci>x</m:ci></m:bvar>
+		  <m:domainofapplication>
+		    <m:ci>C</m:ci>
+		  </m:domainofapplication>
+		  <m:apply>
+		    <m:ci type="fn">u</m:ci>
+		    <m:ci>x</m:ci>
+		    <m:ci>y</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:int/>
+		  <m:bvar><m:ci>y</m:ci></m:bvar>
+		  <m:domainofapplication>
+		    <m:ci>C</m:ci>
+		  </m:domainofapplication>
+		  <m:apply>
+		    <m:ci type="fn">v</m:ci>
+		    <m:ci>x</m:ci>
+		    <m:ci>y</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:imaginaryi/>
+		<m:apply>
+		  <m:int/>
+		  <m:bvar><m:ci>x</m:ci></m:bvar>
+		  <m:domainofapplication>
+		    <m:ci>C</m:ci>
+		  </m:domainofapplication>
+		  <m:apply>
+		    <m:ci type="fn">v</m:ci>
+		    <m:ci>x</m:ci>
+		    <m:ci>y</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	       <m:apply>
+		<m:times/>
+		<m:imaginaryi/>
+		<m:apply>
+		  <m:int/>
+		  <m:bvar><m:ci>y</m:ci></m:bvar>
+		  <m:domainofapplication>
+		    <m:ci>C</m:ci>
+		  </m:domainofapplication>
+		  <m:apply>
+		    <m:ci type="fn">u</m:ci>
+		    <m:ci>x</m:ci>
+		    <m:ci>y</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:int/>
+	      <m:bvar><m:ci>z</m:ci></m:bvar>
+	      <m:domainofapplication><m:ci>C</m:ci></m:domainofapplication>
+	      <m:apply>
+		<m:ci type="fn">f</m:ci>
+		<m:ci>z</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply>
+		<m:int/>
+		<m:bvar><m:ci>t</m:ci></m:bvar>
+		<m:lowlimit><m:ci>a</m:ci></m:lowlimit>
+		<m:uplimit><m:ci>b</m:ci></m:uplimit>
+		<m:apply><m:minus/>
+		  <m:apply><m:times/>
+		    <m:apply>
+		      <m:ci type="fn">u</m:ci>
+		      <m:apply>
+			<m:ci type="fn">x</m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:ci type="fn">y</m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:apply>
+			<m:diff/>
+			<m:ci type="fn">x</m:ci>
+		      </m:apply>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply><m:times/>
+		    <m:apply>
+		      <m:ci type="fn">v</m:ci>
+		      <m:apply>
+			<m:ci type="fn">x</m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:ci type="fn">y</m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:apply><m:diff/>
+			<m:ci type="fn">y</m:ci>
+		      </m:apply>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:imaginaryi/>
+		<m:apply>
+		  <m:int/>
+		  <m:bvar><m:ci>t</m:ci></m:bvar>
+		  <m:lowlimit><m:ci>a</m:ci></m:lowlimit>
+		  <m:uplimit><m:ci>b</m:ci></m:uplimit>
+		  <m:apply><m:plus/>
+		    <m:apply><m:times/>
+		      <m:apply>
+			<m:ci type="fn">u</m:ci>
+			<m:apply>
+			  <m:ci type="fn">x</m:ci>
+			  <m:ci>t</m:ci>
+			</m:apply>
+			<m:apply>
+			  <m:ci type="fn">y</m:ci>
+			  <m:ci>t</m:ci>
+			</m:apply>
+		      </m:apply>
+		      <m:apply>
+			<m:apply>
+			  <m:diff/>
+			  <m:ci type="fn">y</m:ci>
+			</m:apply>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply><m:times/>
+		      <m:apply>
+			<m:ci type="fn">v</m:ci>
+			<m:apply>
+			  <m:ci type="fn">x</m:ci>
+			  <m:ci>t</m:ci>
+			</m:apply>
+			<m:apply>
+			  <m:ci type="fn">y</m:ci>
+			  <m:ci>t</m:ci>
+			</m:apply>
+		      </m:apply>
+		      <m:apply>
+			<m:apply>
+			  <m:diff/>
+			  <m:ci type="fn">x</m:ci>
+			</m:apply>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	
+      </para>
+      
+      <para id="p6">
+	The second line should invoke memories of:
+
+	<rule id="defn1" type="theorem">
+	  <title>Green's Theorem</title>
+	  <statement id="idm654368">
+	    <para id="green_p1"> If
+	      <m:math>
+		<m:ci>C</m:ci>
+	      </m:math>
+	      is a closed curve and
+	      <m:math>
+		<m:ci>M</m:ci>
+	      </m:math>
+	      and 
+	      <m:math>
+		<m:ci>N</m:ci>
+	      </m:math>
+	      are continuously differentiable real-valued functions on
+
+	      <m:math>
+		<m:ci>
+		  <m:msub>
+		    <m:mi>C</m:mi>
+		    <m:mi>in</m:mi>
+		  </m:msub>
+		</m:ci> 
+	      </m:math>, the region enclosed by
+
+	      <m:math>
+		<m:ci>C</m:ci>
+	      </m:math>, then
+
+	      <m:math display="block">
+		<m:apply>
+		  <m:eq/>
+		  <m:apply>
+		    <m:plus/>
+		    <m:apply>
+		      <m:int/>
+		      <m:bvar><m:ci>x</m:ci></m:bvar>
+		      <m:domainofapplication>
+			<m:ci>C</m:ci>
+		      </m:domainofapplication>
+		      <m:ci>M</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:int/>
+		      <m:bvar><m:ci>y</m:ci></m:bvar>
+		      <m:domainofapplication>
+			<m:ci>C</m:ci>
+		      </m:domainofapplication>
+		      <m:ci>N</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply><m:int/>
+		    <m:bvar><m:ci>y</m:ci></m:bvar>
+		    <m:apply><m:int/>
+		      <m:bvar><m:ci>x</m:ci></m:bvar>
+		      <m:domainofapplication>
+			<m:ci><m:msub>
+			    <m:mi>C</m:mi>
+			    <m:mi>in</m:mi>
+			  </m:msub></m:ci>
+		      </m:domainofapplication>
+		      <m:apply><m:minus/>
+			<m:apply>
+			  <m:partialdiff/>
+			  <m:bvar><m:ci>x</m:ci></m:bvar>
+			  <m:ci>N</m:ci>
+			</m:apply>
+			<m:apply><m:partialdiff/>
+			  <m:bvar><m:ci>y</m:ci></m:bvar>
+			  <m:ci>M</m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </para>
+	  </statement>
+	</rule>
+      </para>
+
+
+      <para id="p7">
+	Applying this to the situation above, we find, so long as
+	<m:math>
+	  <m:ci>C</m:ci>
+	</m:math> is closed, that
+
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:apply><m:int/>
+	      <m:bvar><m:ci>z</m:ci></m:bvar>
+	      <m:domainofapplication><m:ci>C</m:ci></m:domainofapplication>
+	      <m:apply>
+		<m:ci type="fn">f</m:ci>
+		<m:ci>z</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply><m:plus/>
+	      <m:apply><m:minus/>
+		<m:apply><m:int/>
+		  <m:bvar><m:ci>y</m:ci></m:bvar>
+		  <m:apply><m:int/>
+		    <m:bvar><m:ci>x</m:ci></m:bvar>
+		    <m:domainofapplication>
+		      <m:ci><m:msub>
+			  <m:mi>C</m:mi>
+			  <m:mi>in</m:mi>
+			</m:msub></m:ci>
+		    </m:domainofapplication>
+		    <m:apply><m:plus/>
+		      <m:apply><m:partialdiff/>
+			<m:bvar><m:ci>x</m:ci></m:bvar>
+			<m:ci>v</m:ci>
+		      </m:apply>
+		      <m:apply><m:partialdiff/>
+			<m:bvar><m:ci>y</m:ci></m:bvar>
+			<m:ci>u</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:imaginaryi/>
+		<m:apply><m:int/>
+		  <m:bvar><m:ci>y</m:ci></m:bvar>
+		  <m:apply><m:int/>
+		    <m:bvar><m:ci>x</m:ci></m:bvar>
+		    <m:domainofapplication>
+		      <m:ci><m:msub>
+			  <m:mi>C</m:mi>
+			  <m:mi>in</m:mi>
+			</m:msub></m:ci>
+		    </m:domainofapplication>
+		    <m:apply><m:plus/>
+		      <m:apply><m:partialdiff/>
+			<m:bvar><m:ci>x</m:ci></m:bvar>
+			<m:ci>u</m:ci>
+		      </m:apply>
+		      <m:apply><m:partialdiff/>
+			<m:bvar><m:ci>y</m:ci></m:bvar>
+			<m:ci>v</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </para>
+
+      <para id="p8">
+	At first glance it appears that Green's Theorem only serves to
+	muddy the waters. Recalling the <link document="m10276" target-id="sec4" strength="2">Cauchy-Riemann
+	  equations</link> however we find that each of these double
+	integrals is in fact identically zero! In brief, we have
+	proven:
+
+	<rule id="cauchy" type="theorem">
+	  <title>Cauchy's Theorem</title>
+
+	  <statement id="idm10034592">
+	    <para id="cauchy_p1"> If
+	      <m:math>
+		<m:ci>f</m:ci>
+	      </m:math>
+	      is differentiable on and in the closed curve
+	      <m:math>
+		<m:ci>C</m:ci>
+	      </m:math> then
+	      
+	      <m:math>
+		<m:apply><m:eq/>
+		  <m:apply><m:int/>
+		    <m:bvar><m:ci>z</m:ci></m:bvar>
+		    <m:domainofapplication>
+		      <m:ci>C</m:ci>
+		    </m:domainofapplication>
+		    <m:apply>
+		      <m:ci type="fn">f</m:ci>
+		      <m:ci>z</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:cn>0</m:cn>
+		</m:apply>
+	      </m:math>.
+	    </para>
+	  </statement>
+	</rule>
+      </para>
+
+
+      <para id="p9">
+	Strictly speaking, in order to invoke Green's Theorem we
+	require not only that
+	<m:math>
+	  <m:ci>f</m:ci>
+	</m:math>
+	be differentiable but that its derivative in fact be
+	continuous. This however is simply a limitation of our simple
+	mode of proof; Cauchy's Theorem is true as stated.
+      </para>
+
+
+      <para id="para10">
+	This theorem, together with <link target-id="eq4" strength="3"/>, permits us to integrate every proper rational
+	function.  More precisely, if
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>q</m:ci>
+	    <m:apply>
+	      <m:divide/>
+	      <m:ci>f</m:ci>
+	      <m:ci>g</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math> where <m:math><m:ci>f</m:ci>
+	</m:math> is a polynomial of degree at most 
+	
+	<m:math>
+	  <m:apply>
+	    <m:minus/>
+	    <m:ci>m</m:ci>
+	    <m:cn>1</m:cn>
+	  </m:apply>
+	</m:math> and 
+	
+	<m:math><m:ci>g</m:ci></m:math> is an 
+	<m:math><m:ci>m</m:ci></m:math>th degree polynomial with
+	<m:math><m:ci>h</m:ci></m:math> distinct zeros at 
+	
+	<m:math>
+	  <m:set>
+	    <m:bvar>
+	      <m:ci><m:msub>
+		  <m:mi>λ</m:mi>
+		  <m:mi>j</m:mi>
+		</m:msub></m:ci>
+	    </m:bvar>
+	    <m:condition>
+	      <m:apply>
+		<m:eq/>
+		<m:ci>j</m:ci>
+		<m:set>
+		  <m:cn>1</m:cn>
+		  <m:ci>…</m:ci>
+		  <m:ci>h</m:ci>
+		</m:set>
+	      </m:apply>
+	    </m:condition>
+	  </m:set>
+	</m:math> with respective multiplicities of
+	
+	<m:math>
+	  <m:set>
+	    <m:bvar>
+	      <m:ci><m:msub>
+		  <m:mi>m</m:mi>
+		  <m:mi>j</m:mi>
+		</m:msub></m:ci>
+	    </m:bvar>
+	    <m:condition>
+	      <m:apply>
+		<m:eq/>
+		<m:ci>j</m:ci>
+		<m:set>
+		  <m:cn>1</m:cn>
+		  <m:ci>…</m:ci>
+		  <m:ci>h</m:ci>
+		</m:set>
+	      </m:apply>
+	    </m:condition>
+	  </m:set>
+	</m:math> we found that
+
+	<equation id="eq5">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci type="fn">q</m:ci>
+		<m:ci>z</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:sum/>
+		<m:bvar>
+		  <m:ci>j</m:ci>
+		</m:bvar>
+		<m:lowlimit>
+		  <m:cn>1</m:cn>
+		</m:lowlimit>
+		<m:uplimit>
+		  <m:ci>h</m:ci>
+		</m:uplimit>
+		<m:apply>
+		  <m:sum/>
+		  <m:bvar>
+		    <m:ci>k</m:ci>
+		  </m:bvar>
+		  <m:lowlimit>
+		    <m:cn>1</m:cn>
+		  </m:lowlimit>
+		  <m:uplimit>
+		    <m:ci><m:msub>
+			<m:mi>m</m:mi>
+			<m:mi>j</m:mi>
+		      </m:msub></m:ci>
+		  </m:uplimit>
+		  <m:apply>
+		    <m:divide/>
+		    <m:ci><m:msub>
+			<m:mi>q</m:mi>
+			<m:mrow>
+			  <m:mi>j</m:mi>
+			  <m:mo>,</m:mo>
+			  <m:mi>k</m:mi>
+			</m:mrow>
+		      </m:msub></m:ci>
+		    <m:apply>
+		      <m:power/>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>z</m:ci>
+			<m:ci><m:msub>
+			    <m:mi>λ</m:mi>
+			    <m:mi>j</m:mi>
+			  </m:msub></m:ci>
+		      </m:apply>
+		      <m:ci>k</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	Observe now that if we choose 
+	
+	<m:math>
+	  <m:ci><m:msub>
+	      <m:mi>r</m:mi>
+	      <m:mi>j</m:mi>
+	    </m:msub></m:ci>
+	</m:math> so small that 
+	
+	<m:math>
+	  <m:ci><m:msub>
+	      <m:mi>λ</m:mi>
+	      <m:mi>j</m:mi>
+	    </m:msub></m:ci>
+	</m:math> 
+
+	is the only zero of <m:math><m:ci>g</m:ci></m:math> encircled by 
+	
+	<m:math>
+	  <m:apply>
+	    <m:equivalent/>
+	    <m:ci><m:msub>
+		<m:mi>C</m:mi>
+		<m:mi>j</m:mi>
+	      </m:msub></m:ci>
+	    <m:apply>
+	      <m:ci type="fn">C</m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>λ</m:mi>
+		  <m:mi>j</m:mi>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>r</m:mi>
+		  <m:mi>j</m:mi>
+		</m:msub></m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math> then by Cauchy's Theorem
+	
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:int/>
+	      <m:bvar>
+		<m:ci>z</m:ci>
+	      </m:bvar>
+	      <m:domainofapplication>
+		<m:ci><m:msub>
+		    <m:mi>C</m:mi>
+		    <m:mi>j</m:mi>
+		  </m:msub></m:ci>
+	      </m:domainofapplication>
+	      <m:apply>
+		<m:ci type="fn">q</m:ci>
+		<m:ci>z</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:sum/>
+	      <m:bvar>
+		<m:ci>k</m:ci>
+	      </m:bvar>
+	      <m:lowlimit>
+		<m:cn>1</m:cn>
+	      </m:lowlimit>
+	      <m:uplimit>
+		<m:ci><m:msub>
+		    <m:mi>m</m:mi>
+		    <m:mi>j</m:mi>
+		  </m:msub></m:ci>
+	      </m:uplimit>
+	      <m:apply>
+		<m:times/>
+		<m:ci><m:msub>
+		    <m:mi>q</m:mi>
+		    <m:mrow>
+		      <m:mi>j</m:mi>
+		      <m:mo>,</m:mo>
+		      <m:mi>k</m:mi>
+		    </m:mrow>
+		  </m:msub></m:ci>
+		<m:apply>
+		  <m:int/>
+		  <m:bvar>
+		    <m:ci>z</m:ci>
+		  </m:bvar>
+		  <m:domainofapplication>
+		    <m:ci><m:msub>
+			<m:mi>C</m:mi>
+			<m:mi>j</m:mi>
+		      </m:msub></m:ci>
+		  </m:domainofapplication>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:apply>
+		      <m:power/>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>z</m:ci>
+			<m:ci><m:msub>
+			    <m:mi>λ</m:mi>
+			    <m:mi>j</m:mi>
+			  </m:msub></m:ci>
+		      </m:apply>
+		      <m:ci>k</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	
+	In <link target-id="eq4" strength="3"/> we found that each, save
+	the first, of the integrals under the sum is in fact zero.
+	Hence, 
+	
+	<equation id="eq6">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:int/>
+		<m:bvar>
+		  <m:ci>z</m:ci>
+		</m:bvar>
+		<m:domainofapplication>
+		  <m:ci><m:msub>
+		      <m:mi>C</m:mi>
+		      <m:mi>j</m:mi>
+		    </m:msub></m:ci>
+		</m:domainofapplication>
+		<m:apply>
+		  <m:ci type="fn">q</m:ci>
+		  <m:ci>z</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:cn>2</m:cn>
+		<m:pi/>
+		<m:imaginaryi/>
+		<m:ci><m:msub>
+		    <m:mi>q</m:mi>
+		    <m:mrow>
+		      <m:mi>j</m:mi>
+		      <m:mo>,</m:mo>
+		      <m:mn>1</m:mn>
+		    </m:mrow>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	With 
+	<m:math>
+	  <m:ci><m:msub>
+	      <m:mi>q</m:mi>
+	      <m:mrow>
+		<m:mi>j</m:mi>
+		<m:mo>,</m:mo>
+		<m:mn>1</m:mn>
+	      </m:mrow>
+	    </m:msub></m:ci></m:math>
+
+	in hand, say from <link document="m10276" target-id="eq12" strength="3">this equation</link> or <code>residue</code>, one
+	may view <link target-id="eq6" strength="3"/> as a means for
+	computing the indicated integral.  The opposite reading,
+	<foreign>i.e.</foreign>, that the integral is a convenient
+	means of expressing
+	
+	<m:math>
+	  <m:ci><m:msub> <m:mi>q</m:mi>
+	      <m:mrow>
+		<m:mi>j</m:mi>
+		<m:mo>,</m:mo>
+		<m:mn>1</m:mn>
+	      </m:mrow>
+	    </m:msub></m:ci>
+	</m:math>, will prove just as useful.  With that in mind, we
+	note that the remaining residues may be computed as integrals
+	of the product of <m:math><m:ci>q</m:ci>
+	</m:math> and the appropriate factor.  More precisely,
+
+	<equation id="eq7">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:int/>
+		<m:bvar>
+		  <m:ci>z</m:ci>
+		</m:bvar>
+		<m:domainofapplication>
+		  <m:ci><m:msub>
+		      <m:mi>C</m:mi>
+		      <m:mi>j</m:mi>
+		    </m:msub></m:ci>
+		</m:domainofapplication>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:ci type="fn">q</m:ci>
+		    <m:ci>z</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:power/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>z</m:ci>
+		      <m:ci><m:msub>
+			  <m:mi>λ</m:mi>
+			  <m:mi>j</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>k</m:ci>
+		      <m:cn>1</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:cn>2</m:cn>
+		<m:pi/>
+		<m:imaginaryi/>
+		<m:ci><m:msub>
+		    <m:mi>q</m:mi>
+		    <m:mrow>
+		      <m:mi>j</m:mi>
+		      <m:mo>,</m:mo>
+		      <m:mi>k</m:mi>
+		    </m:mrow>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	One may be led to believe that the precision of this result is
+	due to the very special choice of curve and function.  We
+	shall see ...
+      </para>
+
+    </section>
+  </content>
+</document>

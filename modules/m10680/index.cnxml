@@ -1,0 +1,1215 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+
+  <title>The Matrix Exponential via Eigenvalues and Eigenvectors</title>
+
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>507cf9ea-cf00-4f6d-8d0c-d1823455ce9f</md:uuid>
+</metadata>
+  
+  <content>
+    <para id="para1">
+      In this module we exploit the fact that the matrix exponential
+      of a diagonal matrix is the diagonal matrix of element
+      exponentials. In order to exploit it we need to recall that all
+      matrices are almost diagonalizable. Let us begin with the clean
+      case: if <m:math><m:ci>A</m:ci></m:math> is
+      <m:math><m:ci>n</m:ci></m:math>-by-<m:math><m:ci>n</m:ci></m:math>
+      and has <m:math><m:ci>n</m:ci></m:math> distinct eigenvalues,
+      <m:math><m:ci><m:msub><m:mi>λ</m:mi><m:mi>j</m:mi></m:msub></m:ci></m:math>,
+      and therefore <m:math><m:ci>n</m:ci></m:math> linear
+      eigenvectors,
+      <m:math><m:ci><m:msub><m:mi>s</m:mi><m:mi>j</m:mi></m:msub></m:ci></m:math>,
+      then we note that
+
+      <m:math display="block">
+	<m:apply>
+	  <m:forall/>
+	  <m:bvar><m:ci>j</m:ci></m:bvar>
+	  <m:condition>
+	    <m:apply>
+	      <m:in/>
+	      <m:ci>j</m:ci>
+	      <m:set>
+		<m:cn>1</m:cn>
+		<m:ci>…</m:ci>
+		<m:ci>n</m:ci>
+	      </m:set>
+	    </m:apply>
+	  </m:condition>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>A</m:ci>
+	      <m:ci>
+		<m:msub><m:mi>s</m:mi><m:mi>j</m:mi></m:msub>
+	      </m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>
+		<m:msub><m:mi>λ</m:mi><m:mi>j</m:mi></m:msub>
+	      </m:ci>
+	      <m:ci>
+		<m:msub><m:mi>s</m:mi><m:mi>j</m:mi></m:msub>
+	      </m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+
+      may be written 
+
+      <equation id="eq1">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>A</m:ci>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>S</m:ci>
+	      <m:ci>Λ</m:ci>
+	      <m:apply>
+		<m:inverse/>
+		<m:ci>S</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+
+      where 
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:ci>S</m:ci>
+	  <m:matrix>
+	    <m:matrixrow>
+	      <m:ci>
+		<m:msub><m:mi>s</m:mi><m:mn>1</m:mn></m:msub>
+	      </m:ci>
+	      <m:ci>
+		<m:msub><m:mi>s</m:mi><m:mn>2</m:mn></m:msub>
+	      </m:ci>
+	      <m:ci>…</m:ci>
+	      <m:ci>
+		<m:msub><m:mi>s</m:mi><m:mi>n</m:mi></m:msub>
+	      </m:ci>
+	    </m:matrixrow>
+	  </m:matrix>
+	</m:apply>
+      </m:math> is the full matrix of eigenvectors and 
+      
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:ci>Λ</m:ci>
+	  <m:apply>
+	    <m:ci type="fn">diag</m:ci>
+	    <m:ci>
+	      <m:msub><m:mi>λ</m:mi><m:mn>1</m:mn></m:msub>
+	    </m:ci>
+	    <m:ci>
+	      <m:msub><m:mi>λ</m:mi><m:mn>2</m:mn></m:msub>
+	    </m:ci>
+	    <m:ci>…</m:ci>
+	    <m:ci>
+	      <m:msub><m:mi>λ</m:mi><m:mi>n</m:mi></m:msub>
+	    </m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math> is the diagonal matrix of eigenvalues. One cool reason
+      for writing <m:math><m:ci>A</m:ci></m:math> as in <link target-id="eq1" strength="3"/> is that
+
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:power/>
+	    <m:ci>A</m:ci>
+	    <m:cn>2</m:cn>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci>S</m:ci>
+	    <m:ci>Λ</m:ci>
+	    <m:apply>
+	      <m:inverse/>
+	      <m:ci>S</m:ci>
+	    </m:apply>
+	    <m:ci>S</m:ci>
+	    <m:ci>Λ</m:ci>
+	    <m:apply>
+	      <m:inverse/>
+	      <m:ci>S</m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci>S</m:ci>
+	    <m:apply>
+	      <m:power/>
+	      <m:ci>Λ</m:ci>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	    <m:apply>
+	      <m:inverse/>
+	      <m:ci>S</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+
+      and, more generally 
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:power/>
+	    <m:ci>A</m:ci>
+	    <m:ci>k</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci>S</m:ci>
+	    <m:apply>
+	      <m:power/>
+	      <m:ci>Λ</m:ci>
+	      <m:ci>k</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:inverse/>
+	      <m:ci>S</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      
+      If we now plug this into the definition in <link document="m10678" strength="3">The Matrix Exponential as a Sum of Powers</link>,
+      we find
+
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:exp/>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>A</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci>S</m:ci>
+	    <m:apply>
+	      <m:exp/>
+	      <m:apply>
+		<m:times/>
+		<m:ci>Λ</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:inverse/>
+	      <m:ci>S</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+
+      where 
+      <m:math>
+	<m:apply>
+	  <m:exp/>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci>Λ</m:ci>
+	    <m:ci>t</m:ci>
+	  </m:apply>
+	</m:apply> 
+      </m:math> is simply 
+
+      <m:math display="block">
+	<m:apply>
+	  <m:ci type="fn">diag</m:ci>
+	  <m:apply>
+	    <m:exp/>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>
+		<m:msub><m:mi>λ</m:mi><m:mn>1</m:mn></m:msub>
+	      </m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:exp/>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>
+		<m:msub><m:mi>λ</m:mi><m:mn>2</m:mn></m:msub>
+	      </m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <m:ci>…</m:ci>
+	   <m:apply>
+	    <m:exp/>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>
+		<m:msub><m:mi>λ</m:mi><m:mi>n</m:mi></m:msub>
+	      </m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+
+      Let us exercise this on our standard suite of examples.
+    </para>
+
+    <example id="example1">
+      <para id="ex1para1">
+	If 
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>A</m:ci>
+	    <m:matrix>
+	      <m:matrixrow>
+		<m:cn>1</m:cn>
+		<m:cn>0</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>0</m:cn>
+		<m:cn>2</m:cn>
+	      </m:matrixrow>
+	    </m:matrix>
+	  </m:apply>
+	</m:math> 
+
+	then 
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>S</m:ci>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>I</m:ci>
+	      <m:ci>Λ</m:ci>
+	    </m:apply>
+	    <m:ci>A</m:ci>
+	  </m:apply>
+	</m:math>
+
+	and so 
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:exp/>
+	      <m:apply>
+		<m:times/>
+		<m:ci>A</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:exp/>
+	      <m:apply>
+		<m:times/>
+		<m:ci>Λ</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>. This was too easy!
+      </para>
+    </example>
+
+    <example id="example2">
+      <para id="ex2para1">
+	As a second example let us suppose 
+      
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>A</m:ci>
+	    <m:matrix>
+	      <m:matrixrow>
+		<m:cn>0</m:cn>
+		<m:cn>1</m:cn> 
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>-1</m:cn>
+		<m:cn>0</m:cn>
+	      </m:matrixrow>
+	    </m:matrix>
+	  </m:apply>
+	</m:math>  
+	
+	and compute, in matlab,
+      </para>
+      
+      <code display="block" id="cb1">
+	
+	&gt;&gt; [S, Lam] = eig(A)
+
+	   S = 0.7071             0.7071
+	            0 + 0.7071i        0 - 0.7071i
+
+
+	   Lam = 0 + 1.0000i     0
+	         0               0 - 1.0000i
+
+
+	&gt;&gt; Si = inv(S)
+
+	   Si = 0.7071     0 - 0.7071i
+	        0.7071     0 + 0.7071i
+
+
+	&gt;&gt; simple(S*diag(exp(diag(Lam)*t))*Si)
+
+	   ans = [ cos(t),   sin(t)]
+	         [-sin(t),   cos(t)]
+	
+      </code>
+    </example>
+    
+    <example id="example3">
+      <para id="ex3para1">
+	If 
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>A</m:ci>
+	    <m:matrix>
+	      <m:matrixrow>
+		<m:cn>0</m:cn>
+		<m:cn>1</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>0</m:cn>
+		<m:cn>0</m:cn>
+	      </m:matrixrow>
+	    </m:matrix>
+	  </m:apply>
+	</m:math>
+
+	then matlab delivers </para>
+
+      <code display="block" id="cb2">
+	
+	&gt;&gt; [S, Lam] = eig(A)
+
+	   S = 1.0000   -1.0000
+	       0         0.0000
+
+	   Lam = 0    0
+	         0    0
+	
+      </code>
+      
+      <para id="ex3para2">
+	So zero is a double eigenvalue with but one eigenvector. Hence
+	<m:math><m:ci>S</m:ci></m:math> is not invertible and we can
+	not invoke (<link target-id="eq1" strength="3"/>). The
+	generalization of (<link target-id="eq1" strength="3"/>) is often
+	called <link document="m10492" strength="3">the Jordan Canonical
+	Form or the Spectral Representation</link>. The latter reads
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>A</m:ci>
+	    <m:apply>
+	      <m:sum/>
+	      <m:bvar><m:ci>j</m:ci></m:bvar>
+	      <m:lowlimit><m:cn>1</m:cn></m:lowlimit>
+	      <m:uplimit><m:ci>h</m:ci></m:uplimit>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>
+		    <m:msub><m:mi>λ</m:mi><m:mi>j</m:mi></m:msub>
+		  </m:ci>
+		  <m:ci>
+		    <m:msub><m:mi>P</m:mi><m:mi>j</m:mi></m:msub>
+		  </m:ci>
+		</m:apply>
+		<m:ci>
+		  <m:msub><m:mi>D</m:mi><m:mi>j</m:mi></m:msub>
+		</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+
+	where the
+	<m:math><m:ci><m:msub><m:mi>λ</m:mi><m:mi>j</m:mi></m:msub></m:ci></m:math>
+	are the distinct eigenvalues of
+	<m:math><m:ci>A</m:ci></m:math> while, in terms of the
+	resolvent
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">R</m:ci>
+	      <m:ci>z</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:inverse/>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>z</m:ci>
+		  <m:ci>I</m:ci>
+		</m:apply>
+		<m:ci>A</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>, 
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>
+	      <m:msub><m:mi>P</m:mi><m:mi>j</m:mi></m:msub>
+	    </m:ci>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>2</m:cn>
+		  <m:pi/>
+		  <m:imaginaryi/>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:int/>
+		<m:bvar><m:ci>z</m:ci></m:bvar>
+		<m:domainofapplication>
+		  <m:ci>
+		    <m:msub><m:mi>C</m:mi><m:mi>j</m:mi></m:msub>
+		  </m:ci>
+		</m:domainofapplication>
+		<m:apply>
+		  <m:ci type="fn">R</m:ci>
+		  <m:ci>z</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+
+	is the associated eigen-projection and 
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>
+	      <m:msub><m:mi>D</m:mi><m:mi>j</m:mi></m:msub>
+	    </m:ci>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>2</m:cn>
+		  <m:pi/>
+		  <m:imaginaryi/>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:int/>
+		<m:bvar><m:ci>z</m:ci></m:bvar>
+		<m:domainofapplication>
+		  <m:ci>
+		    <m:msub><m:mi>C</m:mi><m:mi>j</m:mi></m:msub>
+		  </m:ci>
+		</m:domainofapplication>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:ci type="fn">R</m:ci>
+		    <m:ci>z</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>z</m:ci>
+		    <m:ci>
+		      <m:msub><m:mi>λ</m:mi><m:mi>j</m:mi></m:msub>
+		    </m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	
+	is the associated eigen-nilpotent. In each case, 
+	<m:math><m:ci><m:msub><m:mi>C</m:mi><m:mi>j</m:mi></m:msub></m:ci></m:math>
+	is a small circle enclosing only 
+	<m:math><m:ci><m:msub><m:mi>λ</m:mi><m:mi>j</m:mi></m:msub></m:ci></m:math>. 
+      </para>
+
+      <para id="ex3para3">
+	Conversely we express the resolvent 
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">R</m:ci>
+	      <m:ci>z</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:sum/>
+	      <m:bvar><m:ci>j</m:ci></m:bvar>
+	      <m:lowlimit><m:cn>1</m:cn></m:lowlimit>
+	      <m:uplimit><m:ci>h</m:ci></m:uplimit>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>z</m:ci>
+		      <m:ci>
+			<m:msub><m:mi>λ</m:mi><m:mi>j</m:mi></m:msub>
+		      </m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:ci>
+		    <m:msub><m:mi>P</m:mi><m:mi>j</m:mi></m:msub>
+		  </m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:sum/>
+		  <m:bvar><m:ci>k</m:ci></m:bvar>
+		  <m:lowlimit><m:cn>1</m:cn></m:lowlimit>
+		  <m:uplimit>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>
+			<m:msub><m:mi>m</m:mi><m:mi>j</m:mi></m:msub>
+		      </m:ci>
+		      <m:cn>1</m:cn>
+		    </m:apply>
+		  </m:uplimit>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:apply>
+			<m:power/>
+			<m:apply>
+			  <m:minus/>
+			  <m:ci>z</m:ci>
+			  <m:ci>
+			    <m:msub><m:mi>λ</m:mi><m:mi>j</m:mi></m:msub>
+			  </m:ci>
+			</m:apply>
+			<m:apply>
+			  <m:plus/>
+			  <m:ci>k</m:ci>
+			  <m:cn>1</m:cn>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		    <m:ci>
+		      <m:msubsup>
+			<m:mi>D</m:mi>
+			<m:mi>j</m:mi>
+			<m:mi>k</m:mi>
+		      </m:msubsup>
+		    </m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+
+	where 
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>
+	      <m:msub><m:mi>m</m:mi><m:mi>j</m:mi></m:msub>
+	    </m:ci>
+	    <m:apply>
+	      <m:mo>dim</m:mo>
+	      <m:apply>
+		<m:ci type="fn">ℛ</m:ci>
+		<m:ci>
+		  <m:msub><m:mi>P</m:mi><m:mi>j</m:mi></m:msub>
+		</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+
+	with this preparation we recall <link document="m10246" strength="3">Cauchy's integral formula</link> for 
+	a smooth function <m:math><m:ci>f</m:ci></m:math> 
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">f</m:ci>
+	      <m:ci>a</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>2</m:cn>
+		  <m:pi/>
+		  <m:imaginaryi/>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:int/>
+		<m:bvar><m:ci>z</m:ci></m:bvar>
+		<m:domainofapplication>
+		  <m:apply>
+		    <m:ci type="fn">C</m:ci>
+		    <m:ci>a</m:ci>
+		  </m:apply>
+		</m:domainofapplication>
+		<m:apply>
+		  <m:divide/>
+		  <m:apply>
+		    <m:ci type="fn">f</m:ci>
+		    <m:ci>z</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>z</m:ci>
+		    <m:ci>a</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+
+	where 
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">C</m:ci>
+	    <m:ci>a</m:ci>
+	  </m:apply>
+	</m:math> is a curve enclosing the point
+	<m:math><m:ci>a</m:ci></m:math>. The natural matrix analog is
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">f</m:ci>
+	      <m:ci>A</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>-1</m:cn>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>2</m:cn>
+		  <m:pi/>
+		  <m:imaginaryi/>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:int/>
+		<m:bvar><m:ci>z</m:ci></m:bvar>
+		<m:domainofapplication>
+		  <m:apply>
+		    <m:ci type="fn">C</m:ci>
+		    <m:ci>r</m:ci>
+		  </m:apply>
+		</m:domainofapplication>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:ci type="fn">f</m:ci>
+		    <m:ci>z</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn">R</m:ci>
+		    <m:ci>z</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+
+	where 
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">C</m:ci>
+	    <m:ci>r</m:ci>
+	  </m:apply>
+	</m:math> encloses <emphasis>ALL</emphasis> of the eigenvalues
+	of <m:math><m:ci>A</m:ci></m:math>. For
+
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">f</m:ci>
+	      <m:ci>z</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:exp/>
+	      <m:apply>
+		<m:times/>
+		<m:ci>z</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math> we find 
+
+	<equation id="eq2">
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>A</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:sum/>
+		<m:bvar><m:ci>j</m:ci></m:bvar>
+		<m:lowlimit><m:cn>1</m:cn></m:lowlimit>
+		<m:uplimit><m:ci>h</m:ci></m:uplimit>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:exp/>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci>
+			<m:msub><m:mi>λ</m:mi><m:mi>j</m:mi></m:msub>
+		      </m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:plus/>
+		    <m:ci>
+		      <m:msub><m:mi>P</m:mi><m:mi>j</m:mi></m:msub>
+		    </m:ci>
+		    <m:apply>
+		      <m:sum/>
+		      <m:bvar><m:ci>k</m:ci></m:bvar>
+		      <m:lowlimit><m:cn>1</m:cn></m:lowlimit>
+		      <m:uplimit>
+			<m:apply>
+			  <m:minus/>
+			  <m:ci>
+			    <m:msub><m:mi>m</m:mi><m:mi>j</m:mi></m:msub>
+			  </m:ci>
+			  <m:cn>1</m:cn>
+			</m:apply>
+		      </m:uplimit>
+		      <m:apply>
+			<m:times/>
+			<m:apply>
+			  <m:divide/>
+			  <m:apply>
+			    <m:power/>
+			    <m:ci>t</m:ci>
+			    <m:ci>k</m:ci>
+			  </m:apply>
+			  <m:apply>
+			    <m:factorial/>
+			    <m:ci>k</m:ci>
+			  </m:apply>
+			</m:apply>
+			<m:ci>
+			  <m:msubsup>
+			    <m:mi>D</m:mi>
+			    <m:mi>j</m:mi>
+			    <m:mi>k</m:mi>
+			  </m:msubsup>
+			</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	with regard to our example we find, 
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>h</m:ci>
+	    <m:cn>1</m:cn>
+	  </m:apply>
+	</m:math>,
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>λ</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>, 
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>P</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	    <m:ci>I</m:ci>
+	  </m:apply>
+	</m:math>, 
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>m</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	    <m:cn>2</m:cn>
+	  </m:apply>
+	</m:math>, 
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>D</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	    <m:ci>A</m:ci>
+	  </m:apply>
+	</m:math> so 
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:exp/>
+	      <m:apply>
+		<m:times/>
+		<m:ci>A</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:plus/>
+	      <m:ci>I</m:ci>
+	      <m:apply>
+		<m:times/>
+		<m:ci>t</m:ci>
+		<m:ci>A</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+
+	Let us consider a slightly bigger example, if 
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>A</m:ci>
+	    <m:matrix>
+	      <m:matrixrow>
+		<m:cn>1</m:cn>
+		<m:cn>1</m:cn>
+		<m:cn>0</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>0</m:cn>
+		<m:cn>1</m:cn>
+		<m:cn>0</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>0</m:cn>
+		<m:cn>0</m:cn>
+		<m:cn>2</m:cn>
+	      </m:matrixrow>
+	    </m:matrix>
+	  </m:apply>
+	</m:math>
+	
+	then </para>
+
+       <code display="block" id="cb3">
+	
+	&gt;&gt; R = inv(s*eye(3)-A)
+
+	   R = [ 1/(s-1),   1/(s-1)^2,         0]
+	       [       0,     1/(s-1),         0]
+	       [       0,           0,   1/(s-2)]
+	
+      </code>
+
+      <para id="ex3para4">
+	and so 
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>λ</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	    <m:cn>1</m:cn>
+	  </m:apply>
+	</m:math> and
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>λ</m:mi>
+		<m:mn>2</m:mn>
+	      </m:msub></m:ci>
+	    <m:cn>2</m:cn>
+	  </m:apply>
+	</m:math> while 
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>
+	      <m:msub><m:mi>P</m:mi><m:mn>1</m:mn></m:msub>
+	    </m:ci>
+	    <m:matrix>
+	      <m:matrixrow>
+		<m:cn>1</m:cn>
+		<m:cn>0</m:cn>
+		<m:cn>0</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>0</m:cn>
+		<m:cn>1</m:cn>
+		<m:cn>0</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>0</m:cn>
+		<m:cn>0</m:cn>
+		<m:cn>0</m:cn>
+	      </m:matrixrow>
+	    </m:matrix>
+	  </m:apply>
+	</m:math>
+
+	and so 
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>m</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	    <m:cn>2</m:cn>
+	  </m:apply>
+	</m:math>
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>
+	      <m:msub><m:mi>D</m:mi><m:mn>1</m:mn></m:msub>
+	    </m:ci>
+	    <m:matrix>
+	      <m:matrixrow>
+		<m:cn>0</m:cn>
+		<m:cn>1</m:cn>
+		<m:cn>0</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>0</m:cn>
+		<m:cn>0</m:cn>
+		<m:cn>0</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>0</m:cn>
+		<m:cn>0</m:cn>
+		<m:cn>0</m:cn>
+	      </m:matrixrow>
+	    </m:matrix>
+	  </m:apply>
+	</m:math>
+ 
+	and 
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>
+	      <m:msub><m:mi>P</m:mi><m:mn>2</m:mn></m:msub>
+	    </m:ci>
+	    <m:matrix>
+	      <m:matrixrow>
+		<m:cn>0</m:cn>
+		<m:cn>0</m:cn>
+		<m:cn>0</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>0</m:cn>
+		<m:cn>0</m:cn>
+		<m:cn>0</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>0</m:cn>
+		<m:cn>0</m:cn>
+		<m:cn>1</m:cn>
+	      </m:matrixrow>
+	    </m:matrix>
+	  </m:apply>
+	</m:math>
+
+	and 
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>m</m:mi>
+		<m:mn>2</m:mn>
+	      </m:msub></m:ci>
+	    <m:cn>1</m:cn>
+	  </m:apply>
+	</m:math> and 
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>D</m:mi>
+		<m:mn>2</m:mn>
+	      </m:msub></m:ci>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>. Hence 
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:exp/>
+	      <m:apply>
+		<m:times/>
+		<m:ci>A</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:exp/>
+		  <m:ci>t</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:plus/>
+		  <m:ci>
+		    <m:msub><m:mi>P</m:mi><m:mn>1</m:mn></m:msub>  
+		  </m:ci>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>t</m:ci>
+		    <m:ci>
+		      <m:msub><m:mi>D</m:mi><m:mn>1</m:mn></m:msub>  
+		    </m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>2</m:cn>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:ci>
+		  <m:msub><m:mi>P</m:mi><m:mn>2</m:mn></m:msub>  
+		</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+
+	<m:math display="block">
+	  <m:matrix>
+	    <m:matrixrow>
+	      <m:apply>
+		<m:exp/>
+		<m:ci>t</m:ci>
+	      </m:apply>  
+	      <m:apply>
+		<m:times/>
+		<m:ci>t</m:ci>
+		<m:apply>
+		  <m:exp/>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	    </m:matrixrow>
+	    <m:matrixrow>
+	      <m:cn>0</m:cn>
+	      <m:apply>
+		<m:exp/>
+		<m:ci>t</m:ci>
+	      </m:apply> 
+	      <m:cn>0</m:cn>
+	    </m:matrixrow>
+	    <m:matrixrow>
+	      <m:cn>0</m:cn>
+	      <m:cn>0</m:cn>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>2</m:cn>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:matrixrow>
+	  </m:matrix>
+	</m:math>
+
+      </para>
+    </example>
+    
+  </content>
+</document>

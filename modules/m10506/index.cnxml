@@ -1,0 +1,241 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  
+  <title>Exercises: Complex Numbers, Vectors, and Functions</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>9064b6bc-393d-420b-9384-7b994e3d70c9</md:uuid>
+</metadata>
+
+  <content>
+    <section id="sec1">
+      <title>Exercises</title>
+
+      <exercise id="ex1">
+	<problem id="idm3955616">
+	  <para id="ex1para1">
+	    Express
+
+	    <m:math>
+	      <m:apply>
+		<m:abs/>
+                <m:apply>
+                  <m:exp/>
+		  <m:ci>z</m:ci>
+                </m:apply>
+	      </m:apply>
+	    </m:math>
+
+	    in terms of <m:math><m:ci>x</m:ci></m:math> and/or
+	    <m:math><m:ci>y</m:ci></m:math>.
+	  </para>
+	</problem>
+	<solution id="idp7696896">
+	  <para id="ex1para2">
+	    Pending completion of assignment.
+	  </para>
+	</solution>
+      </exercise>
+      <exercise id="ex2">
+	<problem id="idm641120">
+	  <para id="ex2para1">
+	    Confirm that 
+	    
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+                <m:apply>
+                  <m:exp/>
+		  <m:apply>
+		    <m:ln/>
+		    <m:ci>z</m:ci>
+		  </m:apply>
+                </m:apply>
+                <m:ci>z</m:ci>
+	      </m:apply>
+	    </m:math>
+
+          and 
+
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+                <m:apply>
+                  <m:ln/>
+		  <m:apply>
+		    <m:exp/>
+		    <m:ci>z</m:ci>
+		  </m:apply>
+                </m:apply>
+                <m:ci>z</m:ci>
+	      </m:apply>
+	    </m:math>.
+	    
+	  </para>
+	</problem>
+	<solution id="idp9148624">
+	  <para id="ex2para2">
+	    Pending completion of assignment.
+	  </para>
+	</solution>
+      </exercise>
+
+      <exercise id="ex3">
+	<problem id="idp694928">
+	  <para id="ex3para1">
+	    Find the real and imaginary parts of
+	    <m:math><m:apply><m:cos/><m:ci>z</m:ci></m:apply></m:math>
+	    and
+	    <m:math><m:apply><m:sin/><m:ci>z</m:ci></m:apply></m:math>.
+	    Express your answers in terms of regular and hyperbolic
+	    trigonometric functions.
+	  </para>
+	</problem>
+	<solution id="idp1265520">
+	  <para id="ex3para2">
+	    Pending completion of assignment.
+	  </para>
+	</solution>
+      </exercise>
+
+      <exercise id="ex4">
+	<problem id="idp936096">
+	  <para id="ex4para1">
+	    Show that
+	    
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+                <m:apply>
+                  <m:plus/>
+		  <m:apply>
+		    <m:power/>
+		    <m:apply>
+		      <m:cos/>
+		      <m:ci>z</m:ci>
+		    </m:apply>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:power/>
+		    <m:apply>
+		      <m:sin/>
+		      <m:ci>z</m:ci>
+		    </m:apply>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+                </m:apply>
+                <m:cn>1</m:cn>
+	      </m:apply>
+	    </m:math>
+	  </para>
+	</problem>
+	<solution id="idp7877600">
+	  <para id="ex4para2">
+	    Pending completion of assignment.
+	  </para>
+	</solution>
+      </exercise>
+
+      <exercise id="ex5">
+	<problem id="idm372480">
+	  <para id="ex5para1">
+	    With 
+	    
+	    <m:math>
+	      <m:apply>
+		<m:equivalent/>
+                <m:apply>
+                  <m:power/>
+		  <m:ci>z</m:ci>
+		  <m:ci>w</m:ci>
+                </m:apply>
+                <m:apply>
+                  <m:exp/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>w</m:ci>
+		    <m:apply>
+		      <m:ln/>
+		      <m:ci>z</m:ci>
+		    </m:apply>
+		  </m:apply>
+                </m:apply>
+	      </m:apply>
+	    </m:math>
+
+	    for complex <m:math><m:ci>z</m:ci></m:math> and
+	    <m:math><m:ci>w</m:ci></m:math> compute
+	    
+	    <m:math>
+	      <m:apply>
+		<m:root/>
+                <m:imaginaryi/>
+	      </m:apply>
+	    </m:math>
+	  </para>
+	</problem>
+	<solution id="idm3949904">
+	  <para id="ex5para2">
+	    Pending completion of assignment.
+	  </para>
+	</solution>
+      </exercise>
+
+      <exercise id="ex6">
+	<problem id="idp9230992">
+	  <para id="ex6para1">
+	    Verify that
+	    <m:math><m:apply><m:cos/><m:ci>z</m:ci></m:apply></m:math>
+	    and
+	    <m:math><m:apply><m:sin/><m:ci>z</m:ci></m:apply></m:math>
+	    satisfy the <link document="m10276" target-id="eq8" strength="3">Cauchy-Riemann equations</link> and use the
+	    proposition to evaluate their derivatives.
+	  </para>
+	</problem>
+	<solution id="idp10224560">
+	  <para id="ex6para2">
+	    Pending completion of assignment.
+	  </para>
+	</solution>
+      </exercise>
+
+      <exercise id="ex7">
+	<problem id="idp1137888">
+	  <para id="ex7para1">
+	    Submit a Matlab diary documenting your use of residue in
+	    the partial fraction expansion of the transfer function of
+	    
+	    <m:math display="block">
+	      <m:apply>
+		<m:eq/>
+                <m:ci>B</m:ci>
+                <m:matrix>
+                  <m:matrixrow>
+                    <m:cn>2</m:cn>
+                    <m:cn>0</m:cn>
+                    <m:cn>0</m:cn>
+                  </m:matrixrow>
+                  <m:matrixrow>
+                    <m:cn>-1</m:cn>
+                    <m:cn>4</m:cn>
+                    <m:cn>0</m:cn>
+                  </m:matrixrow>
+                  <m:matrixrow>
+                    <m:cn>0</m:cn>
+                    <m:cn>-1</m:cn>
+                    <m:cn>2</m:cn>
+                  </m:matrixrow>
+                </m:matrix>
+	      </m:apply>
+	    </m:math>.
+	  </para>
+	</problem>
+	<solution id="idp7293264">
+	  <para id="ex7para2">
+	    Pending completion of assignment.
+	  </para>
+	</solution>
+      </exercise>
+      
+    </section>
+  </content>
+  
+</document>

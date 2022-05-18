@@ -1,0 +1,628 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  
+  <title>The Eigenvalue Problem:  Examples</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>afcd1d8a-82cb-421c-8193-1eaf605da3b9</md:uuid>
+</metadata>
+
+  <content>
+    <para id="examples">
+	We take a look back at our previous examples in light of the
+      results of two previous sections <link document="m10492" strength="3">The Spectral Representation</link> and <link document="m10491" strength="3">The Partial Fraction Expansion of
+      the Transfer Function</link>.  With respect to the rotation
+      matrix
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:ci>B</m:ci>
+	  <m:apply>
+	    <m:matrix>
+	      <m:matrixrow><m:cn>0</m:cn><m:cn>1</m:cn></m:matrixrow>
+	      <m:matrixrow><m:cn>-1</m:cn><m:cn>0</m:cn></m:matrixrow>
+	    </m:matrix>
+	  </m:apply>
+	</m:apply>
+      </m:math> we recall, see <link document="m10264" target-id="eq6" strength="3">Cauchy's Theorem eqn6</link>, that 
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:ci type="fn">R</m:ci><m:ci>s</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:divide/>
+	      <m:cn>1</m:cn>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:power/>
+		  <m:ci>s</m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+		<m:cn>1</m:cn>
+	      </m:apply>
+	    </m:apply>
+	    <m:matrix>
+	      <m:matrixrow><m:ci>s</m:ci><m:cn>1</m:cn></m:matrixrow>
+	      <m:matrixrow><m:cn>-1</m:cn><m:ci>s</m:ci></m:matrixrow>
+	    </m:matrix>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+
+      <equation id="eq9.21">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">R</m:ci><m:ci>s</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>s</m:ci>
+		    <m:imaginaryi/>
+		  </m:apply>
+		</m:apply>
+		<m:matrix>
+		  <m:matrixrow>
+		    <m:cn type="rational">1<m:sep/>2</m:cn>
+		    <m:apply>
+		      <m:divide/>
+		      <m:apply>
+			<m:minus/>
+			<m:imaginaryi/>
+		      </m:apply>
+			<m:cn>2</m:cn>
+		    </m:apply>
+		  </m:matrixrow>
+		  <m:matrixrow>
+		    <m:apply>
+		      <m:divide/>
+		      <m:imaginaryi/>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		    <m:cn type="rational">1<m:sep/>2</m:cn>
+		  </m:matrixrow>
+		</m:matrix>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:apply>
+		    <m:plus/>
+		    <m:ci>s</m:ci>
+		    <m:imaginaryi/>
+		  </m:apply>
+		</m:apply>
+		<m:matrix>
+		  <m:matrixrow>
+		    <m:cn type="rational">1<m:sep/>2</m:cn>
+		      <m:apply>
+		      <m:divide/>
+		      <m:imaginaryi/>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:matrixrow>
+		  <m:matrixrow>
+		    <m:apply>
+		      <m:divide/>
+		      <m:apply>
+			<m:minus/>
+			<m:imaginaryi/>
+		      </m:apply>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		    <m:cn type="rational">1<m:sep/>2</m:cn>
+		  </m:matrixrow>
+		</m:matrix>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+ 
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:ci type="fn">R</m:ci><m:ci>s</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:plus/>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>s</m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>λ</m:mi><m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:ci><m:msub>
+		  <m:mi>P</m:mi><m:mn>1</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>s</m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>λ</m:mi><m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:ci><m:msub>
+		  <m:mi>P</m:mi><m:mn>2</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+	and so 
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:ci>B</m:ci>
+	  <m:apply>
+	    <m:plus/>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci><m:msub>
+		  <m:mi>λ</m:mi><m:mn>1</m:mn>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>P</m:mi><m:mn>1</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci><m:msub>
+		  <m:mi>λ</m:mi><m:mn>2</m:mn>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>P</m:mi><m:mn>2</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:plus/>
+	    <m:apply>
+	      <m:times/>
+	      <m:imaginaryi/>
+	      <m:matrix>
+		<m:matrixrow>
+		  <m:cn type="rational">1<m:sep/>2</m:cn>
+		  <m:apply>
+		    <m:divide/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:imaginaryi/>
+		    </m:apply>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <m:apply>
+		    <m:divide/>
+		    <m:imaginaryi/>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:cn type="rational">1<m:sep/>2</m:cn>
+		</m:matrixrow>
+	      </m:matrix>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:minus/>
+		<m:imaginaryi/>
+	      </m:apply>
+	      <m:matrix>
+		<m:matrixrow>
+		  <m:cn type="rational">1<m:sep/>2</m:cn>
+		  <m:apply>
+		    <m:divide/>
+		    <m:imaginaryi/>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <m:apply>
+		    <m:divide/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:imaginaryi/>
+		    </m:apply>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:cn type="rational">1<m:sep/>2</m:cn>
+		</m:matrixrow>
+	      </m:matrix>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+
+ From
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:ci><m:msub>
+	      <m:mi>m</m:mi><m:mn>1</m:mn>
+	    </m:msub></m:ci>
+	  <m:ci><m:msub>
+	      <m:mi>m</m:mi><m:mn>2</m:mn>
+	    </m:msub></m:ci>
+	  <m:cn>1</m:cn>
+	</m:apply>
+      </m:math> it follows that
+      <m:math>
+	<m:apply>
+	  <m:ci type="fn">ℛ</m:ci>
+	  <m:ci><m:msub>
+	      <m:mi>P</m:mi><m:mn>1</m:mn>
+	    </m:msub></m:ci>
+	</m:apply>
+      </m:math> and
+      <m:math>
+      <m:apply>
+	  <m:ci type="fn">ℛ</m:ci>
+	  <m:ci><m:msub>
+	      <m:mi>P</m:mi><m:mn>2</m:mn>
+	    </m:msub></m:ci>
+	</m:apply>
+      </m:math> are actual (as opposed to generalized) eigenspaces. These
+	column spaces are easily determined. In particular,
+      <m:math>
+	<m:apply>
+	  <m:ci type="fn">ℛ</m:ci>
+	  <m:ci><m:msub>
+	      <m:mi>P</m:mi><m:mn>1</m:mn>
+	    </m:msub></m:ci>
+	</m:apply>
+      </m:math> is the span of 
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:ci><m:msub>
+	      <m:mi>e</m:mi><m:mn>1</m:mn>
+	    </m:msub></m:ci>
+	  <m:matrix>
+	    <m:matrixrow><m:cn>1</m:cn></m:matrixrow>
+	    <m:matrixrow>
+	      <m:imaginaryi/></m:matrixrow>
+	  </m:matrix>
+	</m:apply>
+      </m:math> while <m:math>
+	<m:apply>
+	  <m:ci type="fn">ℛ</m:ci>
+	  <m:ci><m:msub>
+	      <m:mi>P</m:mi><m:mn>2</m:mn>
+	    </m:msub></m:ci>
+	</m:apply>
+      </m:math>
+	is the span of 
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:ci><m:msub>
+	      <m:mi>e</m:mi><m:mn>2</m:mn>
+	    </m:msub></m:ci>
+	  <m:matrix>
+	    <m:matrixrow><m:cn>1</m:cn></m:matrixrow>
+	    <m:matrixrow>
+	      <m:apply>
+		<m:minus/>
+		<m:imaginaryi/>
+	      </m:apply>
+	    </m:matrixrow>
+	  </m:matrix>
+	</m:apply>
+      </m:math>
+      To recapitulate, from partial fraction expansion one can read
+	off the projections from which one can read off the
+	eigenvectors.  The reverse direction, producing projections
+	from eigenvectors, is equally worthwhile. We laid the
+	groundwork for this step in the discussion of <link document="m10371" strength="3">Least Squares</link>. In
+	particular, <link document="m10371" target-id="e5.4.3" strength="3">this Least Squares projection equation</link>
+	stipulates that
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:ci><m:msub>
+	      <m:mi>P</m:mi><m:mn>1</m:mn>
+	    </m:msub></m:ci>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci><m:msub>
+		<m:mi>e</m:mi><m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	    <m:apply>
+	      <m:inverse/>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:transpose/>
+		  <m:ci><m:msub>
+		      <m:mi>e</m:mi><m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:ci><m:msub>
+		    <m:mi>e</m:mi><m:mn>1</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:transpose/>
+	      <m:ci><m:msub>
+		  <m:mi>e</m:mi><m:mn>1</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+	<m:mtext>  and  </m:mtext>
+	<m:apply>
+	  <m:eq/>
+	  <m:ci><m:msub>
+	      <m:mi>P</m:mi><m:mn>2</m:mn>
+	    </m:msub></m:ci>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci><m:msub>
+		<m:mi>e</m:mi><m:mn>2</m:mn>
+	      </m:msub></m:ci>
+	    <m:apply>
+	      <m:inverse/>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:transpose/>
+		  <m:ci><m:msub>
+		      <m:mi>e</m:mi><m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:ci><m:msub>
+		    <m:mi>e</m:mi><m:mn>2</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:transpose/>
+	      <m:ci><m:msub>
+		  <m:mi>e</m:mi><m:mn>2</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+
+As <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:transpose/>
+	      <m:ci><m:msub>
+		  <m:mi>e</m:mi><m:mn>1</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	    <m:ci><m:msub>
+		<m:mi>e</m:mi><m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:transpose/>
+	      <m:ci><m:msub>
+		  <m:mi>e</m:mi><m:mn>1</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	    <m:ci><m:msub>
+		<m:mi>e</m:mi><m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	  </m:apply>
+	  <m:cn>0</m:cn>
+	</m:apply>
+      </m:math> these formulas can not possibly be correct.  Returning
+	to the Least Squares discussion we realize that it was,
+	perhaps implicitly, assumed that all quantities were real. At
+	root is the notion of the length of a complex vector. It is
+	not the square root of the sum of squares of its components
+	but rather the square root of the sum of squares of the
+	<emphasis>magnitudes</emphasis> of its components. That is,
+	recalling that the magnitude of a complex quantity <m:math>
+	<m:ci>z</m:ci></m:math> is <m:math>
+	<m:apply>
+	  <m:root/>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci>z</m:ci>
+	    <m:apply>
+	      <m:conjugate/>
+	      <m:ci>z</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply></m:math>, 
+      <m:math display="block">
+	<m:apply>
+	  <m:neq/>
+	  <m:apply>
+	    <m:power/>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#norm"/>
+	      <m:ci><m:msub>
+		  <m:mi>e</m:mi><m:mn>1</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	    <m:cn>2</m:cn>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:transpose/>
+	      <m:ci><m:msub>
+		  <m:mi>e</m:mi><m:mn>1</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	    <m:ci><m:msub>
+		<m:mi>e</m:mi><m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	  </m:apply>
+	</m:apply>
+	<m:mtext>  rather  </m:mtext>
+	<m:apply>
+	  <m:neq/>
+	  <m:apply>
+	    <m:power/>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#norm"/>
+	      <m:ci><m:msub>
+		  <m:mi>e</m:mi><m:mn>1</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	    <m:cn>2</m:cn>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:transpose/>
+	      <m:apply>
+		<m:conjugate/>
+		<m:ci><m:msub>
+		    <m:mi>e</m:mi><m:mn>1</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:ci><m:msub>
+		<m:mi>e</m:mi><m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+
+	Yes, we have had this discussion before, recall <link document="m10504" strength="3">complex numbers, vectors, and
+      matrices</link>.  The upshot of all of this is that, when
+      dealing with complex vectors and matrices, one should conjugate
+      before every transpose. Matlab (of course) does this
+      automatically, <foreign>i.e.</foreign>, the ' symbol conjugates
+      and transposes simultaneously. We use
+      <m:math>
+	<m:apply>
+	  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#adjoint"/>
+	  <m:ci>x</m:ci>
+	</m:apply>
+      </m:math>
+      to denote `conjugate transpose', <foreign>i.e.</foreign>,
+      <m:math display="block">
+	<m:apply>
+	  <m:equivalent/>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#adjoint"/>
+	    <m:ci>x</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:transpose/>
+	    <m:apply>
+	      <m:conjugate/>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      All this suggests that the desired projections are more likely
+      <equation id="eq9.22">
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>P</m:mi><m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci><m:msub>
+		  <m:mi>e</m:mi><m:mn>1</m:mn>
+		</m:msub></m:ci>
+	      <m:apply>
+		<m:inverse/>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#adjoint"/>
+		    <m:ci><m:msub>
+			<m:mi>e</m:mi><m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:ci><m:msub>
+		      <m:mi>e</m:mi><m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#adjoint"/>
+		 <m:ci><m:msub>
+		    <m:mi>e</m:mi><m:mn>1</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	  <m:mtext>  and  </m:mtext>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>P</m:mi><m:mn>2</m:mn>
+	      </m:msub></m:ci>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci><m:msub>
+		  <m:mi>e</m:mi><m:mn>2</m:mn>
+		</m:msub></m:ci>
+	      <m:apply>
+		<m:inverse/>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#adjoint"/>
+		    <m:ci><m:msub>
+			<m:mi>e</m:mi><m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		  </m:apply>
+		  <m:ci><m:msub>
+		      <m:mi>e</m:mi><m:mn>2</m:mn>
+		  </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#adjoint"/>
+		<m:ci><m:msub>
+		    <m:mi>e</m:mi><m:mn>2</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation> Please check that <link target-id="eq9.22" strength="3"/> indeed jives with <link target-id="eq9.21" strength="3"/>.
+
+    </para>   
+  </content>
+  
+</document>

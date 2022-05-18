@@ -1,0 +1,1213 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml"> 
+
+  <title>The Null Space and Column Space: An Example</title> 
+  
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>5ad33050-d44c-42e5-acb5-776d7aea3c41</md:uuid>
+</metadata>
+
+  <content>
+    <section id="prelim">
+      <title>Preliminary Information</title>
+      <para id="p1">
+	Let us compute bases for the null and column spaces of the
+	adjacency matrix associated with the ladder below.
+      </para>
+
+      <figure id="ladder">
+	<title>An unstable ladder?</title>
+	<media id="idm2961360" alt=""><image src="../../media/ladder.png" mime-type="image/png"/></media>
+      </figure>
+
+      <para id="p2">
+	The ladder has 8 bars and 4 nodes, so 8 degrees of freedom.
+	Denoting the horizontal and vertical displacements of node
+	<m:math display="inline"><m:ci>j</m:ci></m:math> by
+	<m:math display="inline">
+	  <m:ci><m:msub>
+	      <m:mi>x</m:mi>
+	      <m:mrow>
+		<m:mrow>
+		  <m:mn>2</m:mn>
+		  <m:mo>⁢</m:mo>
+		  <m:mi>j</m:mi>
+		</m:mrow>
+		<m:mo>−</m:mo>
+		<m:mn>1</m:mn>
+	      </m:mrow>
+	    </m:msub></m:ci>
+	</m:math>
+	<!-- x_(2j-1) -->
+
+	and 
+	<m:math display="inline">
+	  <m:ci><m:msub>
+	      <m:mi>x</m:mi>
+	      <m:mrow>
+		<m:mn>2</m:mn>
+		<m:mo>⁢</m:mo>
+		<m:mi>j</m:mi>
+	      </m:mrow>
+	    </m:msub></m:ci>
+	</m:math>,
+	<!-- x_(2j) -->
+
+	respectively, we arrive at the 
+	<m:math><m:ci type="matrix">A</m:ci></m:math> matrix
+
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:ci type="matrix">A</m:ci>
+	    <m:matrix>
+	      <m:matrixrow>
+		<m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		<m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>-1</m:cn><m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn>
+		<m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>0</m:cn><m:cn>0</m:cn><m:cn>-1</m:cn><m:cn>0</m:cn>
+		<m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>0</m:cn><m:cn>-1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		<m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>-1</m:cn>
+		<m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>1</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		<m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		<m:cn>-1</m:cn><m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		<m:cn>0</m:cn><m:cn>0</m:cn><m:cn>-1</m:cn><m:cn>0</m:cn>
+	      </m:matrixrow>
+	    </m:matrix>
+	  </m:apply>
+	</m:math>
+      </para>
+    </section>
+
+    <section id="column_basis">
+      <title>Finding a Basis for the Column Space</title>
+      <para id="p3">
+	To determine a basis for 
+	
+	<m:math display="inline">
+	  <m:apply>
+	    <m:ci>ℛ</m:ci>
+	    <m:ci type="matrix">A</m:ci>
+	  </m:apply>
+	</m:math>
+	<!-- R(A) --> we must find a way to discard its dependent
+	columns.  A moment's reflection reveals that columns 2 and 6
+	are colinear, as are columns 4 and 8.  We seek, of course, a
+	more systematic means of uncovering these and perhaps other
+	less obvious dependencies.  Such dependencies are more easily
+	discerned from the <link document="m10295" strength="2">row
+	reduced form</link>
+
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:ci type="matrix"><m:msub>
+		<m:mi>A</m:mi>
+		<m:mi>red</m:mi>
+	      </m:msub></m:ci>
+	    <m:apply>
+	      <m:ci type="fn">rref</m:ci>
+	      <m:ci type="matrix">A</m:ci>
+	    </m:apply>
+	    <m:matrix>
+	      <m:matrixrow>
+		<m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		<m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		<m:cn>0</m:cn><m:cn>-1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+	      </m:matrixrow> 
+	      <m:matrixrow>
+		<m:cn>0</m:cn><m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn>
+		<m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>1</m:cn>
+		<m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>-1</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		<m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		<m:cn>0</m:cn><m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		<m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		<m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+	      </m:matrixrow>
+	    </m:matrix>
+	  </m:apply>
+	</m:math>
+	
+	Recall that <code>rref</code> performs the elementary row
+  operations necessary to eliminate all nonzeros below the diagonal.
+  For those who can't stand to miss any of the action I recommend
+  <code>rrefmovie</code>.
+      </para>
+
+  <para id="p4">
+    Each nonzero row of
+    <m:math display="inline">
+      <m:ci type="matrix"><m:msub>
+	  <m:mi>A</m:mi>
+	  <m:mi>red</m:mi>
+	</m:msub></m:ci>
+    </m:math>
+    <!-- A_red -->
+
+    is called a <term>pivot row</term>. The first nonzero in each row of 
+    <m:math display="inline">
+      <m:ci type="matrix"><m:msub>
+	  <m:mi>A</m:mi>
+	  <m:mi>red</m:mi>
+	</m:msub></m:ci>
+    </m:math>
+    <!-- A_red -->
+
+    is called a <term>pivot</term>.  Each column that contains a
+    pivot is called a <term>pivot column</term>.  On account of
+    the staircase nature of
+    <m:math display="inline">
+      <m:ci type="matrix"><m:msub>
+	  <m:mi>A</m:mi>
+	  <m:mi>red</m:mi>
+	</m:msub></m:ci>
+    </m:math>
+    <!-- A_red -->
+
+    we find that there are as many pivot columns as there are pivot
+    rows.  In our example there are six of each and, again on account
+    of the staircase nature, the pivot columns are
+    <emphasis>the</emphasis> <link document="m10297" target-id="defn3" strength="2">linearly independent</link> columns of
+    <m:math display="inline">
+      <m:ci type="matrix"><m:msub>
+	  <m:mi>A</m:mi>
+	  <m:mi>red</m:mi>
+	</m:msub></m:ci>
+    </m:math>.
+    <!-- A_red -->
+
+    One now asks how this might help us distinguish the independent
+    columns of <m:math><m:ci type="matrix">A</m:ci></m:math>.  For,
+    although the rows of
+    <m:math display="inline">
+      <m:ci type="matrix"><m:msub>
+	  <m:mi>A</m:mi>
+	  <m:mi>red</m:mi>
+	</m:msub></m:ci>
+    </m:math>
+    <!-- A_red -->
+
+    are linear combinations of the rows of <m:math><m:ci type="matrix">A</m:ci></m:math>, no such thing is true with
+    respect to the columns.  In our example, columns
+    <m:math display="inline">
+      <m:set>
+	<m:cn>1</m:cn>
+	<m:cn>2</m:cn>
+	<m:cn>3</m:cn>
+	<m:cn>4</m:cn>
+	<m:cn>5</m:cn>
+	<m:cn>7</m:cn>
+      </m:set>
+    </m:math>
+    
+    are the pivot columns.  In general:
+    <rule id="prop1" type="Proposition"><label>Proposition</label>
+      <statement id="idp485824">
+	<para id="statep1">
+	  Suppose <m:math><m:ci type="matrix">A</m:ci></m:math> is
+	  m-by-n.  If columns
+	  
+	  <m:math display="inline">
+	    <m:set>
+	      <m:bvar>
+		<m:ci><m:msub>
+		    <m:mi>c</m:mi>
+		    <m:mi>j</m:mi>
+		  </m:msub></m:ci>
+	      </m:bvar>
+	      <m:condition>
+		<m:apply><m:eq/>
+		  <m:ci>j</m:ci>
+		  <m:ci><m:mrow>
+		      <m:mn>1</m:mn>
+		      <m:mo>,</m:mo>
+		      <m:mi>...</m:mi>
+		      <m:mo>,</m:mo>
+		      <m:mi>r</m:mi>
+		    </m:mrow></m:ci>
+		</m:apply>
+	      </m:condition>
+	    </m:set>
+	  </m:math>
+	  <!-- {c_j : j = 1,...,r} -->
+	  
+	  are the pivot columns of 
+	  <m:math display="inline">
+	    <m:ci type="matrix"><m:msub>
+		<m:mi>A</m:mi>
+		<m:mi>red</m:mi>
+	      </m:msub></m:ci>
+	  </m:math>.
+	  <!-- A_red -->
+	  
+	  then columns
+	  <m:math display="inline">
+	    <m:set>
+	      <m:bvar>
+		<m:ci><m:msub>
+		    <m:mi>c</m:mi>
+		    <m:mi>j</m:mi>
+		  </m:msub></m:ci>
+	      </m:bvar>
+	      <m:condition>
+		<m:apply><m:eq/>
+		  <m:ci>j</m:ci>
+		  <m:ci><m:mrow>
+		      <m:mn>1</m:mn>
+		      <m:mo>,</m:mo>
+		      <m:mi>...</m:mi>
+		      <m:mo>,</m:mo>
+		      <m:mi>r</m:mi>
+		    </m:mrow></m:ci>
+		</m:apply>
+	      </m:condition>
+	    </m:set>
+	  </m:math>
+	  <!-- {c_j : j = 1,...,r} -->
+
+	  of <m:math><m:ci type="matrix">A</m:ci></m:math>
+	  constitute a basis for
+
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:ci type="fn">ℛ</m:ci>
+	      <m:ci type="matrix">A</m:ci>
+	    </m:apply>
+	  </m:math>.
+	  <!-- R(A) -->
+	</para>
+      </statement>
+      
+      <proof id="idm9931792">
+	<para id="proofp1">
+	  Note that the pivot columns of 
+	  <m:math display="inline">
+	    <m:ci type="matrix"><m:msub>
+		<m:mi>A</m:mi>
+		<m:mi>red</m:mi>
+	      </m:msub></m:ci>
+	  </m:math>.
+	  <!-- A_red -->
+	  
+	  are, by construction, linearly independent.  Suppose,
+	  however, that columns
+	  <m:math display="inline">
+	    <m:set>
+	      <m:bvar>
+		<m:ci><m:msub>
+		    <m:mi>c</m:mi>
+		    <m:mi>j</m:mi>
+		  </m:msub></m:ci>
+	      </m:bvar>
+	      <m:condition>
+		<m:apply><m:eq/>
+		  <m:ci>j</m:ci>
+		  <m:ci><m:mrow>
+		      <m:mn>1</m:mn>
+		      <m:mo>,</m:mo>
+		      <m:mi>...</m:mi>
+		      <m:mo>,</m:mo>
+		      <m:mi>r</m:mi>
+		    </m:mrow></m:ci>
+		</m:apply>
+	      </m:condition>
+	    </m:set>
+	  </m:math>
+	  <!-- {c_j : j = 1,...,r} -->
+
+	  of <m:math><m:ci type="matrix">A</m:ci></m:math> are
+	  linearly dependent.  In this case there exists a nonzero
+
+	  <m:math display="inline">
+	    <m:apply><m:in/>
+	      <m:ci>x</m:ci>
+	      <m:ci><m:msup>
+		  <m:mi>ℝ</m:mi>
+		  <m:mi>n</m:mi>
+		</m:msup></m:ci>
+	    </m:apply>
+	  </m:math>
+	  <!-- x is an element of R^n -->
+	  
+	  for which
+	  <m:math display="inline">
+	    <m:apply><m:eq/>
+	      <m:apply><m:times/>
+		<m:ci type="matrix">A</m:ci>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	      <m:ci type="vector">0</m:ci>
+	    </m:apply>
+	  </m:math>
+	  <!-- Ax = 0 -->
+
+	  and
+	  <equation id="eqn3_2">
+	    <m:math display="block">
+	      <m:apply>
+		<m:forall/>
+		<m:bvar><m:ci>k</m:ci></m:bvar>
+		<m:condition>
+		  <m:apply><m:notin/>
+		    <m:ci>k</m:ci>
+		    <m:set>
+		      <m:bvar>
+			<m:ci><m:msub>
+			    <m:mi>c</m:mi>
+			    <m:mi>j</m:mi>
+			  </m:msub></m:ci>
+		      </m:bvar>
+		      <m:condition>
+			<m:apply><m:eq/>
+			  <m:ci>j</m:ci>
+			  <m:ci><m:mrow>
+			      <m:mn>1</m:mn>
+			      <m:mo>,</m:mo>
+			      <m:mi>...</m:mi>
+			      <m:mo>,</m:mo>
+			      <m:mi>r</m:mi>
+			    </m:mrow></m:ci>
+			</m:apply>
+		      </m:condition>
+		    </m:set>
+		  </m:apply>
+		</m:condition>
+		<m:apply><m:eq/>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mi>k</m:mi>
+		    </m:msub></m:ci>
+		  <m:cn>0</m:cn>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	    <!-- x_k = 0, k not an element of {c_j: j = 1,...,r} -->
+	  </equation>
+
+	  Now 
+	  <m:math display="inline">
+	    <m:apply><m:eq/>
+	      <m:apply><m:times/>
+		<m:ci type="matrix">A</m:ci>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	      <m:ci type="vector">0</m:ci>
+	    </m:apply>
+	  </m:math>
+	  <!-- Ax = 0 -->
+
+	  necessarily implies that
+	  <m:math display="inline">
+	    <m:apply><m:eq/>
+	      <m:apply><m:times/>
+		<m:ci type="matrix"><m:msub>
+		    <m:mi>A</m:mi>
+		    <m:mi>red</m:mi>
+		  </m:msub></m:ci>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	      <m:ci type="vector">0</m:ci>
+	    </m:apply>
+	  </m:math>,
+	  <!-- A_red * x = 0 -->
+	  
+	  contrary to the fact that columns
+	  <m:math display="inline">
+	    <m:set>
+	      <m:bvar>
+		<m:ci><m:msub>
+		    <m:mi>c</m:mi>
+		    <m:mi>j</m:mi>
+		  </m:msub></m:ci>
+	      </m:bvar>
+	      <m:condition>
+		<m:apply><m:eq/>
+		  <m:ci>j</m:ci>
+		  <m:ci><m:mrow>
+		      <m:mn>1</m:mn>
+		      <m:mo>,</m:mo>
+		      <m:mi>...</m:mi>
+		      <m:mo>,</m:mo>
+		      <m:mi>r</m:mi>
+		    </m:mrow></m:ci>
+		</m:apply>
+	      </m:condition>
+	    </m:set>
+	  </m:math>
+	  <!-- {c_j : j = 1,...,r} -->
+	  
+	  are the pivot columns of 
+	  <m:math display="inline">
+	    <m:ci type="matrix"><m:msub>
+		<m:mi>A</m:mi>
+		<m:mi>red</m:mi>
+	      </m:msub></m:ci>
+	  </m:math>.
+	  <!-- A_red -->
+	</para>
+
+	<para id="proofp2">
+	  We now show that the span of columns 
+	  <m:math display="inline">
+	    <m:set>
+	      <m:bvar>
+		<m:ci><m:msub>
+		    <m:mi>c</m:mi>
+		    <m:mi>j</m:mi>
+		  </m:msub></m:ci>
+	      </m:bvar>
+	      <m:condition>
+		<m:apply><m:eq/>
+		  <m:ci>j</m:ci>
+		  <m:ci><m:mrow>
+		      <m:mn>1</m:mn>
+		      <m:mo>,</m:mo>
+		      <m:mi>...</m:mi>
+		      <m:mo>,</m:mo>
+		      <m:mi>r</m:mi>
+		    </m:mrow></m:ci>
+		</m:apply>
+	      </m:condition>
+	    </m:set>
+	  </m:math>
+	  <!-- {c_j : j = 1,...,r} -->
+
+	  of <m:math><m:ci type="matrix">A</m:ci></m:math> indeed
+	  coincides with
+
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:ci type="fn">ℛ</m:ci>
+	      <m:ci type="matrix">A</m:ci>
+	    </m:apply>
+	  </m:math>.
+	  <!-- R(A) -->
+
+	  This is obvious if
+	  <m:math display="inline">
+	    <m:apply><m:eq/>
+	      <m:ci>r</m:ci>
+	      <m:ci>n</m:ci>
+	    </m:apply>
+	  </m:math>,
+	  <!-- r = n -->
+
+	  <foreign>i.e.</foreign>, if <emphasis>all</emphasis> of the
+	  columns are linearly independent.  If
+
+	  <m:math display="inline">
+	    <m:apply><m:lt/>
+	      <m:ci>r</m:ci>
+	      <m:ci>n</m:ci>
+	    </m:apply>
+	  </m:math>,
+	  <!-- r < n -->
+
+	  there exists a
+	  <m:math display="inline">
+	    <m:apply><m:notin/>
+	      <m:ci>q</m:ci>
+	      <m:set>
+		<m:bvar>
+		  <m:ci><m:msub>
+		      <m:mi>c</m:mi>
+		      <m:mi>j</m:mi>
+		    </m:msub></m:ci>
+		</m:bvar>
+		<m:condition>
+		  <m:apply><m:eq/>
+		    <m:ci>j</m:ci>
+		    <m:ci><m:mrow>
+			<m:mn>1</m:mn>
+			<m:mo>,</m:mo>
+			<m:mi>...</m:mi>
+			<m:mo>,</m:mo>
+			<m:mi>r</m:mi>
+		      </m:mrow></m:ci>
+		  </m:apply>
+		</m:condition>
+	      </m:set>
+	    </m:apply>
+	  </m:math>.
+	  <!-- q not an element of {c_j : j = 1,...,r} -->
+
+	  Looking back at
+	  <m:math display="inline">
+	    <m:ci type="matrix"><m:msub>
+		<m:mi>A</m:mi>
+		<m:mi>red</m:mi>
+	      </m:msub></m:ci>
+	  </m:math>.
+	  <!-- A_red -->
+
+	  we note that its <m:math><m:ci>q</m:ci></m:math>th column is
+	  a linear combination of the pivot columns with indices not
+	  exceeding <m:math><m:ci>q</m:ci></m:math>.  Hence, there
+	  exists an <m:math><m:ci>x</m:ci></m:math> satisfying <link target-id="eqn3_2" strength="2"/> and
+
+	  <m:math display="inline">
+	    <m:apply><m:eq/>
+	      <m:apply><m:times/>
+		<m:ci type="matrix"><m:msub>
+		    <m:mi>A</m:mi>
+		    <m:mi>red</m:mi>
+		  </m:msub></m:ci>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	      <m:ci type="vector">0</m:ci>
+	    </m:apply>
+	  </m:math>,
+	  <!-- A_red * x = 0 -->
+
+	  and
+	  <m:math display="inline">
+	    <m:apply><m:eq/>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mi>q</m:mi>
+		</m:msub></m:ci>
+	      <m:cn>1</m:cn>
+	    </m:apply>
+	  </m:math>.
+	  <!-- x_q = 1 -->
+
+	  This <m:math><m:ci>x</m:ci></m:math> then necessarily
+	  satisfies
+	  <m:math display="inline">
+	    <m:apply><m:eq/>
+	      <m:apply><m:times/>
+		<m:ci type="matrix">A</m:ci>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	      <m:ci type="vector">0</m:ci>
+	    </m:apply>
+	  </m:math>.
+	  <!-- Ax = 0 -->
+	  
+	  This states that the <m:math><m:ci>q</m:ci></m:math>th
+	  column of <m:math><m:ci type="matrix">A</m:ci></m:math> is a
+	  linear combination of columns
+
+	  <m:math display="inline">
+	    <m:set>
+	      <m:bvar>
+		<m:ci><m:msub>
+		    <m:mi>c</m:mi>
+		    <m:mi>j</m:mi>
+		  </m:msub></m:ci>
+	      </m:bvar>
+	      <m:condition>
+		<m:apply><m:eq/>
+		  <m:ci>j</m:ci>
+		  <m:ci><m:mrow>
+		      <m:mn>1</m:mn>
+		      <m:mo>,</m:mo>
+		      <m:mi>...</m:mi>
+		      <m:mo>,</m:mo>
+		      <m:mi>r</m:mi>
+		    </m:mrow></m:ci>
+		</m:apply>
+	      </m:condition>
+	    </m:set>
+	  </m:math>
+	  <!-- {c_j : j = 1,...,r} -->
+
+  of <m:math><m:ci type="matrix">A</m:ci></m:math>.
+	</para>
+      </proof>
+    </rule>
+  </para>
+    </section>
+
+  <section id="null_basis">
+    <title>Finding a Basis for the Null Space</title>
+    <para id="p5">
+      Let us now exhibit a basis for 
+      <m:math display="inline">
+	<m:apply>
+	  <m:ci type="fn">𝒩</m:ci>
+	  <m:ci type="matrix">A</m:ci>
+	</m:apply>
+      </m:math>.
+      <!-- N(A) -->
+      
+      We exploit the already mentioned fact that 
+      <m:math display="inline">
+	<m:apply><m:eq/>
+	  <m:apply>
+	    <m:ci type="fn">𝒩</m:ci>
+	    <m:ci type="matrix">A</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:ci type="fn">𝒩</m:ci>
+	    <m:ci type="matrix"><m:msub>
+		<m:mi>A</m:mi>
+		<m:mi>red</m:mi>
+	      </m:msub></m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>.
+      <!-- N(A) = N(A_red) -->
+      
+      Regarding the latter, we partition the elements of <m:math><m:ci type="vector">x</m:ci></m:math> into so called
+      <term>pivot variables</term>,
+
+      <m:math display="block">
+	<m:set>
+	  <m:bvar>
+	    <m:ci><m:msub>
+		<m:mi>x</m:mi>
+		<m:msub>
+		  <m:mi>c</m:mi>
+		  <m:mi>j</m:mi>
+		</m:msub>
+	      </m:msub></m:ci>
+	  </m:bvar>
+	  <m:condition>
+	    <m:apply><m:eq/>
+	      <m:ci>j</m:ci>
+	      <m:ci><m:mrow>
+		  <m:mn>1</m:mn>
+		  <m:mo>,</m:mo>
+		  <m:mi>...</m:mi>
+		  <m:mo>,</m:mo>
+		  <m:mi>r</m:mi>
+		</m:mrow></m:ci>
+	    </m:apply>
+	  </m:condition>
+	</m:set>
+      </m:math>
+      <!-- { x_(c_j) : j = 1, ..., r } -->
+
+      and <term>free variables</term>
+      <m:math display="block">
+	<m:set>
+	  <m:bvar>
+	    <m:ci><m:msub>
+		<m:mi>x</m:mi>
+		<m:mi>k</m:mi>
+	      </m:msub></m:ci>
+	  </m:bvar>
+	  <m:condition>
+	    <m:apply><m:notin/>
+	      <m:ci>k</m:ci>
+	      <m:set>
+		<m:bvar>
+		  <m:ci><m:msub>
+		      <m:mi>c</m:mi>
+		      <m:mi>j</m:mi>
+		    </m:msub></m:ci>
+		</m:bvar>
+		<m:condition>
+		  <m:apply><m:eq/>
+		    <m:ci>j</m:ci>
+		    <m:ci><m:mrow>
+			<m:mn>1</m:mn>
+			<m:mo>,</m:mo>
+			<m:mi>...</m:mi>
+			<m:mo>,</m:mo>
+			<m:mi>r</m:mi>
+		      </m:mrow></m:ci>
+		  </m:apply>
+		</m:condition>
+	      </m:set>
+	    </m:apply>
+	  </m:condition>
+	</m:set>
+      </m:math>
+      <!-- { x_k : k not an element of { c_j : j = 1,...,r } } -->
+
+      There are evidently 
+      <m:math display="inline">
+	<m:apply><m:minus/>
+	  <m:ci>n</m:ci>
+	  <m:ci>r</m:ci>
+	</m:apply>
+      </m:math>
+      <!-- n - r -->
+
+      free variables.  For convenience, let us denote these in the future by
+      <m:math display="block">
+	<m:set>
+	  <m:bvar>
+	    <m:ci><m:msub>
+		<m:mi>x</m:mi>
+		<m:msub>
+		  <m:mi>c</m:mi>
+		  <m:mi>j</m:mi>
+		</m:msub>
+	      </m:msub></m:ci>
+	  </m:bvar>
+	  <m:condition>
+	    <m:apply><m:eq/>
+	      <m:ci>j</m:ci>
+	      <m:ci><m:mrow>
+		  <m:mrow>
+		    <m:mi>r</m:mi>
+		    <m:mo>+</m:mo>
+		    <m:mn>1</m:mn>
+		  </m:mrow>
+		  <m:mo>,</m:mo>
+		  <m:mi>...</m:mi>
+		  <m:mo>,</m:mo>
+		  <m:mi>n</m:mi>
+		</m:mrow></m:ci>
+	    </m:apply>
+	  </m:condition>
+	</m:set>
+      </m:math>
+      <!-- { x_(c_j) : j = r+1, ..., n } -->
+    </para>
+
+    <para id="p6">
+      One solves
+      <m:math display="inline">
+	<m:apply><m:eq/>
+	  <m:apply><m:times/>
+	    <m:ci type="matrix"><m:msub>
+		<m:mi>A</m:mi>
+		<m:mi>red</m:mi>
+	      </m:msub></m:ci>
+	    <m:ci type="vector">x</m:ci>
+	  </m:apply>
+	  <m:ci type="vector">0</m:ci>
+	</m:apply>
+      </m:math>,
+      <!-- A_red * x = 0 -->
+      
+      by expressing each of the pivot variables in terms of the
+      nonpivot, or free, variables.  In the example above,
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>x</m:mi>
+	    <m:mn>1</m:mn>
+	  </m:msub></m:ci>
+      </m:math>,
+      <!-- x_1 -->
+
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>x</m:mi>
+	    <m:mn>2</m:mn>
+	  </m:msub></m:ci>
+      </m:math>,
+      <!-- x_2 -->
+      
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>x</m:mi>
+	    <m:mn>3</m:mn>
+	  </m:msub></m:ci>
+      </m:math>,
+      <!-- x_3 -->
+
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>x</m:mi>
+	    <m:mn>4</m:mn>
+	  </m:msub></m:ci>
+      </m:math>,
+      <!-- x_4 -->
+
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>x</m:mi>
+	    <m:mn>5</m:mn>
+	  </m:msub></m:ci>
+      </m:math>,
+      <!-- x_5 -->
+
+      and
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>x</m:mi>
+	    <m:mn>7</m:mn>
+	  </m:msub></m:ci>
+      </m:math>
+      <!-- x_7 -->
+
+      are pivot while
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>x</m:mi>
+	    <m:mn>6</m:mn>
+	  </m:msub></m:ci>
+      </m:math>
+      <!-- x_6 -->
+
+      and
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>x</m:mi>
+	    <m:mn>8</m:mn>
+	  </m:msub></m:ci>
+      </m:math>
+      <!-- x_8 -->
+
+      are free.  Solving for the pivot in terms of the free we find
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:ci><m:msub>
+	      <m:mi>x</m:mi>
+	      <m:mn>7</m:mn>
+	    </m:msub></m:ci>
+	  <m:cn>0</m:cn>
+	</m:apply>
+      </m:math>
+
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:ci><m:msub>
+	      <m:mi>x</m:mi>
+	      <m:mn>5</m:mn>
+	    </m:msub></m:ci>
+	  <m:cn>0</m:cn>
+	</m:apply>
+      </m:math>
+
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:ci><m:msub>
+	      <m:mi>x</m:mi>
+	      <m:mn>4</m:mn>
+	    </m:msub></m:ci>
+	  <m:ci><m:msub>
+	      <m:mi>x</m:mi>
+	      <m:mn>8</m:mn>
+	    </m:msub></m:ci>
+	</m:apply>
+      </m:math>
+
+      <m:math display="block">	
+	<m:apply><m:eq/>
+	  <m:ci><m:msub>
+	      <m:mi>x</m:mi>
+	      <m:mn>3</m:mn>
+	    </m:msub></m:ci>
+	  <m:cn>0</m:cn>
+	</m:apply>
+      </m:math>
+
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:ci><m:msub>
+	      <m:mi>x</m:mi>
+	      <m:mn>2</m:mn>
+	    </m:msub></m:ci>
+	  <m:ci><m:msub>
+	      <m:mi>x</m:mi>
+	      <m:mn>6</m:mn>
+	    </m:msub></m:ci>
+	</m:apply>
+      </m:math>
+	
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:ci><m:msub>
+	      <m:mi>x</m:mi>
+	      <m:mn>1</m:mn>
+	    </m:msub></m:ci>
+	  <m:cn>0</m:cn>
+	</m:apply>
+      </m:math>
+      <!-- x_7 = 0, x_5 = 0, x_4 = x_8, x_3 = 0, x_2 = x_6, x_1 = 0 -->
+
+      or, written as a vector,
+      <equation id="eqn3_3">
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:ci type="vector">x</m:ci>
+	    <m:apply><m:plus/>
+	      <m:apply><m:times/>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>6</m:mn>
+		  </m:msub></m:ci>
+		<m:vector>
+		  <m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:vector>
+	      </m:apply>
+	      <m:apply><m:times/>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>8</m:mn>
+		  </m:msub></m:ci>
+		<m:vector>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>1</m:cn>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>1</m:cn>
+		</m:vector>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+      
+      where 
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>x</m:mi>
+	    <m:mn>6</m:mn>
+	  </m:msub></m:ci>
+      </m:math>
+      <!-- x_6 -->
+
+      and
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>x</m:mi>
+	    <m:mn>8</m:mn>
+	  </m:msub></m:ci>
+      </m:math>
+      <!-- x_8 -->
+
+      are free.  As 
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>x</m:mi>
+	    <m:mn>6</m:mn>
+	  </m:msub></m:ci>
+      </m:math>
+      <!-- x_6 -->
+
+      and
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>x</m:mi>
+	    <m:mn>8</m:mn>
+	  </m:msub></m:ci>
+      </m:math>
+      <!-- x_8 -->
+
+      range over all real numbers, the 
+      <m:math><m:ci type="vector">x</m:ci></m:math>
+      above traces out a plane in
+      <m:math display="inline">
+	<m:ci><m:msup>
+	    <m:mi>ℝ</m:mi>
+	    <m:mn>8</m:mn>
+	  </m:msup></m:ci>
+      </m:math>.
+
+      This plane is precisely the null space of <m:math><m:ci type="matrix">A</m:ci></m:math> and <link target-id="eqn3_3" strength="2"/> describes a generic element as the linear
+      combination of two basis vectors.  Compare this to what MATLAB
+      returns when faced with <code>null(A,'r')</code>.  Abstracting
+      these calculations we arrive at
+
+  <rule id="prop2" type="Proposition"><label>Proposition</label>
+    <statement id="idp349792">
+      <para id="statep2">
+	Suppose that <m:math><m:ci type="matrix">A</m:ci></m:math> is
+	m-by-n with pivot indices
+
+	<m:math display="inline">
+	  <m:set>
+	    <m:bvar>
+	      <m:ci><m:msub>
+		  <m:mi>c</m:mi>
+		  <m:mi>j</m:mi>
+		</m:msub></m:ci>
+	    </m:bvar>
+	    <m:condition>
+	      <m:apply><m:eq/>
+		<m:ci>j</m:ci>
+		<m:ci><m:mrow>
+		    <m:mn>1</m:mn>
+		    <m:mo>,</m:mo>
+		    <m:mi>...</m:mi>
+		    <m:mo>,</m:mo>
+		    <m:mi>r</m:mi>
+		  </m:mrow></m:ci>
+	      </m:apply>
+	    </m:condition>
+	  </m:set>
+	</m:math>
+	<!-- {c_j : j = 1,...,r} -->
+
+	and free indices
+	<m:math display="inline">
+	  <m:set>
+	    <m:bvar>
+	      <m:ci><m:msub>
+		  <m:mi>c</m:mi>
+		  <m:mi>j</m:mi>
+		</m:msub></m:ci>
+	    </m:bvar>
+	    <m:condition>
+	      <m:apply><m:eq/>
+		<m:ci>j</m:ci>
+		<m:ci><m:mrow>
+		    <m:mrow>
+		      <m:mi>r</m:mi>
+		      <m:mo>+</m:mo>
+		      <m:mn>1</m:mn>
+		    </m:mrow>
+		    <m:mo>,</m:mo>
+		    <m:mi>...</m:mi>
+		    <m:mo>,</m:mo>
+		    <m:mi>n</m:mi>
+		  </m:mrow></m:ci>
+	      </m:apply>
+	    </m:condition>
+	  </m:set>
+	</m:math>.
+	<!-- { c_j: j = r+1, ..., n } -->
+
+	A basis for 
+	<m:math display="inline">
+	  <m:apply>
+	    <m:ci type="fn">𝒩</m:ci>
+	    <m:ci type="matrix">A</m:ci>
+	  </m:apply>
+	</m:math>.
+	<!-- N(A) -->
+	
+	may be constructed of
+	<m:math display="inline">
+	  <m:apply><m:minus/>
+	    <m:ci>n</m:ci>
+	    <m:ci>r</m:ci>
+	  </m:apply>
+	</m:math>
+	<!-- n - r -->
+
+	vectors
+	<m:math display="inline">
+	  <m:set>
+	    <m:ci><m:msup>
+		<m:mi>z</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msup></m:ci>
+	    <m:ci><m:msup>
+		<m:mi>z</m:mi>
+		<m:mn>2</m:mn>
+	      </m:msup></m:ci>
+	    <m:ci>...</m:ci>
+	    <m:ci><m:msup>
+		<m:mi>z</m:mi>
+		<m:mrow>
+		  <m:mi>n</m:mi>
+		  <m:mo>-</m:mo>
+		  <m:mi>r</m:mi>
+		</m:mrow>
+	      </m:msup></m:ci>
+	  </m:set>
+	</m:math>
+	<!-- { z^1, z^2, ..., z^(n-r) } -->
+
+	where 
+	<m:math display="inline">
+	  <m:ci><m:msup>
+	      <m:mi>z</m:mi>
+	      <m:mi>k</m:mi>
+	    </m:msup></m:ci>
+	</m:math>,
+	<!-- z^k -->
+
+	and only
+	<m:math display="inline">
+	  <m:ci><m:msup>
+	      <m:mi>z</m:mi>
+	      <m:mi>k</m:mi>
+	    </m:msup></m:ci>
+	</m:math>,
+	<!-- z^k -->
+
+	possesses a nonzero in its 
+	<m:math display="inline">
+	  <m:ci><m:msub>
+	      <m:mi>c</m:mi>
+	      <m:mrow>
+		<m:mi>r</m:mi>
+		<m:mo>+</m:mo>
+		<m:mi>k</m:mi>
+	      </m:mrow>
+	    </m:msub></m:ci>
+	</m:math>
+	<!-- c_(r+k) -->
+
+	component.
+      </para>
+    </statement>
+  </rule>
+      </para>
+    </section>
+  
+  <section id="conclusion">
+    <title>The Physical Meaning of Our Calculations</title>
+    <para id="p7">
+      Let us not end on an abstract note however.  We ask what
+      <m:math display="inline">
+	<m:apply>
+	  <m:ci type="fn">ℛ</m:ci>
+	  <m:ci type="matrix">A</m:ci>
+	</m:apply>
+      </m:math>
+      <!-- R(A) -->
+
+      and
+      <m:math display="inline">
+	<m:apply>
+	  <m:ci type="fn">𝒩</m:ci>
+	  <m:ci type="matrix">A</m:ci>
+	</m:apply>
+      </m:math>
+      <!-- N(A) -->
+
+      tell us about the ladder.  Regarding 
+      <m:math display="inline">
+	<m:apply>
+	  <m:ci type="fn">ℛ</m:ci>
+	  <m:ci type="matrix">A</m:ci>
+	</m:apply>
+      </m:math>
+      <!-- R(A) -->
+
+      the answer will come in the next chapter.  The null space
+      calculation however has revealed two independent motions against
+      which the ladder does no work!  Do you see that the two vectors
+      in <link target-id="eqn3_3" strength="2"/> encode rigid vertical
+      motions of bars 4 and 5 respectively?  As each of these lies in
+      the null space of <m:math><m:ci type="matrix">A</m:ci></m:math>,
+      the associated elongation is zero.  Can you square this with the
+      ladder as pictured in <link target-id="ladder" strength="2"/>?  I
+      hope not, for vertical motion of bar 4 must 'stretch' bars 1, 2,
+      6, and 7.  How does one resolve this (apparent) contradiction?
+    </para>
+  </section>
+  </content>
+</document>

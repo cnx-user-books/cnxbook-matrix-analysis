@@ -1,0 +1,1176 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+
+  <title>The Mass-Spring-Damper System</title>
+
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>fd906801-9c52-4f1d-b2c8-97cbae5f51f1</md:uuid>
+</metadata>
+
+  <content>
+    
+    <figure id="figure1">
+      <media id="idp7872240" alt=""><image src="../../media/msd.png" mime-type="image/png"/></media>
+      <caption>Mass, spring, damper system</caption>
+    </figure>
+
+    <para id="para2">
+      If one provides an initial displacement,
+      <m:math><m:ci><m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub></m:ci></m:math>,
+      and velocity,
+      <m:math><m:ci><m:msub><m:mi>v</m:mi><m:mn>0</m:mn></m:msub></m:ci></m:math>,
+      to the mass depicted in <link target-id="figure1" strength="3"/>
+      then one finds that its displacement, 
+      <m:math>
+	<m:apply>
+	  <m:ci type="fn">x</m:ci>
+	  <m:ci>t</m:ci>
+	</m:apply>
+      </m:math> at time <m:math><m:ci>t</m:ci></m:math> satisfies 
+      
+      <equation id="eq1">
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply>
+		<m:times/>
+		<m:ci>m</m:ci>
+		<m:apply>
+		  <m:diff/>
+		  <m:bvar><m:ci>t</m:ci><m:degree><m:mn>2</m:mn></m:degree></m:bvar>
+		  <m:apply>
+		    <m:ci type="fn">x</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:cn>2</m:cn>
+		<m:ci>c</m:ci>
+		<m:apply>
+		  <m:diff/>
+		  <m:bvar><m:ci>t</m:ci></m:bvar>
+		  <m:apply>
+		    <m:ci type="fn">x</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:ci>k</m:ci>
+		<m:apply>
+		  <m:ci type="fn">x</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>
+      </equation>
+      
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:ci type="fn">x</m:ci>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	  <m:ci>
+	    <m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+	  </m:ci>
+	</m:apply>
+      </m:math>
+      
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:apply>
+	      <m:diff/>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	  <m:ci>
+	    <m:msub><m:mi>v</m:mi><m:mn>0</m:mn></m:msub>
+	  </m:ci>
+	</m:apply>
+      </m:math>
+      
+      where prime denotes differentiation with respect to time. It is
+      customary to write this single second order equation as a pair
+      of first order equations. More precisely, we set 
+
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:ci type="fn">
+	      <m:msub><m:mi>u</m:mi><m:mn>1</m:mn></m:msub>
+	    </m:ci>
+	    <m:ci>t</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:ci type="fn">x</m:ci>
+	    <m:ci>t</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+            
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:ci type="fn">
+	      <m:msub><m:mi>u</m:mi><m:mn>2</m:mn></m:msub>
+	    </m:ci>
+	    <m:ci>t</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:apply>
+	      <m:diff/>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	    <m:ci>t</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+            
+      and note that <link target-id="eq1" strength="3"/> becomes 
+
+      <equation id="eq2">
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>m</m:ci>
+	      <m:apply>
+		<m:apply>
+		  <m:diff/>
+		  <m:ci>
+		    <m:msub><m:mi>u</m:mi><m:mn>2</m:mn></m:msub>
+		  </m:ci>
+		</m:apply>		  
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:minus/>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>k</m:ci>
+		  <m:apply>
+		    <m:ci type="fn">
+		      <m:msub><m:mi>u</m:mi><m:mn>1</m:mn></m:msub>
+		    </m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:cn>2</m:cn>
+		<m:ci>c</m:ci>
+		<m:apply>
+		  <m:ci type="fn">
+		    <m:msub><m:mi>u</m:mi><m:mn>2</m:mn></m:msub>
+		  </m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+      
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:apply>
+	      <m:diff/>
+	      <m:ci>
+		<m:msub><m:mi>u</m:mi><m:mn>1</m:mn></m:msub>
+	      </m:ci>
+	    </m:apply>		  
+	    <m:ci>t</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:ci type="fn">
+	      <m:msub><m:mi>u</m:mi><m:mn>2</m:mn></m:msub>
+	    </m:ci>
+	    <m:ci>t</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      
+      Denoting 
+
+      <m:math>
+	<m:apply>
+	  <m:equivalent/>
+	  <m:apply>
+	    <m:ci type="fn">u</m:ci>
+	    <m:ci>t</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:transpose/>
+	    <m:matrix>
+	      <m:matrixrow>
+		<m:apply>
+		  <m:ci type="fn">
+		    <m:msub><m:mi>u</m:mi><m:mn>1</m:mn></m:msub>
+		  </m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply> 
+		<m:apply>
+		  <m:ci type="fn">
+		    <m:msub><m:mi>u</m:mi><m:mn>2</m:mn></m:msub>
+		  </m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply> 
+	      </m:matrixrow>
+	    </m:matrix>
+	  </m:apply>
+	</m:apply>
+      </m:math> we write <link target-id="eq2" strength="3"/> as 
+      
+      <equation id="eq3">
+	<m:math display="block">
+	  <m:apply>
+	    <m:forall/>
+	    <m:bvar><m:ci>A</m:ci></m:bvar>
+	    <m:condition>
+	      <m:apply>
+		<m:eq/>
+		<m:ci type="vector">A</m:ci>
+		<m:matrix>
+		  <m:matrixrow>
+		    <m:cn>0</m:cn> <m:cn>1</m:cn>
+		  </m:matrixrow>
+		  <m:matrixrow>
+		    <m:apply>
+		      <m:divide/>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>k</m:ci>
+		      </m:apply>
+		      <m:ci>m</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:divide/>
+		      <m:apply>
+			<m:times/>
+			<m:cn>-2</m:cn>
+			<m:ci>c</m:ci>
+		      </m:apply>
+		      <m:ci>m</m:ci>
+		    </m:apply>
+		  </m:matrixrow>
+		</m:matrix>
+	      </m:apply>
+	    </m:condition>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:apply>
+		  <m:diff/>
+		  <m:ci>u</m:ci>
+		</m:apply>		  
+		<m:ci>t</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:ci type="matrix">A</m:ci>
+		<m:apply>
+		  <m:ci type="fn">u</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+       
+      We recall from <link document="10677" strength="3">The Matrix
+      Exponential module</link> that 
+      
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:ci type="fn">u</m:ci>
+	    <m:ci>t</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:exp/>
+	      <m:apply>
+		<m:times/>
+		<m:ci>A</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci type="fn">u</m:ci>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+
+      We shall proceed to compute the matrix exponential along the
+      lines of <link document="m10680" strength="3">The Matrix
+      Exponential via Eigenvalues and Eignevectors module</link>. 
+      To begin we record the resolvent 
+      
+      
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">R</m:ci>
+	      <m:ci>z</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>-1</m:cn>
+		<m:apply>
+		  <m:plus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>m</m:ci>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>z</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>2</m:cn>
+		    <m:ci>c</m:ci>
+		    <m:ci>z</m:ci>
+		  </m:apply>
+		  <m:ci>k</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:matrix>
+		<m:matrixrow>
+		  <m:apply>
+		    <m:plus/>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>2</m:cn>
+		      <m:ci>c</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci>m</m:ci>
+		      <m:ci>z</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:ci>m</m:ci>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>k</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>m</m:ci>
+		    <m:ci>z</m:ci>
+		  </m:apply>
+		</m:matrixrow>
+	      </m:matrix>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+
+      The eigenvalues are the roots of 
+      <m:math>
+	<m:apply>
+	  <m:plus/>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci>m</m:ci>
+	    <m:apply>
+	      <m:power/>
+	      <m:ci>z</m:ci>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:cn>2</m:cn>
+	    <m:ci>c</m:ci>
+	    <m:ci>z</m:ci>
+	  </m:apply>
+	  <m:ci>k</m:ci>
+	</m:apply>
+      </m:math>, namely 
+
+      <m:math display="block">
+	<m:apply>
+	  <m:forall/>
+	  <m:bvar><m:ci>d</m:ci></m:bvar>
+	  <m:condition>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>d</m:ci>
+	      <m:apply>
+		<m:root/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>c</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>m</m:ci>
+		    <m:ci>k</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:condition>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>
+	      <m:msub><m:mi>λ</m:mi><m:mn>1</m:mn></m:msub>
+	    </m:ci>
+	    <m:apply>
+	      <m:divide/>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>c</m:ci>
+		</m:apply>
+		<m:ci>d</m:ci>
+	      </m:apply>
+	      <m:ci>m</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      
+      <m:math display="block">
+	<m:apply>
+	  <m:forall/>
+	  <m:bvar><m:ci>d</m:ci></m:bvar>
+	  <m:condition>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>d</m:ci>
+	      <m:apply>
+		<m:root/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>c</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>m</m:ci>
+		    <m:ci>k</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:condition>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>
+	      <m:msub><m:mi>λ</m:mi><m:mn>2</m:mn></m:msub>
+	    </m:ci>
+	    <m:apply>
+	      <m:divide/>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>c</m:ci>
+		</m:apply>
+		<m:ci>d</m:ci>
+	      </m:apply>
+	      <m:ci>m</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+    
+      We naturally consider two cases, the first being </para>
+    
+    <para id="para3">
+      <list id="caselist" list-type="enumerated">
+	<item>
+	  <m:math><m:apply><m:neq/><m:ci>d</m:ci><m:cn>0</m:cn></m:apply></m:math>. 
+	  In this case the partial fraction expansion of 
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn">R</m:ci>
+	      <m:ci>z</m:ci>
+	    </m:apply>
+	  </m:math> yields 
+
+      
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">R</m:ci>
+	      <m:ci>z</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>-1</m:cn>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>z</m:ci>
+		    <m:ci>
+		      <m:msub><m:mi>λ</m:mi><m:mn>1</m:mn></m:msub>
+		    </m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>2</m:cn>
+		    <m:ci>d</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:matrix>
+		  <m:matrixrow>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>d</m:ci>
+		      <m:ci>c</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>m</m:ci>
+		    </m:apply>
+		  </m:matrixrow>
+		  <m:matrixrow>
+		    <m:ci>k</m:ci>
+		    <m:apply>
+		      <m:plus/>
+		      <m:ci>c</m:ci>
+		      <m:ci>d</m:ci>
+		    </m:apply>
+		  </m:matrixrow>
+		</m:matrix>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>-1</m:cn>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>z</m:ci>
+		    <m:ci>
+		      <m:msub><m:mi>λ</m:mi><m:mn>2</m:mn></m:msub>
+		    </m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>2</m:cn>
+		    <m:ci>d</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:matrix>
+		  <m:matrixrow>
+		    <m:apply>
+		      <m:plus/>
+		      <m:ci>c</m:ci>
+		      <m:ci>d</m:ci>
+		    </m:apply>
+		    <m:ci>m</m:ci>
+		  </m:matrixrow>
+		  <m:matrixrow>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>k</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>d</m:ci>
+		      <m:ci>c</m:ci>		    
+		    </m:apply>
+		  </m:matrixrow>
+		</m:matrix>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>-1</m:cn>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>z</m:ci>
+		    <m:ci>
+		      <m:msub><m:mi>λ</m:mi><m:mn>1</m:mn></m:msub>
+		    </m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:ci>
+		  <m:msub><m:mi>P</m:mi><m:mn>1</m:mn></m:msub>
+		</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>-1</m:cn>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>z</m:ci>
+		    <m:ci>
+		      <m:msub><m:mi>λ</m:mi><m:mn>2</m:mn></m:msub>
+		    </m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:ci>
+		  <m:msub><m:mi>P</m:mi><m:mn>2</m:mn></m:msub>
+		</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      
+      and so 
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:exp/>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci type="matrix">A</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:plus/>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>
+		    <m:msub><m:mi>λ</m:mi><m:mn>1</m:mn></m:msub>
+		  </m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:ci>
+		<m:msub><m:mi>P</m:mi><m:mn>1</m:mn></m:msub>
+	      </m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>
+		    <m:msub><m:mi>λ</m:mi><m:mn>2</m:mn></m:msub>
+		  </m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:ci>
+		<m:msub><m:mi>P</m:mi><m:mn>2</m:mn></m:msub>
+	      </m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>. If we now suppose a negligible initial velocity,
+      <foreign>i.e.</foreign>,
+  <m:math>
+    <m:apply>
+      <m:eq/>
+      <m:ci><m:msub><m:mi>v</m:mi><m:mn>0</m:mn></m:msub></m:ci>
+    </m:apply>
+  </m:math>, it follows that 
+
+      <equation id="eq4">
+      	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">x</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:divide/>
+		<m:ci>
+		  <m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+		</m:ci>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>2</m:cn>
+		  <m:ci>d</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:exp/>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci>
+			<m:msub><m:mi>λ</m:mi><m:mn>1</m:mn></m:msub>
+		      </m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>d</m:ci>
+		    <m:ci>c</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:exp/>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci>
+			<m:msub><m:mi>λ</m:mi><m:mn>2</m:mn></m:msub>
+		      </m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:plus/>
+		    <m:ci>c</m:ci>
+		    <m:ci>d</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+      
+      If <m:math><m:ci>d</m:ci></m:math> is real, <foreign>i.e.</foreign>, if 
+      <m:math>
+	<m:apply>
+	  <m:gt/>
+	  <m:apply>
+	    <m:power/>
+	    <m:ci>c</m:ci>
+	    <m:cn>2</m:cn>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci>m</m:ci>
+	    <m:ci>k</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>, then both
+      <m:math><m:ci><m:msub><m:mi>λ</m:mi><m:mn>1</m:mn></m:msub></m:ci></m:math>
+      and
+      <m:math><m:ci><m:msub><m:mi>λ</m:mi><m:mn>2</m:mn></m:msub></m:ci></m:math>
+      are negative real numbers and 
+  <m:math>
+    <m:apply>
+      <m:ci type="fn">x</m:ci>
+      <m:ci>t</m:ci>
+    </m:apply>
+  </m:math> decays to 0 without oscillation. If, on the contrary,
+      <m:math><m:ci>d</m:ci></m:math> is imaginary,
+      <foreign>i.e.</foreign>,
+       <m:math>
+	<m:apply>
+	  <m:lt/>
+	  <m:apply>
+	    <m:power/>
+	    <m:ci>c</m:ci>
+	    <m:cn>2</m:cn>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci>m</m:ci>
+	    <m:ci>k</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>, then 
+
+      <equation id="eq5">
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">x</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>c</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:cos/>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:abs/>
+		      <m:ci>d</m:ci>
+		    </m:apply>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:ci>c</m:ci>
+		    <m:apply>
+		      <m:abs/>
+		      <m:ci>d</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:sin/>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:abs/>
+			<m:ci>d</m:ci>
+		      </m:apply>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+
+      and so <m:math><m:ci>x</m:ci></m:math> decays to 0 in an
+      oscillatory fashion. When <link target-id="eq4" strength="3"/>
+      holds the system is said to be <emphasis>overdamped</emphasis>
+      while when <link target-id="eq5" strength="3"/> governs then we
+      speak of the system as <emphasis>underdamped</emphasis>. It
+      remains to discuss the case of <emphasis>critical
+      damping</emphasis>.
+</item>
+  <item>
+	  <m:math><m:apply><m:eq/><m:ci>d</m:ci><m:cn>0</m:cn></m:apply></m:math>.  In this case 
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:ci>
+	    <m:msub><m:mi>λ</m:mi><m:mn>1</m:mn></m:msub>
+	  </m:ci>
+	  <m:ci>
+	    <m:msub><m:mi>λ</m:mi><m:mn>2</m:mn></m:msub>
+	  </m:ci>
+	  <m:apply>
+	    <m:minus/>
+	    <m:apply>
+	      <m:root/>
+	      <m:apply>
+		<m:divide/>
+		<m:ci>k</m:ci>
+		<m:ci>m</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>, and so we need only compute
+      <m:math><m:ci><m:msub><m:mi>P</m:mi><m:mn>1</m:mn></m:msub></m:ci></m:math>
+      and 
+      <m:math><m:ci><m:msub><m:mi>D</m:mi><m:mn>1</m:mn></m:msub></m:ci></m:math>.
+      As there is but one
+      <m:math><m:ci><m:msub><m:mi>P</m:mi><m:mi>j</m:mi></m:msub></m:ci></m:math>
+      and the
+      <m:math><m:ci><m:msub><m:mi>P</m:mi><m:mi>j</m:mi></m:msub></m:ci></m:math>
+      are known to sum to the identity it follows that
+    <m:math>
+      <m:apply>
+	<m:eq/>
+	<m:ci><m:msub><m:mi>P</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+	<m:ci>I</m:ci>
+      </m:apply>
+    </m:math>. Similarly, <link document="m10492" target-id="eq9.16" strength="3">this equation</link> dictates that
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>
+	      <m:msub><m:mi>D</m:mi><m:mn>1</m:mn></m:msub>
+	    </m:ci>
+	    <m:apply>
+	      <m:minus/>
+	      <m:apply>
+		<m:times/>
+		<m:ci type="matrix">A</m:ci>
+		<m:ci>
+		  <m:msub><m:mi>P</m:mi><m:mn>1</m:mn></m:msub>
+		</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:ci>
+		  <m:msub><m:mi>λ</m:mi><m:mn>1</m:mn></m:msub>
+		</m:ci>
+		<m:ci>
+		  <m:msub><m:mi>P</m:mi><m:mn>1</m:mn></m:msub>
+		</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:minus/>
+	      <m:ci type="matrix">A</m:ci>
+	      <m:apply>
+		<m:times/>
+		<m:ci>
+		  <m:msub><m:mi>λ</m:mi><m:mn>1</m:mn></m:msub>
+		</m:ci>
+		<m:ci>I</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:matrix>
+	      <m:matrixrow>
+		<m:apply>
+		  <m:root/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:ci>k</m:ci>
+		    <m:ci>m</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:cn>1</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:ci>k</m:ci>
+		    <m:ci>m</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:root/>
+		    <m:apply>
+		      <m:divide/>
+		      <m:ci>k</m:ci>
+		      <m:ci>m</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:matrixrow>
+	    </m:matrix>
+	  </m:apply>
+	</m:math>
+      
+      On substitution of this into <link document="m10680" target-id="eq2" strength="3">this equation</link> we find 
+
+      <equation id="eq6">
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:exp/>
+	      <m:apply>
+		<m:times/>
+		<m:ci type="fn">A</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>t</m:ci>
+		    <m:apply>
+		      <m:root/>
+		      <m:apply>
+			<m:divide/>
+			<m:ci>k</m:ci>
+			<m:ci>m</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:matrix>
+		<m:matrixrow>
+		  <m:apply>
+		    <m:plus/>
+		    <m:cn>1</m:cn>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci>t</m:ci>
+		      <m:apply>
+			<m:root/>
+			<m:apply>
+			  <m:divide/>
+			  <m:ci>k</m:ci>
+			  <m:ci>m</m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  <m:ci>t</m:ci>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <m:apply>
+		    <m:minus/>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci>t</m:ci>
+		      <m:apply>
+			<m:root/>
+			<m:apply>
+			  <m:divide/>
+			  <m:ci>k</m:ci>
+			  <m:ci>m</m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:minus/>
+		    <m:cn>1</m:cn>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci>t</m:ci>
+		      <m:apply>
+			<m:root/>
+			<m:apply>
+			  <m:divide/>
+			  <m:ci>k</m:ci>
+			  <m:ci>m</m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:matrixrow>
+	      </m:matrix>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+
+      Under the assumption, as above, that
+    <m:math>
+      <m:apply>
+	<m:eq/>
+	<m:ci><m:msub><m:mi>v</m:mi><m:mn>0</m:mn></m:msub></m:ci>
+	<m:cn>0</m:cn>
+      </m:apply>
+    </m:math>, we deduce from <link target-id="eq6" strength="3"/> that 
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">x</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>t</m:ci>
+		    <m:apply>
+		      <m:root/>
+		      <m:apply>
+			<m:divide/>
+			<m:ci>k</m:ci>
+			<m:ci>m</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:plus/>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>t</m:ci>
+		  <m:apply>
+		    <m:root/>
+		    <m:apply>
+		      <m:divide/>
+		      <m:ci>k</m:ci>
+		      <m:ci>m</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:ci>
+		<m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+	      </m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+  </item>
+</list>
+    </para>
+
+  </content>
+  
+</document>

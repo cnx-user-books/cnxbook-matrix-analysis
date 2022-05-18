@@ -1,0 +1,700 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>The Diagonalization of a Symmetric Matrix</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>d97554bb-99ee-4516-9e7e-cdff7fd85eb3</md:uuid>
+</metadata>
+
+  <content>
+    <para id="para1">
+       By choosing an orthogonal basis
+
+       <m:math>
+         <m:set>
+           <m:bvar>
+              <m:ci>
+                <m:msub>
+                  <m:mi>q</m:mi>
+                  <m:mrow>
+                    <m:mi>j</m:mi>
+                    <m:mo>,</m:mo>
+                    <m:mi>k</m:mi>
+                  </m:mrow>
+                </m:msub>
+              </m:ci>
+            </m:bvar>
+            <m:condition>
+              <m:reln>
+                <m:leq/>
+                  <m:cn>1</m:cn>
+                  <m:ci>k</m:ci>
+                  <m:ci><m:msub><m:mi>n</m:mi><m:mi>j</m:mi></m:msub></m:ci>
+              </m:reln>
+           </m:condition>
+         </m:set>
+       </m:math> 
+
+       for each
+
+       <m:math>
+         <m:apply>
+           <m:reals/>
+           <m:ci><m:msub><m:mi>P</m:mi><m:mi>j</m:mi></m:msub></m:ci>
+         </m:apply>
+       </m:math>
+
+       and collecting the basis vectors in
+
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:ci type="matrix"><m:msub><m:mi>Q</m:mi><m:mi>j</m:mi></m:msub></m:ci>
+	  <m:matrix>
+	    <m:matrixrow>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>q</m:mi>
+		  <m:mrow>
+		    <m:mi>j</m:mi>
+		    <m:mo>,</m:mo>
+		    <m:mn>1</m:mn>
+		  </m:mrow>
+		</m:msub>
+	      </m:ci>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>q</m:mi>
+		  <m:mrow>
+		    <m:mi>j</m:mi>
+		    <m:mo>,</m:mo>
+		    <m:mn>2</m:mn>
+		  </m:mrow>
+		</m:msub>
+	      </m:ci>
+	      <m:ci>…</m:ci>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>q</m:mi>
+		  <m:mrow>
+		    <m:mi>j</m:mi>
+		    <m:mo>,</m:mo>
+		    <m:msub><m:mi>n</m:mi><m:mi>j</m:mi></m:msub>
+		  </m:mrow>
+		</m:msub>
+	      </m:ci>
+	    </m:matrixrow>
+	  </m:matrix>
+	</m:apply>
+      </m:math>
+
+       we find that
+
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:ci><m:msub><m:mi>P</m:mi><m:mi>j</m:mi></m:msub></m:ci>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci type="matrix"><m:msub><m:mi>Q</m:mi><m:mi>j</m:mi></m:msub></m:ci>
+	    <m:apply>
+	      <m:transpose/>
+	      <m:ci type="matrix"><m:msub><m:mi>Q</m:mi><m:mi>j</m:mi></m:msub></m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:sum/>
+	    <m:bvar><m:ci>k</m:ci></m:bvar>
+	    <m:lowlimit><m:cn>1</m:cn></m:lowlimit>
+	    <m:uplimit><m:ci><m:msub><m:mi>n</m:mi><m:mi>j</m:mi></m:msub></m:ci></m:uplimit>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>q</m:mi>
+		  <m:mrow>
+		    <m:mi>j</m:mi>
+		    <m:mo>,</m:mo>
+		    <m:mi>k</m:mi>
+		  </m:mrow>
+		</m:msub>
+	      </m:ci>
+	      <m:apply>
+		<m:transpose/>
+		<m:ci>
+		  <m:msub>
+		    <m:mi>q</m:mi>
+		    <m:mrow>
+		      <m:mi>j</m:mi>
+		      <m:mo>,</m:mo>
+		      <m:mi>k</m:mi>
+		    </m:mrow>
+		  </m:msub>
+		</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>      
+      </m:math>
+
+      As a result, the <link document="m10382" strength="3">spectral
+      representation</link> takes the form
+
+       <equation id="eq01">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci type="matrix">B</m:ci>
+	    <m:apply>
+	      <m:sum/>
+	      <m:bvar><m:ci>j</m:ci></m:bvar>
+	      <m:lowlimit><m:cn>1</m:cn></m:lowlimit>
+	      <m:uplimit><m:ci>h</m:ci></m:uplimit>
+	      <m:apply>
+		<m:times/>
+		<m:ci><m:msub><m:mi>λ</m:mi><m:mi>j</m:mi></m:msub></m:ci>
+		<m:ci><m:msub><m:mi>Q</m:mi><m:mi>j</m:mi></m:msub></m:ci>
+		<m:apply>
+		  <m:transpose/>
+		  <m:ci><m:msub><m:mi>Q</m:mi><m:mi>j</m:mi></m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:sum/>
+		<m:bvar><m:ci>j</m:ci></m:bvar>
+		<m:lowlimit><m:cn>1</m:cn></m:lowlimit>
+		<m:uplimit><m:ci>h</m:ci></m:uplimit>
+		<m:ci><m:msub><m:mi>λ</m:mi><m:mi>j</m:mi></m:msub></m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:sum/>
+		<m:bvar><m:ci>k</m:ci></m:bvar>
+		<m:lowlimit><m:cn>1</m:cn></m:lowlimit>
+		<m:uplimit><m:ci><m:msub><m:mi>n</m:mi><m:mi>j</m:mi></m:msub></m:ci></m:uplimit>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>
+		    <m:msub>
+		      <m:mi>q</m:mi>
+		      <m:mrow>
+			<m:mi>j</m:mi>
+			<m:mo>,</m:mo>
+			<m:mi>k</m:mi>
+		      </m:mrow>
+		    </m:msub>
+		  </m:ci>
+		  <m:apply>
+		    <m:transpose/>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>q</m:mi>
+			<m:mrow>
+			  <m:mi>j</m:mi>
+			  <m:mo>,</m:mo>
+			  <m:mi>k</m:mi>
+			</m:mrow>
+		      </m:msub>
+		    </m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+
+      This is the spectral representation in perhaps its most detailed
+      dress.  There exists, however, still another form! It is a form
+      that you are likely to see in future engineering courses and is
+      achieved by assembling the <m:math><m:ci type="matrix"><m:msub><m:mi>Q</m:mi><m:mi>j</m:mi></m:msub></m:ci></m:math>
+      into a single
+      <m:math><m:ci>n</m:ci></m:math>-by-<m:math><m:ci>n</m:ci></m:math>
+      orthonormal matrix
+
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:ci type="matrix">Q</m:ci>
+	  <m:matrix>
+	    <m:matrixrow>
+	      <m:ci type="matrix"><m:msub><m:mi>Q</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+	      <m:ci>…</m:ci>
+	      <m:ci type="matrix"><m:msub><m:mi>Q</m:mi><m:mi>h</m:mi></m:msub></m:ci>
+	    </m:matrixrow>
+	  </m:matrix>
+	</m:apply>
+      </m:math>
+
+      Having orthonormal columns it follows that
+
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:transpose/>
+	      <m:ci type="matrix">Q</m:ci>
+	    </m:apply>
+	    <m:ci type="matrix">Q</m:ci>
+	  </m:apply>
+	  <m:ci>I</m:ci>
+	</m:apply>
+      </m:math>.
+
+      <m:math><m:ci type="matrix">Q</m:ci></m:math> being square, it
+      follows in addition that
+
+       <m:math>
+         <m:apply>
+           <m:eq/>
+             <m:apply>
+               <m:transpose/>
+                 <m:ci type="matrix">Q</m:ci>
+             </m:apply>
+             <m:apply>
+               <m:inverse/>
+                 <m:ci type="matrix">Q</m:ci>
+             </m:apply>
+         </m:apply>
+       </m:math>.
+
+       Now
+
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci type="matrix">B</m:ci>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>q</m:mi>
+		<m:mrow>
+		  <m:mi>j</m:mi>
+		  <m:mo>,</m:mo>
+		  <m:mi>k</m:mi>
+		</m:mrow>
+	      </m:msub>
+	    </m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci><m:msub><m:mi>λ</m:mi><m:mi>j</m:mi></m:msub></m:ci>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>q</m:mi>
+		<m:mrow>
+		  <m:mi>j</m:mi>
+		  <m:mo>,</m:mo>
+		  <m:mi>k</m:mi>
+		</m:mrow>
+	      </m:msub>
+	    </m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+
+      may be encoded in matrix terms via
+
+      <equation id="eq02">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci type="matrix">B</m:ci>
+	      <m:ci type="matrix">Q</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci type="matrix">Q</m:ci>
+	      <m:ci>Λ </m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+
+      where <m:math><m:ci>Λ</m:ci></m:math> is the
+       <m:math><m:ci>n</m:ci></m:math>-by-
+       <m:math><m:ci>n</m:ci></m:math> diagonal matrix whose first
+       <m:math><m:ci><m:msub><m:mi>n</m:mi><m:mn>1</m:mn></m:msub></m:ci></m:math>
+       diagonal terms are
+       <m:math><m:ci><m:msub><m:mi>λ</m:mi><m:mn>1</m:mn></m:msub></m:ci></m:math>,
+       whose next
+       <m:math><m:ci><m:msub><m:mi>n</m:mi><m:mn>2</m:mn></m:msub></m:ci></m:math>
+       diagonal terms are
+       <m:math><m:ci><m:msub><m:mi>λ</m:mi><m:mn>2</m:mn></m:msub></m:ci></m:math>,
+       and so on. That is, each
+       <m:math><m:ci><m:msub><m:mi>λ</m:mi><m:mi>j</m:mi></m:msub></m:ci></m:math>
+       is repeated according to its multiplicity. Multiplying each
+       side of <link target-id="eq02" strength="3"/>, from the right, by
+
+       <m:math>
+	<m:apply>
+	  <m:transpose/>
+	  <m:ci type="matrix">Q</m:ci>
+	</m:apply>
+      </m:math>  
+
+      we arrive at
+
+      <equation id="eq03">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci type="matrix">B</m:ci>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci type="matrix">Q</m:ci>
+	      <m:ci>Λ</m:ci>
+	      <m:apply>
+		<m:transpose/>
+		<m:ci type="matrix">Q</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+
+      Because one may just as easily write 
+
+      <equation id="eq04">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:transpose/>
+		<m:ci type="matrix">Q</m:ci>
+	      </m:apply>
+	      <m:ci type="matrix">B</m:ci>
+	      <m:ci type="matrix">Q</m:ci>
+	    </m:apply>
+	    <m:ci>Λ</m:ci>
+	  </m:apply>
+	</m:math>
+      </equation>
+      
+      one says that <m:math><m:ci type="matrix">Q</m:ci></m:math>
+       <term>diagonalizes</term> <m:math><m:ci type="matrix">B</m:ci></m:math>.
+    </para>
+
+
+    <para id="para2">
+       Let us return the our example
+
+       <m:math display="block">
+         <m:apply>
+           <m:eq/>
+             <m:ci type="matrix">B</m:ci>
+             <m:matrix>
+               <m:matrixrow>
+                 <m:cn>1</m:cn>
+                 <m:cn>1</m:cn>
+                 <m:cn>1</m:cn>
+               </m:matrixrow>
+               <m:matrixrow>
+                 <m:cn>1</m:cn>
+                 <m:cn>1</m:cn>
+                 <m:cn>1</m:cn>
+               </m:matrixrow>
+               <m:matrixrow>
+                 <m:cn>1</m:cn>
+                 <m:cn>1</m:cn>
+                 <m:cn>1</m:cn>
+               </m:matrixrow>
+             </m:matrix>
+         </m:apply>
+       </m:math>
+
+       of the last chapter. Recall that the eigenspace associated with 
+
+       <m:math>
+         <m:apply>
+           <m:eq/>
+             <m:ci><m:msub><m:mi>λ</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+             <m:cn>0</m:cn>
+         </m:apply>
+       </m:math> 
+
+       had
+
+       <m:math display="block">
+         <m:apply>
+           <m:eq/>
+             <m:ci>
+               <m:msub>
+                 <m:mi>e</m:mi>
+                 <m:mrow>
+                   <m:mn>1</m:mn>
+                   <m:mo>,</m:mo>
+                   <m:mn>1</m:mn>
+                 </m:mrow>
+               </m:msub>
+             </m:ci>
+             <m:matrix>
+               <m:matrixrow>
+                 <m:cn>-1</m:cn>
+               </m:matrixrow>
+               <m:matrixrow>
+                 <m:cn>1</m:cn>
+               </m:matrixrow>
+               <m:matrixrow>
+                 <m:cn>0</m:cn>
+               </m:matrixrow>
+             </m:matrix>
+           </m:apply>
+       </m:math>
+
+       and 
+
+       <m:math display="block">
+         <m:apply>
+           <m:eq/>
+             <m:ci>
+               <m:msub>
+                 <m:mi>e</m:mi>
+                 <m:mrow>
+                   <m:mn>1</m:mn>
+                   <m:mo>,</m:mo>
+                   <m:mn>2</m:mn>
+                 </m:mrow>
+               </m:msub>
+             </m:ci>
+             <m:matrix>
+               <m:matrixrow>
+                 <m:cn>-1</m:cn>
+               </m:matrixrow>
+               <m:matrixrow>
+                 <m:cn>0</m:cn>
+               </m:matrixrow>
+               <m:matrixrow>
+                 <m:cn>1</m:cn>
+               </m:matrixrow>
+             </m:matrix>
+           </m:apply>
+       </m:math>
+
+       for a basis. Via Gram-Schmidt we may replace this with
+
+       <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:ci>
+	    <m:msub>
+	      <m:mi>q</m:mi>
+	      <m:mrow>
+		<m:mn>1</m:mn>
+		<m:mo>,</m:mo>
+		<m:mn>1</m:mn>
+	      </m:mrow>
+	    </m:msub>
+	  </m:ci>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:divide/>
+	      <m:cn>1</m:cn>
+	      <m:apply>
+		<m:root/>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	    </m:apply>
+	    <m:matrix>
+	      <m:matrixrow>
+		<m:cn>-1</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>1</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>0</m:cn>
+	      </m:matrixrow>
+	    </m:matrix>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+
+       and
+
+       <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:ci>
+	    <m:msub>
+	      <m:mi>q</m:mi>
+	      <m:mrow>
+		<m:mn>1</m:mn>
+		<m:mo>,</m:mo>
+		<m:mn>2</m:mn>
+	      </m:mrow>
+	    </m:msub>
+	  </m:ci>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:divide/>
+	      <m:cn>1</m:cn>
+	      <m:apply>
+		<m:root/>
+		<m:cn>6</m:cn>
+	      </m:apply>
+	    </m:apply>
+	    <m:matrix>
+	      <m:matrixrow>
+		<m:cn>-1</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>-1</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>2</m:cn>
+	      </m:matrixrow>
+	    </m:matrix>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+
+       Normalizing the vector associated with
+      
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:ci><m:msub><m:mi>λ</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+	  <m:cn>3</m:cn>
+	</m:apply>
+      </m:math>
+      
+       we arrive at
+
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:ci>
+	    <m:msub>
+	      <m:mi>q</m:mi>
+	      <m:mrow>
+		<m:mn>2</m:mn>
+		<m:mo>,</m:mo>
+		<m:mn>1</m:mn>
+	      </m:mrow>
+	    </m:msub>
+	  </m:ci>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:divide/>
+	      <m:cn>1</m:cn>
+	      <m:apply>
+		<m:root/>
+		<m:cn>3</m:cn>
+	      </m:apply>
+	    </m:apply>
+	    <m:matrix>
+	      <m:matrixrow>
+		<m:cn>1</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>1</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>1</m:cn>
+	      </m:matrixrow>
+	    </m:matrix>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+
+       and hence
+
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:ci type="matrix">Q</m:ci>
+	  <m:matrix>
+	    <m:matrixrow>
+	      <m:ci><m:msubsup><m:mi>q</m:mi><m:mn>1</m:mn><m:mn>1</m:mn></m:msubsup></m:ci>
+	      <m:ci><m:msubsup><m:mi>q</m:mi><m:mn>1</m:mn><m:mn>2</m:mn></m:msubsup></m:ci>
+	      <m:ci><m:msub><m:mi>q</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+	    </m:matrixrow>
+	  </m:matrix>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:divide/>
+	      <m:cn>1</m:cn>
+	      <m:apply>
+		<m:root/>
+		<m:cn>6</m:cn>
+	      </m:apply>
+	    </m:apply>
+	    <m:matrix>
+	      <m:matrixrow>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:root/>
+		    <m:cn>3</m:cn>
+		  </m:apply>
+		</m:apply>
+		<m:cn>-1</m:cn>
+		<m:apply>
+		  <m:root/>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:apply>
+		  <m:root/>
+		  <m:cn>3</m:cn>
+		</m:apply>
+		<m:cn type="integer">-1</m:cn>
+		<m:apply>
+		  <m:root/>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>0</m:cn>
+		<m:cn>2</m:cn>
+		<m:apply>
+		  <m:root/>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:matrixrow>
+	    </m:matrix>
+	  </m:apply>
+	</m:apply>
+       </m:math> 
+
+       and
+
+       <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:ci type="matrix">Λ</m:ci>
+	  <m:matrix>
+	    <m:matrixrow>
+	      <m:cn>0</m:cn>
+	      <m:cn>0</m:cn>
+	      <m:cn>0</m:cn>
+	    </m:matrixrow>
+	    <m:matrixrow>
+	      <m:cn>0</m:cn>
+	      <m:cn>0</m:cn>
+	      <m:cn>0</m:cn>
+	    </m:matrixrow>
+	    <m:matrixrow>
+	      <m:cn>0</m:cn>
+	      <m:cn>0</m:cn>
+	      <m:cn>3</m:cn>
+	    </m:matrixrow>
+	  </m:matrix>
+	</m:apply>
+      </m:math>
+    </para>   
+  </content>
+  
+</document>

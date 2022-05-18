@@ -1,0 +1,2681 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml"> 
+
+  <title>Matrix Analysis of the Branched Dendrite Nerve Fiber</title> 
+  
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>6a058b55-3565-49b6-978e-454d3219e0b0</md:uuid>
+</metadata>
+
+  <content>
+    <section id="intro">
+      <title>Introduction</title>
+      <para id="p1">
+	In the prior modules on <link document="m10145" strength="3">static</link> and <link document="dynamic_strang" strength="3">dynamic</link> electrical systems, we analyzed
+	basic, hypothetical one-branch nerve fibers using a modeling
+	methodology we dubbed the Strang Quartet.  You may be asking
+	yourself whether this method is stout enough to handle the
+	real fiber of our minds.  Indeed, can we use our tools in a
+	real-world setting?
+      </para>
+    </section>
+
+    <section id="presentation">
+      <title>Presentation</title>
+      
+      <figure id="actual_neuron_fig">
+	<title>An Actual Nerve Fiber</title> <media id="idp2420224" alt=""><image src="../../media/neuron.png" mime-type="image/png"/></media> <caption>A pyramidal neuron from the CA3
+	region of a rat's hippocampus, scanned at (FIX ME) X
+	magnification.
+	</caption>
+      </figure>
+      
+      <para id="p2">
+	To answer your question, the above is a rendering of a neuron
+	from a rat's hippocampus.  The tools we have refined will
+	enable us to model the electrical properties of a dendrite
+	leaving the neuron's cell body.  A three-branch model of such
+	a dendrite, traced out with painstaking accuracy, appears in
+	the diagram below.
+      </para>
+
+      <figure id="dendrite_model_fig">
+	<title>3-branch Dendrite Model</title>
+	<media id="idm8270464" alt=""><image src="../../media/dendrite_model.png" mime-type="image/png"/></media>
+	<caption>
+	  Multi-compartment electrical model of a rendered dendrite
+	  fiber.
+	</caption>
+      </figure>
+
+      <para id="p3">
+	Our multi-compartment model reveals a 3 branch, 10 node, 27
+	edge structure to the fiber.  Note that we have included the
+	<link document="m10145" target-id="nernst" strength="3">Nernst
+	  potentials</link>, the <link document="dynamic_strang" target-id="gathering_info" strength="3">nervous impulse</link> as
+	a current source, and the additional leftmost edges depicting
+	<link document="dynamic_strang" target-id="p4" strength="3">stimulus current</link> shunted by the cell body.
+      </para>
+
+      <para id="p4">
+	We will continue using our previous notation, namely: 
+
+	<m:math display="inline">
+	  <m:ci><m:msub>
+	      <m:mi>R</m:mi>
+	      <m:mi>i</m:mi>
+	    </m:msub></m:ci>
+	  <!-- R_i -->
+	</m:math>
+	
+	and
+	<m:math display="inline">
+	  <m:ci><m:msub>
+	      <m:mi>R</m:mi>
+	      <m:mi>m</m:mi>
+	    </m:msub></m:ci>
+	  <!-- R_m -->
+	</m:math>
+
+	denoting <link document="m10145" target-id="axial_resistance" strength="2">cell body</link> and <link document="m10145" target-id="membrane_resistance" strength="2">membrane</link> resistances, respectively;
+	  <m:math><m:ci type="vector">x</m:ci></m:math> representing
+	  the vector of potentials
+	
+	<m:math display="inline">
+	  <m:mrow>
+	    <m:ci><m:msub>
+		<m:mi>x</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	    <m:ci>…</m:ci>
+	    
+	    <m:ci><m:msub>
+		<m:mi>x</m:mi>
+		<m:mn>10</m:mn>
+	      </m:msub></m:ci>
+	  </m:mrow>
+	  <!-- x_1 . . . x_10 -->
+	</m:math>,
+	
+	and <m:math><m:ci type="vector">y</m:ci></m:math> denoting the
+	vector of currents
+
+	<m:math display="inline">
+	  <m:mrow>
+	  <m:ci><m:msub>
+	      <m:mi>y</m:mi>
+	      <m:mn>1</m:mn>
+	    </m:msub></m:ci>
+	    <m:ci>…</m:ci>
+	  <m:ci><m:msub>
+	      <m:mi>y</m:mi>
+	      <m:mn>27</m:mn>
+	    </m:msub></m:ci>
+	  </m:mrow>
+	  <!-- y_1 . . . y_27 -->
+	</m:math>.
+
+	Using the typical value for a cell's membrane capacitance,
+
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:ci>c</m:ci>
+	    <m:mrow>
+	      <m:mrow><m:mn>1</m:mn></m:mrow>
+	      <m:mrow>
+		<m:mtext>(</m:mtext>
+		<m:mi>μ</m:mi>
+		<m:mi>F</m:mi>
+		<m:mo>/</m:mo>
+		<m:msup>
+		  <m:mtext>cm</m:mtext>
+		  <m:mn>2</m:mn>
+		</m:msup>
+		<m:mtext>)</m:mtext>
+	      </m:mrow>
+	    </m:mrow>
+	  </m:apply>
+	  <m:mtext>,</m:mtext>
+	  <!-- c = 1 (mu * F / cm^2 ) -->
+	</m:math>
+	
+	we derive (see 
+	<link document="m10145" target-id="section1" strength="2">variable 
+	  conventions</link>):
+
+	<definition id="single_compart_cap">
+	  <term>Capacitance of a Single Compartment</term>
+	  <meaning id="idm6547760">
+	    <m:math display="block">
+	      <m:apply><m:eq/>
+		<m:ci><m:msub>
+		    <m:mi>C</m:mi>
+		    <m:mi>m</m:mi>
+		  </m:msub></m:ci>
+		<m:apply><m:times/>
+		  <m:cn>2</m:cn>
+		  <m:pi/>
+		  <m:ci>a</m:ci>
+		  <m:apply><m:divide/>
+		    <m:ci>l</m:ci>
+		    <m:ci>N</m:ci>
+		  </m:apply>
+		  <m:ci>c</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <!-- C_m = 2 * pi * a * ( l / N ) * c -->
+	    </m:math>
+	  </meaning>
+	</definition>
+	
+	This capacitance is modeled in parallel with the cell's
+	membrane resistance.  Additionally, letting
+
+	<m:math display="inline">
+	  <m:ci><m:msub>
+	      <m:mi>A</m:mi>
+	      <m:mtext>cb</m:mtext>
+	    </m:msub></m:ci>
+	  <!-- A_cb -->
+	</m:math>
+
+	denote the cell body's surface area, we recall that its capacitance and
+	resistance are
+
+	<definition id="cell_cap">
+	  <term>Capacitance of cell body</term>
+	  <meaning id="idp639488">
+	    <m:math display="inline">
+	      <m:apply><m:eq/>
+		<m:ci><m:msub>
+		    <m:mi>C</m:mi>
+		    <m:mtext>cb</m:mtext>
+		  </m:msub></m:ci>
+		<m:apply><m:times/>
+		  <m:ci><m:msub>
+		      <m:mi>A</m:mi>
+		      <m:mtext>cb</m:mtext>
+		    </m:msub></m:ci>
+		  <m:ci>c</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <!-- C_cb = A_cb * c -->
+	    </m:math>
+	  </meaning>
+	</definition>
+	
+	<definition id="cell_resist">
+	  <term>Resistance of cell body</term>
+	  <meaning id="idp6483440">
+	    <m:math display="inline">
+	      <m:apply><m:eq/>
+		<m:ci><m:msub>
+		    <m:mi>R</m:mi>
+		    <m:mtext>cb</m:mtext>
+		  </m:msub></m:ci>
+		<m:apply><m:times/>
+		  <m:ci><m:msub>
+		      <m:mi>A</m:mi>
+		      <m:mtext>cb</m:mtext>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>ρ</m:mi>
+		      <m:mi>m</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	      <!-- R_cb = A_cb * rho_m -->
+	    </m:math>.
+	  </meaning>
+	</definition>
+      </para>
+    </section>
+
+    <section id="apply_strang">
+      <title>Applying the Strang Quartet</title>
+      
+      <section id="step_S1">
+	<title>Step (S1')--Voltage Drops</title>
+	<para id="p5">
+	  Let's begin filling out the Strang Quartet.  For Step (S1'),
+	  we first observe the voltage drops in the figure.  Since
+	  there are a whopping 27 of them, we include only the first
+	  six, which are slightly more than we need to cover all
+	  variations in the set:
+
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:ci><m:msub>
+		  <m:mi>e</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	    <!-- e_1 = x_1 -->
+	  </m:math>
+
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:ci><m:msub>
+		  <m:mi>e</m:mi>
+		  <m:mn>2</m:mn>
+		</m:msub></m:ci>
+	      <m:apply><m:minus/>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>E</m:mi>
+		    <m:mn>m</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <!-- e_2 = x_1 - E_m -->
+	  </m:math>
+
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:ci><m:msub>
+		  <m:mi>e</m:mi>
+		  <m:mn>3</m:mn>
+		</m:msub></m:ci>
+	      <m:apply><m:minus/>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <!-- e_3 = x_1 - x_2 -->
+	  </m:math>
+
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:ci><m:msub>
+		  <m:mi>e</m:mi>
+		  <m:mn>4</m:mn>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>2</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	    <!-- e_4 = x_2 -->
+	  </m:math>
+
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:ci><m:msub>
+		  <m:mi>e</m:mi>
+		  <m:mn>5</m:mn>
+		</m:msub></m:ci>
+	      <m:apply><m:minus/>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>E</m:mi>
+		    <m:mn>m</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <!-- e_5 = x_2 - E_m -->
+	  </m:math>
+
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:ci><m:msub>
+		  <m:mi>e</m:mi>
+		  <m:mn>6</m:mn>
+		</m:msub></m:ci>
+	      <m:apply><m:minus/>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>3</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:ci>…</m:ci>
+	     <!-- e_6 = x_2 - x_3 . . . -->
+	  </m:math>
+	  
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:ci><m:msub>
+		  <m:mi>e</m:mi>
+		  <m:mn>27</m:mn>
+		</m:msub></m:ci>
+	      <m:apply><m:minus/>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>10</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>E</m:mi>
+		    <m:mn>m</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <!-- e_27 = x_10 - E_m -->
+	  </m:math>
+	</para>
+
+	<para id="p6">
+	  In matrix for, letting
+	  <m:math display="inline"><m:ci type="vector">b</m:ci></m:math>
+	  denote the
+	  <link document="m10145" target-id="example2" strength="2">vector of 
+	    batteries</link>,
+
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:ci type="vector">e</m:ci>
+	      <m:apply><m:minus/>
+		<m:ci type="vector">b</m:ci>
+		<m:apply><m:times/>
+		  <m:ci type="matrix">A</m:ci>
+		  <m:ci type="vector">x</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <!-- e = b - Ax -->
+	    
+	    <m:mrow>
+	      <m:mi> </m:mi><m:mi> </m:mi>
+	      <m:mi> </m:mi><m:mi> </m:mi>
+	      <m:mtext>where</m:mtext>
+	      <m:mi> </m:mi><m:mi> </m:mi>
+	      <m:mi> </m:mi><m:mi> </m:mi>
+	    </m:mrow>
+
+	    <m:apply><m:eq/>
+	      <m:ci type="vector">b</m:ci>
+	      <m:apply><m:times/>
+		<m:apply><m:minus/>
+		  <m:ci><m:msub>
+		      <m:mi>E</m:mi>
+		      <m:mi>m</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:vector>
+		  <m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>1</m:cn>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>1</m:cn>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn>
+		  <m:cn>0</m:cn><m:cn>1</m:cn>
+		</m:vector>
+	      </m:apply>
+	    </m:apply>
+	    <!-- b = -E_m * [ 0 1 0 0 1 0 0 1 0 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 ] 
+	    -->
+	  </m:math>
+
+	  and
+
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:ci type="matrix">A</m:ci>
+	      <m:matrix>
+		<m:matrixrow>
+		  <!-- ROW 1 -->
+		  <m:cn>-1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<!-- ROW 2 -->
+		<m:matrixrow>
+		  <m:cn>-1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <!-- ROW 3 -->
+		  <m:cn>-1</m:cn><m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <!-- ROW 4 -->
+		  <m:cn>0</m:cn><m:cn>-1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <!-- ROW 5 -->
+		  <m:cn>0</m:cn><m:cn>-1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <!-- ROW 6 -->
+		  <m:cn>0</m:cn><m:cn>-1</m:cn><m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <!-- ROW 7 -->
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>-1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <!-- ROW 8 -->
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>-1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow> 
+		<m:matrixrow>
+		  <!-- ROW 9 -->
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>-1</m:cn><m:cn>1</m:cn><m:cn>0</m:cn>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <!-- ROW 10 -->
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>1</m:cn><m:cn>-1</m:cn>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <!-- ROW 11 -->
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>-1</m:cn>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <!-- ROW 12 -->
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>-1</m:cn>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <!-- ROW 13 -->
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>-1</m:cn>
+		  <m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <!-- ROW 14 -->
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:cn>-1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <!-- ROW 15 -->
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:cn>-1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <!-- ROW 16 -->
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:cn>-1</m:cn><m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+	        <m:matrixrow>
+		  <!-- ROW 17 -->
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:cn>0</m:cn><m:cn>-1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <!-- ROW 18 -->
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:cn>0</m:cn><m:cn>-1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <!-- ROW 19 -->
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>-1</m:cn><m:cn>0</m:cn>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <!-- ROW 20 -->
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>-1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <!-- ROW 21 -->
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>-1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <!-- ROW 22 -->
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>-1</m:cn><m:cn>1</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <!-- ROW 23 -->
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>-1</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <!-- ROW 24 -->
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>-1</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <!-- ROW 25 -->
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>-1</m:cn><m:cn>1</m:cn>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <!-- ROW 26 -->
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>-1</m:cn>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <!-- ROW 27 -->
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>-1</m:cn>
+		</m:matrixrow>
+	      </m:matrix>
+	    </m:apply>
+	  </m:math>
+	  
+	  Although our adjacency matrix <m:math><m:ci type="matrix">A</m:ci></m:math> is appreciably larger than
+	  our previous examples, we have captured the same phenomena
+	  as before.
+	</para>
+      </section>
+
+      <section id="step_s2">
+	<title>Applying (S2): Ohm's Law Augmented with Voltage-Current Law for 
+	  Capacitors</title>
+	<para id="p7">
+	  Now, recalling Ohm's Law and remembering that the current
+	  through a capacitor varies proportionately with the time
+	  rate of change of the potential across it, we assemble our
+	  vector of currents.  As before, we list only enough of the
+	  27 currents to fully characterize the set:
+
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:ci><m:msub>
+		  <m:mi>y</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	      <m:apply><m:times/>
+		<m:ci type="matrix"><m:msub>
+		    <m:mi>C</m:mi>
+		    <m:mtext>cb</m:mtext>
+		  </m:msub></m:ci>
+		<m:apply other="prime"><m:diff/>
+		  <m:bvar><m:ci>t</m:ci></m:bvar>
+		  <m:ci><m:msub>
+		      <m:mi>e</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <!-- y_1 = C_cb * e'_1 -->
+	  </m:math>
+	  
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:ci><m:msub>
+		  <m:mi>y</m:mi>
+		  <m:mn>2</m:mn>
+		</m:msub></m:ci>
+	      <m:apply><m:divide/>
+		<m:ci><m:msub>
+		    <m:mi>e</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>R</m:mi>
+		    <m:mtext>cb</m:mtext>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <!-- y_2 = e_2 / R_cb -->
+	  </m:math>
+	  
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:ci><m:msub>
+		  <m:mi>y</m:mi>
+		  <m:mn>3</m:mn>
+		</m:msub></m:ci>
+	      <m:apply><m:divide/>
+		<m:ci><m:msub>
+		    <m:mi>e</m:mi>
+		    <m:mn>3</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>R</m:mi>
+		    <m:mi>i</m:mi>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <!-- y_3 = e_3 / R_i -->
+	  </m:math>
+	  
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:ci><m:msub>
+		  <m:mi>y</m:mi>
+		  <m:mn>4</m:mn>
+		</m:msub></m:ci>
+	      <m:apply><m:times/>
+		<m:ci type="matrix"><m:msub>
+		    <m:mi>C</m:mi>
+		    <m:mi>m</m:mi>
+		  </m:msub></m:ci>
+		<m:apply other="prime"><m:diff/>
+		  <m:bvar><m:ci>t</m:ci></m:bvar>
+		  <m:ci><m:msub>
+		      <m:mi>e</m:mi>
+		      <m:mn>4</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <!-- y_4 = C_m * e'_4 -->
+	  </m:math>
+	  
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:ci><m:msub>
+		  <m:mi>y</m:mi>
+		  <m:mn>5</m:mn>
+		</m:msub></m:ci>
+	      <m:apply><m:divide/>
+		<m:ci><m:msub>
+		    <m:mi>e</m:mi>
+		    <m:mn>5</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>R</m:mi>
+		    <m:mi>m</m:mi>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	  
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:ci><m:msub>
+		  <m:mi>y</m:mi>
+		  <m:mn>27</m:mn>
+		</m:msub></m:ci>
+	      <m:apply><m:divide/>
+		<m:ci><m:msub>
+		    <m:mi>e</m:mi>
+		    <m:mn>27</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>R</m:mi>
+		    <m:mi>m</m:mi>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <!-- y_27 = e_27 / R_m -->
+	  </m:math>
+
+	  In matrix terms, this compiles to
+
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:ci type="vector">y</m:ci>
+	      <m:apply><m:plus/>
+		<m:apply><m:times/>
+		  <m:ci type="matrix">G</m:ci>
+		  <m:ci type="vector">e</m:ci>
+		</m:apply>
+		<m:apply><m:times/>
+		  <m:ci type="matrix">C</m:ci>
+		  <m:apply other="prime"><m:diff/>
+		    <m:bvar><m:ci>t</m:ci></m:bvar>
+		    <m:ci type="vector">e</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:mtext>,</m:mtext>
+	    <!-- y = Ge + Ce' -->
+	  </m:math>
+
+	  where 
+
+	  <equation id="G_matrix">
+	    <title>Conductance matrix</title>
+	    <m:math display="block">
+	      <m:apply><m:eq/>
+		<m:ci type="matrix">G</m:ci>
+		<m:matrix>
+		  <!-- ROW 1 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 2 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn>
+		    <m:apply><m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:ci><m:msub>
+			  <m:mi>R</m:mi>
+			  <m:mtext>cb</m:mtext>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 3 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:apply><m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:ci><m:msub>
+			  <m:mi>R</m:mi>
+			  <m:mi>i</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 4 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 5 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:apply><m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:ci><m:msub>
+			  <m:mi>R</m:mi>
+			  <m:mi>m</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 6 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:apply><m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:ci><m:msub>
+			  <m:mi>R</m:mi>
+			  <m:mi>i</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 7 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 8 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:apply><m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:ci><m:msub>
+			  <m:mi>R</m:mi>
+			  <m:mi>m</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 9 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:apply><m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:ci><m:msub>
+			  <m:mi>R</m:mi>
+			  <m:mi>i</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 10 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:apply><m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:ci><m:msub>
+			  <m:mi>R</m:mi>
+			  <m:mi>i</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 11 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 12 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn>
+		    <m:apply><m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:ci><m:msub>
+			  <m:mi>R</m:mi>
+			  <m:mi>m</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 13 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:apply><m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:ci><m:msub>
+			  <m:mi>R</m:mi>
+			  <m:mi>i</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 14 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 15 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:apply><m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:ci><m:msub>
+			  <m:mi>R</m:mi>
+			  <m:mi>m</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 16 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:apply><m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:ci><m:msub>
+			  <m:mi>R</m:mi>
+			  <m:mi>i</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 17 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 18 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:apply><m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:ci><m:msub>
+			  <m:mi>R</m:mi>
+			  <m:mi>m</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 19 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:apply><m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:ci><m:msub>
+			  <m:mi>R</m:mi>
+			  <m:mi>i</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 20 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 21 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:apply><m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:ci><m:msub>
+			  <m:mi>R</m:mi>
+			  <m:mi>m</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 22 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn>
+		    <m:apply><m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:ci><m:msub>
+			  <m:mi>R</m:mi>
+			  <m:mi>i</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 23 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 24 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:apply><m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:ci><m:msub>
+			  <m:mi>R</m:mi>
+			  <m:mi>m</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 25 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:apply><m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:ci><m:msub>
+			  <m:mi>R</m:mi>
+			  <m:mi>i</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 26 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 27 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn>
+		    <m:apply><m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:ci><m:msub>
+			  <m:mi>R</m:mi>
+			  <m:mi>m</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		  </m:matrixrow>
+		</m:matrix>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+	  
+	  and
+
+	  <equation id="C_matrix">
+	    <title>Capacitance matrix</title>
+	    <m:math display="block">
+	      <m:apply><m:eq/>
+		<m:ci type="matrix">C</m:ci>
+		<m:matrix>
+		  <!-- ROW 1 -->
+		  <m:matrixrow>
+		    <m:ci><m:msub>
+			<m:mi>C</m:mi>
+			<m:mtext>cb</m:mtext>
+		      </m:msub></m:ci>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 2 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 3 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 4 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:ci><m:msub>
+			<m:mi>C</m:mi>
+			<m:mi>m</m:mi>
+		      </m:msub></m:ci>
+		    <m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 5 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 6 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 7 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn>
+		    <m:ci><m:msub>
+			<m:mi>C</m:mi>
+			<m:mi>m</m:mi>
+		      </m:msub></m:ci>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 8 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 9 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 10 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 11 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:ci><m:msub>
+			<m:mi>C</m:mi>
+			<m:mi>m</m:mi>
+		      </m:msub></m:ci>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 12 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 13 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 14 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:ci><m:msub>
+			<m:mi>C</m:mi>
+			<m:mi>m</m:mi>
+		      </m:msub></m:ci>
+		    <m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 15 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 16 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 17 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn>
+		    <m:ci><m:msub>
+			<m:mi>C</m:mi>
+			<m:mi>m</m:mi>
+		      </m:msub></m:ci>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 18 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 19 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 20 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:ci><m:msub>
+			<m:mi>C</m:mi>
+			<m:mi>m</m:mi>
+		      </m:msub></m:ci>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 21 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 22 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 23 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:ci><m:msub>
+			<m:mi>C</m:mi>
+			<m:mi>m</m:mi>
+		      </m:msub></m:ci>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 24 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 25 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 26 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:ci><m:msub>
+			<m:mi>C</m:mi>
+			<m:mi>m</m:mi>
+		      </m:msub></m:ci>
+		    <m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <!-- ROW 27 -->
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		</m:matrix>
+	      </m:apply>
+	      <m:mtext>.</m:mtext>
+	    </m:math>
+	  </equation>
+	</para>
+      </section>
+      <section id="step_s3">
+	<title>Step (S3): Applying Kirchoff's Law</title>
+	<para id="p8">
+	  Our next step is to write out the equations for Kirchoff's
+	  Current Law.  We see:
+
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply><m:minus/>
+		<m:apply><m:minus/>
+		  <m:apply><m:minus/>
+		    <m:ci><m:msub>
+			<m:mi>i</m:mi>
+			<m:mn>0</m:mn>
+		      </m:msub></m:ci>
+		    <m:ci><m:msub>
+			<m:mi>y</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:ci><m:msub>
+		      <m:mi>y</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:ci><m:msub>
+		    <m:mi>y</m:mi>
+		    <m:mn>3</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	    <!-- i_0 - y_1 - y_2 - y_3 = 0 -->
+	  </m:math>
+	  
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply><m:minus/>
+		<m:apply><m:minus/>
+		  <m:apply><m:minus/>
+		    <m:ci><m:msub>
+			<m:mi>y</m:mi>
+			<m:mn>3</m:mn>
+		      </m:msub></m:ci>
+		    <m:ci><m:msub>
+			<m:mi>y</m:mi>
+			<m:mn>4</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:ci><m:msub>
+		      <m:mi>y</m:mi>
+		      <m:mn>5</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:ci><m:msub>
+		    <m:mi>y</m:mi>
+		    <m:mn>6</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	    <!-- y_3 - y_4 - y_5 - y_6 = 0 -->
+	  </m:math>
+
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply><m:minus/>
+		<m:apply><m:minus/>
+		  <m:apply><m:minus/>
+		    <m:ci><m:msub>
+			<m:mi>y</m:mi>
+			<m:mn>6</m:mn>
+		      </m:msub></m:ci>
+		    <m:ci><m:msub>
+			<m:mi>y</m:mi>
+			<m:mn>7</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:ci><m:msub>
+		      <m:mi>y</m:mi>
+		      <m:mn>8</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:ci><m:msub>
+		    <m:mi>y</m:mi>
+		    <m:mn>9</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	    <!-- y_6 - y_7 - y_8 - y_9 = 0 -->
+	  </m:math>
+
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply><m:minus/>
+		<m:apply><m:minus/>
+		  <m:ci><m:msub>
+		      <m:mi>y</m:mi>
+		      <m:mn>9</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>y</m:mi>
+		      <m:mn>10</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:ci><m:msub>
+		    <m:mi>y</m:mi>
+		    <m:mn>19</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	    <!-- y_9 - y_10 - y_19 = 0 -->
+	  </m:math>
+
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply><m:minus/>
+		<m:apply><m:minus/>
+		  <m:apply><m:minus/>
+		    <m:ci><m:msub>
+			<m:mi>y</m:mi>
+			<m:mn>10</m:mn>
+		      </m:msub></m:ci>
+		    <m:ci><m:msub>
+			<m:mi>y</m:mi>
+			<m:mn>11</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:ci><m:msub>
+		      <m:mi>y</m:mi>
+		      <m:mn>12</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:ci><m:msub>
+		    <m:mi>y</m:mi>
+		    <m:mn>13</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	    <!-- y_10 - y_11 - y_12 - y_13 = 0 -->
+	  </m:math>
+	  
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply><m:minus/>
+		<m:apply><m:minus/>
+		  <m:apply><m:minus/>
+		    <m:ci><m:msub>
+			<m:mi>y</m:mi>
+			<m:mn>10</m:mn>
+		      </m:msub></m:ci>
+		    <m:ci><m:msub>
+			<m:mi>y</m:mi>
+			<m:mn>11</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:ci><m:msub>
+		      <m:mi>y</m:mi>
+		      <m:mn>12</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:ci><m:msub>
+		    <m:mi>y</m:mi>
+		    <m:mn>13</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	    <!-- y_10 - y_11 - y_12 - y_13 = 0 -->
+	  </m:math>
+
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply><m:minus/>
+		<m:apply><m:minus/>
+		  <m:apply><m:minus/>
+		    <m:ci><m:msub>
+			<m:mi>y</m:mi>
+			<m:mn>13</m:mn>
+		      </m:msub></m:ci>
+		    <m:ci><m:msub>
+			<m:mi>y</m:mi>
+			<m:mn>14</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:ci><m:msub>
+		      <m:mi>y</m:mi>
+		      <m:mn>15</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:ci><m:msub>
+		    <m:mi>y</m:mi>
+		    <m:mn>16</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	    <!-- y_13 - y_14 - y_15 - y_16 = 0 -->
+	  </m:math>
+
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply><m:minus/>
+		<m:apply><m:minus/>
+		  <m:ci><m:msub>
+		      <m:mi>y</m:mi>
+		      <m:mn>16</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>y</m:mi>
+		      <m:mn>17</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:ci><m:msub>
+		    <m:mi>y</m:mi>
+		    <m:mn>18</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	    <!-- y_16 - y_17 - y_18 = 0 -->
+	  </m:math>
+
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply><m:minus/>
+		<m:apply><m:minus/>
+		  <m:apply><m:minus/>
+		    <m:ci><m:msub>
+			<m:mi>y</m:mi>
+			<m:mn>19</m:mn>
+		      </m:msub></m:ci>
+		    <m:ci><m:msub>
+			<m:mi>y</m:mi>
+			<m:mn>20</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:ci><m:msub>
+		      <m:mi>y</m:mi>
+		      <m:mn>21</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:ci><m:msub>
+		    <m:mi>y</m:mi>
+		    <m:mn>22</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	    <!-- y_19 - y_20 - y_21 - y_22 = 0 -->
+	  </m:math>
+
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply><m:minus/>
+		<m:apply><m:minus/>
+		  <m:apply><m:minus/>
+		    <m:ci><m:msub>
+			<m:mi>y</m:mi>
+			<m:mn>22</m:mn>
+		      </m:msub></m:ci>
+		    <m:ci><m:msub>
+			<m:mi>y</m:mi>
+			<m:mn>23</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:ci><m:msub>
+		      <m:mi>y</m:mi>
+		      <m:mn>24</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:ci><m:msub>
+		    <m:mi>y</m:mi>
+		    <m:mn>25</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	    <!-- y_22 - y_23 - y_24 - y_25 = 0 -->
+	  </m:math>
+
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply><m:minus/>
+		<m:apply><m:minus/>
+		  <m:ci><m:msub>
+		      <m:mi>y</m:mi>
+		      <m:mn>25</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>y</m:mi>
+		      <m:mn>26</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:ci><m:msub>
+		    <m:mi>y</m:mi>
+		    <m:mn>27</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	    <!-- y_25 - y_26 - y_27 = 0 -->
+	  </m:math>
+	  
+	  Since the <m:math display="inline"><m:ci type="matrix">B</m:ci></m:math> coefficient matrix we'd form
+	  here is equal to
+
+	  <m:math display="inline">
+	    <m:apply><m:transpose/>
+	      <m:ci type="matrix">A</m:ci>
+	    </m:apply>
+	    <!-- A^T -->
+	  </m:math>,
+
+	  we can say in matrix terms:
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply><m:times/>
+		<m:apply><m:transpose/>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>
+		<m:ci type="vector">y</m:ci>
+	      </m:apply>
+	      <m:apply><m:minus/>
+		<m:ci type="vector">f</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <!-- A^T * y = - f -->
+	  </m:math>
+
+	  where the vector <m:math><m:ci type="vector">f</m:ci></m:math> is composed of
+
+	  <m:math display="inline">
+	    <m:apply><m:eq/>
+	      <m:ci><m:msub>
+		  <m:mi>f</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>i</m:mi>
+		  <m:mn>0</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	    <!-- f_1 = i_0 -->
+	  </m:math>
+	  
+	  and 
+	  <m:math display="inline">
+	    <m:apply><m:eq/>
+	      <m:ci><m:msub>
+		  <m:mi>f</m:mi>
+		  <m:mrow>
+		    <m:mn>2</m:mn>
+		    <m:mtext>...</m:mtext>
+		    <m:mn>27</m:mn>
+		  </m:mrow>
+		</m:msub></m:ci>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	    <!-- f_(2...27) = 0 -->
+	  </m:math>.
+	</para>
+      </section>
+
+      <section id="step_s4">
+	<title>Step (S4): Stirring the Ingredients Together</title>
+	<para id="p9">
+	  Step (S4) directs us to assemble our previous toils together
+	  into a final equation, which we will then endeavor to solve.
+	  Using the <link document="m10168" target-id="strang_s4" strength="3">process</link> derived in the dynamic Strang
+	  module, we arrive at the equation
+
+	  <equation id="our_system">
+	    <m:math display="block">
+	      <m:apply><m:eq/>
+		<m:apply><m:plus/>
+		  <m:apply><m:times/>
+		    <m:apply><m:transpose/>
+		      <m:ci type="matrix">A</m:ci>
+		    </m:apply>
+		    <m:ci type="matrix">C</m:ci>
+		    <m:ci type="matrix">A</m:ci>
+		    <m:apply other="prime"><m:diff/>
+		      <m:bvar><m:ci>t</m:ci></m:bvar>
+		      <m:ci type="vector">x</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply><m:times/>
+		    <m:apply><m:transpose/>
+		      <m:ci type="matrix">A</m:ci>
+		    </m:apply>
+		    <m:ci type="matrix">G</m:ci>
+		    <m:ci type="matrix">A</m:ci>
+		    <m:ci type="vector">x</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply><m:plus/>
+		  <m:apply><m:times/>
+		    <m:apply><m:transpose/>
+		      <m:ci type="matrix">A</m:ci>
+		    </m:apply>
+		    <m:ci type="matrix">G</m:ci>
+		    <m:ci type="vector">b</m:ci>
+		  </m:apply>
+		  <m:ci type="vector">f</m:ci>
+		  <m:apply><m:times/>
+		    <m:apply><m:transpose/>
+		      <m:ci type="matrix">A</m:ci>
+		    </m:apply>
+		    <m:ci type="matrix">C</m:ci>
+		    <m:apply other="prime"><m:diff/>
+		      <m:bvar><m:ci>t</m:ci></m:bvar>
+		      <m:ci type="vector">b</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:mtext>,</m:mtext>
+	      <!-- A^(T)CAx' + A^(T)GAx = A^(T)Gb + f + A^(T)Cb' -->
+	    </m:math>
+	  </equation>
+	  
+	  which is the general form for RC circuit potential
+	  equations.  As we have mentioned, this equation presumes
+	  knowledge of the initial value of each of the potentials,
+
+	  <m:math display="inline">
+	    <m:apply><m:eq/>
+	      <m:apply><m:ci type="vector">x</m:ci>
+		<m:cn>0</m:cn>
+	      </m:apply>
+	      <m:ci>X</m:ci>
+	    </m:apply>
+	    <!-- x(0) = X -->
+	  </m:math>.
+	</para>
+
+	<para id="p10">
+	  Observing our <link target-id="dendrite_model_fig" strength="2">circuit</link>, and letting
+	  
+	  <m:math display="inline">
+	    <m:apply><m:eq/>
+	      <m:apply><m:divide/>
+		<m:cn>1</m:cn>
+		<m:ci><m:msub>
+		    <m:mi>R</m:mi>
+		    <m:mtext>foo</m:mtext>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:ci><m:msub>
+		  <m:mi>G</m:mi>
+		  <m:mtext>foo</m:mtext>
+		</m:msub></m:ci>
+	    </m:apply>
+	    <!-- 1 / R_foo = G_foo -->
+	  </m:math>,
+	  
+	  we calculate the necessary quantities to fill out <link target-id="our_system" strength="2"/>'s pieces (for these
+	  calculations, see <link url="http://www.ece.rice.edu/~rainking/dendrite/matlab/dendrite.m">
+	  dendrite.m</link>):
+
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply><m:times/>
+		<m:apply><m:transpose/>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>
+		<m:ci type="matrix">C</m:ci>
+		<m:ci type="matrix">A</m:ci>
+	      </m:apply>
+	      <m:matrix>
+		<!-- ROW 1 -->
+		<m:matrixrow>
+		  <m:ci><m:msub>
+		      <m:mi>C</m:mi>
+		      <m:mtext>cb</m:mtext>
+		    </m:msub></m:ci>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<!-- ROW 2 -->
+		<m:matrixrow>
+		  <m:cn>0</m:cn>
+		  <m:ci><m:msub>
+		      <m:mi>C</m:mi>
+		      <m:mi>m</m:mi>
+		    </m:msub></m:ci>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<!-- ROW 3 -->
+		<m:matrixrow>
+		  <m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:ci><m:msub>
+		      <m:mi>C</m:mi>
+		      <m:mi>m</m:mi>
+		    </m:msub></m:ci>
+		  <m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<!-- ROW 4 -->
+		<m:matrixrow>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<!-- ROW 5 -->
+		<m:matrixrow>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:ci><m:msub>
+		      <m:mi>C</m:mi>
+		      <m:mi>m</m:mi>
+		    </m:msub></m:ci>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<!-- ROW 6 -->
+		<m:matrixrow>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:ci><m:msub>
+		      <m:mi>C</m:mi>
+		      <m:mi>m</m:mi>
+		    </m:msub></m:ci>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<!-- ROW 7 -->
+		<m:matrixrow>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:cn>0</m:cn>
+		  <m:ci><m:msub>
+		      <m:mi>C</m:mi>
+		      <m:mi>m</m:mi>
+		    </m:msub></m:ci>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<!-- ROW 8 -->
+		<m:matrixrow>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:ci><m:msub>
+		      <m:mi>C</m:mi>
+		      <m:mi>m</m:mi>
+		    </m:msub></m:ci>
+		  <m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<!-- ROW 9 -->
+		<m:matrixrow>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:ci><m:msub>
+		      <m:mi>C</m:mi>
+		      <m:mi>m</m:mi>
+		    </m:msub></m:ci>
+		  <m:cn>0</m:cn>
+		</m:matrixrow>
+		<!-- ROW 10 -->
+		<m:matrixrow>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:ci><m:msub>
+		      <m:mi>C</m:mi>
+		      <m:mi>m</m:mi>
+		    </m:msub></m:ci>
+		</m:matrixrow>
+	      </m:matrix>
+	    </m:apply>
+	  </m:math>
+	  
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply><m:times/>
+		<m:apply><m:transpose/>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>
+		<m:ci type="matrix">G</m:ci>
+		<m:ci type="matrix">A</m:ci>
+	      </m:apply>
+	      <m:matrix>
+		<!-- ROW 1 -->
+		<m:matrixrow>
+		  <m:apply><m:plus/>
+		    <m:ci><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci>
+		    <m:ci><m:msub>
+			<m:mi>G</m:mi>
+			<m:mtext>cb</m:mtext>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:apply><m:minus/>
+		    <m:ci><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci> 
+		  </m:apply>  
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<!-- ROW 2 -->
+		<m:matrixrow>
+		  <m:apply><m:minus/>
+		    <m:ci><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci> 
+		  </m:apply>
+		  <m:apply><m:plus/>
+		    <m:apply><m:times/>
+		      <m:cn>2</m:cn>
+		      <m:ci><m:msub>
+			  <m:mi>G</m:mi>
+			  <m:mi>i</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:ci><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>m</m:mi>
+		      </m:msub></m:ci>  
+		  </m:apply>
+		  <m:apply><m:minus/>
+		    <m:ci><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci> 
+		  </m:apply>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<!-- ROW 3 -->
+		<m:matrixrow>
+		  <m:cn>0</m:cn>
+		  <m:apply><m:minus/>
+		    <m:ci><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci> 
+		  </m:apply>
+		  <m:apply><m:plus/>
+		    <m:apply><m:times/>
+		      <m:cn>2</m:cn>
+		      <m:ci><m:msub>
+			  <m:mi>G</m:mi>
+			  <m:mi>i</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:ci><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>m</m:mi>
+		      </m:msub></m:ci>  
+		  </m:apply>
+		  <m:apply><m:minus/>
+		    <m:ci><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci> 
+		  </m:apply>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:cn>0</m:cn>
+		</m:matrixrow>
+		<!-- ROW 4 -->
+		<m:matrixrow>
+		  <m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:apply><m:minus/>
+		    <m:ci><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci> 
+		  </m:apply>
+		  <m:apply><m:times/>
+		    <m:cn>3</m:cn>
+		    <m:ci><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci> 
+		  </m:apply>
+		  <m:apply><m:minus/>
+		    <m:ci><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci> 
+		  </m:apply>
+		  <m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:apply><m:minus/>
+		    <m:ci><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci> 
+		  </m:apply>
+		  <m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<!-- ROW 5 -->
+		<m:matrixrow>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:apply><m:minus/>
+		    <m:ci><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci> 
+		  </m:apply>
+		  <m:apply><m:plus/>
+		    <m:apply><m:times/>
+		      <m:cn>2</m:cn>
+		      <m:ci><m:msub>
+			  <m:mi>G</m:mi>
+			  <m:mi>i</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:ci><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>m</m:mi>
+		      </m:msub></m:ci>  
+		  </m:apply>
+		  <m:apply><m:minus/>
+		    <m:ci><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci> 
+		  </m:apply>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<!-- ROW 6 -->
+		<m:matrixrow>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:apply><m:minus/>
+		    <m:ci><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci> 
+		  </m:apply>
+		  <m:apply><m:plus/>
+		    <m:apply><m:times/>
+		      <m:cn>2</m:cn>
+		      <m:ci><m:msub>
+			  <m:mi>G</m:mi>
+			  <m:mi>i</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:ci><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>m</m:mi>
+		      </m:msub></m:ci>  
+		  </m:apply>
+		  <m:apply><m:minus/>
+		    <m:ci><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci> 
+		  </m:apply>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<!-- ROW 7 -->
+		<m:matrixrow>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:apply><m:minus/>
+		    <m:ci><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci> 
+		  </m:apply>
+		  <m:apply><m:plus/>
+		    <m:ci><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci> 
+		    <m:ci><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>m</m:mi>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<!-- ROW 8 -->
+		<m:matrixrow>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:apply><m:minus/>
+		    <m:ci><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci> 
+		  </m:apply>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:apply><m:plus/>
+		    <m:apply><m:times/>
+		      <m:cn>2</m:cn>
+		      <m:ci><m:msub>
+			  <m:mi>G</m:mi>
+			  <m:mi>i</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:ci><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>m</m:mi>
+		      </m:msub></m:ci>  
+		  </m:apply>
+		  <m:apply><m:minus/>
+		    <m:ci><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci> 
+		  </m:apply>
+		  <m:cn>0</m:cn>
+		</m:matrixrow>
+		<!-- ROW 9 -->
+		<m:matrixrow>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:apply><m:minus/>
+		    <m:ci><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci> 
+		  </m:apply>
+		  <m:apply><m:plus/>
+		    <m:apply><m:times/>
+		      <m:cn>2</m:cn>
+		      <m:ci><m:msub>
+			  <m:mi>G</m:mi>
+			  <m:mi>i</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:ci><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>m</m:mi>
+		      </m:msub></m:ci>  
+		  </m:apply>
+		  <m:apply><m:minus/>
+		    <m:ci><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci> 
+		  </m:apply>
+		</m:matrixrow>
+		<!-- ROW 10 -->
+		<m:matrixrow>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:apply><m:minus/>
+		    <m:ci><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci> 
+		  </m:apply>
+		  <m:apply><m:plus/>
+		    <m:ci><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci>
+		    <m:ci><m:msub>
+			<m:mi>G</m:mi>
+			<m:mi>m</m:mi>
+		      </m:msub></m:ci>
+		  </m:apply>
+		</m:matrixrow>
+	      </m:matrix>
+	    </m:apply>
+	  </m:math>
+	  
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply><m:times/>
+		<m:apply><m:transpose/>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>
+		<m:ci type="matrix">G</m:ci>
+		<m:ci type="vector">b</m:ci>
+	      </m:apply>
+	      <m:apply><m:times/>
+		<m:ci><m:msub>
+		    <m:mi>E</m:mi>
+		    <m:mi>m</m:mi>
+		  </m:msub></m:ci>
+		<m:vector>
+		  <m:ci><m:msub>
+		      <m:mi>G</m:mi>
+		      <m:mtext>cb</m:mtext>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>G</m:mi>
+		      <m:mi>m</m:mi>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>G</m:mi>
+		      <m:mi>m</m:mi>
+		    </m:msub></m:ci>
+		  <m:cn>0</m:cn>
+		  <m:ci><m:msub>
+		      <m:mi>G</m:mi>
+		      <m:mi>m</m:mi>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>G</m:mi>
+		      <m:mi>m</m:mi>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>G</m:mi>
+		      <m:mi>m</m:mi>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>G</m:mi>
+		      <m:mi>m</m:mi>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>G</m:mi>
+		      <m:mi>m</m:mi>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>G</m:mi>
+		      <m:mi>m</m:mi>
+		    </m:msub></m:ci>
+		</m:vector>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply><m:times/>
+		<m:apply><m:transpose/>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>
+		<m:ci type="matrix">C</m:ci>
+		<m:apply other="prime"><m:diff/>
+		  <m:bvar><m:ci>t</m:ci></m:bvar>
+		  <m:ci type="vector">b</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:ci type="vector">0</m:ci>
+	    </m:apply>
+	    <m:mtext>,</m:mtext>
+	    <!-- A^(T) * C * b' = 0 -->
+	  </m:math>
+
+	  and an initial (rest) potential of 
+
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply>
+		<m:ci type="vector">x</m:ci>
+		<m:cn>0</m:cn>
+	      </m:apply>
+	      <m:apply><m:times/>
+		<m:ci><m:msub>
+		    <m:mi>E</m:mi>
+		    <m:mi>m</m:mi>
+		  </m:msub></m:ci>
+		<m:vector>
+		  <m:cn>1</m:cn><m:cn>1</m:cn><m:cn>1</m:cn><m:cn>1</m:cn><m:cn>1</m:cn>
+		  <m:cn>1</m:cn><m:cn>1</m:cn><m:cn>1</m:cn><m:cn>1</m:cn><m:cn>1</m:cn>
+		</m:vector>
+	      </m:apply>
+	    </m:apply>
+	    <m:mtext>.</m:mtext>
+	    <!-- x(0) = E_m * [1 1 1 1 1 1 1 1 1 1]^T -->
+	  </m:math>
+	</para>
+      </section>
+    </section>
+    
+    <section id="apply_backward_euler">
+      <title>Applying the Backward-Euler Method</title>
+      <para id="p11">
+	Since our system is so large, the Backward-Euler method is the
+	best path to a solution.  Looking at the matrix
+
+	<m:math display="inline">
+	  <m:apply><m:times/>
+	    <m:apply><m:transpose/>
+	      <m:ci type="matrix">A</m:ci>
+	    </m:apply>
+	    <m:ci type="matrix">C</m:ci>
+	    <m:ci type="matrix">A</m:ci>
+	  </m:apply>
+	  <!-- A^(T) * C * A -->
+	</m:math>,
+
+	we observe that it is singular and therefore non-invertible.
+	This singularity arises from the node connecting the three
+	branches of the fiber and prevents us from using the simple
+	equation
+
+	<m:math display="inline">
+	  <m:apply><m:eq/>
+	    <m:apply><m:diff/>
+	      <m:ci type="vector">x</m:ci>
+	    </m:apply>
+	    <m:apply><m:plus/>
+	      <m:apply><m:times/>
+		<m:ci type="matrix">B</m:ci>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	      <m:ci type="vector">g</m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <m:mtext>,</m:mtext>
+	  <!-- x' = Bx + g -->
+	</m:math>
+
+	we used in <link document="m10171" strength="2">earlier
+	  Backward-Euler-ings</link>.  However, we will see that a
+	  modest generalization to our previous form yields <link target-id="general_sys_form" strength="2"/>:
+
+	<equation id="general_sys_form">
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply><m:times/>
+		<m:ci type="matrix">D</m:ci>
+		<m:apply><m:diff/>
+		  <m:ci type="vector">x</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply><m:plus/>
+		<m:apply><m:times/>
+		  <m:ci type="matrix">E</m:ci>
+		  <m:ci type="vector">x</m:ci>
+		</m:apply>
+		<m:ci type="vector">g</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <!-- Dx' = Ex + g -->
+	  </m:math>
+	</equation>
+	
+	capturing the form of our system and allowing us to solve for 
+	
+	<m:math display="inline">
+	  <m:apply>
+	    <m:ci type="vector">x</m:ci>
+	    <m:ci>t</m:ci>
+	  </m:apply>
+	  <!-- x(t) -->
+	</m:math>.
+	
+	We manipulate <link target-id="general_sys_form" strength="2"/>
+	as follows:
+
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:apply><m:times/>
+	      <m:ci type="matrix">D</m:ci>
+	      <m:apply><m:diff/>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply><m:plus/>
+	      <m:apply><m:times/>
+		<m:ci type="matrix">E</m:ci>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	      <m:ci type="vector">g</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:apply><m:times/>
+	      <m:ci type="matrix">D</m:ci>
+	      <m:apply><m:divide/>
+		<m:apply><m:minus/>
+		  <m:apply>
+		    <m:ci type="fn"><m:mover>
+			<m:mi>x</m:mi>
+			<m:mo>˜</m:mo>
+		      </m:mover></m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn"><m:mover>
+			<m:mi>x</m:mi>
+			<m:mo>˜</m:mo>
+		      </m:mover></m:ci> 
+		    <m:apply><m:minus/>
+		      <m:ci>t</m:ci>
+		      <m:ci><m:mrow><m:mi>d</m:mi><m:mi>t</m:mi></m:mrow></m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:ci><m:mrow><m:mi>d</m:mi><m:mi>t</m:mi></m:mrow></m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply><m:plus/>
+	      <m:apply><m:times/>
+		<m:ci type="matrix">E</m:ci>
+		<m:apply>
+		  <m:ci type="fn"><m:mover>
+		      <m:mi>x</m:mi>
+		      <m:mo>˜</m:mo>
+		    </m:mover></m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:ci type="vector">g</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	
+
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:apply><m:times/>
+	      <m:apply><m:minus/>
+		<m:ci type="matrix">D</m:ci>
+		<m:apply><m:times/>
+		  <m:ci type="matrix">E</m:ci>
+		  <m:ci><m:mrow><m:mi>d</m:mi><m:mi>t</m:mi></m:mrow></m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn"><m:mover>
+		    <m:mi>x</m:mi>
+		    <m:mo>˜</m:mo>
+		  </m:mover></m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply><m:plus/>
+	      <m:apply><m:times/>
+		<m:ci type="matrix">D</m:ci>
+		<m:apply>
+		  <m:ci type="fn"><m:mover>
+		      <m:mi>x</m:mi>
+		      <m:mo>˜</m:mo>
+		    </m:mover></m:ci> 
+		  <m:apply><m:minus/>
+		    <m:ci>t</m:ci>
+		    <m:ci><m:mrow><m:mi>d</m:mi><m:mi>t</m:mi></m:mrow></m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply><m:times/>
+		<m:ci type="vector">g</m:ci>
+		<m:ci><m:mrow><m:mi>d</m:mi><m:mi>t</m:mi></m:mrow></m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	
+
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:apply>
+	      <m:ci type="fn"><m:mover>
+		  <m:mi>x</m:mi>
+		  <m:mo>˜</m:mo>
+		</m:mover></m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	    <m:apply><m:times/>
+	      <m:apply><m:inverse/>
+		<m:apply><m:minus/>
+		  <m:ci type="matrix">D</m:ci>
+		  <m:apply><m:times/>
+		    <m:ci type="matrix">E</m:ci>
+		    <m:ci><m:mrow><m:mi>d</m:mi><m:mi>t</m:mi></m:mrow></m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply><m:plus/>
+		<m:apply><m:times/>
+		  <m:ci type="matrix">D</m:ci>
+		  <m:apply>
+		    <m:ci type="fn"><m:mover>
+			<m:mi>x</m:mi>
+			<m:mo>˜</m:mo>
+		      </m:mover></m:ci> 
+		    <m:apply><m:minus/>
+		      <m:ci>t</m:ci>
+		      <m:ci><m:mrow><m:mi>d</m:mi><m:mi>t</m:mi></m:mrow></m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply><m:times/>
+		  <m:ci type="vector">g</m:ci>
+		  <m:ci><m:mrow><m:mi>d</m:mi><m:mi>t</m:mi></m:mrow></m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	  <m:mtext>,</m:mtext>
+	</m:math>
+	
+	where in our case
+
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:ci type="matrix">D</m:ci>
+	    <m:apply><m:times/>
+	      <m:apply><m:transpose/>
+		<m:ci type="matrix">A</m:ci>
+	      </m:apply>
+	      <m:ci type="matrix">C</m:ci>
+	      <m:ci type="matrix">A</m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <m:mtext>,</m:mtext>
+	  <!-- D = A^(T) * C * A -->
+	</m:math>
+	
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:ci type="matrix">E</m:ci>
+	    <m:apply><m:minus/>
+	      <m:apply><m:times/>
+		<m:apply><m:transpose/>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>
+		<m:ci type="matrix">G</m:ci>
+		<m:ci type="matrix">A</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	  <m:mtext>, and </m:mtext>
+	  <!-- E = -A^(T) * G * A -->
+	</m:math>
+
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:ci type="vector">g</m:ci>
+	    <m:apply><m:plus/>
+	      <m:apply><m:times/>
+		<m:apply><m:transpose/>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>
+		<m:ci type="matrix">G</m:ci>
+		<m:ci type="vector">b</m:ci>
+	      </m:apply>
+	      <m:ci type="vector">f</m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <m:mtext>.</m:mtext>
+	  <!-- g = A^(T) * G * b + f -->
+	</m:math>
+
+	This method is implemented in 
+	<link url="http://it.is.rice.edu/~rainking/dendrite/matlab/dendrite.m">
+	  dendrite.m</link> with typical cell dimensions and
+	resistivity properties, yielding the following graph of
+	potentials.
+      </para>
+
+      <figure id="potential_fig" orient="vertical">
+	<title>Graph of Dendrite Potentials</title>
+	<subfigure id="large_view">
+	  <media id="idp3503744" alt=""><image src="../../media/potential_graph1.png" mime-type="image/png"/></media>
+	  <caption>Large view of potentials.</caption>
+	</subfigure>
+	<subfigure id="maxima">
+	  <media id="idp3505936" alt=""><image src="../../media/potential_graph2.png" mime-type="image/png"/></media>
+	  <caption>Zoomed view of potentials showing maxima.</caption>
+	</subfigure>
+      </figure>
+      
+    </section>
+  </content>
+</document>

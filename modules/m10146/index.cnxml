@@ -1,0 +1,1637 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml"> 
+
+  <title>Matrix Methods for Mechanical Systems:  A Uniaxial Truss</title> 
+
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>390ddf32-e551-438b-b354-a590f220e88a</md:uuid>
+</metadata>
+
+  <content>
+    <section id="intro">
+      <title>Introduction</title>
+      <para id="p1">
+	We now investigate the mechanical prospection of tissue, an
+	application extending techniques developed in <link document="m10145" strength="3"> the electrical analysis of a
+	nerve cell</link>. In this application, one applies traction
+	to the edges of a square sample of planar tissue and seeks to
+	identify, from measurement of the resulting deformation,
+	regions of increased `hardness' or `stiffness.' For a sketch
+	of the associated apparatus, visit the <link url="http://health.upenn.edu/orl/research/bioengineering/proj2b.jpg">
+	Biaxial Test site </link>.
+      </para>
+    </section>
+
+    <section id="uniaxial_truss">
+      <title>A Uniaxial Truss</title>
+      
+      <figure id="uniaxial_truss_fig">
+	<title>A uniaxial truss</title>
+	<media id="idp160256" alt=""><image src="../../media/lec2fig1.png" mime-type="image/png"/></media>
+      </figure>
+      
+      <para id="p2">
+	As a precursor to the <link document="m10147" strength="2">biaxial problem</link> let us first consider the
+	uniaxial case. We connect 3 masses with four springs between
+	two immobile walls, apply forces at the masses, and measure
+	the associated displacement.  More precisely, we suppose that
+	a horizontal force,
+
+	<m:math display="inline">
+	  <m:ci><m:msub>
+	      <m:mi>f</m:mi>
+	      <m:mi>j</m:mi>
+	    </m:msub></m:ci>
+	</m:math>,
+	<!-- f_j -->
+
+	is applied to each
+	<m:math display="inline">
+	  <m:ci><m:msub>
+	      <m:mi>m</m:mi>
+	      <m:mi>j</m:mi>
+	    </m:msub></m:ci>
+	</m:math>,
+	<!-- m_j -->
+
+	and produces a displacement
+	<m:math display="inline">
+	  <m:ci><m:msub>
+	      <m:mi>x</m:mi>
+	      <m:mi>j</m:mi>
+	    </m:msub></m:ci>
+	</m:math>,
+	<!-- x_j -->
+
+	with the sign convention that rightward means positive. The
+	bars at the ends of the figure indicate rigid supports
+	incapable of movement. The
+	<m:math display="inline">
+	  <m:ci><m:msub>
+	      <m:mi>k</m:mi>
+	      <m:mi>j</m:mi>
+	    </m:msub></m:ci>
+	</m:math>
+	<!-- k_j -->
+
+	denote the respective spring stiffnesses.  The analog of
+	potential difference (see <link document="m10145" target-id="step1" strength="3">the electrical model</link>)
+	is here elongation.  If
+	
+	<m:math display="inline">
+	  <m:ci><m:msub>
+	      <m:mi>e</m:mi>
+	      <m:mi>j</m:mi>
+	    </m:msub></m:ci>
+	</m:math>
+	<!-- e_j -->
+	
+	denotes the elongation of the 
+	<m:math><m:ci>j</m:ci></m:math>th spring then naturally,
+
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>e</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	    <m:ci><m:msub>
+		<m:mi>x</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	  </m:apply>
+	</m:math>
+	<!-- e_1 = x_1 -->
+
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>e</m:mi>
+		<m:mn>2</m:mn>
+	      </m:msub></m:ci>
+	    <m:apply><m:minus/>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>2</m:mn>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	<!-- e_2 = x_2 - x_1 -->
+
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>e</m:mi>
+		<m:mn>3</m:mn>
+	      </m:msub></m:ci>
+	    <m:apply><m:minus/>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>3</m:mn>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>2</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	<!-- e_3 = x_3 - x_2 -->
+
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>e</m:mi>
+		<m:mn>4</m:mn>
+	      </m:msub></m:ci>
+	    <m:apply><m:minus/>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>3</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	<!-- e_4 = - x_3 -->
+
+	or, in matrix terms,
+
+	<m:math display="inline">
+	  <m:apply><m:eq/>
+	    <m:ci type="vector">e</m:ci>
+	    <m:apply><m:times/>
+	      <m:ci type="matrix">A</m:ci>
+	      <m:ci type="vector">x</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>, 
+	<!-- e = Ax -->
+
+	where
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:ci type="matrix">A</m:ci>
+	    <m:matrix>
+	      <m:matrixrow><m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn></m:matrixrow>
+	      <m:matrixrow><m:cn>-1</m:cn><m:cn>1</m:cn><m:cn>0</m:cn></m:matrixrow>
+	      <m:matrixrow><m:cn>0</m:cn><m:cn>-1</m:cn><m:cn>1</m:cn></m:matrixrow>
+	      <m:matrixrow><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>-1</m:cn></m:matrixrow>
+	    </m:matrix>
+	  </m:apply>
+	</m:math>
+	<!-- A = [  1  0  0
+	-1  1  0
+	0 -1  1
+	0  0 -1  ] -->
+
+	We note that
+
+	<m:math display="inline">
+	  <m:ci><m:msub>
+	      <m:mi>e</m:mi>
+	      <m:mi>j</m:mi>
+	    </m:msub></m:ci>
+	</m:math>
+	<!-- e_j -->
+	
+	is positive when the spring is stretched and negative when
+	compressed.  This observation, Hooke's Law, is the analog of
+	<link document="m10145" target-id="ohm_defn" strength="3">Ohm's
+	Law in the electrical model</link>.
+
+	<definition id="hookes_law">
+	  <term>Hooke's Law</term> <meaning id="idp1289072">The restoring force in a
+	  spring is proportional to its elongation.  We call the
+	  constant of proportionality the stiffness,
+
+	    <m:math display="inline">
+	      <m:ci><m:msub>
+		  <m:mi>k</m:mi>
+		  <m:mi>j</m:mi>
+		</m:msub></m:ci>
+	    </m:math>,
+	    <!-- k_j -->
+
+	    of the spring, and denote the restoring force by
+	    <m:math display="inline">
+	      <m:ci><m:msub>
+		  <m:mi>y</m:mi>
+		  <m:mi>j</m:mi>
+		</m:msub></m:ci>
+	    </m:math><!-- y_j -->.</meaning>
+
+	  <meaning id="idm6742320">
+	    The mathematical expression of this statement is:
+	    <m:math display="inline">
+	      <m:apply><m:eq/>
+		<m:ci><m:msub>
+		    <m:mi>y</m:mi>
+		    <m:mi>j</m:mi>
+		  </m:msub></m:ci>
+		<m:apply><m:times/>
+		  <m:ci><m:msub>
+		      <m:mi>k</m:mi>
+		      <m:mi>j</m:mi>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>e</m:mi>
+		      <m:mi>j</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	      <!-- y_j = k_j * e_j -->
+	    </m:math>, or, 
+	  </meaning>
+
+	  <meaning id="idp1262976">in matrix terms:
+	    <m:math display="inline">
+	      <m:apply><m:eq/>
+		<m:ci type="vector">y</m:ci>
+		<m:apply><m:times/>
+		  <m:ci type="matrix">K</m:ci>
+		  <m:ci type="vector">e</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	    <!-- y = Ke -->
+
+	    where
+	    <m:math display="block">
+	      <m:apply><m:eq/>
+		<m:ci type="matrix">K</m:ci>
+		<m:matrix>
+		  <m:matrixrow>
+		    <m:ci><m:msub>
+			<m:mi>k</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <m:matrixrow><m:cn>0</m:cn>
+		    <m:ci><m:msub>
+			<m:mi>k</m:mi>
+			<m:mn>2</m:mn>
+		      </m:msub></m:ci>
+		    <m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <m:matrixrow><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:ci><m:msub>
+			<m:mi>k</m:mi>
+			<m:mn>3</m:mn>
+		      </m:msub></m:ci>
+		    <m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <m:matrixrow><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		    <m:ci><m:msub>
+			<m:mi>k</m:mi>
+			<m:mn>4</m:mn>
+		      </m:msub></m:ci>
+		  </m:matrixrow>
+		</m:matrix>
+	      </m:apply>
+	    </m:math>
+	  </meaning>
+	</definition>
+
+	The analog of <link document="m10145" target-id="step3" strength="3">Kirchhoff's Current Law </link> is here typically
+	called `force balance.'
+
+	<definition id="force_balance">
+	  <term>force balance</term>
+	  
+	  <meaning id="idp1040160">Equilibrium is synonymous with the fact that the net force acting on
+	    each mass must vanish.  
+	  </meaning>
+	  
+	  <meaning id="idp1040672">
+	    In symbols,
+	    <m:math display="block">
+	      <m:apply><m:eq/>
+		<m:apply><m:minus/>
+		  <m:apply><m:minus/>
+		    <m:ci><m:msub>
+			<m:mi>y</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		    <m:ci><m:msub>
+			<m:mi>y</m:mi>
+			<m:mn>2</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:ci><m:msub>
+		      <m:mi>f</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:cn>0</m:cn>
+	      </m:apply>
+	    </m:math>
+	    <!-- y_1 - y_2 - f_1 = 0 -->
+
+	    <m:math display="block">
+	      <m:apply><m:eq/>
+		<m:apply><m:minus/>
+		  <m:apply><m:minus/>
+		    <m:ci><m:msub>
+			<m:mi>y</m:mi>
+			<m:mn>2</m:mn>
+		      </m:msub></m:ci>
+		    <m:ci><m:msub>
+			<m:mi>y</m:mi>
+			<m:mn>3</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:ci><m:msub>
+		      <m:mi>f</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:cn>0</m:cn>
+	      </m:apply>
+	    </m:math>
+	    <!-- y_2 - y_3 - f_2 = 0 -->
+
+	    <m:math display="block">
+	      <m:apply><m:eq/>
+		<m:apply><m:minus/>
+		  <m:apply><m:minus/>
+		    <m:ci><m:msub>
+			<m:mi>y</m:mi>
+			<m:mn>3</m:mn>
+		      </m:msub></m:ci>
+		    <m:ci><m:msub>
+			<m:mi>y</m:mi>
+			<m:mn>4</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:ci><m:msub>
+		      <m:mi>f</m:mi>
+		      <m:mn>3</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:cn>0</m:cn>
+	      </m:apply>
+	    </m:math>
+	    <!-- y_3 - y_4 - f_3 = 0 -->
+	  </meaning>
+	  
+	  <meaning id="idm7129856">
+	    or, in matrix terms, 
+
+	    <m:math display="inline">
+	      <m:apply><m:eq/>
+		<m:apply><m:times/>
+		  <m:ci type="matrix">B</m:ci>
+		  <m:ci type="vector">y</m:ci>
+		</m:apply>
+		<m:ci type="vector">f</m:ci>
+	      </m:apply>
+	    </m:math>
+	    <!-- By = f -->
+
+	    where
+	    <m:math display="block">
+	      <m:apply><m:eq/>
+		<m:ci type="vector">f</m:ci>
+		<m:vector>
+		  <m:ci><m:msub>
+		      <m:mi>f</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>f</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>f</m:mi>
+		      <m:mn>3</m:mn>
+		    </m:msub></m:ci>
+		</m:vector>
+	      </m:apply>
+	      <!-- f = [ f_1; f_2; f_3 ] -->
+
+	      <m:mtext>  and  </m:mtext>
+	      
+	      <m:apply><m:eq/>
+		<m:ci type="matrix">B</m:ci>
+		<m:matrix>
+		  <m:matrixrow><m:cn>1</m:cn><m:cn>-1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <m:matrixrow><m:cn>0</m:cn><m:cn>1</m:cn><m:cn>-1</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <m:matrixrow><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>1</m:cn><m:cn>-1</m:cn>
+		  </m:matrixrow>
+		</m:matrix>
+	      </m:apply>
+	      <!-- B = [  1 -1  0  0 
+	      0  1 -1  0
+	      0  0  1 -1  ] -->
+	    </m:math>
+	  </meaning>
+	</definition>
+      </para>
+
+      <para id="p3">
+	As in <link document="m10145" target-id="step4" strength="3">the
+	  electrical example</link> we recognize in <m:math display="inline"><m:ci type="matrix">B</m:ci></m:math> the
+	  transpose of <m:math display="inline"><m:ci type="matrix">A</m:ci></m:math>.  Gathering our three
+	  important steps:
+
+	<equation id="eqn2_1">
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:ci type="vector">e</m:ci>
+	      <m:apply><m:times/>
+		<m:ci type="matrix">A</m:ci>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	  <!-- e = Ax -->
+	</equation>
+
+	<equation id="eqn2_2">
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:ci type="vector">y</m:ci>
+	      <m:apply><m:times/>
+		<m:ci type="matrix">K</m:ci>
+		<m:ci type="vector">e</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	  <!-- y = Ke -->
+	</equation>
+
+	<equation id="eqn2_3">
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply><m:times/>
+		<m:apply><m:transpose/>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>
+		<m:ci type="vector">y</m:ci>
+	      </m:apply>
+	      <m:ci type="vector">f</m:ci>
+	    </m:apply>
+	  </m:math>
+	  <!-- A'y = f -->
+	</equation>
+
+	we arrive, via direct substitution, at an equation for 
+	<m:math display="inline"><m:ci type="vector">x</m:ci></m:math>.  Namely,
+
+	<m:math display="block">
+	  <m:apply><m:implies/>
+	    <m:apply><m:implies/>
+	      <m:apply><m:eq/>
+		<m:apply><m:times/>
+		  <m:apply><m:transpose/>
+		    <m:ci type="matrix">A</m:ci>
+		  </m:apply>
+		  <m:ci type="vector">y</m:ci>
+		</m:apply>
+		<m:ci type="vector">f</m:ci>
+	      </m:apply>
+	      <m:apply><m:eq/>
+		<m:apply><m:times/>
+		  <m:apply><m:transpose/>
+		    <m:ci type="matrix">A</m:ci>
+		  </m:apply>
+		  <m:ci type="matrix">K</m:ci>
+		  <m:ci type="vector">e</m:ci>
+		</m:apply>
+		<m:ci type="vector">f</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply><m:eq/>
+	      <m:apply><m:times/>
+		<m:apply><m:transpose/>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>
+		<m:ci type="matrix">K</m:ci>
+		<m:ci type="matrix">A</m:ci>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	      <m:ci type="vector">f</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	<!-- A'y = f implies A'Ke = f implies A'KAx = f -->
+
+	Assembling 
+	<m:math display="inline">
+	  <m:apply><m:times/>
+	    <m:apply><m:transpose/>
+	      <m:ci type="matrix">A</m:ci>
+	    </m:apply>
+	    <m:ci type="matrix">K</m:ci>
+	    <m:ci type="matrix">A</m:ci>
+	    <m:ci type="vector">x</m:ci>
+	  </m:apply>
+	</m:math>
+	<!-- A'KAx -->
+
+	we arrive at the final system:
+	<equation id="eqn2_4">
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply><m:times/>
+		<m:matrix>
+		  <m:matrixrow>
+		    <m:apply><m:plus/>
+		      <m:ci><m:msub>
+			  <m:mi>k</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub></m:ci>
+		      <m:ci><m:msub>
+			  <m:mi>k</m:mi>
+			  <m:mn>2</m:mn>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:apply><m:minus/>
+		      <m:ci><m:msub>
+			  <m:mi>k</m:mi>
+			  <m:mn>2</m:mn>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <m:matrixrow>
+		    <m:apply><m:minus/>
+		      <m:ci><m:msub>
+			  <m:mi>k</m:mi>
+			  <m:mn>2</m:mn>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:apply><m:plus/>
+		      <m:ci><m:msub>
+			  <m:mi>k</m:mi>
+			  <m:mn>2</m:mn>
+			</m:msub></m:ci>
+		      <m:ci><m:msub>
+			  <m:mi>k</m:mi>
+			  <m:mn>3</m:mn>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:apply><m:minus/>
+		      <m:ci><m:msub>
+			  <m:mi>k</m:mi>
+			  <m:mn>3</m:mn>
+			</m:msub></m:ci>
+		    </m:apply>
+		  </m:matrixrow>
+		  <m:matrixrow>
+		    <m:cn>0</m:cn>
+		    <m:apply><m:minus/>
+		      <m:ci><m:msub>
+			  <m:mi>k</m:mi>
+			  <m:mn>3</m:mn>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:apply><m:plus/>
+		      <m:ci><m:msub>
+			  <m:mi>k</m:mi>
+			  <m:mn>3</m:mn>
+			</m:msub></m:ci>
+		      <m:ci><m:msub>
+			  <m:mi>k</m:mi>
+			  <m:mn>4</m:mn>
+			</m:msub></m:ci>
+		    </m:apply>
+		  </m:matrixrow>
+		</m:matrix>
+		<m:vector>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>3</m:mn>
+		    </m:msub></m:ci>
+		</m:vector>
+	      </m:apply>
+	      <m:vector>
+		<m:ci><m:msub>
+		    <m:mi>f</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>f</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>f</m:mi>
+		    <m:mn>3</m:mn>
+		  </m:msub></m:ci>
+	      </m:vector>
+	    </m:apply>
+	  </m:math>
+	  <!-- [ k_1+k_2    -k_2      0
+	  -k_2    k_2+k_3   -k_3
+	  0       -k_3   k_3+k_4  ]  *
+	  [ x_1; x_2; x_3 ] =
+	  [ f_1; f_2; f_3 ]    -->
+	</equation>
+      </para>
+    </section>
+    
+    <section id="gaussian_elimination">
+      <title>Gaussian Elimination and the Uniaxial Truss</title>
+      <para id="p4">
+	Although Matlab solves systems like the one above with ease our aim here is to 
+	develop a deeper understanding of <term>Gaussian Elimination</term> and so we 
+	proceed by hand.  This aim is motivated by a number of important considerations. 
+	First, not all linear systems have solutions and even those that do do not 
+	necessarily possess unique solutions. A careful look at Gaussian Elimination 
+	will provide the general framework for not only classifying those systems that 
+	possess unique solutions but also for providing detailed diagnoses of those
+	defective systems that lack solutions or possess too many.
+      </para>
+
+      <para id="p5">
+	In Gaussian Elimination one first uses linear combinations of preceding 
+	rows to eliminate nonzeros below the main diagonal and then solves the
+	resulting triangular system via back-substitution. To firm up our
+	understanding let us take up the case where each
+	
+	<m:math display="inline">
+	  <m:apply><m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>k</m:mi>
+		<m:mi>j</m:mi>
+	      </m:msub></m:ci>
+	    <m:cn>1</m:cn>
+	  </m:apply>
+	</m:math>
+	<!-- k_j = 1 -->
+
+	and so <link target-id="eqn2_4" strength="3"/> takes the form
+
+	<equation id="eqn2_5">
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply><m:times/>
+		<m:matrix>
+		  <m:matrixrow><m:cn>2</m:cn><m:cn>-1</m:cn><m:cn>0</m:cn></m:matrixrow>
+		  <m:matrixrow><m:cn>-1</m:cn><m:cn>2</m:cn><m:cn>-1</m:cn></m:matrixrow>
+		  <m:matrixrow><m:cn>0</m:cn><m:cn>-1</m:cn><m:cn>2</m:cn></m:matrixrow>
+		</m:matrix>
+		<m:vector>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>3</m:mn>
+		    </m:msub></m:ci>
+		</m:vector>
+	      </m:apply>
+	      <m:vector>
+		<m:ci><m:msub>
+		    <m:mi>f</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>f</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>f</m:mi>
+		    <m:mn>3</m:mn>
+		  </m:msub></m:ci>
+	      </m:vector>
+	    </m:apply>
+	  </m:math>
+	  <!-- [  2 -1  0
+	  -1  2 -1
+	  0 -1  2  ]  *
+	  [ x_1; x_2; x_3 ] =
+	  [ f_1; f_2; f_3 ]    -->
+	</equation>
+	
+	We eliminate the (2,1) (row 2, column 1) element by implementing
+
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:ci><m:mtext>new row 2</m:mtext></m:ci>
+	    <m:apply><m:plus/>
+	      <m:ci><m:mtext>old row 2</m:mtext></m:ci>
+	      <m:apply><m:times/>
+		<m:apply><m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:cn>2</m:cn>
+		</m:apply>
+		<m:ci><m:mtext>row 1</m:mtext></m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	<!-- new row 2 = old row 2 + (1/2)row 1 -->
+
+	bringing
+
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:apply><m:times/>
+	      <m:matrix>
+		<m:matrixrow><m:cn>2</m:cn><m:cn>-1</m:cn><m:cn>0</m:cn></m:matrixrow>
+		<m:matrixrow><m:cn>0</m:cn>
+		  <m:apply><m:divide/>
+		    <m:cn>3</m:cn>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:cn>-1</m:cn>
+		</m:matrixrow>
+		<m:matrixrow><m:cn>0</m:cn><m:cn>-1</m:cn><m:cn>2</m:cn></m:matrixrow>
+	      </m:matrix>
+	      <m:vector>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>3</m:mn>
+		  </m:msub></m:ci>
+	      </m:vector>
+	    </m:apply>
+	    <m:vector>
+	      <m:ci><m:msub>
+		  <m:mi>f</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	      <m:apply><m:plus/>
+		<m:ci><m:msub>
+		    <m:mi>f</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+		<m:apply><m:divide/>
+		  <m:ci><m:msub>
+		      <m:mi>f</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:apply>
+	      <m:ci><m:msub>
+		  <m:mi>f</m:mi>
+		  <m:mn>3</m:mn>
+		</m:msub></m:ci>
+	    </m:vector>
+	  </m:apply>
+	</m:math>
+	<!-- [  2 -1  0
+	-1 3/2 -1
+	0 -1  2  ]  *
+	[ x_1; x_2; x_3 ] =
+	[ f_1; f_2 + f_1 / 2; f_3 ]    -->
+	
+	We eliminate the current (3,2) element by implementing
+
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:ci><m:mtext>new row 3</m:mtext></m:ci>
+	    <m:apply><m:plus/>
+	      <m:ci><m:mtext>old row 3</m:mtext></m:ci>
+	      <m:apply><m:times/>
+		<m:apply><m:divide/>
+		  <m:cn>2</m:cn>
+		  <m:cn>3</m:cn>
+		</m:apply>
+		<m:ci><m:mtext>row 2</m:mtext></m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	<!-- new row 3 = old row 3 + (2/3)row 2 -->
+	
+	bringing the upper-triangular system
+	
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:apply><m:times/>
+	      <m:matrix>
+		<m:matrixrow><m:cn>2</m:cn><m:cn>-1</m:cn><m:cn>0</m:cn></m:matrixrow>
+		<m:matrixrow><m:cn>0</m:cn>
+		  <m:apply><m:divide/>
+		    <m:cn>3</m:cn>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:cn>-1</m:cn>
+		</m:matrixrow>
+		<m:matrixrow><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:apply><m:divide/>
+		    <m:cn>4</m:cn>
+		    <m:cn>3</m:cn>
+		  </m:apply>
+		</m:matrixrow>
+	      </m:matrix>
+	      <m:vector>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>3</m:mn>
+		  </m:msub></m:ci>
+	      </m:vector>
+	    </m:apply>
+	    <m:vector>
+	      <m:ci><m:msub>
+		  <m:mi>f</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	      <m:apply><m:plus/>
+		<m:ci><m:msub>
+		    <m:mi>f</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+		<m:apply><m:divide/>
+		  <m:ci><m:msub>
+		      <m:mi>f</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:apply>
+	      <m:apply><m:plus/>
+		<m:ci><m:msub>
+		    <m:mi>f</m:mi>
+		    <m:mn>3</m:mn>
+		  </m:msub></m:ci>
+		<m:apply><m:divide/>
+		  <m:apply><m:times/>
+		    <m:cn>2</m:cn>
+		    <m:ci><m:msub>
+			<m:mi>f</m:mi>
+			<m:mn>2</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:cn>3</m:cn>
+		</m:apply>
+		<m:apply><m:divide/>
+		  <m:ci><m:msub>
+		      <m:mi>f</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		  <m:cn>3</m:cn>
+		</m:apply>
+	      </m:apply>
+	    </m:vector>
+	  </m:apply>
+	</m:math>
+	<!-- [  2 -1  0
+	0 3/2 -1
+	0  0  4/3  ]  *
+	[ x_1; x_2; x_3 ] =
+	[ f_1; f_2 + f_1/2; f_3 + 2f_2 / 3 + f_1 / 3 ]    -->
+
+	One now simply reads off
+
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>x</m:mi>
+		<m:mn>3</m:mn>
+	      </m:msub></m:ci>
+	    <m:apply><m:divide/>
+	      <m:apply><m:plus/>
+		<m:ci><m:msub>
+		    <m:mi>f</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:apply><m:times/>
+		  <m:cn>2</m:cn>
+		  <m:ci><m:msub>
+		      <m:mi>f</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:apply><m:times/>
+		  <m:cn>3</m:cn>
+		  <m:ci><m:msub>
+		      <m:mi>f</m:mi>
+		      <m:mn>3</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:cn>4</m:cn>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	<!-- x_3 = ( f_1 + 2f_2 + 3f_3 ) / 2 -->
+
+	This in turn permits the solution of the second equation
+
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>x</m:mi>
+		<m:mn>2</m:mn>
+	      </m:msub></m:ci>
+	    <m:apply><m:divide/>
+	      <m:apply><m:times/>
+		<m:cn>2</m:cn>
+		<m:apply><m:plus/>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>3</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>f</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		  <m:apply><m:divide/>
+		    <m:ci><m:msub>
+			<m:mi>f</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:cn>3</m:cn>
+	    </m:apply>
+	    <m:apply><m:divide/>
+	      <m:apply><m:plus/>
+		<m:ci><m:msub>
+		    <m:mi>f</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:apply><m:times/>
+		  <m:cn>2</m:cn>
+		  <m:ci><m:msub>
+		      <m:mi>f</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:ci><m:msub>
+		    <m:mi>f</m:mi>
+		    <m:mn>3</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	<!-- x_2 = 2 * ( x_3 + f_2 + f_1 / 2 ) / 3 = ( f_1 + 2f_2 + f_3 ) / 2 -->
+
+	and, in turn,
+
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>x</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	    <m:apply><m:divide/>
+	      <m:apply><m:plus/>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>f</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	    <m:apply><m:divide/>
+	      <m:apply><m:plus/>
+		<m:apply><m:times/>
+		  <m:cn>3</m:cn>
+		  <m:ci><m:msub>
+		      <m:mi>f</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:apply><m:times/>
+		  <m:cn>2</m:cn>
+		  <m:ci><m:msub>
+		      <m:mi>f</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:ci><m:msub>
+		    <m:mi>f</m:mi>
+		    <m:mn>3</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:cn>4</m:cn>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	<!-- x_1 = ( x_2 + f_1 ) / 2 = ( 3f_1 + 2f_2 + f_3 ) / 4 -->
+
+	One must say that Gaussian Elimination has succeeded here. 
+	For, regardless of the actual elements of
+	<m:math display="inline"><m:ci type="vector">f</m:ci></m:math>,
+	we have produced an 
+	<m:math display="inline"><m:ci type="vector">x</m:ci></m:math>
+	for which
+	
+	<m:math display="inline">
+	  <m:apply><m:eq/>
+	    <m:apply><m:times/>
+	      <m:apply><m:transpose/>
+		<m:ci type="matrix">A</m:ci>
+	      </m:apply>
+	      <m:ci type="matrix">K</m:ci>
+	      <m:ci type="matrix">A</m:ci>
+	      <m:ci type="vector">x</m:ci>
+	    </m:apply>
+	    <m:ci type="vector">f</m:ci>
+	  </m:apply>
+	</m:math>.
+	<!-- A'KAx = F -->
+      </para>
+    </section>
+
+    <section id="alt_paths">
+      <title>Alternate Paths to a Solution</title>
+      
+      <para id="p6">
+	Although Gaussian Elimination remains the most efficient means for solving
+	systems of the form 
+	<m:math display="inline">
+	  <m:apply><m:eq/>
+	    <m:apply><m:times/>
+	      <m:ci type="matrix">S</m:ci>
+	      <m:ci type="vector">x</m:ci>
+	    </m:apply>
+	    <m:ci type="vector">f</m:ci>
+	  </m:apply>
+	</m:math>
+	<!-- Sx = f -->
+
+	it pays, at times, to consider alternate means. At the algebraic level, suppose 
+	that there exists a matrix that `undoes' multiplication by 
+	<m:math display="inline"><m:ci type="matrix">S</m:ci></m:math>
+	in the sense that multiplication by
+	<m:math display="inline">
+	  <m:apply><m:inverse/>
+	    <m:cn>2</m:cn>
+	  </m:apply>
+	</m:math>
+	<!-- 2^(-1) -->
+
+	undoes multiplication by 2. The matrix analog of 
+	<m:math display="inline">
+	  <m:apply><m:eq/>
+	    <m:apply><m:times/>
+	      <m:apply><m:inverse/>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	    <m:cn>1</m:cn>
+	  </m:apply>
+	</m:math>
+	<!-- 2^(-1) * 2 = 1 -->is
+
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:apply><m:times/>
+	      <m:apply><m:inverse/>
+		<m:ci type="matrix">S</m:ci>
+	      </m:apply>
+	      <m:ci type="matrix">S</m:ci>
+	    </m:apply>
+	    <m:ci type="matrix">I</m:ci>
+	  </m:apply>
+	</m:math>
+	<!-- S^(-1) * S = I -->
+
+	where <m:math display="inline"><m:ci type="matrix">I</m:ci></m:math>
+	denotes the <term>identity matrix</term> (all zeros except the ones on the
+	diagonal).  We refer to  
+	<m:math display="inline">
+	  <m:apply><m:inverse/>
+	    <m:ci type="matrix">S</m:ci>
+	  </m:apply>
+	</m:math> as:
+
+	<definition id="inverse">
+	  <term>Inverse of S</term>
+	  <meaning id="idp3298928">Also dubbed "S inverse" for short, the value of this matrix stems
+	    from watching what happens when it is applied to each side of
+	    
+	    <m:math display="inline">
+	      <m:apply><m:eq/>
+		<m:apply><m:times/>
+		  <m:ci type="matrix">S</m:ci>
+		  <m:ci type="vector">x</m:ci>
+		</m:apply>
+		<m:ci type="vector">f</m:ci>
+	      </m:apply>
+	    </m:math>.
+	    <!-- Sx = f -->
+
+	    Namely,
+	    <m:math display="block">
+	      <m:apply><m:implies/>
+		<m:apply><m:implies/>
+		  <m:apply><m:implies/>
+		    <m:apply><m:eq/>
+		      <m:apply><m:times/>
+			<m:ci type="matrix">S</m:ci>
+			<m:ci type="vector">x</m:ci>
+		      </m:apply>
+		      <m:ci type="vector">f</m:ci>
+		    </m:apply>
+		    <m:apply><m:eq/>
+		      <m:apply><m:times/>
+			<m:apply><m:inverse/>
+			  <m:ci type="matrix">S</m:ci>
+			</m:apply>
+			<m:ci type="matrix">S</m:ci>
+			<m:ci type="vector">x</m:ci>
+		      </m:apply>
+		      <m:apply><m:times/>
+			<m:apply><m:inverse/>
+			  <m:ci type="matrix">S</m:ci>
+			</m:apply>
+			<m:ci type="vector">f</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply><m:eq/>
+		    <m:apply><m:times/>
+		      <m:ci type="matrix">I</m:ci>
+		      <m:ci type="vector">x</m:ci>
+		    </m:apply>
+		    <m:apply><m:times/>
+		      <m:apply><m:inverse/>
+			<m:ci type="matrix">S</m:ci>
+		      </m:apply>
+		      <m:ci type="vector">f</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply><m:eq/>
+		  <m:ci type="vector">x</m:ci>
+		  <m:apply><m:times/>
+		    <m:apply><m:inverse/>
+		      <m:ci type="matrix">S</m:ci>
+		    </m:apply>
+		    <m:ci type="vector">f</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	    <!-- Sx = f implies S^(-1)*Sx = S^(-1)*f implies Ix = S^(-1)f implies
+	    x= S^(-1)f   -->
+	  </meaning>
+	</definition>
+	Hence, to solve 
+	<m:math display="inline">
+	  <m:apply><m:eq/>
+	    <m:apply><m:times/>
+	      <m:ci type="matrix">S</m:ci>
+	      <m:ci type="vector">x</m:ci>
+	    </m:apply>
+	    <m:ci type="vector">f</m:ci>
+	  </m:apply>
+	</m:math>
+	<!-- Sx = f -->
+	
+	for <m:math display="inline"><m:ci type="vector">x</m:ci></m:math> it
+	suffices to multiply
+	<m:math display="inline"><m:ci type="vector">f</m:ci></m:math> by the
+	inverse of <m:math display="inline"><m:ci type="matrix">S</m:ci></m:math>.
+      </para>
+    </section>
+
+    <section id="gauss_jordan">
+      <title>Gauss-Jordan Method:  Computing the Inverse of a Matrix</title>
+      <para id="p7">
+	Let us now consider how one goes about computing 
+	<m:math display="inline">
+	  <m:apply><m:inverse/>
+	    <m:ci type="matrix">S</m:ci>
+	  </m:apply>
+	</m:math>.  
+	<!-- S^-1 -->
+
+	In general this takes a little more than twice the work of Gaussian Elimination, 
+	for we interpret
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:apply><m:times/>
+	      <m:apply><m:inverse/>
+		<m:ci type="matrix">S</m:ci>
+	      </m:apply>
+	      <m:ci type="matrix">S</m:ci>
+	    </m:apply>
+	    <m:ci type="matrix">I</m:ci>
+	  </m:apply>
+	</m:math>
+	<!-- S^(-1) * S = I -->
+
+	as <m:math display="inline"><m:ci>n</m:ci></m:math> (the size of 
+	<m:math display="inline"><m:ci type="matrix">S</m:ci></m:math>) applications 
+	of Gaussian elimination, with
+	<m:math display="inline"><m:ci type="vector">f</m:ci></m:math> running through 
+	<m:math display="inline"><m:ci>n</m:ci></m:math> columns of the identity matrix. 
+	The bundling of these <m:math display="inline"><m:ci>n</m:ci></m:math> 
+	applications into one is known as the <term>Gauss-Jordan method</term>. Let us 
+	demonstrate it on the 
+	<m:math display="inline"><m:ci type="matrix">S</m:ci></m:math> appearing 
+	in <link target-id="eqn2_5" strength="2"/>.  We first augment
+	<m:math display="inline"><m:ci type="matrix">S</m:ci></m:math> with
+	<m:math display="inline"><m:ci type="matrix">I</m:ci></m:math>.
+
+	<m:math display="block">
+	  <m:matrix>
+	    <m:matrixrow><m:cn>2</m:cn><m:cn>-1</m:cn><m:cn>0</m:cn>
+	      <m:ci>│</m:ci>
+	      <m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn></m:matrixrow>
+	    <m:matrixrow><m:cn>-1</m:cn><m:cn>2</m:cn><m:cn>-1</m:cn>
+	      <m:ci>│</m:ci>
+	      <m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn></m:matrixrow>
+	    <m:matrixrow><m:cn>0</m:cn><m:cn>-1</m:cn><m:cn>2</m:cn>
+	      <m:ci>│</m:ci>
+	      <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>1</m:cn></m:matrixrow>
+	  </m:matrix>
+	</m:math>
+	<!-- [  2 -1  0  |  1  0  0  
+	-1  2 -1  |  0  1  0
+	0 -1  2  |  0  0  1  ]  -->
+
+	We then eliminate down, being careful to address each of the three
+	<m:math display="inline"><m:ci type="vector">f</m:ci></m:math> vectors.
+	This produces
+
+	<m:math display="block">
+	  <m:matrix>
+	    <m:matrixrow><m:cn>2</m:cn><m:cn>-1</m:cn><m:cn>0</m:cn>
+	      <m:ci>│</m:ci>
+	      <m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn></m:matrixrow>
+	    <m:matrixrow>
+	      <m:cn>0</m:cn>
+	      <m:apply><m:divide/>
+		<m:cn>3</m:cn>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	      <m:cn>-1</m:cn>
+	      <m:ci>│</m:ci>
+	      <m:apply><m:divide/>
+		<m:cn>1</m:cn>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	      <m:cn>1</m:cn>
+	      <m:cn>0</m:cn></m:matrixrow>
+	    <m:matrixrow><m:cn>0</m:cn><m:cn>0</m:cn>
+	      <m:apply><m:divide/>
+		<m:cn>4</m:cn>
+		<m:cn>3</m:cn>
+	      </m:apply>
+	      <m:ci>│</m:ci>
+	      <m:apply><m:divide/>
+		<m:cn>1</m:cn>
+		<m:cn>3</m:cn>
+	      </m:apply>
+	      <m:apply><m:divide/>
+		<m:cn>2</m:cn>
+		<m:cn>3</m:cn>
+	      </m:apply>
+	      <m:cn>1</m:cn></m:matrixrow>
+	  </m:matrix>
+	</m:math>
+	<!-- [  2 -1  0  |  1  0  0  
+	0 3/2 -1 | 1/2 1  0
+	0  0 4/3 | 1/3 2/3 1  ]  -->
+
+	Now, rather than simple back--substitution we instead eliminate up. Eliminating 
+	first the (2,3) element we find
+
+	<m:math display="block">
+	  <m:matrix>
+	    <m:matrixrow><m:cn>2</m:cn><m:cn>-1</m:cn><m:cn>0</m:cn>
+	      <m:ci>│</m:ci>
+	      <m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn></m:matrixrow>
+	    <m:matrixrow>
+	      <m:cn>0</m:cn>
+	      <m:apply><m:divide/>
+		<m:cn>3</m:cn>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	      <m:ci>│</m:ci>
+	      <m:apply><m:divide/>
+		<m:cn>3</m:cn>
+		<m:cn>4</m:cn>
+	      </m:apply>
+	      <m:apply><m:divide/>
+		<m:cn>3</m:cn>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	      <m:apply><m:divide/>
+		<m:cn>3</m:cn>
+		<m:cn>4</m:cn>
+	      </m:apply></m:matrixrow>
+	    <m:matrixrow><m:cn>0</m:cn><m:cn>0</m:cn>
+	      <m:apply><m:divide/>
+		<m:cn>4</m:cn>
+		<m:cn>3</m:cn>
+	      </m:apply>
+	      <m:ci>│</m:ci>
+	      <m:apply><m:divide/>
+		<m:cn>1</m:cn>
+		<m:cn>3</m:cn>
+	      </m:apply>
+	      <m:apply><m:divide/>
+		<m:cn>2</m:cn>
+		<m:cn>3</m:cn>
+	      </m:apply>
+	      <m:cn>1</m:cn></m:matrixrow>
+	  </m:matrix>
+	</m:math>
+	<!-- [  2 -1  0  |  1   0   0  
+	0 3/2 0  | 3/4 3/2 3/4
+	0  0 4/3 | 1/3 2/3  1   ]  -->
+
+	Now, eliminating the (1,2) element we achieve
+
+	<m:math display="block">
+	  <m:matrix>
+	    <m:matrixrow><m:cn>2</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+	      <m:ci>│</m:ci>
+	      <m:apply><m:divide/>
+		<m:cn>3</m:cn>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	      <m:cn>1</m:cn>
+	      <m:apply><m:divide/>
+		<m:cn>1</m:cn>
+		<m:cn>2</m:cn>
+	      </m:apply></m:matrixrow>
+	    <m:matrixrow>
+	      <m:cn>0</m:cn>
+	      <m:apply><m:divide/>
+		<m:cn>3</m:cn>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	      <m:ci>│</m:ci>
+	      <m:apply><m:divide/>
+		<m:cn>3</m:cn>
+		<m:cn>4</m:cn>
+	      </m:apply>
+	      <m:apply><m:divide/>
+		<m:cn>3</m:cn>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	      <m:apply><m:divide/>
+		<m:cn>3</m:cn>
+		<m:cn>4</m:cn>
+	      </m:apply></m:matrixrow>
+	    <m:matrixrow><m:cn>0</m:cn><m:cn>0</m:cn>
+	      <m:apply><m:divide/>
+		<m:cn>4</m:cn>
+		<m:cn>3</m:cn>
+	      </m:apply>
+	      <m:ci>│</m:ci>
+	      <m:apply><m:divide/>
+		<m:cn>1</m:cn>
+		<m:cn>3</m:cn>
+	      </m:apply>
+	      <m:apply><m:divide/>
+		<m:cn>2</m:cn>
+		<m:cn>3</m:cn>
+	      </m:apply>
+	      <m:cn>1</m:cn></m:matrixrow>
+	  </m:matrix>
+	</m:math>
+	<!-- [  2  0  0  | 3/2  1  1/2  
+	0 3/2 0  | 3/4 3/2 3/4
+	0  0 4/3 | 1/3 2/3  1   ]  -->
+
+	In the final step we scale each row in order that the matrix on the left
+	takes on the form of the identity. This requires that we multiply row 1 by
+
+	<m:math display="inline">
+	  <m:apply><m:divide/>
+	    <m:cn>1</m:cn>
+	    <m:cn>2</m:cn>
+	  </m:apply>
+	</m:math>, 
+	<!-- 1/2 -->
+
+	row 2 by 
+	<m:math display="inline">
+	  <m:apply><m:divide/>
+	    <m:cn>3</m:cn>
+	    <m:cn>2</m:cn>
+	  </m:apply>
+	</m:math>, 
+	<!-- 3/2 -->
+
+	and row 3 by
+	<m:math display="inline">
+	  <m:apply><m:divide/>
+	    <m:cn>3</m:cn>
+	    <m:cn>4</m:cn>
+	  </m:apply>
+	</m:math>, 
+	<!-- 3/4 -->
+
+	with the result
+	<m:math display="block">
+	  <m:matrix>
+	    <m:matrixrow><m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+	      <m:ci>│</m:ci>
+	      <m:apply><m:divide/>
+		<m:cn>3</m:cn>
+		<m:cn>4</m:cn>
+	      </m:apply>
+	      <m:apply><m:divide/>
+		<m:cn>1</m:cn>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	      <m:apply><m:divide/>
+		<m:cn>1</m:cn>
+		<m:cn>4</m:cn>
+	      </m:apply></m:matrixrow>
+	    <m:matrixrow>
+	      <m:cn>0</m:cn>
+	      <m:cn>1</m:cn>
+	      <m:cn>0</m:cn>
+	      <m:ci>│</m:ci>
+	      <m:apply><m:divide/>
+		<m:cn>1</m:cn>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	      <m:cn>1</m:cn>
+	      <m:apply><m:divide/>
+		<m:cn>1</m:cn>
+		<m:cn>2</m:cn>
+	      </m:apply></m:matrixrow>
+	    <m:matrixrow><m:cn>0</m:cn><m:cn>0</m:cn>
+	      <m:cn>1</m:cn>
+	      <m:ci>│</m:ci>
+	      <m:apply><m:divide/>
+		<m:cn>1</m:cn>
+		<m:cn>4</m:cn>
+	      </m:apply>
+	      <m:apply><m:divide/>
+		<m:cn>1</m:cn>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	      <m:apply><m:divide/>
+		<m:cn>3</m:cn>
+		<m:cn>4</m:cn>
+	      </m:apply></m:matrixrow>
+	  </m:matrix>
+	</m:math>
+	<!-- [  1  0  0  | 3/4 1/2 1/4  
+	0  1  0  | 1/2  1  1/2
+	0  0  1  | 1/4 1/2 3/4   ]  -->
+      </para>
+
+      <para id="p8">
+	Now in this transformation of 
+	<m:math display="inline"><m:ci type="matrix">S</m:ci></m:math> into
+	<m:math display="inline"><m:ci type="matrix">I</m:ci></m:math> we have,
+	<foreign>ipso facto</foreign>, transformed
+	<m:math display="inline"><m:ci type="matrix">I</m:ci></m:math> to
+	
+	<m:math display="inline">
+	  <m:apply><m:inverse/>
+	    <m:ci type="matrix">S</m:ci>
+	  </m:apply>
+	</m:math>;
+
+	<foreign>i.e.</foreign>, the matrix that appears on the right
+	after applying the method of Gauss-Jordan is the inverse of
+	the matrix that began on the left.  In this case,
+
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:apply><m:inverse/>
+	      <m:ci type="matrix">S</m:ci>
+	    </m:apply>
+	    <m:matrix>
+	      <m:matrixrow>
+		<m:apply><m:divide/>
+		  <m:cn>3</m:cn>
+		  <m:cn>4</m:cn>
+		</m:apply>
+		<m:apply><m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:cn>2</m:cn>
+		</m:apply>
+		<m:apply><m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:cn>4</m:cn>
+		</m:apply></m:matrixrow>
+	      <m:matrixrow>
+		<m:apply><m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:cn>2</m:cn>
+		</m:apply>
+		<m:cn>1</m:cn>
+		<m:apply><m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:cn>2</m:cn>
+		</m:apply></m:matrixrow>
+	      <m:matrixrow>
+		<m:apply><m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:cn>4</m:cn>
+		</m:apply>
+		<m:apply><m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:cn>2</m:cn>
+		</m:apply>
+		<m:apply><m:divide/>
+		  <m:cn>3</m:cn>
+		  <m:cn>4</m:cn>
+		</m:apply></m:matrixrow>
+	    </m:matrix>
+	  </m:apply>
+	</m:math>
+	
+	One should check that 
+	<m:math display="inline">
+	  <m:apply><m:times/>
+	    <m:apply><m:inverse/>
+	      <m:ci type="matrix">S</m:ci>
+	    </m:apply>
+	    <m:ci type="vector">f</m:ci>
+	  </m:apply>
+	</m:math>
+
+	indeed coincides with the
+	<m:math display="inline"><m:ci type="vector">x</m:ci></m:math>
+	computed above.
+      </para>
+    </section>
+
+    <section id="invertible">
+      <title>Invertibility</title>
+      <para id="p9">
+	Not all matrices possess inverses:
+	<definition id="singular">
+	  <term>singular matrix</term>
+	  <meaning id="idp2986656">A matrix that <emphasis>does not</emphasis> have an inverse.</meaning>
+	  <example id="singular_example">
+	    <para id="example_p1">
+	      A simple example is:
+	      <m:math display="block">
+		<m:matrix>
+		  <m:matrixrow><m:cn>1</m:cn><m:cn>1</m:cn></m:matrixrow>
+		  <m:matrixrow><m:cn>1</m:cn><m:cn>1</m:cn></m:matrixrow>
+		</m:matrix>
+	      </m:math>
+	    </para>
+	  </example>
+	</definition>
+
+	Alternately, there are
+
+	<definition id="nonsingular">
+	  <term>Invertible, or Nonsingular Matrices</term>
+	  <meaning id="idp2993152">Matrices that <emphasis>do</emphasis> have an inverse.</meaning>
+	  <example id="nonsing_example">
+	    <para id="example_p2">
+	      The matrix <m:math display="inline"><m:ci type="matrix">S</m:ci></m:math>
+	      that we just studied is invertible.  Another simple example is 
+	      
+	      <m:math display="block">
+		<m:matrix>
+		  <m:matrixrow><m:cn>0</m:cn><m:cn>1</m:cn></m:matrixrow>
+		  <m:matrixrow><m:cn>1</m:cn><m:cn>1</m:cn></m:matrixrow>
+		</m:matrix>
+	      </m:math>
+	    </para>
+	  </example>
+	</definition>
+      </para>
+    </section>
+  </content>
+</document>

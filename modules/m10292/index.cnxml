@@ -1,0 +1,508 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml"> 
+  
+  <title>Left Null Space</title> 
+  
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>948e620d-7347-41fe-89f1-4b89260121c4</md:uuid>
+</metadata>
+
+  <content>
+  
+    <section id="leftnull">
+      <title>Left Null Space</title>
+    
+      <para id="p1">
+	If one understands the concept of a <link document="m10293" strength="2">null space</link>, the left null space is
+	extremely easy to understand.
+	
+	<definition id="defn1">
+	  <term>Left Null Space</term>
+	  <meaning id="idp2245344">
+	      The Left Null Space of a matrix is the <link document="m10293" strength="2">null space</link> of its
+	    transpose, <foreign>i.e.</foreign>,
+	  
+	    <m:math display="block">
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:ci type="fn">𝒩</m:ci>
+		  <m:apply>
+		    <m:transpose/>
+		    <m:ci type="matrix">A</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:set>
+		  <m:condition>
+		    <m:apply>
+		      <m:eq/>
+		      <m:apply>
+			<m:times/>
+			<m:apply>
+			  <m:transpose/>
+			  <m:ci type="matrix">A</m:ci>
+			</m:apply>
+			<m:ci type="vector">y</m:ci>
+		      </m:apply>
+		      <m:cn>0</m:cn>
+		    </m:apply>
+		  </m:condition>
+		  <m:bvar>
+		    <m:apply>
+		      <m:in/>
+		      <m:ci type="vector">y</m:ci>
+		      <m:ci>
+			<m:msup>
+			  <m:mi>ℝ</m:mi>
+			  <m:mi>m</m:mi>
+			</m:msup>
+		      </m:ci>
+		    </m:apply>
+		  </m:bvar>
+		</m:set>
+	      </m:apply>
+	    </m:math>
+	  </meaning>
+	</definition>
+
+	The word "left" in this context stems from the fact that
+	
+	<m:math>
+	  <m:reln>
+	    <m:eq/>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:transpose/>
+		<m:ci type="matrix">A</m:ci>
+	      </m:apply>
+	      <m:ci type="vector">y</m:ci>
+	    </m:apply>
+	    <m:cn>0</m:cn>
+	  </m:reln>
+	</m:math>
+	
+	is equivalent to
+
+	<m:math>
+	  <m:reln>
+	    <m:eq/>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:transpose/>
+		<m:ci type="vector">y</m:ci>
+	      </m:apply>
+	      <m:ci type="matrix">A</m:ci>
+	    </m:apply>
+	    <m:cn>0</m:cn>
+	  </m:reln>
+	</m:math>
+	
+	where <m:math><m:ci type="vector">y</m:ci></m:math> "acts" on
+	<m:math><m:ci type="matrix">A</m:ci></m:math> from the left.
+      </para>
+    </section>
+    
+
+    <section id="example">
+      <title>Example</title>
+
+      <para id="p2">
+	As 
+	<m:math>
+	  <m:ci type="matrix">
+	    <m:msub>
+	      <m:mi>A</m:mi>
+	      <m:mi>red</m:mi> 
+	    </m:msub></m:ci> 
+	</m:math>
+	was the key to identifying the 
+	<link document="m10293" strength="2">null space</link> of 
+	<m:math><m:ci type="matrix">A</m:ci></m:math>, we shall see that
+	
+	<m:math>
+	  <m:ci type="matrix">
+	    <m:msubsup>
+	      <m:mi>A</m:mi>
+	      <m:mi>red</m:mi>
+	      <m:mi>T</m:mi>
+	    </m:msubsup>
+	  </m:ci>
+	</m:math>
+	
+	is the key to the null space of
+
+	<m:math>
+	  <m:apply>
+	    <m:transpose/>
+	    <m:ci type="matrix">A</m:ci>
+	  </m:apply>
+	</m:math>.
+
+	If
+
+	<equation id="eq2">
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci type="matrix">A</m:ci>
+	      <m:matrix>
+		<m:matrixrow><m:cn>1</m:cn><m:cn>1</m:cn></m:matrixrow>
+		<m:matrixrow><m:cn>1</m:cn><m:cn>2</m:cn></m:matrixrow>
+		<m:matrixrow><m:cn>1</m:cn><m:cn>3</m:cn></m:matrixrow>
+	      </m:matrix>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	then
+	
+	<equation id="eq33">
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:transpose/>
+		<m:ci type="matrix">A</m:ci>
+	      </m:apply> 
+	      <m:matrix>
+		<m:matrixrow><m:cn>1</m:cn><m:cn>1</m:cn><m:cn>1</m:cn></m:matrixrow>
+		<m:matrixrow><m:cn>1</m:cn><m:cn>2</m:cn><m:cn>3</m:cn></m:matrixrow>
+	      </m:matrix>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	and so
+	
+	<equation id="eq34">
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>
+		<m:msubsup>
+		  <m:mi>A</m:mi>
+		  <m:mi>red</m:mi>
+		  <m:mi>T</m:mi>
+		</m:msubsup>
+	      </m:ci>
+	      <m:matrix>
+		<m:matrixrow><m:cn>1</m:cn><m:cn>1</m:cn><m:cn>1</m:cn></m:matrixrow>
+		<m:matrixrow><m:cn>0</m:cn><m:cn>1</m:cn><m:cn>2</m:cn></m:matrixrow>
+	      </m:matrix>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	We solve
+	
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>
+	      <m:msubsup>
+		<m:mi>A</m:mi>
+		<m:mi>red</m:mi>
+		<m:mi>T</m:mi>
+	      </m:msubsup>
+	    </m:ci>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>
+	
+	by recognizing that 
+	
+	<m:math>
+	  <m:ci>
+	    <m:msub>
+	      <m:mi>y</m:mi>
+	      <m:mn>1</m:mn>
+	    </m:msub>
+	  </m:ci>
+	</m:math> 
+	
+	and
+	
+	<m:math>
+	  <m:ci><m:msub>
+	      <m:mi>y</m:mi>
+	      <m:mn>2</m:mn>
+	    </m:msub>
+	  </m:ci>
+	</m:math> 
+
+	are pivot variables while 
+	
+	<m:math>
+	  <m:ci>
+	    <m:msub>
+	      <m:mi>y</m:mi>
+	      <m:mn>3</m:mn>
+	    </m:msub>
+	  </m:ci>
+	</m:math> 
+
+	is free.  Solving 
+
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>
+		<m:msubsup>
+		  <m:mi>A</m:mi>
+		  <m:mi>red</m:mi>
+		  <m:mi>T</m:mi>
+		</m:msubsup>
+	      </m:ci>
+	      <m:ci type="vector">y</m:ci>
+	    </m:apply>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>
+	
+	for the pivot in terms of the free we find
+
+	<m:math>
+          <m:apply>
+	    <m:eq/>
+            <m:ci>
+	      <m:msub>
+		<m:mi>y</m:mi>
+		<m:mn>2</m:mn>
+	      </m:msub>
+	    </m:ci>
+            <m:apply>
+	      <m:minus/>
+	      <m:apply>
+		<m:times/>
+		<m:cn>2</m:cn>
+		<m:ci>
+		  <m:msub>
+		    <m:mi>y</m:mi>
+		    <m:mn>3</m:mn>
+		  </m:msub>
+		</m:ci>
+	      </m:apply>
+	    </m:apply>
+          </m:apply>
+        </m:math>
+
+	and
+
+	<m:math>
+          <m:apply>
+	    <m:eq/>
+            <m:ci>
+	      <m:msub>
+		<m:mi>y</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci>
+            <m:ci>
+	      <m:msub>
+		<m:mi>y</m:mi>
+		<m:mn>3</m:mn>
+	      </m:msub>
+	    </m:ci>
+	  </m:apply>
+        </m:math>
+
+	hence
+
+	<equation id="eq73">
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci type="fn">𝒩</m:ci>
+		<m:apply>
+		  <m:transpose/>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:set>
+		<m:condition>
+		  <m:apply>
+		    <m:in/>
+		    <m:ci><m:msub><m:mi>y</m:mi><m:mn>3</m:mn></m:msub></m:ci>
+		    <m:reals/>
+		  </m:apply>
+		</m:condition>
+		<m:bvar>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci><m:msub><m:mi>y</m:mi><m:mn>3</m:mn></m:msub></m:ci>
+		    <m:matrix>
+		      <m:matrixrow><m:cn>1</m:cn></m:matrixrow>
+		      <m:matrixrow><m:cn>-2</m:cn></m:matrixrow>
+		      <m:matrixrow><m:cn>1</m:cn></m:matrixrow>
+		    </m:matrix>
+		  </m:apply>
+		</m:bvar>
+	      </m:set>
+	    </m:apply>
+	  </m:math>
+	</equation>
+      </para>
+    </section>
+    
+    
+    <section id="method">
+      <title>Finding a Basis for the Left Null Space</title>
+    
+      <para id="p5">
+	The procedure is no different than that used to compute the
+	<link document="m10293" strength="2">null space</link>
+	of
+	<m:math><m:ci type="matrix">A</m:ci></m:math>
+	itself. In fact
+
+	<definition id="insdefn1">
+	  <term>A Basis for the Left Null Space</term>
+	  
+	  <meaning id="idp1206608">Suppose that
+	    <m:math>
+	      <m:apply>
+		<m:transpose/>
+		<m:ci type="matrix">A</m:ci>
+	      </m:apply>
+	    </m:math> is n-by-m with pivot indices
+	    
+	    <m:math>
+	      <m:set>
+		<m:condition>
+		  <m:apply>
+		    <m:eq/>
+		    <m:ci>j</m:ci>
+		    <m:set>
+		      <m:cn>1</m:cn>
+		      <m:ci>…</m:ci>
+		      <m:ci>r</m:ci>
+		    </m:set>
+		  </m:apply>
+		</m:condition>
+		<m:bvar>
+		  <m:ci>
+		    <m:msub>
+		      <m:mi>c</m:mi>
+		      <m:mi>j</m:mi>
+		    </m:msub>
+		  </m:ci>
+		</m:bvar>
+	      </m:set>
+	    </m:math>
+	    
+	    and free indices
+	    
+	    <m:math>
+	      <m:set>
+		<m:condition>
+		  <m:apply>
+		    <m:eq/>
+		    <m:ci>j</m:ci>
+		    <m:set>
+		      <m:apply>
+			<m:plus/>
+			<m:ci>r</m:ci>
+			<m:cn>1</m:cn>
+		      </m:apply>
+		      <m:ci>…</m:ci>
+		      <m:ci>m</m:ci>
+		    </m:set>
+		  </m:apply>
+		</m:condition>
+		<m:bvar>
+		  <m:ci>
+		    <m:msub>
+		      <m:mi>c</m:mi>
+		      <m:mi>j</m:mi>
+		    </m:msub>
+		  </m:ci>
+		</m:bvar>
+	      </m:set>
+	    </m:math>.
+	   
+	    A basis for
+	    
+	    <m:math> 
+	      <m:apply>
+		<m:ci type="fn">𝒩</m:ci>
+		<m:apply>
+		  <m:transpose/>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:math> 
+	    may be constructed of
+	    <m:math>
+	      <m:apply>
+		<m:minus/>
+		<m:ci>m</m:ci>
+		<m:ci>r</m:ci>
+	      </m:apply>
+	    </m:math> vectors
+	    <m:math>
+	      <m:set>
+		<m:ci>
+		  <m:msup>
+		    <m:mi>z</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msup>
+		</m:ci>
+		<m:ci>
+		  <m:msup>
+		    <m:mi>z</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msup>
+		</m:ci>
+		<m:ci>…</m:ci>
+		<m:ci>
+		  <m:msup>
+		    <m:mi>z</m:mi>
+		    <m:mrow>
+		      <m:mi>m</m:mi>
+		      <m:mo>-</m:mo>
+		      <m:mi>r</m:mi>
+		    </m:mrow>
+		  </m:msup>
+		</m:ci>
+	      </m:set>
+	    </m:math>
+	    where
+	    <m:math>
+	      <m:ci>
+		<m:msup>
+		  <m:mi>z</m:mi>
+		  <m:mi>k</m:mi>
+		</m:msup>
+	      </m:ci>
+	    </m:math>,
+	    and only
+	    <m:math>
+	      <m:ci>
+		<m:msup>
+		  <m:mi>z</m:mi>
+		  <m:mi>k</m:mi>
+		</m:msup>
+	      </m:ci>
+	    </m:math>,
+	    possesses a nonzero in its
+	    <m:math>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>c</m:mi>
+		  <m:mrow>
+		    <m:mi>r</m:mi>
+		    <m:mo>+</m:mo>
+		    <m:mi>k</m:mi>
+		  </m:mrow>
+		</m:msub>
+	      </m:ci>
+	    </m:math>
+	    component.
+	  </meaning>
+        </definition>
+      </para>
+    </section>
+  </content>
+</document>

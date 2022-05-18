@@ -1,0 +1,584 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  
+  <title>The Spectral Representation</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>02673d1c-7c03-4405-a5d1-11fce2bf3b6e</md:uuid>
+</metadata>
+
+  <content>
+    <para id="para1">
+      
+      With just a little bit more work we shall arrive at a similar
+      expansion for <m:math><m:ci>B</m:ci></m:math> itself.  We begin
+      by applying the <link document="m10490" target-id="eq9" strength="3">second resolvent identity</link> to
+      <m:math><m:ci><m:msub> <m:mi>P</m:mi><m:mi>j</m:mi>
+      </m:msub></m:ci> </m:math>. More precisely, we note that <link document="m10490" target-id="eq9" strength="3">the second resolvent
+      identity</link> implies that
+      <equation id="eq9.16">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>B</m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>P</m:mi><m:mi>j</m:mi>
+		</m:msub></m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci><m:msub>
+		  <m:mi>P</m:mi><m:mi>j</m:mi>
+		</m:msub></m:ci>
+	      <m:ci>B</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:int/>
+	      <m:bvar>
+		<m:ci>z</m:ci>
+	      </m:bvar>
+	      <m:lowlimit>
+		<m:ci><m:msub>
+		    <m:mi>C</m:mi>
+		    <m:mi>j</m:mi>
+		  </m:msub></m:ci>
+	      </m:lowlimit>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>z</m:ci>
+		  <m:apply>
+		    <m:ci type="fn">R</m:ci>
+		    <m:ci>z</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:ci>I</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci><m:msub>
+		<m:mi>P</m:mi><m:mi>j</m:mi>
+	      </m:msub></m:ci>
+	    <m:ci>B</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:int/>
+	    <m:bvar>
+	      <m:ci>z</m:ci>
+	    </m:bvar>
+	    <m:lowlimit>
+	      <m:ci><m:msub>
+		  <m:mi>C</m:mi>
+		  <m:mi>j</m:mi>
+		</m:msub></m:ci>
+	    </m:lowlimit>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>z</m:ci>
+	      <m:apply>
+		<m:ci type="fn">R</m:ci>
+		<m:ci>z</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci><m:msub>
+		<m:mi>P</m:mi><m:mi>j</m:mi>
+	      </m:msub></m:ci>
+	    <m:ci>B</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:plus/>
+	    <m:apply>
+	      <m:int/>
+	      <m:bvar>
+		<m:ci>z</m:ci>
+	      </m:bvar>
+	      <m:lowlimit>
+		<m:ci><m:msub>
+		    <m:mi>C</m:mi>
+		    <m:mi>j</m:mi>
+		  </m:msub></m:ci>
+	      </m:lowlimit>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:ci type="fn">R</m:ci>
+		  <m:ci>z</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>z</m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>λ</m:mi>
+		      <m:mi>j</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci><m:msub>
+		  <m:mi>λ</m:mi><m:mi>j</m:mi>
+		</m:msub></m:ci>
+	      <m:apply>
+		<m:int/>
+		<m:bvar>
+		  <m:ci>z</m:ci>
+		</m:bvar>
+		<m:lowlimit>
+		  <m:ci><m:msub>
+		      <m:mi>C</m:mi>
+		      <m:mi>j</m:mi>
+		    </m:msub></m:ci>
+		</m:lowlimit>
+	        <m:apply>
+		  <m:ci type="fn">R</m:ci>
+		  <m:ci>z</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci><m:msub>
+		<m:mi>P</m:mi><m:mi>j</m:mi>
+	      </m:msub></m:ci>
+	    <m:ci>B</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:plus/>
+	    <m:ci><m:msub>
+		<m:mi>D</m:mi><m:mi>j</m:mi>
+	      </m:msub></m:ci>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci><m:msub>
+		  <m:mi>λ</m:mi><m:mi>j</m:mi>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>P</m:mi><m:mi>j</m:mi>
+		</m:msub></m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math> 
+
+      Summing this over <m:math><m:ci>j</m:ci></m:math> we find 
+      <equation id="eq9.17">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>B</m:ci>
+	      <m:apply>
+		<m:sum/>
+		<m:bvar>
+		  <m:ci>j</m:ci>
+		</m:bvar>
+		<m:lowlimit>
+		  <m:cn>1</m:cn>
+		</m:lowlimit>
+		<m:uplimit>
+		  <m:ci>h</m:ci>
+		</m:uplimit>
+		<m:ci><m:msub>
+		    <m:mi>P</m:mi><m:mi>j</m:mi>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply>
+		<m:sum/>
+		<m:bvar>
+		  <m:ci>j</m:ci>
+		</m:bvar>
+		<m:lowlimit>
+		  <m:cn>1</m:cn>
+		</m:lowlimit>
+		<m:uplimit>
+		  <m:ci>h</m:ci>
+		</m:uplimit>
+		<m:apply>
+		  <m:times/>
+		  <m:ci><m:msub>
+		      <m:mi>λ</m:mi><m:mi>j</m:mi>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>P</m:mi><m:mi>j</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:sum/>
+		<m:bvar>
+		  <m:ci>j</m:ci>
+		</m:bvar>
+		<m:lowlimit>
+		  <m:cn>1</m:cn>
+		</m:lowlimit>
+		<m:uplimit>
+		  <m:ci>h</m:ci>
+		</m:uplimit>
+		<m:ci><m:msub>
+		    <m:mi>D</m:mi><m:mi>j</m:mi>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+      We can go one step further, namely the evaluation of the first
+      sum.  This stems from <link document="m10490" target-id="eq7" strength="3">the eqn in the discussion of the transfer
+	function</link> where we integrated
+      <m:math>
+	<m:apply>
+	  <m:ci type="fn">R</m:ci><m:ci>s</m:ci>
+	</m:apply>
+      </m:math> over a circle
+      <m:math>
+	<m:ci><m:msub>
+	    <m:mi>C</m:mi><m:mi>ρ</m:mi>
+	  </m:msub></m:ci>
+      </m:math> where <m:math>
+	<m:apply>
+	  <m:gt/>
+	  <m:ci>ρ</m:ci>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#norm">norm</m:csymbol>
+	    <m:ci>B</m:ci>
+	  </m:apply>
+	</m:apply></m:math>. The connection to the
+      <m:math>
+	<m:ci><m:msub>
+	    <m:mi>P</m:mi><m:mi>j</m:mi>
+	  </m:msub></m:ci>
+      </m:math> is made by the residue theorem. More precisely,
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:int/>
+	    <m:bvar>
+	      <m:ci>z</m:ci>
+	    </m:bvar>
+	    <m:lowlimit>
+	      <m:ci><m:msub>
+		  <m:mi>C</m:mi><m:mi>ρ</m:mi>
+		</m:msub></m:ci>
+	    </m:lowlimit>
+	    <m:apply>
+	      <m:ci type="fn">R</m:ci>
+	      <m:ci>z</m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:cn>2</m:cn>
+	    <m:pi/>
+	    <m:imaginaryi/>
+	    <m:apply>
+	      <m:sum/>
+	      <m:bvar>
+		<m:ci>j</m:ci>
+	      </m:bvar>
+	      <m:lowlimit>
+		<m:cn>1</m:cn>
+	      </m:lowlimit>
+	      <m:uplimit>
+		<m:ci>h</m:ci>
+	      </m:uplimit>
+	      <m:ci><m:msub>
+		  <m:mi>P</m:mi><m:mi>j</m:mi>
+		</m:msub></m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+
+      Comparing this to <link document="m10490" target-id="eq7" strength="3">the eqn</link> from the discussion of the transfer
+      function we find
+      <equation id="eq9.18">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:sum/>
+	      <m:bvar>
+		<m:ci>j</m:ci>
+	      </m:bvar>
+	      <m:lowlimit>
+		<m:cn>1</m:cn>
+	      </m:lowlimit>
+	      <m:uplimit>
+		<m:ci>h</m:ci>
+	      </m:uplimit>
+	      <m:ci><m:msub>
+		  <m:mi>P</m:mi><m:mi>j</m:mi>
+		</m:msub></m:ci>
+	    </m:apply>
+	    <m:ci>I</m:ci>
+	  </m:apply>
+	</m:math>
+      </equation> 
+      and so <link target-id="eq9.17" strength="3"/> takes the form 
+      <equation id="eq9.19">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>B</m:ci>
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply>
+		<m:sum/>
+		<m:bvar>
+		  <m:ci>j</m:ci>
+		</m:bvar>
+		<m:lowlimit>
+		  <m:cn>1</m:cn>
+		</m:lowlimit>
+		<m:uplimit>
+		  <m:ci>h</m:ci>
+		</m:uplimit>
+		<m:apply>
+		  <m:times/>
+		  <m:ci><m:msub>
+		      <m:mi>λ</m:mi><m:mi>j</m:mi>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>P</m:mi><m:mi>j</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:sum/>
+		<m:bvar>
+		  <m:ci>j</m:ci>
+		</m:bvar>
+		<m:lowlimit>
+		  <m:cn>1</m:cn>
+		</m:lowlimit>
+		<m:uplimit>
+		  <m:ci>h</m:ci>
+		</m:uplimit>
+		<m:ci><m:msub>
+		    <m:mi>D</m:mi><m:mi>j</m:mi>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+
+      It is this formula that we refer to as the <term>Spectral
+	Representation</term> of <m:math><m:ci>B</m:ci></m:math>. To the
+      numerous connections between the
+      <m:math>
+	<m:ci><m:msub>
+	    <m:mi>P</m:mi><m:mi>j</m:mi>
+	  </m:msub></m:ci></m:math> and
+      <m:math>
+	<m:ci><m:msub>
+	    <m:mi>D</m:mi><m:mi>j</m:mi>
+	  </m:msub></m:ci>
+      </m:math> we wish to add one more. We first write <link target-id="eq9.16" strength="3"/> as
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:minus/>
+	      <m:ci>B</m:ci>
+	      <m:apply>
+		<m:times/>
+		<m:ci><m:msub>
+		    <m:mi>λ</m:mi><m:mi>j</m:mi>
+		  </m:msub></m:ci>
+		<m:ci>I</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:ci><m:msub>
+		<m:mi>P</m:mi><m:mi>j</m:mi>
+	      </m:msub></m:ci>
+	  </m:apply>
+	  <m:ci><m:msub>
+	      <m:mi>D</m:mi><m:mi>j</m:mi>
+	    </m:msub></m:ci>
+	</m:apply>
+      </m:math>
+      and then raise each side to the <m:math>
+	<m:ci><m:msub>
+	    <m:mi>m</m:mi><m:mi>j</m:mi>
+	  </m:msub></m:ci>
+      </m:math> power. As
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:ci><m:msubsup>
+	      <m:mi>P</m:mi>
+	      <m:mi>j</m:mi>
+	      <m:mrow>
+		<m:msub>
+		  <m:mi>m</m:mi>
+		  <m:mi>j</m:mi>
+		</m:msub>
+	      </m:mrow>
+	    </m:msubsup></m:ci>
+	  <m:ci><m:msub>
+	      <m:mi>P</m:mi><m:mi>j</m:mi>
+	    </m:msub></m:ci>
+	</m:apply>
+      </m:math> and
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:ci><m:msubsup>
+	      <m:mi>D</m:mi>
+	      <m:mi>j</m:mi>
+	      <m:mrow>
+		<m:msub>
+		  <m:mi>m</m:mi>
+		  <m:mi>j</m:mi>
+		</m:msub>
+	      </m:mrow>
+	    </m:msubsup></m:ci>
+	  <m:cn>0</m:cn>
+	</m:apply>
+      </m:math> we find 
+      <equation id="eq9.20">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:power/>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>B</m:ci>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci><m:msub>
+			<m:mi>λ</m:mi><m:mi>j</m:mi>
+		      </m:msub></m:ci>
+		    <m:ci>I</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:ci><m:msub>
+		    <m:mi>m</m:mi>
+		    <m:mi>j</m:mi>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:ci><m:msub>
+		  <m:mi>P</m:mi><m:mi>j</m:mi>
+		</m:msub></m:ci>
+	    </m:apply>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>
+      </equation> For this reason we call the range of
+      <m:math>
+	<m:ci><m:msub> <m:mi>P</m:mi><m:mi>j</m:mi>
+	  </m:msub></m:ci></m:math> the
+      <m:math><m:ci>j</m:ci></m:math>th <term>generalized
+	eigenspace</term>, call each of its nonzero members a
+      <m:math><m:ci>j</m:ci></m:math>th  <term>generalized
+	eigenvector</term> and refer to the dimension of
+      <m:math>
+	<m:apply>
+	  <m:ci type="fn">ℛ</m:ci>
+	  <m:ci><m:msub>
+	      <m:mi>P</m:mi><m:mi>j</m:mi>
+	    </m:msub></m:ci>
+	</m:apply>
+      </m:math> as the <term>algebraic multiplicity</term> of
+      <m:math>
+	<m:ci><m:msub> <m:mi>λ</m:mi><m:mi>j</m:mi>
+	  </m:msub></m:ci> </m:math>.  With regard to <link document="m10405" target-id="p1.1" strength="3">the first
+	example</link> from the discussion of the eigenvalue
+      problem, we note that although it has only two linearly
+      independent eigenvectors the span of the associated
+      generalized eigenspaces indeed fills out
+      <m:math>
+	<m:apply>
+	  <m:power/>
+	  <m:reals/>
+	  <m:cn>3</m:cn>
+	</m:apply>
+      </m:math>.  One may view this as a consequence of
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:plus/>
+	    <m:ci><m:msub>
+		<m:mi>P</m:mi><m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	    <m:ci><m:msub>
+		<m:mi>P</m:mi><m:mn>2</m:mn>
+	      </m:msub></m:ci>
+	  </m:apply>
+	  <m:ci>I</m:ci>
+	</m:apply>
+      </m:math>, or, perhaps more concretely, as appending the generalized
+      first eigenvector <m:math>
+	<m:apply>
+	  <m:transpose/>
+	  <m:matrix>
+	    <m:matrixrow>
+	      <m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn>
+	    </m:matrixrow>
+	  </m:matrix>
+	</m:apply>
+      </m:math> to the original two eigenvectors 
+      <m:math>
+	<m:apply>
+	  <m:transpose/>
+	  <m:matrix>
+	    <m:matrixrow>
+	      <m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+	    </m:matrixrow>
+	  </m:matrix>
+	</m:apply>
+      </m:math> and 
+      <m:math>
+	<m:apply>
+	  <m:transpose/>
+	  <m:matrix>
+	    <m:matrixrow>
+	      <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>1</m:cn>
+	    </m:matrixrow>
+	  </m:matrix>
+	</m:apply>
+      </m:math>.  In still other words, the algebraic multiplicities
+      sum to the ambient dimension (here 3), while the sum of
+      geometric multiplicities falls short (here 2).
+
+    </para>   
+  </content>
+  
+</document>

@@ -1,0 +1,546 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml"> 
+  
+  <title>Column Space</title> 
+  
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>c7862ad1-8ec6-4c0c-a3d7-ad33db38bec3</md:uuid>
+</metadata>
+
+  <content>
+    <section id="col">
+      <title>The Column Space</title>
+      <para id="p1">
+	We begin with the simple geometric interpretation of
+	matrix-vector multiplication.  Namely, the multiplication of
+	the n-by-1 vector <m:math><m:ci>x</m:ci></m:math> by the
+	m-by-n matrix
+	<m:math>
+	  <m:ci>A</m:ci>
+	</m:math> produces a linear combination of the columns of 
+	<m:math>
+	  <m:ci>A</m:ci>
+	</m:math>. More precisely, if
+	<m:math>
+	  <m:ci>
+	    <m:msub>
+	      <m:mi>a</m:mi>
+	      <m:mi>j</m:mi>
+	    </m:msub>
+	  </m:ci>
+	</m:math>
+	denotes the 
+	<m:math>
+	  <m:ci>j</m:ci>
+	</m:math>th column of 
+	<m:math>
+	  <m:ci>A</m:ci>
+	</m:math>, then
+	
+	<equation id="eq1">
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply>
+	        <m:times/>
+	        <m:ci>A</m:ci>
+	        <m:ci>x</m:ci>
+	      </m:apply>
+	      <m:apply>
+	        <m:times/>
+	        <m:matrix>
+		  <m:matrixrow>
+		    <m:ci><m:msub><m:mi>a</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		    <m:ci><m:msub><m:mi>a</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+		    <m:ci>…</m:ci>
+		    <m:ci><m:msub><m:mi>a</m:mi><m:mi>n</m:mi></m:msub></m:ci>
+		  </m:matrixrow>
+	        </m:matrix>
+	        <m:matrix>
+		  <m:matrixrow>
+		    <m:ci><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		  </m:matrixrow>
+		  <m:matrixrow>
+		    <m:ci><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+		  </m:matrixrow>
+		  <m:matrixrow>
+		    <m:ci>…</m:ci>
+		  </m:matrixrow>
+		  <m:matrixrow>
+		    <m:ci><m:msub><m:mi>x</m:mi><m:mi>n</m:mi></m:msub></m:ci>
+		  </m:matrixrow>
+	        </m:matrix>
+	      </m:apply>
+	      <m:apply>
+	        <m:plus/>
+	        <m:apply>
+		  <m:times/>
+		  <m:ci><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		  <m:ci><m:msub><m:mi>a</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+	        </m:apply>
+	        <m:apply>
+	 	  <m:times/>
+		  <m:ci><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+		  <m:ci><m:msub><m:mi>a</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+	        </m:apply>
+	        <m:ci>…</m:ci>
+	        <m:apply>
+		  <m:times/>
+		  <m:ci><m:msub><m:mi>x</m:mi><m:mi>n</m:mi></m:msub></m:ci>
+		  <m:ci><m:msub><m:mi>a</m:mi><m:mi>n</m:mi></m:msub></m:ci>
+	        </m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	The picture that I wish to place in your mind's eye is that
+	<m:math>
+	  <m:apply><m:times/>
+	    <m:ci>A</m:ci>
+	    <m:ci>x</m:ci>
+	  </m:apply>
+	</m:math> lies in the
+	subspace 
+	<link document="m10297" target-id="defn2" strength="2">spanned</link>
+	by the columns of
+	<m:math>
+	  <m:ci>A</m:ci>
+	</m:math>. This subspace occurs so frequently that
+	we find it useful to distinguish it with a definition.
+      </para>
+      
+      <para id="pins2">
+	<definition id="defnins1">
+	  <term>Column Space</term>
+	  <meaning id="idp5778304">The column space of the m-by-n matrix S is
+	    simply the span of the its columns, <foreign>i.e.</foreign>
+	    
+	    <m:math>
+	      <m:apply>
+		<m:equivalent/>
+		<m:apply>
+		  <m:ci type="fn">Ra</m:ci>
+		  <m:ci>S</m:ci>
+		  
+		</m:apply>
+		<m:apply>
+		  <m:set>
+		    <m:bvar>
+		      <m:apply>
+			<m:times/>
+			<m:ci>S</m:ci>
+			<m:ci>x</m:ci>
+		      </m:apply>
+		    </m:bvar>
+		    <m:condition>
+		      <m:apply>
+			<m:in/>
+			<m:ci>x</m:ci>
+			<m:ci>
+			  <m:msup>  
+			    <m:mi>R</m:mi>
+			    <m:mi>n</m:mi>
+			  </m:msup>
+			</m:ci>
+		      </m:apply>
+		    </m:condition>
+		  </m:set>
+		</m:apply>
+	      </m:apply>
+	    </m:math>. 
+
+	    This is a <link document="m10297" strength="2">subspace</link>
+	    of
+	    <m:math>
+	      <m:ci>
+		<m:msup>
+		  <m:mi>ℜ</m:mi>
+		  <m:mi>m</m:mi>
+		</m:msup>
+	      </m:ci> 
+	    </m:math>.
+	    The notation 
+	    <m:math>
+	      <m:ci>Ra</m:ci>
+	    </m:math> stands for range in this context.
+	  </meaning>
+	</definition>
+      </para>
+    </section>
+    
+    <section id="ex">
+      <title>Example</title>
+      <para id="p3">
+	Let us examine the matrix:
+	
+	<equation id="eq3">
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:ci>A</m:ci>
+	      <m:matrix>
+		<m:matrixrow>
+		  <m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <m:cn>-1</m:cn><m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>1</m:cn>
+		</m:matrixrow>
+	      </m:matrix>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	The column space of this matrix is:
+	
+	<equation id="eq4">
+	  <m:math display="block">
+	    <m:apply><m:eq/>	
+	      <m:apply>
+		<m:ci type="fn">Ra</m:ci>
+		<m:ci>A</m:ci>
+
+	      </m:apply>
+	      <m:set>
+		<m:condition>
+		  <m:apply>
+		    <m:in/>
+		    <m:ci>x</m:ci>
+		    <m:ci>
+		      <m:msup>
+			<m:mi>ℝ</m:mi>
+			<m:mn>4</m:mn>
+		      </m:msup>
+		    </m:ci>
+		  </m:apply>
+		</m:condition>
+		<m:bvar><m:apply><m:plus/>
+		    <m:apply><m:times/>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>x</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub>
+		      </m:ci>
+		      <m:matrix>
+			<m:matrixrow><m:cn>0</m:cn></m:matrixrow>
+			<m:matrixrow><m:cn>-1</m:cn></m:matrixrow>
+			<m:matrixrow><m:cn>0</m:cn></m:matrixrow>
+		      </m:matrix>
+		    </m:apply>
+		    <m:apply><m:times/>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>x</m:mi>
+			  <m:mn>2</m:mn>
+			</m:msub>
+		      </m:ci>
+		      <m:matrix>
+			<m:matrixrow><m:cn>1</m:cn></m:matrixrow>
+			<m:matrixrow><m:cn>0</m:cn></m:matrixrow>
+			<m:matrixrow><m:cn>0</m:cn></m:matrixrow>
+		      </m:matrix>
+		    </m:apply>
+		    <m:apply><m:times/>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>x</m:mi>
+			  <m:mn>3</m:mn>
+			</m:msub>
+		      </m:ci>
+		      <m:matrix>
+			<m:matrixrow><m:cn>0</m:cn></m:matrixrow>
+			<m:matrixrow><m:cn>1</m:cn></m:matrixrow>
+			<m:matrixrow><m:cn>0</m:cn></m:matrixrow>
+		      </m:matrix>
+		    </m:apply>
+		    <m:apply><m:times/>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>x</m:mi>
+			  <m:mn>4</m:mn>
+			</m:msub>
+		      </m:ci>
+		      <m:matrix>
+			<m:matrixrow><m:cn>0</m:cn></m:matrixrow>
+			<m:matrixrow><m:cn>0</m:cn></m:matrixrow>
+			<m:matrixrow><m:cn>1</m:cn></m:matrixrow>
+		      </m:matrix>
+		    </m:apply>
+		  </m:apply></m:bvar>
+	      </m:set>	    
+	    </m:apply>	
+	  </m:math>
+	</equation>
+      </para>
+      
+      <para id="p4">
+	As the third column is simply a multiple of the first,
+	we may write:
+
+	<equation id="eq5">
+	  <m:math display="block">
+	    <m:apply><m:eq/>	 
+	      <m:apply>
+		<m:ci type="fn">Ra</m:ci>
+		<m:ci>A</m:ci>
+	      </m:apply>
+	      <m:set>
+		<m:condition>
+		  <m:apply><m:in/>
+		    <m:ci>x</m:ci>
+		    <m:ci>
+		      <m:msup>
+			<m:mi>ℝ</m:mi>
+			<m:mn>3</m:mn>
+		      </m:msup>
+		    </m:ci>
+		  </m:apply>
+		</m:condition>
+		<m:bvar><m:apply><m:plus/>
+		    <m:apply><m:times/>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>x</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub>
+		      </m:ci>
+		      <m:matrix>
+			<m:matrixrow><m:cn>0</m:cn></m:matrixrow>
+			<m:matrixrow><m:cn>1</m:cn></m:matrixrow>
+			<m:matrixrow><m:cn>0</m:cn></m:matrixrow>
+		      </m:matrix>
+		    </m:apply>
+		    <m:apply><m:times/>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>x</m:mi>
+			  <m:mn>2</m:mn>
+			</m:msub>
+		      </m:ci>
+		      <m:matrix>
+			<m:matrixrow><m:cn>1</m:cn></m:matrixrow>
+			<m:matrixrow><m:cn>0</m:cn></m:matrixrow>
+			<m:matrixrow><m:cn>0</m:cn></m:matrixrow>
+		      </m:matrix>
+		    </m:apply>
+		    <m:apply><m:times/>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>x</m:mi>
+			  <m:mn>3</m:mn>
+			</m:msub>
+		      </m:ci>
+		      <m:matrix>
+			<m:matrixrow><m:cn>0</m:cn></m:matrixrow>
+			<m:matrixrow><m:cn>0</m:cn></m:matrixrow>
+			<m:matrixrow><m:cn>1</m:cn></m:matrixrow>
+		      </m:matrix>
+		    </m:apply>
+		  </m:apply>
+		</m:bvar>
+	      </m:set>	    
+	    </m:apply>	
+	  </m:math>
+	</equation>      
+      </para>
+      
+      <para id="p5">
+	As the three remaining columns are <link document="m10297" target-id="defn3" strength="2">linearly independent</link> we may
+	go no further. In this case,
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">Ra</m:ci>
+	    <m:ci>A</m:ci>
+	  </m:apply>
+	</m:math> comprises all of
+	<m:math>
+	  <m:ci><m:msup>
+	      <m:mi>ℝ</m:mi>
+	      <m:mn>3</m:mn>
+	    </m:msup></m:ci>
+	</m:math>.
+      </para>
+    </section>
+    
+    <section id="process">
+      <title>Method for Finding a Basis</title>
+      
+      <para id="p6">
+	To determine the <link document="subspace" target-id="basis" strength="2"> basis</link> for
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">Ra</m:ci>
+	    <m:ci>A</m:ci>
+
+	  </m:apply>
+	</m:math>
+	(where 
+	<m:math>
+	  <m:ci>A</m:ci> </m:math> is an arbitrary matrix) we must
+	find a way to discard its dependent columns. In the example
+	above, it was easy to see that columns 1 and 3 were
+	colinear. We seek, of course, a more systematic means of
+	uncovering these, and perhaps other less obvious,
+	dependencies. Such dependencies are more easily discerned from
+	the <link document="reduced" strength="2">row reduced
+	form</link>. In the reduction of the above problem, we come
+	very easily to the matrix
+
+	<equation id="eq6">
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:ci><m:msub>
+		  <m:mi>A</m:mi>
+		  <m:mi>red</m:mi>
+		</m:msub></m:ci>
+	      <m:matrix>
+		<m:matrixrow>
+		  <m:cn>-1</m:cn><m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>1</m:cn>
+		</m:matrixrow>
+	      </m:matrix>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	Once we have done this, we can recognize that the <link document="reduced" target-id="pcolumn" strength="2">pivot
+	column</link> are <emphasis>the</emphasis> linearly
+	independent columns of
+	<m:math>
+	  <m:ci><m:msub> <m:mi>A</m:mi> <m:mi>red</m:mi>
+	      </m:msub></m:ci> </m:math>. One now asks how this might
+	      help us distinguish the independent columns of
+	<m:math>
+	  <m:ci>A</m:ci>
+	</m:math>. For, although the rows of
+	<m:math>
+	  <m:ci><m:msub>
+	      <m:mi>A</m:mi>
+	      <m:mi>red</m:mi>
+	    </m:msub></m:ci>
+	</m:math> are linear combinations of the rows of 
+	<m:math>
+	  <m:ci>A</m:ci> </m:math>, no such thing is true with respect
+	to the columns. The answer is: <emphasis>pay attention to the
+	indices of the pivot columns</emphasis>. In our example,
+	columns {1, 2, 4} are the pivot columns of
+	<m:math>
+	  <m:ci><m:msub>
+	      <m:mi>A</m:mi>
+	      <m:mi>red</m:mi>
+	    </m:msub></m:ci>
+	</m:math> and hence the first, second, and fourth columns of
+	<m:math>
+	  <m:ci>A</m:ci>
+	</m:math>, <foreign>i.e.</foreign>,
+	
+	<equation id="eqins1">
+	  <m:math display="block">
+	    <m:set>
+	      <m:matrix>
+		<m:matrixrow><m:cn>0</m:cn></m:matrixrow>
+		<m:matrixrow><m:cn>-1</m:cn></m:matrixrow>
+		<m:matrixrow><m:cn>0</m:cn></m:matrixrow>
+	      </m:matrix>
+	      <m:matrix>
+		<m:matrixrow><m:cn>1</m:cn></m:matrixrow>
+		<m:matrixrow><m:cn>0</m:cn></m:matrixrow>
+		<m:matrixrow><m:cn>0</m:cn></m:matrixrow>
+	      </m:matrix>
+	      <m:matrix>
+		<m:matrixrow><m:cn>0</m:cn></m:matrixrow>
+		<m:matrixrow><m:cn>0</m:cn></m:matrixrow>
+		<m:matrixrow><m:cn>1</m:cn></m:matrixrow>
+	      </m:matrix>
+	    </m:set>
+	  </m:math>
+	</equation>
+	comprise a basis for
+
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">Ra</m:ci>
+	    <m:ci>A</m:ci>
+	  </m:apply>
+	</m:math>. In general:
+      </para>
+
+      <para id="prop">
+	<definition id="defn2">
+	  <term>A Basis for the Column Space</term>
+	  <meaning id="idp6369136">Suppose
+	    <m:math>
+	      <m:ci>A</m:ci>
+	    </m:math> is m-by-n. If columns
+	    <m:math>
+	      <m:set>
+		<m:condition>
+		  <m:apply><m:eq/>
+		    <m:ci>j</m:ci>
+		    <m:ci><m:mrow>
+			<m:mn>1</m:mn>
+			<m:mo>,</m:mo>
+			<m:mo>...</m:mo>
+			<m:mo>,</m:mo>
+			<m:mi>r</m:mi>
+		      </m:mrow></m:ci>
+		  </m:apply>
+		</m:condition>
+		<m:bvar>
+		  <m:ci><m:msub>
+		      <m:mi>c</m:mi>
+		      <m:mi>j</m:mi>
+		    </m:msub></m:ci>
+		</m:bvar>
+	      </m:set>
+	    </m:math>
+	    are the pivot columns of 
+	    <m:math>
+	      <m:ci><m:msub>
+		  <m:mi>A</m:mi>
+		  <m:mi>red</m:mi>
+		</m:msub></m:ci>
+	    </m:math>
+	    then columns
+	    <m:math>
+	      <m:set>
+		<m:condition>
+		  <m:apply><m:eq/>
+		    <m:ci>j</m:ci>
+		    <m:ci><m:mrow>
+			<m:mn>1</m:mn>
+			<m:mo>,</m:mo>
+			<m:mo>...</m:mo>
+			<m:mo>,</m:mo>
+			<m:mi>r</m:mi>
+		      </m:mrow></m:ci>
+		  </m:apply>
+		</m:condition>
+		<m:bvar>
+		  <m:ci><m:msub>
+		      <m:mi>c</m:mi>
+		      <m:mi>j</m:mi>
+		    </m:msub></m:ci>
+		</m:bvar>
+	      </m:set>
+	    </m:math>
+	    of
+	    <m:math>
+	      <m:ci>A</m:ci>
+	    </m:math> constitute a basis for
+	    <m:math>
+	      <m:apply>
+		<m:ci type="fn">Ra</m:ci>
+		<m:ci>A</m:ci>
+	      </m:apply>
+	    </m:math>.
+	  </meaning>
+	</definition>
+      </para>
+    </section>
+  </content>
+</document>

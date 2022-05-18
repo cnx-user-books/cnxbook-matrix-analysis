@@ -1,0 +1,391 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml"> 
+  
+  <title>The Eigenvalue Problem</title>
+
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>70ab65a2-87f9-4b6d-805e-f3a2890ee179</md:uuid>
+</metadata>
+
+  <content>
+
+    <section id="s1">
+      <title>Introduction</title>
+      <para id="p1.1">
+	Harking back to our previous discussion of <link document="m10169" strength="2">The Laplace Transform</link> we labeled the complex
+	  number <m:math><m:ci>λ</m:ci></m:math> an
+	  <term>eigenvalue</term> of <m:math><m:ci>B</m:ci></m:math>
+	  if <m:math> 
+	  <m:apply>
+	    <m:minus/>
+	    <m:apply><m:times/>
+	      <m:ci>λ</m:ci>
+	      <m:ci>I</m:ci>
+	    </m:apply>
+	    <m:ci>B</m:ci>
+	  </m:apply></m:math> was not invertible. In
+	  order to find such <m:math><m:ci>λ</m:ci></m:math>
+	  one has only to find those <m:math><m:ci>s</m:ci></m:math>
+	  for which <m:math> 
+	  <m:apply>
+	    <m:inverse/> 
+	    <m:apply>
+	      <m:minus/>
+	      <m:apply>
+		<m:times/>
+		<m:ci>s</m:ci>
+		<m:ci>I</m:ci>
+	      </m:apply>
+	      <m:ci>B</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	is not defined. To take a concrete example we note that if
+	<equation id="exB">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>B</m:ci>
+	      <m:matrix>
+		<m:matrixrow>
+		  <m:cn>1</m:cn><m:cn>1</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:ci>2</m:ci>
+		</m:matrixrow>
+	      </m:matrix>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	then
+	<equation id="exBR">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:inverse/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>s</m:ci>
+		    <m:ci>I</m:ci>
+		  </m:apply>
+		  <m:ci>B</m:ci>
+		</m:apply>
+	      </m:apply> 
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:power/>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>s</m:ci>
+			<m:cn>1</m:cn>
+		      </m:apply>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>s</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:matrix>
+		  <m:matrixrow>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>s</m:ci><m:cn>1</m:cn>
+		      </m:apply>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>s</m:ci><m:cn>2</m:cn>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>s</m:ci><m:cn>2</m:cn>
+		    </m:apply>
+		    <m:cn>0</m:cn> 
+		  </m:matrixrow>
+		  <m:matrixrow>
+		    <m:cn>0</m:cn>  
+		    <m:apply>
+		      <m:times/>
+		      <m:apply><m:minus/>
+			<m:ci>s</m:ci><m:cn>1</m:cn>
+		      </m:apply>
+		      <m:apply><m:minus/>
+			<m:ci>s</m:ci><m:cn>2</m:cn>
+		      </m:apply>
+		    </m:apply>
+		    <m:cn>0</m:cn> 
+		  </m:matrixrow>
+		  <m:matrixrow> 
+		    <m:cn>0</m:cn>  
+		    <m:cn>0</m:cn>  
+		    <m:apply><m:power/>
+		      <m:apply><m:minus/>
+			<m:ci>s</m:ci><m:cn>1</m:cn>
+		      </m:apply>
+		      <m:cn>2</m:cn>
+		    </m:apply> 
+		  </m:matrixrow>
+		</m:matrix>
+	      </m:apply>
+	    </m:apply>
+	  </m:math></equation>
+	and so <m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci><m:msub><m:mi>λ</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+	    <m:cn>1</m:cn>
+	  </m:apply></m:math> and <m:math>
+	  <m:apply><m:eq/>
+	    <m:ci><m:msub><m:mi>λ</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+	    <m:cn>2</m:cn>
+	  </m:apply></m:math>
+	are the two eigenvalues of <m:math><m:ci>B</m:ci></m:math>.
+	Now, to say that <m:math>
+	  <m:apply>
+	    <m:minus/>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci><m:msub>
+		  <m:mi>λ</m:mi><m:mi>j</m:mi>
+		</m:msub></m:ci>
+	      <m:ci>I</m:ci>
+	    </m:apply>
+	    <m:ci>B</m:ci>
+	  </m:apply></m:math> is not invertible is to say that its columns
+	are linearly dependent, or, equivalently, that the null space
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">𝒩</m:ci>
+	    <m:apply>
+	      <m:minus/>
+	      <m:apply>
+		<m:times/>
+		<m:ci><m:msub>
+		    <m:mi>λ</m:mi><m:mi>j</m:mi>
+		  </m:msub></m:ci>
+		<m:ci>I</m:ci>
+	      </m:apply>
+	      <m:ci>B</m:ci>
+	    </m:apply>
+	  </m:apply></m:math> contains more than just the zero vector. We call
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">𝒩</m:ci>
+	    <m:apply><m:minus/>
+	      <m:apply><m:times/>
+		<m:ci><m:msub>
+		    <m:mi>λ</m:mi><m:mi>j</m:mi>
+		  </m:msub></m:ci>
+		<m:ci>I</m:ci>
+	      </m:apply>
+	      <m:ci>B</m:ci> 
+	    </m:apply>
+	  </m:apply> 
+	</m:math> the
+	    <m:math><m:ci>j</m:ci></m:math>th <term>eigenspace</term>
+	    and call each of its nonzero members a
+	    <m:math><m:ci>j</m:ci></m:math>th
+	    <term>eigenvector</term>.  The dimension of <m:math>
+	  <m:apply> 
+	    <m:ci type="fn">𝒩</m:ci>
+	    <m:apply><m:minus/>
+	      <m:apply><m:times/>
+		<m:ci><m:msub>
+		    <m:mi>λ</m:mi><m:mi>j</m:mi>
+		  </m:msub></m:ci>
+		<m:ci>I</m:ci>
+	      </m:apply>
+	      <m:ci>B</m:ci> 
+	    </m:apply>
+	  </m:apply> </m:math> is referred
+	    to as the <term>geometric multiplicity</term> of
+	    <m:math>
+	  <m:ci><m:msub>
+	      <m:mi>λ</m:mi><m:mi>j</m:mi>
+	    </m:msub></m:ci></m:math>.
+	    With respect to <m:math><m:ci>B</m:ci></m:math> above, we
+	    compute <m:math> 
+	  <m:apply>
+	    <m:ci type="fn">𝒩</m:ci>
+	    <m:apply><m:minus/>
+	      <m:apply><m:times/>
+		<m:ci><m:msub>
+		    <m:mi>λ</m:mi><m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:ci>I</m:ci>
+	      </m:apply>
+	      <m:ci>B</m:ci>
+	    </m:apply>
+	  </m:apply></m:math> by solving <m:math>
+	  <m:apply><m:eq/>
+	    <m:apply><m:times/>
+	      <m:apply><m:minus/>
+		<m:ci>I</m:ci><m:ci>B</m:ci>
+	      </m:apply>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	    <m:cn>0</m:cn>
+	  </m:apply></m:math>, <foreign>i.e.</foreign>, 
+	
+	<m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply><m:times/>
+		<m:matrix>
+		  <m:matrixrow>
+		    <m:cn>0</m:cn>
+		    <m:cn>-1</m:cn>
+		    <m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  </m:matrixrow>
+		  <m:matrixrow>
+		    <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>1</m:cn>
+		  </m:matrixrow>
+		</m:matrix>
+		<m:matrix>
+		  <m:matrixrow>
+		    <m:ci><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci> 
+		  </m:matrixrow>
+		  <m:matrixrow>
+		    <m:ci><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+		  </m:matrixrow>
+		  <m:matrixrow>
+		    <m:ci><m:msub><m:mi>x</m:mi><m:mn>3</m:mn></m:msub></m:ci>
+		  </m:matrixrow>
+		</m:matrix>
+	      </m:apply>  
+	      <m:matrix>
+		<m:matrixrow><m:cn>0</m:cn> </m:matrixrow>
+		<m:matrixrow> <m:cn>0</m:cn> </m:matrixrow>
+		<m:matrixrow> <m:cn>0</m:cn> </m:matrixrow>
+	      </m:matrix>
+	  </m:apply>
+	</m:math>
+	Clearly
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">𝒩</m:ci>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci><m:msub>
+		      <m:mi>λ</m:mi><m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci>I</m:ci>
+		</m:apply>
+		<m:ci>B</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:set>
+	      <m:bvar>	      
+		<m:apply>
+		  <m:times/>
+		  <m:ci>c</m:ci>
+		  <m:apply><m:transpose/>
+		    <m:matrix>
+		      <m:matrixrow>
+			<m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		      </m:matrixrow>
+		    </m:matrix>
+		  </m:apply>
+		</m:apply>
+	      </m:bvar>
+	      <m:condition>
+		<m:apply><m:in/><m:ci>c</m:ci><m:reals/></m:apply>
+	      </m:condition>
+	    </m:set>
+	  </m:apply>
+	</m:math>
+	Arguing along the same lines we also find
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">𝒩</m:ci>
+	      <m:apply><m:minus/>
+		<m:apply><m:times/>
+		  <m:ci><m:msub>
+		      <m:mi>λ</m:mi><m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci>I</m:ci>
+		</m:apply>
+		<m:ci>B</m:ci>
+	      </m:apply>
+	    </m:apply> 
+	    <m:set>
+	      <m:bvar>
+		<m:apply><m:times/>
+		  <m:ci>c</m:ci>
+		  <m:apply><m:transpose/>
+		    <m:matrix>
+		      <m:matrixrow>
+			<m:cn>0</m:cn><m:cn>0</m:cn><m:cn>1</m:cn>
+		      </m:matrixrow>
+		    </m:matrix>
+		  </m:apply>
+		</m:apply>
+	      </m:bvar>
+	      <m:condition>
+		<m:apply><m:in/><m:ci>c</m:ci><m:reals/></m:apply>
+	      </m:condition>
+	    </m:set>
+	  </m:apply>
+	</m:math>  That <m:math><m:ci>B</m:ci></m:math>
+	is 3x3 but possesses only 2 linearly eigenvectors leads us to
+	speak of <m:math><m:ci>B</m:ci></m:math> as defective. The
+	cause of its defect is most likely the fact that
+	<m:math><m:ci><m:msub>
+	      <m:mi>λ</m:mi><m:mn>1</m:mn>
+	    </m:msub></m:ci></m:math>
+	is a double pole of <m:math> 
+	  <m:apply><m:inverse/>
+	    <m:apply><m:minus/>
+	      <m:apply><m:times/>
+		<m:ci>s</m:ci><m:ci>I</m:ci>
+	      </m:apply>
+	      <m:ci>B</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	In order to flesh out that remark and uncover the missing eigenvector
+	we must take a much closer look at the transfer function
+	<m:math display="block">
+	  <m:apply>
+	    <m:equivalent/>
+	    <m:apply>
+	      <m:ci type="fn">R</m:ci>
+	      <m:ci>s</m:ci>
+	    </m:apply>
+	    <m:apply><m:inverse/>
+	      <m:apply><m:minus/>
+		<m:apply><m:times/><m:ci>s</m:ci><m:ci>I</m:ci></m:apply>
+		<m:ci>B</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>  In the mathematical literature this
+	quantity is typically referred to as the
+	<term>Resolvent</term> of <m:math><m:ci>B</m:ci></m:math>.
+      </para>
+    </section>
+  </content>
+</document>

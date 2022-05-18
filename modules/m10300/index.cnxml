@@ -1,0 +1,114 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+
+  <title>Exercises for Matrix Methods for Mechanical Systems</title>
+  
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>5e316168-462b-4c0b-84b4-fa683fcc9724</md:uuid>
+</metadata>
+
+  <content>
+    <exercise id="question1">
+      <problem id="idm9637360">
+	    
+	<para id="p1">
+	  With regard to <link document="m10146" target-id="uniaxial_truss_fig" strength="3"> the uniaxial truss
+	    figure</link>,
+	      
+	  <list id="q1list1" list-type="bulleted">
+	    <item>
+	      (i) Derive the <m:math display="inline"><m:ci type="matrix">A</m:ci></m:math> and <m:math display="inline"><m:ci type="matrix">K</m:ci></m:math>
+	      matrices resulting from the removal of the fourth
+	      spring,
+	    </item>
+	  
+	    <item>
+	      (ii) Compute the inverse, by hand via 
+	      <link document="m10146" target-id="gauss_jordan" strength="3">
+		Gauss-Jordan</link>, of the resulting
+
+	      <m:math display="inline">
+		<m:apply><m:times/>
+		  <m:apply><m:transpose/>
+		    <m:ci type="matrix">A</m:ci>
+		  </m:apply>
+		  <m:ci type="matrix">K</m:ci>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>
+		<!-- A'KA -->
+	      </m:math>
+
+	      with 
+
+	      <m:math display="inline">
+		<m:apply><m:eq/>
+		  <m:ci><m:msub>
+		      <m:mi>k</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>k</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>k</m:mi>
+		      <m:mn>3</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci>k</m:ci>
+		</m:apply>
+		<!-- k_1 = k_2 = k_3 = k -->
+	      </m:math>
+	    </item>
+
+	    <item>
+	      (iii) Use the result of (ii) to find the displacement
+	      corresponding to the load
+	      
+	      <m:math display="inline">
+		<m:apply><m:eq/>
+		  <m:ci type="vector">f</m:ci>
+		  <m:vector>
+		    <m:cn>0</m:cn>
+		    <m:cn>0</m:cn>
+		    <m:ci>F</m:ci>
+		  </m:vector>
+		</m:apply>
+		<!-- f = [ 0; 0; F ] -->
+	      </m:math>.
+	    </item>
+	  </list>
+	</para>
+      </problem>
+    </exercise>
+
+    <exercise id="question2">
+      <problem id="idp832576">
+	<para id="p2">
+	  Generalize <link document="m10148" strength="3">example 3,
+	    the general planar truss</link>, to the case of 16 nodes
+	    connected by 42 fibers.  Introduce one stiff (say
+	  
+	  <m:math display="inline">
+	    <m:apply><m:eq/>
+	      <m:ci>k</m:ci>
+	      <m:cn>100</m:cn>
+	    </m:apply>
+	    <!-- k = 100 -->
+	  </m:math>) 
+
+	  fiber and show how to detect it by 'properly' choosing
+	  <m:math display="inline"><m:ci type="vector">f</m:ci></m:math>.  Submit your
+	  well-documented M-file as well as the plots, similar to
+	  <link target-id="before_after" strength="3">the before-after
+	  plot</link> in the <link document="m10148" strength="2">general planar module</link>, from which you
+	  conclude the presence of a stiff fiber.
+
+	<figure id="before_after">
+	  <media id="idm7732000" alt=""><image src="../../media/beforeafter.png" mime-type="image/png"/></media>
+	  <caption>
+	    A copy of the before-after figure from the general planar
+	    module.</caption>
+	</figure>
+      </para>
+      </problem>
+    </exercise>
+  </content>
+</document>

@@ -1,0 +1,1426 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  
+  <title>Complex Functions</title>
+
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>21575623-0d76-41d5-a87f-0e770e640429</md:uuid>
+</metadata>
+
+  <content>
+
+    <section id="sec1">
+      <title>Complex Functions</title>
+
+      <para id="sec1para1">
+	A complex function is merely a rule for assigning certain
+	complex numbers to other complex numbers. The simplest
+	(nonconstant) assignment is the identity function
+
+	<m:math>
+	  <m:apply>
+	    <m:equivalent/>
+	    <m:apply>
+	      <m:ci type="fn">f</m:ci>
+	      <m:ci>z</m:ci>
+	    </m:apply>
+	    <m:ci>z</m:ci>
+	  </m:apply>
+	</m:math>.  Perhaps the next simplest function assigns to each
+	number its square, <foreign>i.e.</foreign>,
+
+	<m:math>
+	  <m:apply>
+	    <m:equivalent/>
+	    <m:apply>
+	      <m:ci type="fn">f</m:ci>
+	      <m:ci>z</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:power/>
+	      <m:ci>z</m:ci>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	  </m:apply>
+	</m:math>.
+
+	As we decomposed the <emphasis>argument</emphasis> of
+	<m:math><m:ci>f</m:ci></m:math>, namely
+	<m:math><m:ci>z</m:ci></m:math>, into its real and imaginary
+	parts, we shall also find it convenient to partition the
+	<emphasis>value</emphasis> of <m:math><m:ci>f</m:ci></m:math>,
+
+	<m:math>
+	  <m:apply>
+	    <m:power/>
+	    <m:ci>z</m:ci>
+	    <m:cn>2</m:cn>
+	  </m:apply>
+	</m:math> 
+
+	in this case, into its real and imaginary parts. In general, we write
+
+	<equation id="eq01">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci>f</m:ci>
+		<m:apply>
+		  <m:plus/>
+		  <m:ci>x</m:ci>
+		  <m:apply>
+		    <m:times/>
+                    <m:imaginaryi/>
+                    <m:ci>y</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:ci type="fn">u</m:ci>
+		  <m:ci>x</m:ci>
+		  <m:ci>y</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+                  <m:imaginaryi/>
+                  <m:apply>
+                    <m:ci type="fn">v</m:ci>
+                    <m:ci>x</m:ci>
+                    <m:ci>y</m:ci>
+                  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	where <m:math><m:ci>u</m:ci></m:math> and
+	<m:math><m:ci>v</m:ci></m:math> are both real-valued functions
+	of two real variables. In the case that
+
+	<m:math>
+	  <m:apply>
+	    <m:equivalent/>
+	    <m:apply>
+	      <m:ci type="fn">f</m:ci>
+	      <m:ci>z</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:power/>
+	      <m:ci>z</m:ci>
+	      <m:cn>2</m:cn>
+	    </m:apply>	  
+	  </m:apply>
+	</m:math> 
+
+	we find
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">u</m:ci>
+	      <m:ci>x</m:ci>
+	      <m:ci>y</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:minus/>
+	      <m:apply>
+		<m:power/>
+                <m:ci>x</m:ci>
+                <m:cn>2</m:cn>
+	      </m:apply>
+	      <m:apply>
+		<m:power/>
+                <m:ci>y</m:ci>
+                <m:cn>2</m:cn>
+	      </m:apply>  
+	    </m:apply>
+	  </m:apply>
+	</m:math> 
+
+	and
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">v</m:ci>
+	      <m:ci>x</m:ci>
+	      <m:ci>y</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:cn>2</m:cn>
+	      <m:ci>x</m:ci>
+	      <m:ci>y</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </para>
+
+
+      <para id="sec1para2">
+	With the tools of <link document="m10504" strength="3">complex
+	numbers</link>, we may produce complex polynomials
+
+	<equation id="eq02">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci type="fn">f</m:ci>
+		<m:ci>z</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:power/>
+                  <m:ci>z</m:ci>
+                  <m:ci>m</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+                  <m:ci>
+                    <m:msub>
+                      <m:mi>c</m:mi>
+                      <m:mrow>
+                        <m:mi>m</m:mi>
+                        <m:mo>-</m:mo>
+                        <m:mn>1</m:mn>
+                      </m:mrow>
+                    </m:msub>
+                  </m:ci>
+                  <m:apply>
+                    <m:power/>
+		    <m:ci>z</m:ci>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>m</m:ci>
+		      <m:cn>1</m:cn>      
+		    </m:apply>
+                  </m:apply>
+		</m:apply>
+		<m:ci>…</m:ci>
+		<m:apply>
+		  <m:times/>
+                  <m:ci><m:msub><m:mi>c</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+                  <m:ci>z</m:ci>
+		</m:apply>
+		<m:ci><m:msub><m:mi>c</m:mi><m:mn>0</m:mn></m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	We say that such an <m:math><m:ci>f</m:ci></m:math> is order
+	<m:math><m:ci>m</m:ci></m:math>. We shall often find it
+	convenient to represent polynomials as the product of their
+	factors, namely
+
+	<equation id="eq03">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci type="fn">f</m:ci>
+		<m:ci>z</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:power/>
+                  <m:apply>
+                    <m:minus/>
+		    <m:ci>z</m:ci>
+		    <m:ci><m:msub><m:mi>λ</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+                  </m:apply>
+                  <m:ci><m:msub><m:mi>d</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:power/>
+                  <m:apply>
+                    <m:minus/>
+		    <m:ci>z</m:ci>
+		    <m:ci><m:msub><m:mi>λ</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+                  </m:apply>
+                  <m:ci><m:msub><m:mi>d</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+		</m:apply>
+		<m:ci>…</m:ci>
+		<m:apply>
+		  <m:power/>
+                  <m:apply>
+                    <m:minus/>
+		    <m:ci>z</m:ci>
+		    <m:ci><m:msub><m:mi>λ</m:mi><m:mi>h</m:mi></m:msub></m:ci>
+                  </m:apply>
+                  <m:ci><m:msub><m:mi>d</m:mi><m:mi>h</m:mi></m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	Each
+	<m:math><m:ci><m:msub><m:mi>λ</m:mi><m:mi>j</m:mi></m:msub></m:ci></m:math>
+	is a <emphasis>root</emphasis> of <emphasis>degree</emphasis>
+	<m:math><m:ci><m:msub><m:mi>d</m:mi><m:mi>j</m:mi></m:msub></m:ci></m:math>. Here
+	<m:math><m:ci>h</m:ci></m:math> is the number of
+	<emphasis>distinct</emphasis> roots of
+	<m:math><m:ci>f</m:ci></m:math>. We call
+	<m:math><m:ci><m:msub><m:mi>λ</m:mi><m:mi>j</m:mi></m:msub></m:ci></m:math>
+	a <emphasis>simple</emphasis> root when
+
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci><m:msub><m:mi>d</m:mi><m:mi>j</m:mi></m:msub></m:ci>
+	    <m:cn>1</m:cn>
+	  </m:apply>
+	</m:math>. 
+
+	We can observe the appearance of ratios of polynomials or so
+	called <emphasis>rational</emphasis> functions.  Suppose
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">q</m:ci>
+	      <m:ci>z</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:divide/>
+	      <m:apply>
+		<m:ci type="fn">f</m:ci>
+		<m:ci>z</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn">g</m:ci>
+		<m:ci>z</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+
+	in rational, that <m:math><m:ci>f</m:ci></m:math> is of order at most 
+
+	<m:math>
+	  <m:apply>
+	    <m:minus/>
+	    <m:ci>m</m:ci>
+	    <m:cn>1</m:cn>
+	  </m:apply>
+	</m:math>
+
+	while <m:math><m:ci>g</m:ci></m:math> is of order
+	<m:math><m:ci>m</m:ci></m:math> with the simple roots
+
+	<m:math>
+	  <m:set>
+	    <m:ci><m:msub><m:mi>λ</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+	    <m:ci>…</m:ci>
+	    <m:ci><m:msub><m:mi>λ</m:mi><m:mi>m</m:mi></m:msub></m:ci>
+	  </m:set>
+	</m:math>.
+
+	It should come as no surprise that such
+	<m:math><m:ci>q</m:ci></m:math> should admit a <term>Partial
+	Fraction Expansion</term>
+
+	<equation id="eq04">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci type="fn">q</m:ci>
+		<m:ci>z</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:sum/>
+		<m:bvar><m:ci>j</m:ci></m:bvar>
+		<m:lowlimit><m:cn>1</m:cn></m:lowlimit>
+		<m:uplimit><m:ci>m</m:ci></m:uplimit>
+		<m:apply>
+		  <m:divide/>
+                  <m:ci><m:msub><m:mi>q</m:mi><m:mi>j</m:mi></m:msub></m:ci>
+                  <m:apply>
+                    <m:minus/>
+		    <m:ci>z</m:ci>
+		    <m:ci><m:msub><m:mi>λ</m:mi><m:mi>j</m:mi></m:msub></m:ci>
+                  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	One uncovers the
+	<m:math><m:ci><m:msub><m:mi>q</m:mi><m:mi>j</m:mi></m:msub></m:ci></m:math>
+	by first multiplying each side by
+
+	<m:math>
+	  <m:apply>
+	    <m:minus/>
+	    <m:ci>z</m:ci>
+	    <m:ci><m:msub><m:mi>λ</m:mi><m:mi>j</m:mi></m:msub></m:ci>
+	  </m:apply>
+	</m:math>
+
+	and then letting <m:math><m:ci>z</m:ci></m:math> tend to
+	<m:math><m:ci><m:msub><m:mi>λ</m:mi><m:mi>j</m:mi></m:msub></m:ci></m:math>.
+	For example, if
+
+	<equation id="eq05">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:plus/>
+                  <m:apply>
+                    <m:power/>
+		    <m:ci>z</m:ci>
+		    <m:cn>2</m:cn>
+                  </m:apply>
+                  <m:cn>1</m:cn>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:divide/>
+                  <m:ci><m:msub><m:mi>q</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+                  <m:apply>
+                    <m:plus/>
+		    <m:ci>z</m:ci>
+		    <m:imaginaryi/>
+                  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:divide/>
+                  <m:ci><m:msub><m:mi>q</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+                  <m:apply>
+                    <m:minus/>
+		    <m:ci>z</m:ci>
+		    <m:imaginaryi/>
+                  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	then multiplying each side by 
+
+	<m:math>
+	  <m:apply>
+	    <m:plus/>
+	    <m:ci>z</m:ci>
+	    <m:imaginaryi/>
+	  </m:apply>
+	</m:math>
+
+	produces
+
+	<equation id="eq06">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:minus/>
+                  <m:ci>z</m:ci>
+                  <m:imaginaryi/>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:plus/>
+		<m:ci><m:msub><m:mi>q</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+		<m:apply>
+		  <m:divide/>
+                  <m:apply>
+                    <m:times/>
+		    <m:ci><m:msub><m:mi>q</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+		    <m:apply>
+		      <m:plus/>
+		      <m:ci>z</m:ci>
+		      <m:imaginaryi/>
+		    </m:apply>
+                  </m:apply>
+                  <m:apply>
+                    <m:minus/>
+		    <m:ci>z</m:ci>
+		    <m:imaginaryi/>
+                  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	Now, in order to isolate <m:math><m:ci><m:msub><m:mi>q</m:mi><m:mn>1</m:mn></m:msub></m:ci></m:math> it is clear that we should set
+
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>z</m:ci>
+	    <m:apply>
+	      <m:minus/>
+	      <m:imaginaryi/>
+	    </m:apply>
+	  </m:apply>
+	</m:math>.
+
+	So doing we find that
+
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci><m:msub><m:mi>q</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+	    <m:apply>
+	      <m:divide/>
+	      <m:imaginaryi/>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	  </m:apply>
+	</m:math>.
+
+	In order to find <m:math><m:ci><m:msub><m:mi>q</m:mi><m:mn>2</m:mn></m:msub></m:ci></m:math> we multiply <link target-id="eq05" strength="2"/> by
+	
+	<m:math>
+	  <m:apply>
+	    <m:minus/>
+	    <m:ci>z</m:ci>
+	    <m:imaginaryi/>
+	  </m:apply>
+	</m:math>.
+
+	and then set 
+
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>z</m:ci>
+	    <m:imaginaryi/>
+	  </m:apply>
+	</m:math>.
+
+	So doing we find
+
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci><m:msub><m:mi>q</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+	    <m:apply>
+	      <m:divide/>
+	      <m:apply>
+		<m:minus/>
+                <m:imaginaryi/>
+	      </m:apply>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	  </m:apply>
+	</m:math>,
+
+	and so
+
+	<equation id="eq07">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:plus/>
+                  <m:apply>
+                    <m:power/>
+		    <m:ci>z</m:ci>
+		    <m:cn>2</m:cn>
+                  </m:apply>
+                  <m:imaginaryi/>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:divide/>
+                  <m:apply>
+                    <m:divide/>
+		    <m:imaginaryi/>
+		    <m:cn>2</m:cn>
+                  </m:apply>
+                  <m:apply>
+                    <m:plus/>
+		    <m:ci>z</m:ci>
+		    <m:imaginaryi/>
+                  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:divide/>
+                  <m:apply>
+                    <m:divide/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:imaginaryi/>
+		    </m:apply>
+		    <m:cn>2</m:cn>
+                  </m:apply>
+                  <m:apply>
+                    <m:minus/>
+		    <m:ci>z</m:ci>
+		    <m:imaginaryi/>
+                  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>.
+
+	Returning to the general case, we encode the above in the
+	simple formula
+
+	<equation id="eq08">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci><m:msub><m:mi>q</m:mi><m:mi>j</m:mi></m:msub></m:ci>
+	      <m:apply>
+		<m:limit/>
+		<m:bvar><m:ci>z</m:ci></m:bvar>
+		<m:condition>
+		  <m:apply>
+		    <m:tendsto/>
+                    <m:ci>z</m:ci>
+                    <m:ci><m:msub><m:mi>λ</m:mi><m:mi>j</m:mi></m:msub></m:ci>
+		  </m:apply>
+		</m:condition>
+		<m:apply>
+		  <m:times/>
+                  <m:apply>
+                    <m:minus/>
+		    <m:ci>z</m:ci>
+		    <m:ci><m:msub><m:mi>λ</m:mi><m:mi>j</m:mi></m:msub></m:ci>
+                  </m:apply>
+                  <m:apply>
+                    <m:ci type="fn">q</m:ci>
+                    <m:ci>z</m:ci>
+                  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	You should be able to use this to confirm that 
+
+	<equation id="eq09">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:divide/>
+		<m:ci>z</m:ci>
+		<m:apply>
+		  <m:plus/>
+                  <m:apply>
+                    <m:power/>
+		    <m:ci>z</m:ci>
+		    <m:cn>2</m:cn>
+                  </m:apply>
+                  <m:cn>1</m:cn>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:divide/>
+                  <m:cn type="rational">1<m:sep/>2</m:cn>
+                  <m:apply>
+                    <m:plus/>
+		    <m:ci>z</m:ci>
+		    <m:imaginaryi/>
+                  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:divide/>
+                  <m:cn type="rational">1<m:sep/>2</m:cn>
+                  <m:apply>
+                    <m:minus/>
+		    <m:ci>z</m:ci>
+		    <m:imaginaryi/>
+                  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+      </para>
+
+      <para id="sec1para3">
+	Recall that the transfer function we met in <link document="m10169" target-id="p3" strength="2">The Laplace Transform</link>
+	module was in fact a matrix of rational functions.  Now, the
+	partial fraction expansion of a matrix of rational functions
+	is simply the matrix of partial fraction expansions of each of
+	its elements.  This is easier done than said.  For example,
+	the transfer function of
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>B</m:ci>
+	    <m:matrix>
+	      <m:matrixrow>
+		<m:cn>0</m:cn>
+		<m:cn>1</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>-1</m:cn>
+		<m:cn>0</m:cn>
+	      </m:matrixrow>
+	    </m:matrix>
+	  </m:apply>
+	</m:math>
+
+	is
+
+	<equation id="eq10">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:power/>
+		<m:apply>
+		  <m:minus/>
+                  <m:apply>
+                    <m:times/>
+		    <m:ci>z</m:ci>
+		    <m:ci>I</m:ci>
+                  </m:apply>
+                  <m:ci>B</m:ci>
+		</m:apply>
+		<m:cn>-1</m:cn>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:divide/>
+                  <m:cn>1</m:cn>
+                  <m:apply>
+                    <m:plus/>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>z</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		    <m:cn>1</m:cn>
+                  </m:apply>
+		</m:apply>
+		<m:matrix>
+		  <m:matrixrow>
+		    <m:ci>z</m:ci>
+		    <m:cn>1</m:cn>
+		  </m:matrixrow>
+		  <m:matrixrow>
+		    <m:cn>-1</m:cn>
+		    <m:ci>z</m:ci>
+		  </m:matrixrow>
+		</m:matrix>
+	      </m:apply>
+
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:times/>
+                  <m:apply>
+                    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:apply>
+		      <m:plus/>
+		      <m:ci>z</m:ci>
+		      <m:imaginaryi/>
+		    </m:apply>
+                  </m:apply>
+                  <m:matrix>
+                    <m:matrixrow>
+                      <m:cn type="rational">1<m:sep/>2</m:cn>
+                      <m:apply>
+                        <m:divide/>
+			<m:imaginaryi/>
+			<m:cn>2</m:cn>
+                      </m:apply>
+                    </m:matrixrow>
+                    <m:matrixrow>                      
+                      <m:apply>
+                        <m:divide/>
+			<m:apply>
+			  <m:minus/>
+			  <m:imaginaryi/>
+			</m:apply>
+			<m:cn>2</m:cn>
+                      </m:apply>
+                      <m:cn type="rational">1<m:sep/>2</m:cn>
+                    </m:matrixrow>
+                  </m:matrix>
+		</m:apply>
+
+		<m:apply>
+		  <m:times/>
+                  <m:apply>
+                    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>z</m:ci>
+		      <m:imaginaryi/>
+		    </m:apply>
+                  </m:apply>
+                  <m:matrix>
+                    <m:matrixrow>
+                      <m:cn type="rational">1<m:sep/>2</m:cn>
+                      <m:apply>
+                        <m:divide/>
+			<m:apply>
+			  <m:minus/>
+			  <m:imaginaryi/>
+			</m:apply>
+			<m:cn>2</m:cn>
+                      </m:apply>
+                    </m:matrixrow>
+                    <m:matrixrow>
+                      <m:apply>
+                        <m:divide/>
+			<m:imaginaryi/>
+			<m:cn>2</m:cn>
+                      </m:apply>
+                      <m:cn type="rational">1<m:sep/>2</m:cn>
+                    </m:matrixrow>
+                  </m:matrix>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	The first line comes form either Gauss-Jordan by hand or via
+	the symbolic toolbox in Matlab.  More importantly, the second
+	line is simply an amalgamation of <link target-id="eq05" strength="2"/> and <link target-id="eq07" strength="2"/>.
+	Complex matrices have finally entered the picture.  We shall
+	devote all of Chapter 10 to uncovering the remarkable
+	properties enjoyed by the matrices that appear in the partial
+	fraction expansion of
+
+	<m:math>
+	  <m:apply>
+	    <m:power/>
+	    <m:apply>
+	      <m:minus/>
+	      <m:apply>
+		<m:times/>
+                <m:ci>z</m:ci>
+                <m:ci>I</m:ci>
+	      </m:apply>
+	      <m:ci>B</m:ci>
+	    </m:apply>
+	    <m:cn>-1</m:cn>
+	  </m:apply>
+	</m:math>
+
+	Have you noticed that, in our example, the two matrices are
+	each projections, and they sum to
+	<m:math><m:ci>I</m:ci></m:math>, and that their product is
+	<m:math><m:cn>0</m:cn></m:math>?  Could this be an accident?
+      </para>
+
+
+      <para id="sec1para4">
+	In <link document="m10169" strength="2">The Laplace
+	Transform</link> module we were confronted with the complex
+	exponential.  By analogy to the real exponential we define
+
+	<equation id="eq11">
+	  <m:math>
+	    <m:apply>
+	      <m:equivalent/>
+	      <m:apply>
+		<m:exp/>
+		<m:ci>z</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:sum/>
+		<m:bvar><m:ci>n</m:ci></m:bvar>
+		<m:lowlimit><m:cn>0</m:cn></m:lowlimit>
+		<m:uplimit><m:infinity/></m:uplimit>
+		<m:apply>
+		  <m:divide/>
+                  <m:apply>
+                    <m:power/>
+		    <m:ci>z</m:ci>
+		    <m:ci>n</m:ci>
+                  </m:apply>
+                  <m:apply>
+                    <m:factorial/>
+		    <m:ci>n</m:ci>
+                  </m:apply>
+		</m:apply>    
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	and find that
+
+	<equation id="eq12">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:exp/>
+		<m:ci>e</m:ci>
+		<m:apply>
+		  <m:times/>
+                  <m:imaginaryi/>
+                  <m:ci>θ</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:plus/>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:times/>
+                  <m:imaginaryi/>
+                  <m:ci>θ</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:divide/>
+                  <m:apply>
+                    <m:power/>
+		    <m:apply>
+		      <m:times/>
+		      <m:imaginaryi/>
+		      <m:ci>θ</m:ci>
+		    </m:apply>
+		    <m:cn>2</m:cn>
+                  </m:apply>
+                  <m:cn>2</m:cn>
+		</m:apply>
+		<m:apply>
+		  <m:divide/>
+                  <m:apply>
+                    <m:power/>
+		    <m:apply>
+		      <m:times/>
+		      <m:imaginaryi/>
+		      <m:ci>θ</m:ci>
+		    </m:apply>
+		    <m:cn>3</m:cn>
+                  </m:apply>
+                  <m:apply>
+                    <m:factorial/>
+		    <m:cn>3</m:cn>
+                  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:divide/>
+                  <m:apply>
+                    <m:power/>
+		    <m:apply>
+		      <m:times/>
+		      <m:imaginaryi/>
+		      <m:ci>θ</m:ci>
+		    </m:apply>
+		    <m:cn>4</m:cn>
+                  </m:apply>
+                  <m:apply>
+                    <m:factorial/>
+		    <m:cn>4</m:cn>
+                  </m:apply>
+		</m:apply>
+		<m:ci>…</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:plus/>
+                  <m:apply>
+                    <m:minus/>
+		    <m:cn>1</m:cn>
+		    <m:apply>
+		      <m:divide/>
+		      <m:apply>
+			<m:power/>
+			<m:ci>θ</m:ci>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+                  </m:apply>
+                  <m:apply>
+                    <m:minus/>
+		    <m:apply>
+		      <m:divide/>
+		      <m:apply>
+			<m:power/>
+			<m:ci>θ</m:ci>
+			<m:cn>4</m:cn>
+		      </m:apply>
+		      <m:apply>
+			<m:factorial/>
+			<m:cn>4</m:cn>
+		      </m:apply>
+		    </m:apply>
+		    <m:ci>…</m:ci>
+                  </m:apply>		  
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+                  <m:imaginaryi/>
+		  <m:apply>
+		    <m:plus/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>θ</m:ci>
+		      <m:apply>
+			<m:divide/>
+			<m:apply>
+			  <m:power/>
+			  <m:ci>θ</m:ci>
+			  <m:cn>3</m:cn>
+			</m:apply>
+			<m:apply>
+			  <m:factorial/>
+			  <m:cn>3</m:cn>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:minus/>
+		      <m:apply>
+			<m:divide/>
+			<m:apply>
+			  <m:power/>
+			  <m:ci>θ</m:ci>
+			  <m:cn>5</m:cn>
+			</m:apply>
+			<m:apply>
+			  <m:factorial/>
+			  <m:cn>5</m:cn>
+			</m:apply>
+		      </m:apply>		    
+		      <m:ci>…</m:ci>
+		    </m:apply>
+		  </m:apply>
+                </m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:plus/>
+                <m:apply>
+                  <m:cos/>
+		  <m:ci>θ</m:ci>
+                </m:apply>
+                <m:apply>
+                  <m:times/>
+		  <m:imaginaryi/>
+		  <m:apply>
+		    <m:sin/>
+		    <m:ci>θ</m:ci>
+		  </m:apply>
+                </m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	With this observation, the <link document="m10504" target-id="sec2" strength="2">polar form</link> is now
+	simply
+
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>z</m:ci>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:abs/>
+                <m:ci>z</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:exp/>
+                <m:apply>
+                  <m:times/>
+		  <m:imaginaryi/>
+		  <m:ci>θ</m:ci>
+                </m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>. 
+      </para>
+
+
+      <para id="sec1para5">
+	One may just as easily verify that
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:cos/>
+	      <m:ci>θ</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:divide/>
+	      <m:apply>
+		<m:plus/>
+                <m:apply>
+                  <m:exp/>
+		  <m:apply>
+		    <m:times/>
+		    <m:imaginaryi/>
+		    <m:ci>θ</m:ci>
+		  </m:apply>
+                </m:apply>
+                <m:apply>
+                  <m:exp/>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:imaginaryi/>
+		    </m:apply>
+		    <m:ci>θ</m:ci>
+		  </m:apply>
+                </m:apply>
+	      </m:apply>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	  </m:apply>
+	</m:math> 
+
+	and
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:sin/>
+	      <m:ci>θ</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:divide/>
+	      <m:apply>
+		<m:minus/>
+                <m:apply>
+                  <m:exp/>
+		  <m:apply>
+		    <m:times/>
+		    <m:imaginaryi/>
+		    <m:ci>θ</m:ci>
+		  </m:apply>
+                </m:apply>
+                <m:apply>
+                  <m:exp/>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:imaginaryi/>
+		    </m:apply>
+		    <m:ci>θ</m:ci>
+		  </m:apply>
+                </m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+                <m:cn>2</m:cn>
+                <m:imaginaryi/>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+
+	These suggest the definitions, for complex
+	<m:math><m:ci>z</m:ci></m:math>, of
+
+	<equation id="eq13">
+	  <m:math>
+	    <m:apply>
+	      <m:equivalent/>
+	      <m:apply>
+		<m:cos/>
+		<m:ci>z</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:divide/>
+		<m:apply>
+		  <m:plus/>
+                  <m:apply>
+                    <m:exp/>
+		    <m:apply>
+		      <m:times/>
+		      <m:imaginaryi/>
+		      <m:ci>z</m:ci>
+		    </m:apply>
+                  </m:apply>
+                  <m:apply>
+                    <m:exp/>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:minus/>
+			<m:imaginaryi/>
+			<m:ci>z</m:ci>
+		      </m:apply>
+		    </m:apply>
+                  </m:apply>
+		</m:apply>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	and
+
+	<equation id="eq14">
+	  <m:math>
+	    <m:apply>
+	      <m:equivalent/>
+	      <m:apply>
+		<m:sin/>
+		<m:ci>z</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:divide/>
+		<m:apply>
+		  <m:minus/>
+                  <m:apply>
+                    <m:exp/>
+		    <m:apply>
+		      <m:times/>
+		      <m:imaginaryi/>
+		      <m:ci>z</m:ci>
+		    </m:apply>
+                  </m:apply>
+                  <m:apply>
+                    <m:exp/>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:minus/>
+			<m:imaginaryi/>
+		      </m:apply>
+		      <m:ci>z</m:ci>
+		    </m:apply>
+                  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+                  <m:cn>2</m:cn>
+                  <m:imaginaryi/>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+      </para>
+
+
+      <para id="sec1para6">
+	As in the real case the exponential enjoys the property that
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:exp/>
+	      <m:apply>
+		<m:plus/>
+                <m:ci><m:msub><m:mi>z</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+                <m:ci><m:msub><m:mi>z</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+	      </m:apply>	
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:exp/>
+                <m:ci><m:msub><m:mi>z</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:exp/>
+                <m:ci><m:msub><m:mi>z</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+	      </m:apply>	
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+
+	and in particular
+	
+	<equation id="eq15">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:plus/>
+                  <m:ci>x</m:ci>
+                  <m:apply>
+                    <m:times/>
+		    <m:imaginaryi/>
+		    <m:ci>y</m:ci>
+                  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:exp/>
+                  <m:ci>x</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:exp/>
+                  <m:apply>
+                    <m:times/>
+		    <m:imaginaryi/>
+		    <m:ci>y</m:ci>
+                  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:times/>
+                  <m:apply>
+                    <m:exp/>
+		    <m:ci>x</m:ci>
+                  </m:apply>
+                  <m:apply>
+                    <m:cos/>
+		    <m:ci>y</m:ci>
+                  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+                  <m:imaginaryi/>
+                  <m:apply>
+                    <m:exp/>
+		    <m:ci>x</m:ci>
+                  </m:apply>
+                  <m:apply>
+                    <m:sin/>
+		    <m:ci>y</m:ci>
+                  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+      </para>
+
+
+      <para id="secpara7">
+	Finally, the inverse of the complex exponential is the complex
+	logarithm,
+
+	<equation id="eq16">
+	  <m:math>
+	    <m:apply>
+	      <m:equivalent/>
+	      <m:apply>
+		<m:ln/>
+		<m:ci>z</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:ln/>
+                  <m:apply>
+                    <m:abs/>
+		    <m:ci>z</m:ci>
+                  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+                  <m:imaginaryi/>
+                  <m:ci>θ</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	for
+
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>z</m:ci>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:abs/>
+                <m:ci>z</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:exp/>
+                <m:apply>
+                  <m:times/>
+		  <m:imaginaryi/>
+		  <m:ci>θ</m:ci>
+                </m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>.
+
+	One finds that
+
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ln/>
+	      <m:apply>
+		<m:plus/>
+                <m:cn>-1</m:cn>
+                <m:imaginaryi/>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply>
+		<m:ln/>
+                <m:apply>
+                  <m:root/>
+		  <m:cn>2</m:cn>
+                </m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+                <m:imaginaryi/>
+                <m:apply>
+                  <m:divide/>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>3</m:cn>
+		    <m:pi/>
+		  </m:apply>
+		  <m:cn>4</m:cn>
+                </m:apply>	      
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>.
+      </para>
+
+    </section>
+  </content>
+</document>

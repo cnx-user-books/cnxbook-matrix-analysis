@@ -1,0 +1,123 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml"> 
+
+  <title>Preface to Matrix Analysis</title> 
+
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>ad11f10a-162f-418a-ba69-0ee0ee622c3d</md:uuid>
+</metadata>
+
+  <content>
+    <figure id="matanal">
+      <title>Matrix Analysis</title>
+      <media id="idp7184240" alt=""><image src="../../media/matanal.png" mime-type="image/png"/></media>
+    </figure>
+    
+    <para id="p1">
+      Bellman has called matrix theory 'the arithmetic of higher
+      mathematics.'  Under the influence of Bellman and Kalman,
+      engineers and scientists have found in matrix theory a language
+      for representing and analyzing multivariable systems.  Our goal
+      in these notes is to demonstrate the role of matrices in the
+      modeling of physical systems and the power of matrix theory in
+      the analysis and synthesis of such systems.
+    </para>
+
+    <para id="p2">
+      Beginning with modeling of structures in static equilibrium we
+      focus on the linear nature of the relationship between relevant
+      state variables and express these relationships as simple
+      matrix-vector products.  For example, the voltage drops across
+      the resistors in a network are linear combinations of the
+      potentials at each end of each resistor.  Similarly, the current
+      through each resistor is assumed to be a linear function of the
+      voltage drop across it.  And, finally, at equilibrium, a linear
+      combination (in minus out) of the currents must vanish at every
+      node in the network.  In short, the vector of currents is a
+      linear transformation of the vector of voltage drops which is
+      itself a linear transformation of the vector of potentials.  A
+      linear transformation of <m:math display="inline"><m:ci>n</m:ci></m:math> numbers into <m:math display="inline"><m:ci>m</m:ci></m:math> numbers is accomplished
+      by multiplying the vector of <m:math display="inline"><m:ci>n</m:ci></m:math> numbers by an <m:math display="inline"><m:ci>m</m:ci></m:math>-by- <m:math display="inline"><m:ci>n</m:ci></m:math> matrix.  Once we have
+      learned to spot the ubiquitous matrix-vector product we move on
+      to the analysis of the resulting linear systems of equations.
+      We accomplish this by stretching your knowledge of
+      three-dimensional space.  That is, we ask what does it mean that
+      the
+      
+      <m:math display="inline"><m:ci>m</m:ci></m:math>-by-
+      
+      <m:math display="inline"><m:ci>n</m:ci></m:math>
+      matrix 
+      
+      <m:math display="inline"><m:ci type="matrix">X</m:ci></m:math>
+      transforms
+      
+      <m:math display="inline">
+	<m:ci><m:msup>
+	    <m:mi>ℜ</m:mi>
+	    <m:mi>n</m:mi>
+	  </m:msup></m:ci>
+      </m:math>
+      <!-- R^n -->
+      
+      (real <m:math><m:ci>n</m:ci></m:math>-dimensional space) into
+      
+      <m:math display="inline">
+	<m:ci><m:msup>
+	    <m:mi>ℜ</m:mi>
+	    <m:mi>m</m:mi>
+	  </m:msup></m:ci>
+      </m:math>? 
+      <!-- R^m -->
+      
+      We shall <emphasis>visualize </emphasis> this transformation by
+      splitting both
+      
+      <m:math display="inline">
+	<m:ci><m:msup>
+	    <m:mi>ℜ</m:mi>
+	    <m:mi>n</m:mi>
+	  </m:msup></m:ci>
+      </m:math>
+      <!-- R^n --> and 
+      <m:math display="inline">
+	<m:ci><m:msup>
+	    <m:mi>ℜ</m:mi>
+	    <m:mi>m</m:mi>
+	  </m:msup></m:ci>
+      </m:math> 
+      <!-- R^m -->
+      
+      each into two smaller spaces between which the given
+      <m:math><m:ci type="matrix">X</m:ci></m:math> behaves in very
+      manageable ways.  An understanding of this splitting of the
+      ambient spaces into the so called <term>four fundamental
+      subspaces </term> of <m:math><m:ci type="matrix">X</m:ci></m:math> permits one to answer virtually
+      every question that may arise in the study of structures in
+      static equilibrium.
+    </para>
+
+    <para id="p3">
+      In the second half of the notes we argue that matrix methods are
+      equally effective in the modeling and analysis of dynamical
+      systems.  Although our modeling methodology adapts easily to
+      dynamical problems we shall see, with respect to analysis, that
+      rather than splitting the ambient spaces we shall be better
+      served by splitting <m:math><m:ci type="matrix">X</m:ci></m:math> itself.  The process is
+      analogous to decomposing a complicated signal into a sum of
+      simple harmonics oscillating at the natural frequencies of the
+      structure under investigation.  For we shall see that (most)
+      matrices may be written as weighted sums of matrices of very
+      special type.  The weights are eigenvalues, or natural
+      frequencies, of the matrix while the component matrices are
+      projections composed from simple products of eigenvectors.  Our
+      approach to the eigendecomposition of matrices requires a brief
+      exposure to the beautiful field of Complex Variables.  This
+      foray has the added benefit of permitting us a more careful
+      study of the Laplace Transform, another fundamental tool in the
+      study of dynamical systems.
+    </para>
+
+    <para id="signiture">
+      --Steve Cox
+    </para>
+  </content>
+</document>

@@ -1,0 +1,726 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml" xmlns:q="http://cnx.rice.edu/qml/1.0">
+
+  <title>Exercises for Matrix Methods for Electrical Systems</title>
+  
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>8915f0b9-7cb0-4ba5-8501-5f0cda12cabd</md:uuid>
+</metadata>
+
+
+  <content>
+    <exercise id="question1">
+      <q:item id="item1" type="text-response">
+	<q:question>
+	  <section id="section1">
+	    <title>Question 1</title>
+	    <para id="p1">
+	      In order to refresh your matrix-vector multiply skills
+	      please calculate, by hand, the product 
+	      
+	  <m:math display="inline">
+	    <m:apply><m:times/>
+	      <m:apply><m:transpose/>
+		<m:ci type="matrix">A</m:ci>
+	      </m:apply>
+	      <m:ci type="matrix">G</m:ci>
+	      <m:ci type="matrix">A</m:ci>
+	    </m:apply>
+	  </m:math>
+	  
+	  in the 3 compartment case and write out the 4 equations in
+	  the vector equation we arrived at in <link document="m10145" target-id="eqn1_1" strength="2">step (S4)</link>:
+	  <m:math display="inline">
+	    <m:apply><m:eq/>
+	      <m:apply><m:times/>
+		<m:apply><m:transpose/>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>
+		<m:ci type="matrix">G</m:ci>
+		<m:ci type="matrix">A</m:ci>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	      <m:ci type="vector">f</m:ci>
+	    </m:apply>
+	  </m:math>.
+	  <!-- A'GAx = f -->    
+	</para>
+	</section>
+	</q:question>
+
+	<q:answer>
+	</q:answer>
+
+	<q:feedback>
+	  <section id="section2">
+	    <title>Feedback</title>
+	    <para id="p2">
+	      The second equation should read
+	      
+	      <equation id="eqn1_2">
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply><m:plus/>
+		<m:apply><m:divide/>
+		  <m:apply><m:minus/>
+		    <m:apply><m:plus/>
+		      <m:apply><m:minus/>
+			<m:ci><m:msub>
+			    <m:mi>x</m:mi>
+			    <m:mn>1</m:mn>
+			  </m:msub></m:ci>
+		      </m:apply>
+		      <m:apply><m:times/>
+			<m:cn>2</m:cn>
+			<m:ci><m:msub>
+			    <m:mi>x</m:mi>
+			    <m:mn>2</m:mn>
+			  </m:msub></m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:ci><m:msub>
+			<m:mi>x</m:mi>
+			<m:mn>3</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:ci><m:msub>
+		      <m:mi>R</m:mi>
+		      <m:mi>i</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:apply><m:divide/>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>R</m:mi>
+		      <m:mi>m</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	    <!-- ( -x_1 + 2x_2 - x_3 ) / R_i + ( x_2 / R_m ) = 0 -->
+	  </m:math>
+	</equation>
+	</para>
+	</section>
+	</q:feedback>
+      </q:item>
+    </exercise>
+
+    <exercise id="question2">
+      <q:item id="item2" type="text-response">
+	<q:question>
+	  <section id="section3">
+	    <title>Question 2</title>
+	    <para id="p3">
+	      We began our discussion with the 'hope' that a
+	      multicompartment model could indeed adequately capture
+	      the fiber's true potential and current profiles.  In
+	      order to check this one should run <link url="http://www.caam.rice.edu/~caam335/cox/lectures/fib1.m">fib1.m</link>
+	      with increasing values of <m:math display="inline"><m:ci>N</m:ci></m:math> until one can
+	      no longer detect changes in the computed potentials.
+	</para>
+
+	  <list id="prob2lista" list-type="bulleted">
+	    <item>(a) Please run 
+	      <link url="http://www.caam.rice.edu/~caam335/cox/lectures/fib1.m">
+		fib1.m</link>
+	      with N = 8, 16, 32, and 64. 
+	      
+	      Plot all of the potentials on the <emphasis>same</emphasis> (use 
+	      <code>hold</code>) graph, using different line types for each.  (You
+	      may wish to alter <code>fib1.m</code> so that it accepts 
+	  <m:math display="inline"><m:ci>N</m:ci></m:math> as an argument).
+	</item>
+	</list>
+	  
+	  <para id="p4">
+	    Let us now interpret this convergence.  The main
+	    observation is that the difference equation, <link target-id="eqn1_2" strength="3"/>, approaches a differential
+	    equation.  We can see this by noting that
+
+	  <m:math display="block">
+	    <m:apply><m:equivalent/>
+	      <m:apply>
+		<m:ci><m:mo>ⅆ</m:mo></m:ci>
+		<m:ci>z</m:ci>
+	      </m:apply>
+	      <m:apply><m:divide/>
+		<m:ci>l</m:ci>
+		<m:ci>N</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <!-- dz == l/N -->
+	  </m:math>
+	  
+	  acts as a spatial 'step' size and that 
+	  
+	  <m:math display="inline">
+	    <m:ci><m:msub>
+		<m:mi>x</m:mi>
+		<m:mi>k</m:mi>
+	      </m:msub></m:ci>
+	    <!-- x_k -->
+	  </m:math>,
+	  
+	  the potential at 
+	  
+	  <m:math display="inline">
+	    <m:apply><m:times/>
+	      <m:apply><m:minus/>
+		<m:ci>k</m:ci>
+		<m:cn>1</m:cn>
+	      </m:apply>
+	      <m:apply>
+		<m:ci><m:mo>ⅆ</m:mo></m:ci>
+		<m:ci>z</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <!-- ( k - 1 ) dz -->
+	  </m:math>,
+	  
+	  is approximately the value of the true potential at
+	  
+	  <m:math display="inline">
+	    <m:apply><m:times/>
+	      <m:apply><m:minus/>
+		<m:ci>k</m:ci>
+		<m:cn>1</m:cn>
+	      </m:apply>
+	      <m:apply>
+		<m:ci><m:mo>ⅆ</m:mo></m:ci>
+		<m:ci>z</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <!-- ( k - 1 ) dz -->
+	  </m:math>.
+	  
+	  In a slight abuse of notation, we denote the latter
+	  
+	  <m:math display="block">
+	    <m:apply>
+	      <m:ci type="fn">x</m:ci>
+	      <m:apply><m:times/>
+		<m:apply><m:minus/>
+		  <m:ci>k</m:ci>
+		  <m:cn>1</m:cn>
+		</m:apply>
+		<m:apply>
+		  <m:ci><m:mo>ⅆ</m:mo></m:ci>
+		  <m:ci>z</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <!-- x * ( ( k - 1 ) dz ) -->
+	  </m:math>
+	  
+	  Applying these conventions to <link target-id="eqn1_2" strength="2"/> and recalling the definitions of
+	  
+	  <m:math display="inline">
+	    <m:ci><m:msub>
+		<m:mi>R</m:mi>
+		<m:mi>i</m:mi>
+	      </m:msub></m:ci>
+	    <!-- R_i -->
+	  </m:math>
+
+	  and 
+	  
+	  <m:math display="inline">
+	    <m:ci><m:msub>
+		<m:mi>R</m:mi>
+		<m:mi>m</m:mi>
+	      </m:msub></m:ci>
+	    <!-- R_i -->
+	  </m:math>
+	  
+	  we see <link target-id="eqn1_2" strength="2"/> become 
+	  
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply><m:plus/>
+		<m:apply><m:times/>
+		  <m:apply><m:divide/>
+		    <m:apply><m:times/>
+		      <m:pi/>
+		      <m:apply><m:power/>
+			<m:ci>a</m:ci>
+			<m:degree><m:cn>2</m:cn></m:degree>
+		      </m:apply>
+		    </m:apply>
+		    <m:ci><m:msub>
+			<m:mi>ρ</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:apply><m:divide/>
+		    <m:apply><m:minus/>
+		      <m:apply><m:plus/>
+			<m:apply><m:minus/>
+			  <m:apply>
+			    <m:ci type="fn">x</m:ci>
+			    <m:cn>0</m:cn>
+			  </m:apply>
+			</m:apply>
+			<m:apply><m:times/>
+			  <m:cn>2</m:cn>
+			  <m:apply>
+			    <m:ci type="fn">x</m:ci>
+			    <m:apply>
+			      <m:ci><m:mo>ⅆ</m:mo></m:ci>
+			      <m:ci>z</m:ci>
+			    </m:apply>
+			  </m:apply>
+			</m:apply>
+		      </m:apply>
+		      <m:apply>
+			<m:ci type="fn">x</m:ci>
+			<m:apply><m:times/>
+			  <m:cn>2</m:cn>
+			  <m:apply>
+			    <m:ci><m:mo>ⅆ</m:mo></m:ci>
+			    <m:ci>z</m:ci>
+			  </m:apply>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:ci><m:mo>ⅆ</m:mo></m:ci>
+		      <m:ci>z</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply><m:times/>
+		  <m:apply><m:divide/>
+		    <m:apply><m:times/>
+		      <m:cn>2</m:cn>
+		      <m:pi/>
+		      <m:ci>a</m:ci>
+		      <m:apply>
+			      <m:ci><m:mo>ⅆ</m:mo></m:ci>
+			<m:ci>z</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:ci><m:msub>
+			<m:mi>ρ</m:mi>
+			<m:mi>m</m:mi>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn">x</m:ci>
+		    <m:apply>
+		      <m:ci><m:mo>ⅆ</m:mo></m:ci>
+		      <m:ci>z</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	    <!-- ( pi * a^2 ) / ( rho_i ) * ( -x(0) + 2x(dz) - x(2dz) ) / dz +
+	    ( 2 * pi * a * dz ) / ( rho_m) * x(dz) = 0 -->
+	  </m:math>
+	  
+	  or, after multiplying through by 
+	  
+	  <m:math display="inline">
+	    <m:apply><m:divide/>
+	      <m:ci><m:msub>
+		  <m:mi>ρ</m:mi>
+		  <m:mi>m</m:mi>
+		</m:msub></m:ci>
+	      <m:apply><m:times/>
+		<m:pi/>
+		<m:ci>a</m:ci>
+		<m:apply>
+		  <m:ci><m:mo>ⅆ</m:mo></m:ci>
+		  <m:ci>z</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <!-- rho_m / ( pi * a * dz) -->
+	  </m:math>,
+	  
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply><m:plus/>
+		<m:apply><m:times/>
+		  <m:apply><m:divide/>
+		    <m:apply><m:times/>
+		      <m:ci>a</m:ci>
+		      <m:ci><m:msub>
+			  <m:mi>ρ</m:mi>
+			  <m:mi>m</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:ci><m:msub>
+			<m:mi>ρ</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:apply><m:divide/>
+		    <m:apply><m:minus/>
+		      <m:apply><m:plus/>
+			<m:apply><m:minus/>
+			  <m:apply>
+			    <m:ci type="fn">x</m:ci>
+			    <m:cn>0</m:cn>
+			  </m:apply>
+			</m:apply>
+			<m:apply><m:times/>
+			  <m:cn>2</m:cn>
+			  <m:apply>
+			    <m:ci type="fn">x</m:ci>
+			    <m:apply>
+			      <m:ci><m:mo>ⅆ</m:mo></m:ci>
+			      <m:ci>z</m:ci>
+			    </m:apply>
+			  </m:apply>
+			</m:apply>
+		      </m:apply>
+		      <m:apply>
+			<m:ci type="fn">x</m:ci>
+			<m:apply><m:times/>
+			  <m:cn>2</m:cn>
+			  <m:apply>
+			    <m:ci><m:mo>ⅆ</m:mo></m:ci>
+			    <m:ci>z</m:ci>
+			  </m:apply>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:ci><m:mo>ⅆ</m:mo></m:ci>
+		      <m:apply><m:power/>
+			<m:ci>z</m:ci>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply><m:times/>
+		  <m:cn>2</m:cn>
+		  <m:apply>
+		    <m:ci type="fn">x</m:ci>
+		    <m:apply>
+		      <m:ci><m:mo>ⅆ</m:mo></m:ci>
+		      <m:ci>z</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	    <!-- ( a * rho_m / rho_i ) * ( -x_0 + 2x(dz) - x(2dz) ) / dz^2 
+	    + 2x(dz) = 0 --> 
+	  </m:math>.
+	  
+	  We note that a similar equation holds at each node (save the
+	  ends) and that as
+	  
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:tendsto/>
+	      <m:ci>N</m:ci>
+	      <m:infinity/>
+	    </m:apply>
+	    <!-- N approaches infinity -->
+	  </m:math>
+	  
+	  and therefore
+	  
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:tendsto/>
+	      <m:apply>
+		<m:ci><m:mo>ⅆ</m:mo></m:ci>
+		<m:ci>z</m:ci>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	    <!-- dz approaches infinity -->
+	  </m:math>
+	  
+	  we arrive at
+	  
+	  <equation id="eqn1_3">
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply><m:minus/>
+		<m:apply><m:diff/>
+		  <m:bvar><m:ci>z</m:ci><m:degree><m:cn>2</m:cn></m:degree></m:bvar>
+		  <m:apply>
+		    <m:ci type="fn">x</m:ci>
+		    <m:ci>z</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply><m:times/>
+		  <m:apply><m:divide/>
+		    <m:apply><m:times/>
+		      <m:cn>2</m:cn>
+		      <m:ci><m:msub>
+			  <m:mi>ρ</m:mi>
+			  <m:mi>i</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:apply><m:times/>
+		      <m:ci>a</m:ci>
+		      <m:ci><m:msub>
+			  <m:mi>ρ</m:mi>
+			  <m:mi>m</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn">x</m:ci>
+		    <m:ci>z</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	    <!-- [(d^2 / dz^2) x(z)] - 2 * rho_i / ( a * rho_m ) * x(z) = 0 -->
+	  </m:math>
+	</equation>
+	</para>
+
+	  <list id="prob2listb" list-type="bulleted">
+	    <item>(b) With 
+	      
+	  <m:math display="inline">
+	    <m:apply><m:equivalent/>
+	      <m:ci>μ</m:ci>
+	      <m:apply><m:divide/>
+		<m:apply><m:times/>
+		  <m:cn>2</m:cn>
+		  <m:ci><m:msub>
+		      <m:mi>ρ</m:mi>
+		      <m:mi>i</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:apply><m:times/>
+		  <m:ci>a</m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>ρ</m:mi>
+		      <m:mi>m</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <!-- mu == ( 2 * rho_i ) / ( a * rho_m ) -->
+	  </m:math>
+	  
+	  show that
+	  
+	  <equation id="eqn1_4">
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply>
+		<m:ci type="fn">x</m:ci>
+		<m:ci>z</m:ci>
+	      </m:apply>
+	      <m:apply><m:plus/>
+		<m:apply><m:times/>
+		  <m:ci>α</m:ci>
+		  <m:apply><m:sinh/>
+		    <m:apply><m:times/>
+		      <m:apply><m:root/>
+			<m:degree><m:cn>2</m:cn></m:degree>
+			<m:ci>μ</m:ci>
+		      </m:apply>
+		      <m:ci>z</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply><m:times/>
+		  <m:ci>β</m:ci>
+		  <m:apply><m:cosh/>
+		    <m:apply><m:times/>
+		      <m:apply><m:root/>
+			<m:degree><m:cn>2</m:cn></m:degree>
+			<m:ci>μ</m:ci>
+		      </m:apply>
+		      <m:ci>z</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <!-- x(z) = alpha * sinh(sqrt(mu) * z ) + beta * cosh(sqrt(mu) * z) -->
+	  </m:math>
+	</equation>
+
+	  satisfies <link target-id="eqn1_3" strength="2"/> regardless of 
+	  <m:math display="inline"><m:ci>α</m:ci></m:math> and
+	  <m:math display="inline"><m:ci>β</m:ci></m:math>.
+	</item>
+	</list>
+	  
+	  <para id="p5">
+	    We shall determine <m:math display="inline"><m:ci>α</m:ci></m:math> and <m:math display="inline"><m:ci>β</m:ci></m:math> by paying
+	  attention to the ends of the fiber.  At the near end we find
+
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply><m:times/>
+		<m:apply><m:divide/>
+		  <m:apply><m:times/>
+		    <m:pi/>
+		    <m:apply><m:power/>
+		      <m:ci>a</m:ci>
+		      <m:degree><m:cn>2</m:cn></m:degree>
+		    </m:apply>
+		  </m:apply>
+		  <m:ci><m:msub>
+		      <m:mi>ρ</m:mi>
+		      <m:mi>i</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:apply><m:divide/>
+		  <m:apply><m:minus/>
+		    <m:apply>
+		      <m:ci type="fn">x</m:ci>
+		      <m:cn>0</m:cn>
+		    </m:apply>
+		    <m:apply>
+		      <m:ci type="fn">x</m:ci>
+		      <m:apply>
+			<m:ci><m:mo>ⅆ</m:mo></m:ci>
+			<m:ci>z</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci><m:mo>ⅆ</m:mo></m:ci>
+		    <m:ci>z</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:ci><m:msub>
+		  <m:mi>i</m:mi>
+		  <m:mn>0</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	    <!-- ( pi * a^2 / rho_i ) * ( x(0) - x(dz) ) / dz = i_0 -->
+	  </m:math>
+
+	  which, as 
+
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:tendsto/>
+	      <m:apply>
+		<m:ci><m:mo>ⅆ</m:mo></m:ci>
+		<m:ci>z</m:ci>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	    <!-- dz approaches 0 -->
+	  </m:math>
+
+	  becomes
+	  
+	  <equation id="eqn1_5">
+	  <m:math>
+	    <m:apply><m:eq/>
+	      <m:apply><m:diff/>
+		<m:bvar><m:ci>z</m:ci></m:bvar>
+		<m:apply>
+		  <m:ci type="fn">x</m:ci>
+		  <m:cn>0</m:cn>
+		</m:apply>
+	      </m:apply>
+	      <m:apply><m:minus/>
+		<m:apply><m:divide/>
+		  <m:apply><m:times/>
+		    <m:ci><m:msub>
+			<m:mi>ρ</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci>
+		    <m:ci><m:msub>
+			<m:mi>i</m:mi>
+			<m:mn>0</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:apply><m:times/>
+		    <m:pi/>
+		    <m:apply><m:power/>
+		      <m:ci>a</m:ci>
+		      <m:degree><m:cn>2</m:cn></m:degree>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <!-- d/dz ( x(0) ) = - ( p_i *  i_0 ) / ( pi * a^2 ) -->
+	  </m:math>
+	</equation>
+
+	  At the far end, we interpret the condition that no axial
+	  current may leave the last node to mean
+
+	  <equation id="eqn1_6">
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply><m:diff/>
+		<m:bvar><m:ci>z</m:ci></m:bvar>
+		<m:apply>
+		  <m:ci type="fn">x</m:ci>
+		  <m:ci>l</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	    <!-- d/dz ( x(l) ) = 0 -->
+	  </m:math>
+	</equation>
+	</para>
+
+	  <list id="prob2listc" list-type="bulleted">
+	    <item>(c) Substitute <link target-id="eqn1_4" strength="3"/>
+	      into <link target-id="eqn1_5" strength="3"/> and <link target-id="eqn1_6" strength="3"/> and solve for <m:math display="inline"><m:ci>α</m:ci></m:math> and
+	      <m:math display="inline"><m:ci>β</m:ci></m:math>
+	      and write out the final
+	  
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:ci type="fn">x</m:ci>
+	      <m:ci>z</m:ci>
+	    </m:apply>
+	  </m:math>.
+	</item>
+
+	  <item>(d) Substitute into <m:math display="inline"><m:ci>x</m:ci></m:math> the <m:math display="inline"><m:ci>l</m:ci></m:math>, <m:math display="inline"><m:ci>a</m:ci></m:math>,
+	  
+	  <m:math display="inline">
+	    <m:ci><m:msub>
+		<m:mi>ρ</m:mi>
+		<m:mi>i</m:mi>
+	      </m:msub></m:ci>
+	    <!-- rho_i -->
+	  </m:math>,
+
+	  and
+
+	  <m:math display="inline">
+	    <m:ci><m:msub>
+		<m:mi>ρ</m:mi>
+		<m:mi>m</m:mi>
+	      </m:msub></m:ci>
+	    <!-- rho_m -->
+	  </m:math>
+
+	  values used in 
+	  <link url="http://www.caam.rice.edu/~caam335/cox/lectures/fib1.m">
+	    fib1.m</link>, plot the resulting function (using,
+	  <foreign>e.g.</foreign>, <code>ezplot</code>) and compare
+	  this to the plot achieved in <link target-id="prob2lista" strength="2">part (a)</link>.
+	</item>
+	</list>
+	</section>
+	</q:question>
+      </q:item>
+    </exercise>
+  </content>
+</document>

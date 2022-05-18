@@ -1,0 +1,675 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  
+  <title>Eigenvalue Problem: The Transfer Function</title>
+  
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>53956e97-9aae-4d12-8b72-1b28b97456ee</md:uuid>
+</metadata>
+
+  <content>  <section id="transferfunction"><title>The Transfer Function</title>
+      <para id="p9.2.1">
+	One means by which to come to grips with <m:math><m:apply>
+	    <m:ci type="fn">R</m:ci> <m:ci>s</m:ci> </m:apply></m:math> is
+	to treat it as the matrix analog of the scalar function
+	<equation id="eq3"><m:math>
+	    <m:apply>
+	      <m:divide/>
+	      <m:cn>1</m:cn>
+	      <m:apply>
+		<m:minus/>
+		<m:ci>s</m:ci><m:ci>b</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math></equation>
+	This function is a scaled version of the even simpler function
+	<m:math>
+	  <m:apply>
+	    <m:divide/>
+	    <m:cn>1</m:cn>
+	    <m:apply><m:minus/>
+	      <m:cn>1</m:cn><m:ci>z</m:ci>
+	    </m:apply></m:apply></m:math>.
+	This latter function satisfies the identity (just multiply across by
+	<m:math>
+	  <m:apply><m:minus/><m:cn>1</m:cn><m:ci>z</m:ci></m:apply></m:math>
+	to check it)
+	<equation id="eq4"><m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply><m:divide/>
+		<m:cn>1</m:cn>
+		<m:apply><m:minus/><m:cn>1</m:cn><m:ci>z</m:ci></m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:plus/>
+		<m:cn>1</m:cn>
+		<m:ci>z</m:ci>
+		<m:apply><m:power/><m:ci>z</m:ci><m:cn>2</m:cn></m:apply>
+		<m:ci>...</m:ci>
+		<m:apply><m:power/>
+		  <m:ci>z</m:ci>
+		  <m:apply><m:minus/>
+		    <m:ci>n</m:ci><m:cn>1</m:cn>
+		  </m:apply>
+		</m:apply>
+		<m:apply><m:divide/>
+		  <m:apply><m:power/><m:ci>z</m:ci><m:ci>n</m:ci></m:apply>
+		  <m:apply><m:minus/><m:cn>1</m:cn><m:ci>z</m:ci></m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math></equation>
+	for each positive integer
+	<m:math><m:ci>n</m:ci></m:math>. Furthermore, if <m:math>
+	  <m:apply><m:lt/>
+	    <m:apply><m:abs/><m:ci>z</m:ci></m:apply>
+	    <m:cn>1</m:cn>
+	  </m:apply></m:math> then <m:math>
+	  <m:apply>
+	    <m:tendsto/>
+	    <m:apply>
+	      <m:power/>
+	      <m:ci>z</m:ci>
+	      <m:ci>n</m:ci>
+	    </m:apply>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math> as <m:math>
+	  <m:apply>
+	    <m:tendsto/>
+	    <m:ci>n</m:ci>
+	    <m:infinity/>
+	  </m:apply>
+	</m:math>
+	and so  <link target-id="eq4" strength="3"/>  becomes, in the limit,
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:apply><m:divide/>
+	      <m:cn>1</m:cn>
+	      <m:apply><m:minus/><m:cn>1</m:cn><m:ci>z</m:ci></m:apply>
+	    </m:apply>
+	    <m:apply><m:sum/>
+	      <m:bvar><m:ci>n</m:ci></m:bvar>
+	      <m:lowlimit><m:cn>0</m:cn></m:lowlimit>
+	      <m:uplimit><m:infinity/></m:uplimit>
+	      <m:apply><m:power/><m:ci>z</m:ci><m:ci>n</m:ci></m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math> the familiar geometric
+	series. Returning to <link target-id="eq3" strength="3"/> we write
+	<m:math display="block"> 
+	  <m:apply>
+	    <m:eq/> 
+	    <m:apply>
+	      <m:divide/>
+	      <m:cn>1</m:cn>
+	      <m:apply>
+		<m:minus/>
+		<m:ci>s</m:ci><m:ci>b</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:divide/>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:minus/>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:divide/>
+		  <m:ci>b</m:ci><m:ci>s</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply><m:divide/><m:cn>1</m:cn><m:ci>s</m:ci></m:apply>
+	      <m:apply>
+		<m:divide/>
+		<m:ci>b</m:ci>
+		<m:apply>
+		  <m:power/>
+		  <m:ci>s</m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:apply>
+	      <m:ci>...</m:ci>
+	      <m:apply>
+		<m:divide/>
+		<m:apply>
+		  <m:power/>
+		  <m:ci>b</m:ci>
+		  <m:apply><m:minus/>
+		    <m:ci>n</m:ci><m:cn>1</m:cn>
+		  </m:apply>
+		</m:apply>
+		<m:apply><m:power/>
+		  <m:ci>s</m:ci><m:ci>n</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>  
+		<m:apply>
+		  <m:divide/>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>b</m:ci>
+		    <m:ci>n</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>s</m:ci>
+		    <m:ci>n</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:apply><m:minus/>
+		    <m:ci>s</m:ci><m:ci>b</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	and hence, so long as <m:math>
+	  <m:apply><m:gt/>
+	    <m:apply><m:abs/><m:ci>s</m:ci></m:apply>
+	    <m:apply><m:abs/><m:ci>b</m:ci></m:apply>
+	  </m:apply>
+	</m:math> we find,
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:divide/>
+	      <m:cn>1</m:cn>
+	      <m:apply><m:minus/><m:ci>s</m:ci><m:ci>b</m:ci></m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:sum/>
+		<m:bvar><m:ci>n</m:ci></m:bvar>
+		<m:lowlimit><m:cn>0</m:cn></m:lowlimit>
+		<m:uplimit><m:infinity/></m:uplimit>
+		<m:apply>
+		  <m:power/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:ci>b</m:ci>
+		    <m:ci>s</m:ci>
+		  </m:apply>
+		  <m:ci>n</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	This same line of reasoning may be applied in the matrix
+	case. That is, 
+	<equation id="eq5">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/> 
+	      <m:apply>
+		<m:inverse/> 
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:times/> 
+		    <m:ci>s</m:ci>
+		    <m:ci>I</m:ci>
+		  </m:apply>
+		  <m:ci>B</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:inverse/>
+		  <m:ci>s</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:inverse/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>I</m:ci>
+		    <m:apply>
+		      <m:divide/>
+		      <m:ci>B</m:ci><m:ci>s</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:plus/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:ci>s</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:divide/>
+		    <m:ci>B</m:ci>
+		    <m:apply><m:power/>
+		      <m:ci>s</m:ci><m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		  <m:ci>...</m:ci>
+		  <m:apply>
+		    <m:divide/>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>B</m:ci>
+		      <m:apply><m:minus/>
+			<m:ci>n</m:ci><m:cn>1</m:cn>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply><m:power/>
+		      <m:ci>s</m:ci><m:ci>n</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:divide/>
+		      <m:apply>
+			<m:power/>
+			<m:ci>B</m:ci><m:ci>n</m:ci>
+		      </m:apply>
+		      <m:apply><m:power/>
+			<m:ci>s</m:ci><m:ci>n</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:inverse/>
+		      <m:apply>
+			<m:minus/>
+			<m:apply>
+			  <m:times/>
+			  <m:ci>s</m:ci><m:ci>I</m:ci>
+			</m:apply>
+			<m:ci>B</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math></equation>
+	and hence, so long as <m:math>
+	  <m:apply><m:gt/>
+	    <m:apply><m:abs/><m:ci>s</m:ci></m:apply>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#norm"/>
+	      <m:ci>B</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math> where
+	<m:math>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#norm"/>
+	    <m:ci>B</m:ci>
+	  </m:apply>
+	</m:math> is the magnitude of the
+	largest element of <m:math><m:ci>B</m:ci></m:math>, we find
+	<equation id="eq6"><m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:inverse/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>s</m:ci><m:ci>I</m:ci>
+		  </m:apply>
+		  <m:ci>B</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:inverse/>
+		  <m:ci>s</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:sum/>
+		  <m:bvar><m:ci>n</m:ci></m:bvar>
+		  <m:lowlimit><m:cn>0</m:cn></m:lowlimit>
+		  <m:uplimit><m:infinity/></m:uplimit>
+		  <m:apply>
+		    <m:power/>
+		    <m:apply>
+		      <m:divide/>
+		      <m:ci>B</m:ci>
+		      <m:ci>s</m:ci>
+		    </m:apply>
+		    <m:ci>n</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math></equation> Although <link target-id="eq6" strength="3"/> is indeed a formula for the transfer
+	function you may, regarding computation, not find it any more
+	attractive than the Gauss-Jordan method. We view <link target-id="eq6" strength="3"/> however as an analytical
+	rather than computational tool. More precisely, it facilitates
+	the computation of integrals of <m:math>
+	  <m:apply>
+	    <m:ci type="fn">R</m:ci>
+	    <m:ci>s</m:ci>
+	  </m:apply>
+	</m:math>. For example, if <m:math>
+	  <m:ci><m:msub><m:mi>C</m:mi><m:mi>ρ</m:mi></m:msub></m:ci>
+	</m:math> is the circle of radius
+	<m:math><m:ci>ρ</m:ci></m:math> centered at the origin
+	and <m:math> 
+	  <m:apply><m:gt/> 
+	    <m:ci>ρ</m:ci>
+	    <m:apply><m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#norm"/>
+	      <m:ci>B</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	then 
+	<equation id="eq7"><m:math> 
+	    <m:apply>
+	      <m:eq/> 
+	      <m:apply>
+		<m:int/>
+		<m:bvar><m:ci>s</m:ci></m:bvar>
+		<m:lowlimit>
+		  <m:ci><m:msub>
+		      <m:mi>C</m:mi><m:mi>ρ</m:mi>
+		    </m:msub></m:ci>
+		</m:lowlimit>
+		<m:apply>
+		  <m:inverse/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci>s</m:ci><m:ci>I</m:ci>
+		    </m:apply>
+		    <m:ci>B</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:sum/>
+		  <m:bvar><m:ci>n</m:ci></m:bvar>
+		  <m:lowlimit><m:cn>0</m:cn></m:lowlimit>
+		  <m:uplimit><m:infinity/></m:uplimit>
+		  <m:apply><m:power/>
+		    <m:ci>B</m:ci>
+		    <m:ci>n</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply><m:int/>
+		  <m:bvar><m:ci>s</m:ci></m:bvar>
+		  <m:lowlimit>
+		    <m:ci><m:msub>
+			<m:mi>C</m:mi><m:mi>ρ</m:mi>
+		      </m:msub></m:ci>
+		  </m:lowlimit>
+		  <m:apply><m:power/>
+		    <m:ci>s</m:ci>
+		    <m:apply><m:minus/>
+		      <m:cn>-1</m:cn><m:ci>n</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply> 
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:cn>2</m:cn>
+		<m:pi/>
+		<m:imaginaryi/>
+		<m:ci>I</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math></equation> This result is essential to our study
+	of the eigenvalue problem. As are the two resolvent
+	identities. Regarding the first we deduce from the simple
+	observation 
+	<m:math display="block"> 
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:minus/> 
+	      <m:apply>
+		<m:inverse/> 
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:times/> 
+		    <m:ci><m:msub>
+			<m:mi>s</m:mi><m:mn>2</m:mn> 
+		      </m:msub></m:ci> 
+		    <m:ci>I</m:ci>
+		  </m:apply>
+		  <m:ci>B</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:inverse/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci><m:msub>
+			<m:mi>s</m:mi><m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		    <m:ci>I</m:ci>
+		  </m:apply>
+		  <m:ci>B</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:inverse/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci><m:msub>
+			<m:mi>s</m:mi><m:mn>2</m:mn>
+		      </m:msub></m:ci>
+		    <m:ci>I</m:ci>
+		  </m:apply>
+		  <m:ci>B</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci><m:msub>
+			  <m:mi>s</m:mi><m:mn>1</m:mn>
+			</m:msub></m:ci>
+		      <m:ci>I</m:ci>
+		    </m:apply>
+		    <m:ci>B</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci><m:msub>
+			<m:mi>s</m:mi><m:mn>2</m:mn>
+		      </m:msub></m:ci>
+		    <m:ci>I</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:ci>B</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:inverse/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci><m:msub>
+			<m:mi>s</m:mi><m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		    <m:ci>I</m:ci>
+		  </m:apply>
+		  <m:ci>B</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	that
+	<equation id="eq8"><m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:ci type="fn">R</m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>s</m:mi><m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">R</m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>s</m:mi><m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci><m:msub>
+		      <m:mi>s</m:mi><m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>s</m:mi><m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">R</m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>s</m:mi><m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">R</m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>s</m:mi><m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math></equation>
+	The second identity is simply a rewriting of 
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>s</m:ci><m:ci>I</m:ci>
+		</m:apply>
+		<m:ci>B</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:inverse/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>s</m:ci><m:ci>I</m:ci>
+		  </m:apply>
+		  <m:ci>B</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:inverse/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>s</m:ci><m:ci>I</m:ci>
+		  </m:apply>
+		  <m:ci>B</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>s</m:ci><m:ci>I</m:ci>
+		</m:apply>
+		<m:ci>B</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:ci>I</m:ci>
+	  </m:apply>
+	</m:math>
+	namely,
+	<equation id="eq9">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:times/>
+		<m:ci>B</m:ci>
+		<m:apply>
+		  <m:ci type="fn">R</m:ci>
+		  <m:ci>s</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:ci type="fn">R</m:ci>
+		  <m:ci>s</m:ci>
+		</m:apply>
+		<m:ci>B</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>s</m:ci>
+		  <m:apply>
+		    <m:ci type="fn">R</m:ci><m:ci>s</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:ci>I</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+      </para>
+    </section>
+
+  </content>
+  
+</document>

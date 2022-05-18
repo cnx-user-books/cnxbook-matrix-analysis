@@ -1,0 +1,1461 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/"> 
+
+  <title>Matrix Methods for Electrical Systems</title> 
+
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>f99fe657-b926-430d-9814-c2bce923c3bd</md:uuid>
+</metadata>
+
+  <content>
+  <section id="section1">
+    <title>Nerve Fibers and the Strang Quartet</title>
+    <para id="p1">
+      We wish to confirm, by example, the prefatory claim that matrix
+      algebra is a useful means of organizing (stating and solving)
+      multivariable problems.  In our first such example we
+      investigate the response of a nerve fiber to a constant current
+      stimulus. Ideally, a nerve fiber is simply a cylinder of radius
+      <m:math><m:ci>a</m:ci></m:math> and length
+      <m:math><m:ci>l</m:ci></m:math> that conducts electricity both
+      along its length and across its lateral membrane. Though we
+      shall, in subsequent chapters, delve more deeply into the
+      biophysics, here, in our first outing, we shall stick to its
+      purely resistive properties. The latter are expressed via two
+      quantities:
+
+      <list id="resistivity" list-type="enumerated">
+	<item id="cytoplasm_resist">
+	  <m:math display="inline">
+	    <m:ci><m:msub>
+		<m:mi>ρ</m:mi>
+		<m:mi>i</m:mi>
+	    </m:msub></m:ci>
+	  </m:math>,
+	  <!-- rho_i -->
+	  
+	  the resistivity in 
+	  <m:math display="inline">
+	    <m:mrow><m:mi>Ω</m:mi>
+	    <m:mtext>cm</m:mtext></m:mrow>
+	  </m:math>
+	  <!-- Omega cm -->
+	  
+	  of the cytoplasm that fills the cell, and 
+	</item>
+	<item id="cell_membrane_resist">
+	  <m:math display="inline">
+	    <m:ci><m:msub>
+		<m:mi>ρ</m:mi>
+		<m:mi>m</m:mi>
+	      </m:msub></m:ci>
+	  </m:math>,
+	  <!-- rho_m -->
+	  
+	  the resistivity in 
+	  
+	  <m:math display="inline">
+	    <m:mrow><m:mi>Ω</m:mi>
+	    <m:msup>
+		<m:mtext>cm</m:mtext>
+		<m:mn>2</m:mn>
+	      </m:msup></m:mrow>
+	  </m:math>
+	  <!-- Omega cm^2 -->
+	  
+	  of the cell's lateral membrane.
+	</item>
+      </list>
+    </para>
+    
+    <figure id="three_compart_nerve">
+      <title>A 3 compartment model of a nerve cell</title>
+      <media id="idp6290960" alt=""><image src="../../media/cell.png" mime-type="image/png"/></media>
+    </figure>
+
+    <para id="p2">
+      Although current surely varies from point to point along the
+      fiber it is hoped that these variations are regular enough to be
+      captured by a multicompartment model. By that we mean that we
+      choose a number <m:math><m:ci>N</m:ci></m:math> and divide the
+      fiber into <m:math><m:ci>N</m:ci></m:math> segments each of
+      length
+
+      <m:math display="inline">
+	<m:apply><m:divide/>
+	  <m:ci>l</m:ci>
+	  <m:ci>N</m:ci>
+	</m:apply>
+      </m:math>.
+      <!-- l/N -->
+
+      Denoting a segment's 
+      <definition id="axial_resistance">
+	<term>axial resistance </term>
+	<meaning id="idm7249584">
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:ci><m:msub>
+		  <m:mi>R</m:mi>
+		  <m:mi>i</m:mi>
+		</m:msub></m:ci>
+	      <m:apply><m:divide/>
+		<m:apply><m:times/>
+		  <m:ci><m:msub>
+		      <m:mi>ρ</m:mi>
+		      <m:mi>i</m:mi>
+		    </m:msub></m:ci>
+		  <m:apply><m:divide/>
+		    <m:ci>l</m:ci>
+		    <m:ci>N</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply><m:times/>
+		  <m:pi/>
+		  <m:apply><m:power/>
+		    <m:ci>a</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	  <!-- R_i = ( p_i * l/N ) / ( pi * a^2 ) -->
+	</meaning>
+      </definition>
+
+      and
+
+      <definition id="membrane_resistance">
+	<term>membrane resistance</term>
+	<meaning id="idm7477728">
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:ci><m:msub>
+		  <m:mi>R</m:mi>
+		  <m:mi>m</m:mi>
+		</m:msub></m:ci>
+	      <m:apply><m:divide/>
+		<m:ci><m:msub>
+		    <m:mi>ρ</m:mi>
+		    <m:mi>m</m:mi>
+		  </m:msub></m:ci>
+		<m:apply><m:times/>
+		  <m:cn>2</m:cn>
+		  <m:pi/>
+		  <m:ci>a</m:ci>
+		  <m:apply><m:divide/>
+		    <m:ci>l</m:ci>
+		    <m:ci>N</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	  <!-- R_m = p_m / ( 2 * pi * a * ( l / N ) ) -->
+	</meaning>
+      </definition>
+
+      we arrive at the lumped circuit model of <link target-id="three_compart_nerve" strength="3"/>.  For a fiber in
+      culture we may assume a constant extracellular potential,
+      <foreign>e.g.</foreign>, zero. We accomplish this by connecting
+      and grounding the extracellular nodes, see <link target-id="unfinished_circuit_model" strength="3"/>.
+    </para>
+
+    <figure id="unfinished_circuit_model">
+      <title>A rudimentary circuit model</title>
+      <media id="idp5758704" alt=""><image src="../../media/cell2.png" mime-type="image/png"/></media>
+    </figure>
+      
+    <para id="p3">
+      <link target-id="unfinished_circuit_model" strength="3"/> also
+      incorporates the <term>exogenous disturbance</term>, a current
+      stimulus between ground and the left end of the fiber. Our
+      immediate goal is to compute the resulting currents through each
+      resistor and the potential at each of the nodes. Our long--range
+      goal is to provide a modeling methodology that can be used
+      across the engineering and science disciplines. As an aid to
+      computing the desired quantities we give them names. With
+      respect to <link target-id="fully_dressed_circuit" strength="3"/>,
+      we label the vector of potentials
+      
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:ci>x</m:ci>
+	  <m:matrix>
+	    <m:matrixrow>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>2</m:mn>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>3</m:mn>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>4</m:mn>
+		</m:msub></m:ci>
+	    </m:matrixrow>
+	  </m:matrix>
+	</m:apply>
+      </m:math>
+      <!-- x = [ x_1, x_2, x_3, x_4 ] -->
+      
+      and the vector of currents
+
+       <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:ci>y</m:ci>
+	  <m:matrix>
+	    <m:matrixrow>
+	      <m:ci><m:msub>
+		  <m:mi>y</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>y</m:mi>
+		  <m:mn>2</m:mn>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>y</m:mi>
+		  <m:mn>3</m:mn>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>y</m:mi>
+		  <m:mn>4</m:mn>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>y</m:mi>
+		  <m:mn>5</m:mn>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>y</m:mi>
+		  <m:mn>6</m:mn>
+		</m:msub></m:ci>
+	    </m:matrixrow>
+	  </m:matrix>
+	</m:apply>
+	<m:mtext>.</m:mtext>
+      </m:math>
+      <!-- y = [ y_1, y_2, y_3, y_4, y_5, y_6] -->
+      
+      We have also (arbitrarily) assigned directions to the currents
+      as a graphical aid in the consistent application of the basic
+      circuit laws.
+    </para>
+    
+    <figure id="fully_dressed_circuit">
+      <title>The fully dressed circuit model</title>
+      <media id="idp26080" alt=""><image src="../../media/cell3.png" mime-type="image/png"/></media>
+    </figure>
+
+    <para id="p4">
+      We incorporate the circuit laws in a modeling methodology that
+      takes the form of a <cite target-id="strang"><cite-title><term>Strang
+      Quartet</term></cite-title></cite>:
+      <list id="strang_quartet" list-type="bulleted">
+
+	<item id="voltage_drop">
+	  (S1)  Express the voltage drops via
+	  <m:math display="inline">
+	    <m:apply><m:eq/>
+	      <m:ci type="vector">e</m:ci>
+	      <m:apply><m:minus/>
+		<m:apply><m:times/>
+		  <m:ci type="matrix">A</m:ci>
+		  <m:ci type="vector">x</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>.
+	  <!-- e = -Ax -->
+	</item>
+	
+	<item id="ohms_law">
+	  (S2)  Express <term>Ohm's Law</term> via
+	  <m:math display="inline">
+	    <m:apply><m:eq/>
+	      <m:ci type="vector">y</m:ci>
+	      <m:apply><m:times/>
+		<m:ci type="matrix">G</m:ci>
+		<m:ci type="vector">e</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>.
+	  <!-- y = Ge --> 
+	</item>
+
+	<item id="kcl">
+	  (S3)  Express <term>Kirchhoff's Current Law</term> via 
+	  <m:math display="inline">
+	    <m:apply><m:eq/>
+	      <m:apply><m:times/>
+		<m:apply><m:transpose/>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>
+		<m:ci type="vector">y</m:ci>
+	      </m:apply>
+	      <m:apply><m:minus/>
+		<m:ci type="vector">f</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>.
+	  <!-- A'y = -f -->
+	</item>
+
+	<item id="combined_rule">
+	  (S4)  Combine the above into
+	  <m:math display="inline">
+	    <m:apply><m:eq/>
+	      <m:apply><m:times/>
+		<m:apply><m:transpose/>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>
+		<m:ci type="matrix">G</m:ci>
+		<m:ci type="matrix">A</m:ci>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	      <m:ci type="vector">f</m:ci>
+	    </m:apply>
+	  </m:math>.
+	  <!-- A'GAx = f -->
+	</item>
+      </list>
+    </para>
+
+    <para id="p5">
+      The <m:math><m:ci type="matrix">A</m:ci></m:math> in (S1) is the
+      <term>node-edge adjacency matrix</term> -- it encodes the
+      network's connectivity. The <m:math><m:ci type="matrix">G</m:ci></m:math> in (S2) is the diagonal matrix
+      of edge conductances -- it encodes the physics of the
+      network. The <m:math><m:ci type="vector">f</m:ci></m:math> in
+      (S3) is the vector of current sources -- it encodes the
+      network's stimuli. The culminating
+      <m:math display="inline">
+	<m:apply><m:times/>
+	  <m:apply><m:transpose/>
+	    <m:ci type="matrix">A</m:ci>
+	  </m:apply>
+	  <m:ci type="matrix">G</m:ci>
+	  <m:ci type="matrix">A</m:ci>
+	</m:apply>
+      </m:math>
+      <!-- A'GA --> in (S4) is the symmetric matrix whose inverse,
+      when applied to <m:math><m:ci type="vector">f</m:ci></m:math>,
+      reveals the vector of potentials, <m:math><m:ci type="vector">x</m:ci></m:math>.  In order to make these ideas
+      our own we must work many, many examples.
+    </para>
+  </section>
+
+  <section id="example_1">
+    <title>Example</title>
+    <section id="step1">
+      <title>Strang Quartet, Step 1</title>
+      <para id="p6">
+	With respect to the circuit of <link target-id="fully_dressed_circuit" strength="3"/>, in accordance
+	with step <link target-id="voltage_drop" strength="3">(S1)</link>, we express the six potential
+	differences (always tail minus head)
+	
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>e</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	    <m:apply><m:minus/>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>2</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	<!-- e_1 = x_1 - x_2 -->
+	
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>e</m:mi>
+		<m:mn>2</m:mn>
+	      </m:msub></m:ci>
+	    <m:ci><m:msub>
+		<m:mi>x</m:mi>
+		<m:mn>2</m:mn>
+	      </m:msub></m:ci>
+	  </m:apply>
+	</m:math>
+	<!-- e_2 = x_2 -->
+
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>e</m:mi>
+		<m:mn>3</m:mn>
+	      </m:msub></m:ci>
+	    <m:apply><m:minus/>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>2</m:mn>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>3</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	<!-- e_3 = x_2 - x_3 -->
+
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>e</m:mi>
+		<m:mn>4</m:mn>
+	      </m:msub></m:ci>
+	    <m:ci><m:msub>
+		<m:mi>x</m:mi>
+		<m:mn>3</m:mn>
+	      </m:msub></m:ci>
+	  </m:apply>
+	</m:math>
+	<!-- e_4 = x_3 -->
+
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>e</m:mi>
+		<m:mn>5</m:mn>
+	      </m:msub></m:ci>
+	    <m:apply><m:minus/>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>3</m:mn>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>4</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	<!-- e_5 = x_3 - x_4 -->
+
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>e</m:mi>
+		<m:mn>6</m:mn>
+	      </m:msub></m:ci>
+	    <m:ci><m:msub>
+		<m:mi>x</m:mi>
+		<m:mn>4</m:mn>
+	      </m:msub></m:ci>
+	  </m:apply>
+	</m:math>
+	<!-- e_6 = x_4 -->
+
+	Such long, tedious lists cry out for matrix representation, to wit
+	
+	<m:math display="inline">
+	  <m:apply><m:eq/>
+	    <m:ci type="vector">e</m:ci>
+	    <m:apply><m:minus/>
+	      <m:apply><m:times/>
+		<m:ci type="matrix">A</m:ci>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	<!-- e = -Ax -->
+
+	where
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:ci type="matrix">A</m:ci>
+	    <m:matrix>
+	      <m:matrixrow><m:cn>-1</m:cn><m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow><m:cn>0</m:cn><m:cn>-1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow><m:cn>0</m:cn><m:cn>-1</m:cn><m:cn>1</m:cn><m:cn>0</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>-1</m:cn><m:cn>0</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>-1</m:cn><m:cn>1</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>-1</m:cn>
+	      </m:matrixrow>
+	    </m:matrix>
+	  </m:apply>
+	</m:math>
+	<!-- A = [ -1  1  0  0
+                    0 -1  0  0
+                    0 -1  1  0
+                    0  0 -1  0
+                    0  0 -1  1
+                    0  0  0 -1 ] -->
+      </para>
+    </section>
+
+    <section id="step2">
+      <title>Strang Quartet, Step 2</title>
+      <para id="p7">
+	<link target-id="ohms_law" strength="3">Step (S2)</link>, Ohm's
+	Law, states:
+	
+	<rule id="ohm_defn" type="law">
+	  <title>Ohm's Law</title>
+	  <statement id="idp6068880">
+	    <para id="rulep1">
+	      The current along an edge is equal to the potential drop
+	      across the edge divided by the resistance of the edge.
+	    </para>
+	  </statement>
+	</rule>
+	
+	In our case,
+	<m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:ci><m:msub>
+		  <m:mi>y</m:mi>
+		  <m:mi>j</m:mi>
+		</m:msub></m:ci>
+	      <m:apply><m:divide/>
+		<m:ci><m:msub>
+		    <m:mi>e</m:mi>
+		    <m:mi>j</m:mi>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>R</m:mi>
+		    <m:mi>i</m:mi>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <!-- y_j = e_j / R_i -->
+	    
+	    <m:mrow><m:mtext>,  </m:mtext></m:mrow>
+
+	    <m:apply><m:eq/>
+	      <m:ci>j</m:ci>
+	      <m:mrow><m:mn>1</m:mn>
+		<m:mo>,</m:mo>
+		<m:mn>3</m:mn>
+		<m:mo>,</m:mo>
+		<m:mn>5</m:mn>
+	      </m:mrow>
+	    </m:apply>
+	    <!-- j = 1,3,5 -->
+	    
+	    <m:mtext>  and  </m:mtext>
+	    
+	    <m:apply><m:eq/>
+	      <m:ci><m:msub>
+		  <m:mi>y</m:mi>
+		  <m:mi>j</m:mi>
+		</m:msub></m:ci>
+	      <m:apply><m:divide/>
+		<m:ci><m:msub>
+		    <m:mi>e</m:mi>
+		    <m:mi>j</m:mi>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>R</m:mi>
+		    <m:mi>m</m:mi>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <!-- y_j = e_j / R_m -->
+	    
+	    <m:mtext>,  </m:mtext>
+	    
+	    <m:apply><m:eq/>
+	      <m:ci>j</m:ci>
+	      <m:mrow><m:mn>2</m:mn>
+		<m:mo>,</m:mo>
+		<m:mn>4</m:mn>
+		<m:mo>,</m:mo>
+		<m:mn>6</m:mn>
+	      </m:mrow>
+	    </m:apply>
+	  </m:math>
+	  <!-- j = 2,4,6 -->
+	  
+	  or, in matrix notation,
+	  <m:math display="inline">
+	    <m:apply><m:eq/>
+	      <m:ci type="vector">y</m:ci>
+	      <m:apply><m:times/>
+		<m:ci type="matrix">G</m:ci>
+		<m:ci type="vector">e</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	  <!-- y = Ge -->
+	  
+	  where
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:ci type="matrix">G</m:ci>
+	      <m:matrix>
+		<m:matrixrow><m:apply><m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:ci><m:msub>
+			<m:mi>R</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:cn>0</m:cn>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <m:cn>0</m:cn>
+		  <m:apply><m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:ci><m:msub>
+			<m:mi>R</m:mi>
+			<m:mi>m</m:mi>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:apply><m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:ci><m:msub>
+			<m:mi>R</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:apply><m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:ci><m:msub>
+			<m:mi>R</m:mi>
+			<m:mi>m</m:mi>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:cn>0</m:cn><m:cn>0</m:cn>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:apply><m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:ci><m:msub>
+			<m:mi>R</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:cn>0</m:cn>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		  <m:cn>0</m:cn>
+		  <m:apply><m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:ci><m:msub>
+			<m:mi>R</m:mi>
+			<m:mi>m</m:mi>
+		      </m:msub></m:ci>
+		  </m:apply>
+		</m:matrixrow>
+	    </m:matrix>
+	  </m:apply>
+	</m:math>
+	<!-- G = [ 1/R_i 0 0 0 0 0
+                   0 1/R_m 0 0 0 0
+                   0 0 1/R_i 0 0 0
+                   0 0 0 1/R_m 0 0
+                   0 0 0 0 1/R_i 0
+                   0 0 0 0 0 1/R_m ] -->
+      </para>
+    </section>
+    
+    <section id="step3">
+      <title>Strang Quartet, Step 3</title>
+      <para id="p8">
+	<link target-id="kcl" strength="3">Step (S3)</link>, <link document="m0015" target-id="current" strength="2"> Kirchhoff's
+	Current Law</link>, states:
+
+	<rule id="kir_cur_law" type="law">
+	  <title>Kirchhoff's Current Law</title>
+	  <statement id="idp5743264">
+	    <para id="rulep2">
+	      The sum of the currents into each node must be zero. 
+	    </para>
+	  </statement>
+	</rule>
+
+	In our case
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:apply><m:minus/>
+	      <m:ci><m:msub>
+		  <m:mi>i</m:mi>
+		  <m:mn>0</m:mn>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>y</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>
+	<!-- i_0 - y_1 = 0 -->
+
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:apply><m:minus/>
+	      <m:apply><m:minus/>
+		<m:ci><m:msub>
+		    <m:mi>y</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>y</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:ci><m:msub>
+		  <m:mi>y</m:mi>
+		  <m:mn>3</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>
+	<!-- y_1 - y_2 - y_3 = 0 -->
+
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:apply><m:minus/>
+	      <m:apply><m:minus/>
+		<m:ci><m:msub>
+		    <m:mi>y</m:mi>
+		    <m:mn>3</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>y</m:mi>
+		    <m:mn>4</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:ci><m:msub>
+		  <m:mi>y</m:mi>
+		  <m:mn>5</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>
+	<!-- y_3 - y_4 - y_5 = 0 -->
+
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:apply><m:minus/>
+	      <m:ci><m:msub>
+		  <m:mi>y</m:mi>
+		  <m:mn>5</m:mn>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>y</m:mi>
+		  <m:mn>6</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>
+	<!-- y_5 - y_6 = 0 -->
+
+	or, in matrix terms
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:apply><m:times/>
+	      <m:ci type="matrix">B</m:ci>
+	      <m:ci type="vector">y</m:ci>
+	    </m:apply>
+	    <m:apply><m:minus/>
+	      <m:ci type="vector">f</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	<!-- By = -f -->
+
+	where
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:ci>B</m:ci>
+	    <m:matrix>
+	      <m:matrixrow><m:cn>-1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		<m:cn>0</m:cn><m:cn>0</m:cn></m:matrixrow>
+	      <m:matrixrow><m:cn>1</m:cn><m:cn>-1</m:cn><m:cn>-1</m:cn><m:cn>0</m:cn>
+		<m:cn>0</m:cn><m:cn>0</m:cn></m:matrixrow>
+	      <m:matrixrow><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>1</m:cn><m:cn>-1</m:cn>
+		<m:cn>-1</m:cn><m:cn>0</m:cn></m:matrixrow>
+	      <m:matrixrow><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		<m:cn>1</m:cn><m:cn>-1</m:cn></m:matrixrow>
+	    </m:matrix>
+	  </m:apply>
+	  <!-- B = [ -1  0  0  0  0  0 
+                      1 -1 -1  0  0  0
+                      0  0  1 -1 -1  0
+                      0  0  0  0  1 -1  ] -->
+  
+	  <m:mtext>  and  </m:mtext>
+
+	  <m:apply><m:eq/>
+	    <m:ci type="vector">f</m:ci>
+	    <m:vector>
+	      <m:ci><m:msub>
+		  <m:mi>i</m:mi>
+		  <m:mn>0</m:mn>
+		</m:msub></m:ci>
+	      <m:cn>0</m:cn>
+	      <m:cn>0</m:cn>
+	      <m:cn>0</m:cn>
+	    </m:vector>
+	  </m:apply>
+	</m:math>
+	<!-- f = [i_0; 0; 0; 0] -->
+      </para>
+    </section>
+    
+    <section id="step4">
+      <title>Strang Quartet, Step 4</title>
+      <para id="p9">
+	Looking back at <m:math><m:ci type="matrix">A</m:ci></m:math>:
+
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:ci type="matrix">A</m:ci>
+	    <m:matrix>
+	      <m:matrixrow><m:cn>-1</m:cn><m:cn>1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow><m:cn>0</m:cn><m:cn>-1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow><m:cn>0</m:cn><m:cn>-1</m:cn><m:cn>1</m:cn><m:cn>0</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>-1</m:cn><m:cn>0</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>-1</m:cn><m:cn>1</m:cn>
+	      </m:matrixrow>
+	      <m:matrixrow><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>0</m:cn><m:cn>-1</m:cn>
+	      </m:matrixrow>
+	    </m:matrix>
+	  </m:apply>
+	</m:math>
+	<!-- A = [ -1  1  0  0
+                    0 -1  0  0
+                    0 -1  1  0
+                    0  0 -1  0
+                    0  0 -1  1
+                    0  0  0 -1 ] -->
+
+	we recognize in <m:math><m:ci type="matrix">B</m:ci></m:math>
+	the <term>transpose</term> of <m:math><m:ci type="matrix">A</m:ci></m:math>.  Calling it such, we recall
+	our main steps
+	
+	<list id="recall_steps" list-type="bulleted">
+	  <item>
+	    (S1) 
+	    <m:math display="inline">
+	      <m:apply><m:eq/>
+		<m:ci type="vector">e</m:ci>
+		<m:apply><m:minus/>
+		  <m:apply><m:times/>
+		    <m:ci type="matrix">A</m:ci>
+		    <m:ci type="vector">x</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:math>,
+	    <!-- e = -Ax -->
+	  </item>
+	  
+	  <item>
+	    (S2) 
+	    <m:math display="inline">
+	      <m:apply><m:eq/>
+		<m:ci type="vector">y</m:ci>
+		<m:apply><m:times/>
+		  <m:ci type="matrix">G</m:ci>
+		  <m:ci type="vector">e</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:math>, and
+	    <!-- y = Ge --> 
+	  </item>
+	  
+	  <item>
+	    (S3)  
+	    <m:math display="inline">
+	      <m:apply><m:eq/>
+		<m:apply><m:times/>
+		  <m:apply><m:transpose/>
+		    <m:ci type="matrix">A</m:ci>
+		  </m:apply>
+		  <m:ci type="vector">y</m:ci>
+		</m:apply>
+		<m:apply><m:minus/>
+		  <m:ci type="vector">f</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:math>.
+	    <!-- A'y = -f -->
+	  </item>
+	</list>
+
+	On substitution of the first two into the third we arrive, in
+	accordance with <link target-id="combined_rule" strength="3">(S4)</link>, at
+
+	<equation id="eqn1_1">
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:apply><m:times/>
+		<m:apply><m:transpose/>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>
+		<m:ci type="matrix">G</m:ci>
+		<m:ci type="matrix">A</m:ci>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	      <m:ci type="vector">f</m:ci>
+	    </m:apply>
+	    <m:mtext>.</m:mtext>
+	  </m:math>
+	  <!-- A'GAx = f -->    
+	</equation>
+
+	This is a system of four equations for the 4 unknown potentials, 
+	<m:math display="inline">
+	  <m:ci><m:msub>
+	      <m:mi>x</m:mi>
+	      <m:mn>1</m:mn>
+	    </m:msub></m:ci>
+	</m:math>
+	<!-- x_1 -->
+
+	through
+	<m:math display="inline">
+	  <m:ci><m:msub>
+	      <m:mi>x</m:mi>
+	      <m:mn>4</m:mn>
+	    </m:msub></m:ci>
+	</m:math>.
+	<!-- x_4 -->
+	
+	As you know, the system <link target-id="eqn1_1" strength="3"/>
+	may have either 1, 0, or infinitely many solutions, depending
+	on <m:math><m:ci type="vector">f</m:ci></m:math> and
+
+	<m:math display="inline">
+	  <m:apply><m:times/>
+	    <m:apply><m:transpose/>
+	      <m:ci type="matrix">A</m:ci>
+	    </m:apply>
+	    <m:ci type="matrix">G</m:ci>
+	    <m:ci type="matrix">A</m:ci> 
+	  </m:apply>
+	</m:math>.
+	<!-- A'GA -->
+
+	We shall devote (FIX ME CNXN TO CHAPTER 3 AND 4) to an 
+	unraveling of the previous sentence. For now, we cross our fingers and 
+	`solve' by invoking the Matlab program,
+	<link url="http://www.caam.rice.edu/~caam335/cox/lectures/fib1.m">fib1.m
+	</link>.
+      </para>
+      
+      <figure id="fig1_4">
+	<title>Results of a 64 compartment simulation</title>
+	<media id="idm8322112" alt=""><image src="../../media/fib1_fig1.png" mime-type="image/png"/></media>
+      </figure>
+
+      <figure id="fig1_5" orient="horizontal">
+	<title>Results of a 64 compartment simulation</title>
+	<subfigure id="idp1390976">
+	  <media id="idp1391488" alt=""><image src="../../media/fib1_fig2.png" mime-type="image/png"/></media>
+	</subfigure>
+	<subfigure id="idp1392672">
+	  <media id="idp1393248" alt=""><image src="../../media/fib1_fig3.png" mime-type="image/png"/></media>
+	</subfigure>
+      </figure>
+
+      <para id="p10">
+	This program is a bit more ambitious than the above in that it
+	allows us to specify the number of compartments and that
+	rather than just spewing the <m:math><m:ci>x</m:ci></m:math>
+	and <m:math display="inline"><m:ci>y</m:ci></m:math> values it
+	plots them as a function of distance along the fiber.  We note
+	that, as expected, everything tapers off with distance from
+	the source and that the axial current is significantly greater
+	than the membrane, or leakage, current.
+      </para>
+    </section>
+  </section>
+
+  <section id="example_2">
+    <title>Example</title>
+    <para id="p11">
+      We have seen in the <link target-id="example_1" strength="3">previous example</link> how a current source may
+      produce a potential difference across a cell's membrane.  We
+      note that, even in the absence of electrical stimuli, there is
+      always a difference in potential between the inside and outside
+      of a living cell. In fact, this difference is the biologist's
+      definition of `living.' Life is maintained by the fact that the
+      cell's interior is rich in potassium ions,
+
+      <m:math display="inline">
+	<m:msup>
+	  <m:mtext>K</m:mtext>
+	  <m:mo>+</m:mo>
+	</m:msup>
+      </m:math>,
+      <!-- K^+ -->
+
+      and poor in sodium ions,
+
+      <m:math display="inline">
+	<m:msup>
+	  <m:mtext>Na</m:mtext>
+	  <m:mo>+</m:mo>
+	</m:msup>
+      </m:math>,
+      <!-- Na^+ -->
+
+      while in the exterior medium it is just the opposite. These
+      concentration differences beget potential differences under the
+      guise of the Nernst potentials:
+
+      <definition id="nernst">
+	<term>Nernst potentials</term>
+	<meaning id="idp2566752">
+	  <m:math display="block">
+	    <m:apply><m:eq/>
+	      <m:ci><m:msub>
+		  <m:mi>E</m:mi>
+		  <m:mtext>Na</m:mtext>
+		</m:msub></m:ci>
+	      <m:apply><m:times/>
+		<m:apply><m:divide/>
+		  <m:apply><m:times/>
+		    <m:ci>R</m:ci>
+		    <m:ci>T</m:ci>
+		  </m:apply>
+		  <m:ci>F</m:ci>
+		</m:apply>
+		<m:apply><m:log/>
+		  <m:apply><m:divide/>
+		    <m:ci><m:msub>
+			<m:mtext>[Na]</m:mtext>
+			<m:mi>o</m:mi>
+		      </m:msub></m:ci>
+		    <m:ci><m:msub>
+			<m:mtext>[Na]</m:mtext>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <!-- E_Na = (RT / F) * log ( [Na]_o / [Na]_i ) -->
+
+	    <m:mrow><m:mtext>  and  </m:mtext></m:mrow>
+
+	    <m:apply><m:eq/>
+	      <m:ci><m:msub>
+		  <m:mi>E</m:mi>
+		  <m:mtext>K</m:mtext>
+		</m:msub></m:ci>
+	      <m:apply><m:times/>
+		<m:apply><m:divide/>
+		  <m:apply><m:times/>
+		    <m:ci>R</m:ci>
+		    <m:ci>T</m:ci>
+		  </m:apply>
+		  <m:ci>F</m:ci>
+		</m:apply>
+		<m:apply><m:log/>
+		  <m:apply><m:divide/>
+		    <m:ci><m:msub>
+			<m:mtext>[K]</m:mtext>
+			<m:mi>o</m:mi>
+		      </m:msub></m:ci>
+		    <m:ci><m:msub>
+			<m:mtext>[K]</m:mtext>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <!-- E_K = (RT / F) * log ( [K]_o / [K]_i ) -->
+	  </m:math>
+
+	  where <m:math><m:ci>R</m:ci></m:math> is the gas constant,
+	  <m:math display="inline"><m:ci>T</m:ci></m:math> is
+	  temperature, and <m:math><m:ci>F</m:ci></m:math> is the
+	  Faraday constant.
+	</meaning>
+      </definition>
+
+      Associated with these potentials are membrane resistances
+      <m:math display="block">
+	  <m:ci><m:msub>
+	    <m:mi>ρ</m:mi>
+	    <m:mrow>
+	      <m:mi>m</m:mi> 
+	      <m:mo>,</m:mo>
+	      <m:mtext>Na</m:mtext>
+	    </m:mrow>
+	  </m:msub></m:ci>
+	<!-- rho_m,Na -->
+	
+	<m:mrow><m:mtext>  and  </m:mtext></m:mrow>
+	
+	  <m:ci><m:msub>
+	  <m:mi>ρ</m:mi>
+	  <m:mrow>
+	    <m:mi>m</m:mi> 
+	    <m:mo>,</m:mo>
+	    <m:mtext>K</m:mtext>
+	  </m:mrow>
+	</m:msub></m:ci>
+      </m:math>
+      <!-- rho_m,K -->
+	
+      that together produce the
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>ρ</m:mi>
+	    <m:mi>m</m:mi>
+	  </m:msub></m:ci>
+      </m:math>
+
+      <link target-id="cell_membrane_resist" strength="2">above </link> via
+
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:apply><m:divide/>
+	    <m:cn>1</m:cn>
+	    <m:ci><m:msub>
+		<m:mi>ρ</m:mi>
+		<m:mi>m</m:mi>
+	      </m:msub></m:ci>
+	  </m:apply>
+	  <m:apply><m:plus/>
+	    <m:apply><m:divide/>
+	      <m:cn>1</m:cn>
+	      <m:ci><m:msub>
+		  <m:mi>ρ</m:mi>
+		  <m:mrow>
+		    <m:mi>m</m:mi>
+		    <m:mo>,</m:mo>
+		    <m:mtext>Na</m:mtext>
+		  </m:mrow>
+		</m:msub></m:ci>
+	    </m:apply>
+	    <m:apply><m:divide/>
+	      <m:cn>1</m:cn>
+	      <m:ci><m:msub>
+		  <m:mi>ρ</m:mi>
+		  <m:mrow>
+		    <m:mi>m</m:mi>
+		    <m:mo>,</m:mo>
+		    <m:mtext>K</m:mtext>
+		  </m:mrow>
+		</m:msub>
+	      </m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      <!-- ( 1 / rho_m ) = ( 1 / rho_(m,Na) ) + ( 1 / rho_(m,K) ) -->
+      
+      and produce the aforementioned rest potential
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:ci><m:msub>
+	      <m:mi>E</m:mi>
+	      <m:mi>m</m:mi>
+	    </m:msub></m:ci>
+	  <m:apply><m:times/>
+	    <m:ci><m:msub>
+		<m:mi>ρ</m:mi>
+		<m:mi>m</m:mi>
+	      </m:msub></m:ci>
+	    <m:apply><m:plus/>
+	      <m:apply><m:divide/>
+		<m:ci><m:msub>
+		    <m:mi>E</m:mi>
+		    <m:mtext>Na</m:mtext>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>ρ</m:mi>
+		    <m:mrow>
+		      <m:mi>m</m:mi>
+		      <m:mo>,</m:mo>
+		      <m:mtext>Na</m:mtext>
+		    </m:mrow>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:apply><m:divide/>
+		<m:ci><m:msub>
+		    <m:mi>E</m:mi>
+		    <m:mtext>K</m:mtext>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>ρ</m:mi>
+		    <m:mrow>
+		      <m:mi>m</m:mi>
+		      <m:mo>,</m:mo>
+		      <m:mtext>Na</m:mtext>
+		    </m:mrow>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      <!-- E_m = rho_m * ( E_Na / rho_(m,Na) + ( E_K / rho_(m,K) ) ) -->
+    </para>
+
+    <para id="p12">
+      With respect to <link target-id="fully_dressed_circuit" strength="3">our old circuit model</link>, each compartment
+	now sports a battery in series with its membrane resistance,
+	as shown in <link target-id="resting_pot_circuit" strength="3"/>.
+    </para>
+
+    <figure id="resting_pot_circuit">
+      <title>Circuit model with resting potentials</title>
+      <media id="idm7644288" alt=""><image src="../../media/cell4-dc3e.png" mime-type="image/png"/></media>
+    </figure>
+
+    <para id="p13">
+      Revisiting <link target-id="strang_quartet" strength="3"> steps
+      (S1-4)</link> we note that in (S1) the even numbered voltage
+      drops are now
+      
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:ci><m:msub>
+	      <m:mi>e</m:mi>
+	      <m:mn>2</m:mn>
+	    </m:msub></m:ci>
+	  <m:apply><m:minus/>
+	    <m:ci><m:msub>
+		<m:mi>x</m:mi>
+		<m:mn>2</m:mn>
+	      </m:msub></m:ci>
+	    <m:ci><m:msub>
+		<m:mi>E</m:mi>
+		<m:mn>m</m:mn>
+	      </m:msub></m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      <!-- e_2 = x_2 - E_m -->
+
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:ci><m:msub>
+	      <m:mi>e</m:mi>
+	      <m:mn>4</m:mn>
+	    </m:msub></m:ci>
+	  <m:apply><m:minus/>
+	    <m:ci><m:msub>
+		<m:mi>x</m:mi>
+		<m:mn>3</m:mn>
+	      </m:msub></m:ci>
+	    <m:ci><m:msub>
+		<m:mi>E</m:mi>
+		<m:mn>m</m:mn>
+	      </m:msub></m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      <!-- e_4 = x_3 - E_m -->
+      
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:ci><m:msub>
+	      <m:mi>e</m:mi>
+	      <m:mn>6</m:mn>
+	    </m:msub></m:ci>
+	  <m:apply><m:minus/>
+	    <m:ci><m:msub>
+		<m:mi>x</m:mi>
+		<m:mn>4</m:mn>
+	      </m:msub></m:ci>
+	    <m:ci><m:msub>
+		<m:mi>E</m:mi>
+		<m:mn>m</m:mn>
+	      </m:msub></m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      <!-- e_6 = x_4 - E_m -->
+
+      We accommodate such things by generalizing 
+      <link target-id="voltage_drop" strength="3">(S1)</link> to:
+
+      <list id="voltage_drop_ver2" list-type="bulleted">
+	<item>
+	 (S1') Express the voltage drops as
+	  
+	  <m:math display="inline">
+	    <m:apply><m:eq/>
+	      <m:ci>e</m:ci>
+	      <m:apply><m:minus/>
+		<m:ci type="vector">b</m:ci>
+		<m:apply><m:times/>
+		  <m:ci type="matrix">A</m:ci>
+		  <m:ci type="vector">x</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	  
+	  where <m:math display="inline"><m:ci type="vector">b</m:ci></m:math> is the vector of batteries.
+	</item>
+      </list>
+
+      No changes are necessary for (S2) and (S3). The final step now reads,
+      
+      <list id="final_step" list-type="bulleted">
+	<item>(S4') Combine
+	  <link target-id="voltage_drop_ver2" strength="2">(S1')</link>,
+	  <link target-id="ohms_law" strength="2">(S2)</link>, and 
+	  <link target-id="kcl" strength="2">(S3) </link> to produce
+
+	  <m:math display="inline">
+	    <m:apply><m:eq/>
+	      <m:apply><m:times/>
+		<m:apply><m:transpose/>
+		  <m:ci type="matrix">A</m:ci>
+		</m:apply>
+		<m:ci type="matrix">G</m:ci>
+		<m:ci type="matrix">A</m:ci>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	      <m:apply><m:plus/>
+		<m:apply><m:times/>
+		  <m:apply><m:transpose/>
+		    <m:ci type="matrix">A</m:ci>
+		  </m:apply>
+		  <m:ci type="matrix">G</m:ci>
+		  <m:ci type="vector">b</m:ci>
+		</m:apply>
+		<m:ci type="vector">f</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>.
+	  <!-- A'GAx = A'Gb + f -->
+	</item>
+      </list>
+    </para>
+
+    <para id="p14">
+      Returning to <link target-id="resting_pot_circuit" strength="3"/>,
+      we note that
+
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:ci type="vector">b</m:ci>
+	  <m:apply><m:minus/>
+	    <m:apply><m:times/>
+	      <m:ci type="matrix"><m:msub>
+		  <m:mi>E</m:mi>
+		  <m:mi>m</m:mi>
+		</m:msub></m:ci>
+	      <m:vector>
+		<m:cn>0</m:cn><m:cn>1</m:cn>
+		<m:cn>0</m:cn><m:cn>1</m:cn>
+		<m:cn>0</m:cn><m:cn>1</m:cn>
+	      </m:vector>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+	<!-- b = -E_m [ 0 1 0 1 0 1 ]' -->
+
+	<m:mrow>
+	  <m:mi> </m:mi><m:mi> </m:mi>
+	  <m:mi> </m:mi><m:mi> </m:mi>
+	  <m:mtext>and</m:mtext>
+	  <m:mi> </m:mi><m:mi> </m:mi>
+	  <m:mi> </m:mi><m:mi> </m:mi>
+	</m:mrow>
+	
+	<m:apply><m:eq/>
+	  <m:apply><m:times/>
+	    <m:apply><m:transpose/>
+	      <m:ci type="matrix">A</m:ci>
+	    </m:apply>
+	    <m:ci type="matrix">G</m:ci>
+	    <m:ci type="vector">b</m:ci>
+	  </m:apply>
+	  <m:apply><m:times/>
+	    <m:apply><m:divide/>
+	      <m:ci><m:msub>
+		  <m:mi>E</m:mi>
+		  <m:mi>m</m:mi>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>R</m:mi>
+		  <m:mi>m</m:mi>
+		</m:msub></m:ci>
+	    </m:apply>
+	    <m:vector>
+	      <m:cn>0</m:cn><m:cn>1</m:cn>
+	      <m:cn>1</m:cn><m:cn>1</m:cn>
+	    </m:vector>
+	  </m:apply>
+	</m:apply>
+	<!-- A'Gb = ( E_m / R_m ) [ 0 1 1 1 ]' -->
+      </m:math>
+
+	This requires only minor changes to our old code. The new
+	program is called <link url="http://www.caam.rice.edu/~caam335/cox/lectures/fib2.m">fib2.m
+	</link> and results of its use are indicated in the next two
+	figures.
+      </para>
+    
+      <figure id="fig1_7">
+	<title>Results of a 64 compartment simulation with batteries</title>
+	<media id="idp2169808" alt=""><image src="../../media/fib2_fig1.png" mime-type="image/png"/></media>
+      </figure>
+
+      <figure id="fig1_8" orient="horizontal">
+	<title>Results of a 64 compartment simulation with batteries</title>
+	<subfigure id="idp2173248">
+	  <media id="idp2173920" alt=""><image src="../../media/fib2_fig2.png" mime-type="image/png"/></media>
+	</subfigure>
+	<subfigure id="idp2175200">
+	  <media id="idp2175872" alt=""><image src="../../media/fib2_fig3.png" mime-type="image/png"/></media>
+	</subfigure>
+      </figure>
+    </section>
+  </content>
+
+  <bib:file>
+    <bib:entry id="strang">
+      <bib:book>
+	<bib:author>G. Strang,</bib:author>
+	<bib:title>Introduction to Applied Mathematics</bib:title>
+	<bib:publisher>Wellesley-Cambridge Press</bib:publisher>
+	<bib:year>1986</bib:year>
+      </bib:book>
+    </bib:entry>
+  </bib:file>
+</document>

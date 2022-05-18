@@ -1,0 +1,666 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml"> 
+
+  <title>Matrix Methods for Mechanical Systems:  The General Planar Truss</title> 
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>c303048f-1386-433a-912f-52e05658f459</md:uuid>
+</metadata>
+
+  <content>
+    <para id="p1">
+      Let us now consider something that resembles the mechanical
+      prospection problem introduced in the <link document="m10146" target-id="intro" strength="2"> introduction to matrix methods
+      for mechanical systems</link>.  In the figure below we offer a
+      crude mechanical model of a planar tissue, say,
+      <foreign>e.g.</foreign>, an excised sample of the wall of a
+      vein.
+    </para>
+
+    <figure id="tissue_model_fig">
+      <title>A crude tissue model</title>
+      <media id="idp8027472" alt=""><image src="../../media/lec2fig3.png" mime-type="image/png"/></media>
+    </figure>
+
+    <para id="p2">
+      Elastic fibers, numbered 1 through 20, meet at nodes, numbered 1
+      through 9. We limit our observation to the motion of the nodes
+      by denoting the horizontal and vertical displacements of node
+      <m:math display="inline"><m:ci>j</m:ci></m:math> by
+      
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>x</m:mi>
+	    <m:mrow>
+	      <m:mn>2</m:mn><m:mi>j</m:mi><m:mo>-</m:mo><m:mn>1</m:mn>
+	    </m:mrow>
+	  </m:msub></m:ci>
+	<!-- x_(2j-1) -->
+      </m:math>
+
+      (horizontal) and
+
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>x</m:mi>
+	    <m:mrow>
+	      <m:mn>2</m:mn><m:mi>j</m:mi>
+	    </m:mrow>
+	  </m:msub></m:ci>
+	<!-- x_(2j) -->
+      </m:math>
+
+      (vertical), respectively.  Retaining the convention that down
+      and right are positive we note that the elongation of fiber 1 is
+
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:ci><m:msub>
+	      <m:mi>e</m:mi>
+	      <m:mn>1</m:mn>
+	    </m:msub></m:ci>
+	  <m:apply><m:minus/>
+	    <m:ci><m:msub>
+		<m:mi>x</m:mi>
+		<m:mn>2</m:mn>
+	      </m:msub></m:ci>
+	    <m:ci><m:msub>
+		<m:mi>x</m:mi>
+		<m:mn>8</m:mn>
+	      </m:msub></m:ci> 
+	  </m:apply>
+	</m:apply>
+	<!-- e_1 = x_2 - x_8 -->
+      </m:math>
+
+      while that of fiber 3 is
+
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:ci><m:msub>
+	      <m:mi>e</m:mi>
+	      <m:mn>3</m:mn>
+	    </m:msub></m:ci>
+	  <m:apply><m:minus/>
+	    <m:ci><m:msub>
+		<m:mi>x</m:mi>
+		<m:mn>3</m:mn>
+	      </m:msub></m:ci>
+	    <m:ci><m:msub>
+		<m:mi>x</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci> 
+	  </m:apply>
+	</m:apply>
+	<m:mtext>.</m:mtext>
+	<!-- e_3 = x_3 - x_1 -->
+      </m:math>
+
+      As fibers 2 and 4 are neither vertical nor horizontal their
+      elongations, in terms of nodal displacements, are not so easy to
+      read off.  This is more a nuisance than an obstacle however, for
+      noting <link document="m10147" target-id="p6" strength="2">our
+      discussion of elongation</link> in the small planar truss
+      module, the elongation is approximately just the stretch along
+      its undeformed axis.  With respect to fiber 2, as it makes the
+      angle
+
+      <m:math display="inline">
+	<m:apply><m:minus/>
+	  <m:apply><m:divide/>
+	    <m:pi/>
+	    <m:cn>4</m:cn>
+	  </m:apply>
+	</m:apply>
+	<!-- - pi / 4 -->
+      </m:math>
+
+      with respect to the positive horizontal axis, we find
+
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:ci><m:msub>
+	      <m:mi>e</m:mi>
+	      <m:mn>2</m:mn>
+	    </m:msub></m:ci>
+	  <m:apply><m:plus/>
+	    <m:apply><m:times/>
+	      <m:apply><m:minus/>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>9</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:apply><m:cos/>
+		<m:apply><m:minus/>
+		  <m:apply><m:divide/>
+		    <m:pi/>
+		    <m:cn>4</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply><m:times/>
+	      <m:apply><m:minus/>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>10</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:apply><m:sin/>
+		<m:apply><m:minus/>
+		  <m:apply><m:divide/>
+		    <m:pi/>
+		    <m:cn>4</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply><m:divide/>
+	    <m:apply><m:minus/>
+	      <m:apply><m:plus/>
+		<m:apply><m:minus/>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>9</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>10</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	    <m:apply><m:root/>
+	      <m:degree><m:cn>2</m:cn></m:degree>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+	<m:mtext>.</m:mtext>
+      </m:math>
+
+      Similarly, as fiber 4 makes the angle 
+      
+      <m:math display="inline">
+	<m:apply><m:minus/>
+	  <m:apply><m:divide/>
+	    <m:apply><m:times/>
+	      <m:cn>3</m:cn>
+	      <m:pi/>
+	    </m:apply>
+	    <m:cn>4</m:cn>
+	  </m:apply>
+	</m:apply>
+	<!-- - 3 * pi / 4 -->
+      </m:math>
+
+      with respect to the positive horizontal axis, its elongation is
+
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:ci><m:msub>
+	      <m:mi>e</m:mi>
+	      <m:mn>4</m:mn>
+	    </m:msub></m:ci>
+	  <m:apply><m:plus/>
+	    <m:apply><m:times/>
+	      <m:apply><m:minus/>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>7</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>3</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:apply><m:cos/>
+		<m:apply><m:minus/>
+		  <m:apply><m:divide/>
+		    <m:apply><m:times/>
+		      <m:cn>3</m:cn>
+		      <m:pi/>
+		    </m:apply>
+		    <m:cn>4</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply><m:times/>
+	      <m:apply><m:minus/>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>8</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>4</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:apply><m:sin/>
+		<m:apply><m:minus/>
+		  <m:apply><m:divide/>
+		    <m:apply><m:times/>
+		      <m:cn>3</m:cn>
+		      <m:pi/>
+		    </m:apply>
+		    <m:cn>4</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply><m:divide/>
+	    <m:apply><m:minus/>
+	      <m:apply><m:plus/>
+		<m:apply><m:minus/>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>3</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>7</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>4</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>8</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	    <m:apply><m:root/>
+	      <m:degree><m:cn>2</m:cn></m:degree>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+	<m:mtext>.</m:mtext>
+      </m:math>
+
+      These are both direct applications of the general formula
+
+      <equation id="eqn2_9">
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>e</m:mi>
+		<m:mi>j</m:mi>
+	      </m:msub></m:ci>
+	    <m:apply><m:plus/>
+	      <m:apply><m:times/>
+		<m:apply><m:minus/>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mrow>
+			<m:mn>2</m:mn>
+			<m:mi>n</m:mi>
+			<m:mo>-</m:mo>
+			<m:mn>1</m:mn>
+		      </m:mrow>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mrow>
+			<m:mn>2</m:mn>
+			<m:mi>m</m:mi>
+			<m:mo>-</m:mo>
+			<m:mn>1</m:mn>
+		      </m:mrow>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:apply><m:cos/>
+		  <m:ci><m:msub>
+		      <m:mi>θ</m:mi>
+		      <m:mi>j</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply><m:times/>
+		<m:apply><m:minus/>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mrow>
+			<m:mn>2</m:mn><m:mi>n</m:mi>
+		      </m:mrow>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mrow>
+			<m:mn>2</m:mn><m:mi>m</m:mi>
+		      </m:mrow>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:apply><m:sin/>
+		  <m:ci><m:msub>
+		      <m:mi>θ</m:mi>
+		      <m:mi>j</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+
+      for fiber <m:math display="inline"><m:ci>j</m:ci></m:math>, as
+      depicted in <link target-id="genbar_fig" strength="3"/> below,
+      connecting node <m:math display="inline"><m:ci>m</m:ci></m:math>
+      to node <m:math display="inline"><m:ci>n</m:ci></m:math> and
+      making the angle
+      
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>θ</m:mi>
+	    <m:mi>j</m:mi>
+	  </m:msub></m:ci>
+	<!-- theta_j -->
+      </m:math>
+
+      with the positive horizontal axis when node <m:math display="inline"><m:ci>m</m:ci></m:math> is assumed to lie at
+      the point (0,0). The reader should check that our expressions
+      for
+      
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>e</m:mi>
+	    <m:mn>1</m:mn>
+	  </m:msub></m:ci>
+      </m:math>
+
+      and
+
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>e</m:mi>
+	    <m:mn>3</m:mn>
+	  </m:msub></m:ci>
+      </m:math>
+
+      indeed conform to this general formula and that 
+
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>e</m:mi>
+	    <m:mn>2</m:mn>
+	  </m:msub></m:ci>
+      </m:math>
+
+      and
+
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>e</m:mi>
+	    <m:mn>4</m:mn>
+	  </m:msub></m:ci>
+      </m:math>
+
+      agree with ones intuition.  For example, visual inspection of
+      the specimen suggests that fiber 2 can not be supposed to
+      stretch (<foreign>i.e.</foreign>, have positive
+
+      <m:math display="inline">
+	<m:ci><m:msub>
+	    <m:mi>e</m:mi>
+	    <m:mn>2</m:mn>
+	  </m:msub></m:ci>
+      </m:math>)
+
+      unless 
+
+      <m:math display="inline">
+	<m:apply><m:gt/>
+	  <m:ci><m:msub>
+	      <m:mi>x</m:mi>
+	      <m:mn>9</m:mn>
+	    </m:msub></m:ci>
+	  <m:ci><m:msub>
+	      <m:mi>x</m:mi>
+	      <m:mn>1</m:mn>
+	    </m:msub></m:ci>
+	</m:apply>
+	<!-- x_9 > x_1 -->
+      </m:math>
+
+      and/or 
+
+      <m:math display="inline">
+	<m:apply><m:gt/>
+	  <m:ci><m:msub>
+	      <m:mi>x</m:mi>
+	      <m:mn>2</m:mn>
+	    </m:msub></m:ci>
+	  <m:ci><m:msub>
+	      <m:mi>x</m:mi>
+	      <m:mn>10</m:mn>
+	    </m:msub></m:ci>
+	</m:apply>
+	<m:mtext>.</m:mtext>
+	<!-- x_9 > x_1 -->
+      </m:math>
+
+      Does this jive with <link target-id="eqn2_9" strength="2"/>?
+    </para>
+
+    <figure id="genbar_fig">
+      <media id="idp1606128" alt=""><image src="../../media/genbar.png" mime-type="image/png"/></media>
+      <caption>
+	Elongation of a generic bar, see <link target-id="eqn2_9" strength="2"/>.
+      </caption>
+    </figure>
+
+    <para id="p3">
+      Applying <link target-id="eqn2_9" strength="2"/> to each of the
+      remaining fibers we arrive at
+
+      <m:math display="inline">
+	<m:apply><m:eq/>
+	  <m:ci type="vector">e</m:ci>
+	  <m:apply><m:times/>
+	    <m:ci type="matrix">A</m:ci>
+	    <m:ci type="vector">x</m:ci>
+	  </m:apply>
+	</m:apply>
+	<!-- e = Ax -->
+      </m:math>
+
+      where <m:math display="inline"><m:ci type="matrix">A</m:ci></m:math> is 20-by-18, one row for each
+      fiber, and one column for each degree of freedom. For systems of
+      such size with such a well defined structure one naturally hopes
+      to automate the construction. We have done just that in the
+      accompanying <link url="http://cnx.rice.edu/modules/m10148/latest/fiber.m">M-file</link>
+      and <link url="http://cnx.rice.edu/modules/m10148/latest/lec2adj">
+      diary</link>.  The M-file begins with a matrix of raw data that
+      anyone with a protractor could have keyed in directly from <link target-id="tissue_model_fig" strength="2"/>:
+    </para>
+    
+    <code display="block" id="fiber_code">
+      data =     [                                 % one row of data for each fiber, the
+      1       4       -pi/2           % first two columns are starting and ending
+      1       5       -pi/4           % node numbers, respectively, while the third is the 
+      1       2       0               % angle the fiber makes with the positive horizontal axis
+      2       4       -3*pi/4
+      ...and so on...                  ] 
+    </code>
+
+    <para id="p4">
+      This data is precisely what <link target-id="eqn2_9" strength="2"/>
+      requires in order to know which columns of <m:math display="inline"><m:ci type="matrix">A</m:ci></m:math> receive
+      the proper cos or sin.  The final <m:math display="inline"><m:ci type="matrix">A</m:ci></m:math> matrix is displayed in the
+      <link url="http://cnx.rice.edu/modules/m10148/latest/lec2adj">
+      diary</link>.
+    </para>
+
+    <para id="p5">
+      The next two steps are now familiar.  If <m:math display="inline"><m:ci type="matrix">K</m:ci></m:math> denotes
+      the diagonal matrix of fiber stiffnesses and <m:math display="inline"><m:ci type="vector">f</m:ci></m:math> denotes
+      the vector of nodal forces then
+      
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:ci type="vector">y</m:ci>
+	  <m:apply><m:times/>
+	    <m:ci type="matrix">K</m:ci>
+	    <m:ci type="vector">e</m:ci>
+	  </m:apply>
+	</m:apply>
+	<!-- y = Ke -->
+
+	<m:mrow>
+	  <m:mi>   </m:mi><m:mi>   </m:mi>
+	  <m:mtext>and</m:mtext>
+	  <m:mi>   </m:mi><m:mi>   </m:mi>
+	</m:mrow>
+
+	<m:apply><m:eq/>
+	  <m:apply><m:times/>
+	    <m:apply><m:transpose/>
+	      <m:ci type="matrix">A</m:ci>
+	    </m:apply>
+	    <m:ci type="vector">y</m:ci>
+	  </m:apply>
+	  <m:ci type="vector">f</m:ci>
+	</m:apply>
+	<!-- A'y = f -->
+      </m:math>
+
+      and so one must solve
+
+      <m:math display="inline">
+	<m:apply><m:eq/>
+	  <m:apply><m:times/>
+	    <m:ci type="matrix">S</m:ci>
+	    <m:ci type="vector">x</m:ci>
+	  </m:apply>
+	  <m:ci type="vector">f</m:ci>
+	</m:apply>
+	<!-- Sx = f -->
+      </m:math>
+
+      where
+
+      <m:math display="inline">
+	<m:apply><m:eq/>
+	  <m:ci type="matrix">S</m:ci>
+	  <m:apply><m:times/>
+	    <m:apply><m:transpose/>
+	      <m:ci type="matrix">A</m:ci>
+	    </m:apply>
+	    <m:ci type="matrix">K</m:ci>
+	    <m:ci type="matrix">A</m:ci>
+	  </m:apply>
+	</m:apply>
+	<!-- S = A'KA -->
+      </m:math>.
+
+      In this case there is an entire three--dimensional class of 
+      <m:math display="inline"><m:ci type="vector">z</m:ci></m:math>
+      for which 
+      
+      <m:math display="inline">
+	<m:apply><m:eq/>
+	  <m:apply><m:times/>
+	    <m:ci type="matrix">A</m:ci>
+	    <m:ci type="vector">z</m:ci>
+	  </m:apply>
+	  <m:ci type="vector">0</m:ci>
+	</m:apply>
+	<!-- Az = 0 -->
+      </m:math>
+
+      and therefore
+
+      <m:math display="inline">
+	<m:apply><m:eq/>
+	  <m:apply><m:times/>
+	    <m:ci type="matrix">S</m:ci>
+	    <m:ci type="vector">z</m:ci>
+	  </m:apply>
+	  <m:ci type="vector">0</m:ci>
+	</m:apply>
+	<!-- Sz = 0 -->
+      </m:math>.
+
+      The three indicates that there are three independent unstable
+      modes of the specimen, <foreign>e.g.</foreign>, two translations
+      and a rotation. As a result <m:math display="inline"><m:ci type="matrix">S</m:ci></m:math> is singular and <code> x =
+      S\f</code> in MATLAB will get us nowhere.  The way out is to
+      recognize that <m:math display="inline"><m:ci type="matrix">S</m:ci></m:math> has
+      
+      <m:math display="inline">
+	<m:apply><m:eq/>
+	  <m:apply><m:minus/>
+	    <m:cn>18</m:cn>
+	    <m:cn>3</m:cn>
+	  </m:apply>
+	  <m:cn>15</m:cn>
+	</m:apply>
+	<!-- 18 - 3 = 15 -->
+      </m:math>
+
+      stable modes and that if we restrict <m:math display="inline"><m:ci type="matrix">S</m:ci></m:math> to 'act'
+      only in these directions then it `should' be invertible.  We will
+      begin to make these notions precise in discussions on the <link document="m10296" strength="3">Fundamental Theorem of Linear
+      Algebra.</link>  For now let us note that every matrix possesses
+      such a <term>pseudo-inverse</term> and that it may be computed
+      in MATLAB via the <code>pinv</code> command.  Supposing
+      the fiber stiffnesses to each be one and the edge traction to be
+      of the form
+      
+      <m:math display="block">
+	<m:apply><m:eq/>
+	  <m:ci type="vector">f</m:ci>
+	  <m:apply><m:transpose/>
+	    <m:matrix>
+	      <m:matrixrow>
+		<m:cn>-1</m:cn><m:cn>1</m:cn><m:cn>0</m:cn>
+		<m:cn>1</m:cn><m:cn>1</m:cn><m:cn>1</m:cn>
+		<m:cn>-1</m:cn><m:cn>0</m:cn><m:cn>0</m:cn>
+		<m:cn>0</m:cn><m:cn>1</m:cn><m:cn>0</m:cn>
+		<m:cn>-1</m:cn><m:cn>-1</m:cn><m:cn>0</m:cn>
+		<m:cn>-1</m:cn><m:cn>1</m:cn><m:cn>-1</m:cn>
+	      </m:matrixrow>
+	    </m:matrix>
+	  </m:apply>
+	</m:apply>
+	<m:mtext>,</m:mtext>
+	<!--  f = [ -1 1 0 1 1 1 -1 0 0 0 1 0 -1 -1 0 -1 1 -1 ]' -->
+      </m:math>
+
+      we arrive at <m:math display="inline"><m:ci type="vector">x</m:ci></m:math> via
+      <code>x=pinv(S)*f</code> and offer below its graphical
+      representation.
+    </para>
+
+    <section id="deform_section">
+      <title>Before-After Plot</title>
+      <figure id="deform_fig">
+	<media id="idp1634128" alt=""><image src="../../media/lec2fig4.png" mime-type="image/png"/></media>
+	<caption>
+	  Before and after shots of the truss in <link target-id="tissue_model_fig" strength="2"/>.  The solid
+	  (dashed) circles correspond to the nodal positions before
+	  (after) the application of the traction force, <m:math display="inline"><m:ci type="vector">f</m:ci></m:math>.
+	</caption>
+      </figure>
+    </section>
+  </content>
+</document>

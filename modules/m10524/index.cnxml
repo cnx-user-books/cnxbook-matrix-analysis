@@ -1,0 +1,322 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  
+  <title>Exercises:  Complex Integration</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>59c7d5f8-05af-436b-8ca9-ce4420b08ef3</md:uuid>
+</metadata>
+
+  <content>
+    <para id="para1">
+      <list id="exercises" list-type="enumerated">
+	<item>Let us confirm the representation of <link document="m10264" target-id="eq7" strength="3">this Cauchy's Theorem equation</link> in the
+	matrix case.  More precisely, if
+	  <m:math>
+	    <m:apply>
+	      <m:equivalent/>
+	      <m:apply>
+		<m:ci type="fn">Φ</m:ci>
+		<m:ci>z</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:inverse/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>z</m:ci>
+		    <m:ci>I</m:ci>
+		  </m:apply>
+		  <m:ci>B</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	  is the transfer function associated with
+	  <m:math><m:ci>B</m:ci></m:math> then <link document="m10264" target-id="eq7" strength="3"> this Cauchy's Theorem equation</link>
+	  states that
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci type="fn">Φ</m:ci>
+		<m:ci>z</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:sum/>
+		<m:bvar>
+		  <m:ci>j</m:ci>
+		</m:bvar>
+		<m:lowlimit>
+		  <m:cn>1</m:cn>
+		</m:lowlimit>
+		<m:uplimit>
+		  <m:ci>h</m:ci>
+		</m:uplimit>
+		<m:apply>
+		  <m:sum/>
+		  <m:bvar>
+		    <m:ci>k</m:ci>
+		  </m:bvar>
+		  <m:lowlimit>
+		    <m:cn>1</m:cn>
+		  </m:lowlimit>
+		  <m:uplimit>
+		    <m:ci><m:msub>
+		    <m:mi>d</m:mi>
+		    <m:mi>j</m:mi>
+		      </m:msub></m:ci>
+		  </m:uplimit>
+		  <m:apply>
+		    <m:divide/>
+		    <m:ci><m:msub>
+			<m:mi>Φ</m:mi>
+			<m:mrow>
+			  <m:mi>j</m:mi>
+			  <m:mo>,</m:mo>
+			  <m:mi>k</m:mi>
+			</m:mrow>
+		      </m:msub></m:ci>
+		    <m:apply>
+		      <m:power/>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>z</m:ci>
+			<m:ci><m:msub>
+			    <m:mi>λ</m:mi>
+			    <m:mi>j</m:mi>
+			  </m:msub></m:ci>
+		      </m:apply>
+		      <m:ci>k</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	  where
+	  <equation id="eq15">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:ci><m:msub>
+		    <m:mi>Φ</m:mi>
+		    <m:mrow>
+		      <m:mi>j</m:mi>
+		      <m:mo>,</m:mo>
+		      <m:mi>k</m:mi>
+		    </m:mrow>
+		  </m:msub></m:ci>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>2</m:cn>
+		      <m:pi/>
+		      <m:imaginaryi/>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:int/>
+		    <m:bvar>
+		      <m:ci>z</m:ci>
+		    </m:bvar>
+		    <m:domainofapplication>
+		      <m:ci><m:msub>
+			  <m:mi>C</m:mi>
+			  <m:mi>j</m:mi>
+			</m:msub></m:ci>
+		    </m:domainofapplication>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:ci type="fn">Φ</m:ci>
+			<m:ci>z</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:power/>
+			<m:apply>
+			  <m:minus/>
+			  <m:ci>z</m:ci>
+			  <m:ci><m:msub>
+			      <m:mi>λ</m:mi>
+			      <m:mi>j</m:mi>
+			    </m:msub></m:ci>
+			</m:apply>
+			<m:apply>
+			  <m:minus/>
+			  <m:ci>k</m:ci>
+			  <m:cn>1</m:cn>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+	  Compute the <m:math>
+	    <m:ci><m:msub>
+		<m:mi>Φ</m:mi>
+		<m:mrow>
+		  <m:mi>j</m:mi>
+		  <m:mo>,</m:mo>
+		  <m:mi>k</m:mi>
+		</m:mrow>
+	      </m:msub></m:ci> </m:math> per <link target-id="eq15" strength="3"/> for the <m:math><m:ci>B</m:ci></m:math> in
+	  <link document="m10276" target-id="eq13" strength="3">this
+	  equation</link> from the discussion of Complex
+	  Differentiation.  Confirm that they agree with those
+	  appearing in <link document="m10276" target-id="eq17" strength="3">this equation</link> from the Complex
+	  Differentiation discussion.  
+	</item>
+	<item>
+	  Use <link document="m10523" target-id="eq14" strength="3">this inverse Laplace Transform equation</link> to
+	  compute the inverse Laplace transform of 
+	  <m:math>
+	    <m:apply>
+	      <m:divide/>
+	      <m:cn>1</m:cn>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:power/>
+		  <m:ci>s</m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>2</m:cn>
+		  <m:ci>s</m:ci>
+		</m:apply>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>.
+	</item>
+	<item>
+	  Use the result of the previous exercise to solve, via the
+	  Laplace transform, the differential equation
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:apply>
+		    <m:diff/>
+		    <m:bvar>
+		      <m:ci>t</m:ci>
+		    </m:bvar>
+		    <m:ci type="fn">x</m:ci>
+		  </m:apply>
+		  <m:ci>t</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">x</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:sin/>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:mtext>,   </m:mtext>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci type="fn">x</m:ci>
+		<m:cn>0</m:cn>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	  </m:math>
+	  Hint:  Take the Laplace transform of each side.
+	</item>
+	<item>Explain how one gets from <m:math>
+	    <m:ci><m:msub>
+		<m:mi>r</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	  </m:math> and 
+	  <m:math>
+	    <m:ci><m:msub>
+		<m:mi>p</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	  </m:math> to
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn"><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:math>.
+	  </item>
+	<item>Compute, as in <code>fib4.m</code>, the residues
+	of <m:math>
+	    <m:apply>
+	      <m:ci><m:mo>ℒ</m:mo></m:ci>
+	      <m:apply>
+		<m:ci type="fn"><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	  and
+	  <m:math>
+	    <m:apply>
+	      <m:ci><m:mo>ℒ</m:mo></m:ci>
+	      <m:apply>
+		<m:ci type="fn"><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>3</m:mn>
+		  </m:msub></m:ci>
+		<m:ci>s</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	  and confirm that they give rise to the 
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn"><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>2</m:mn>
+		</m:msub></m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:math>
+	  and
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn"><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>3</m:mn>
+		</m:msub></m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:math>
+  you derived in the discussion of <link document="m10145" strength="3">Chapter 1</link>.
+	  </item>
+      </list>
+    </para>   
+  </content>
+  
+</document>
