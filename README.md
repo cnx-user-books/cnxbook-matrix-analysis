@@ -4,7 +4,7 @@
 
 _Matrix Analysis_ is a book that was published on [cnx.org](https://cnx.org/).
 
-An ebook can be downloaded [here](https://github.com/cnx-user-books/cnxbook-matrix-analysis/releases/latest), and the book can be viewed online [here](https://github.com/cnx-user-books/cnxbook-matrix-analysis/releases/latest)).
+An ebook can be downloaded [here](https://github.com/cnx-user-books/cnxbook-matrix-analysis/releases/latest), and the book can be viewed online [here](https://github.com/cnx-user-books/cnxbook-matrix-analysis/releases/latest).
 
 ## License
 This book is available under the [Creative Commons Attribution License](./LICENSE) license.
